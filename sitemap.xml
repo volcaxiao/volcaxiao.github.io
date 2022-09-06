@@ -118,6 +118,20 @@
   </url>
 
   
+  <url>
+    <loc>http://volcaxiao.github.io/tags/welcome-start/</loc>
+    <lastmod>2022-09-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
 
+  
+  <url>
+    <loc>http://volcaxiao.github.io/categories/welcome/</loc>
+    <lastmod>2022-09-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
   
 </urlset>
