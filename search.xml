@@ -1,38 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>blog配置教程</title>
-    <url>/2022/09/06/blog%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/</url>
-    <content><![CDATA[]]></content>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/2022/09/05/hello-world/</url>
-    <content><![CDATA[<h1 id="hello-world"><a href="#hello-world" class="headerlink" title="hello world!"></a>hello world!</h1><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<span id="more"></span> 
-
-<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
-  </entry>
-  <entry>
-    <title>mips汇编翻译C代码典例</title>
-    <url>/2022/09/06/mips%E6%B1%87%E7%BC%96%E7%BF%BB%E8%AF%91C%E4%BB%A3%E7%A0%81%E5%85%B8%E4%BE%8B/</url>
-    <content><![CDATA[]]></content>
-  </entry>
-  <entry>
     <title>welcome</title>
     <url>/2022/09/06/welcome/</url>
     <content><![CDATA[<p>欢迎来到volca’s blog_world，在这里大家可以讨论学习，侃侃大山，<del>发一发电</del>。初临blog，一定要看完这篇welcome，要有正确的打开方式喔。<br><strong>更新时间：2022-09-06</strong></p>
@@ -106,13 +74,37 @@
       </tags>
   </entry>
   <entry>
+    <title>北航信息类高代资料</title>
+    <url>/2022/09/06/%E5%8C%97%E8%88%AA%E4%BF%A1%E6%81%AF%E7%B1%BB%E9%AB%98%E4%BB%A3%E8%B5%84%E6%96%99/</url>
+    <content><![CDATA[<p>北航大一高代的资料，高代的题可能就不像数分的题整理的那么的整齐，可能<strong>有点零散</strong>，特别是期中的题，俺可能还一不小心删掉一部分（秃头），而且很多<strong>试题都没有答案</strong>。不过乐观点想，期中大家真的不用太担心，试题没有答案的话可以多<strong>和同学讨论</strong>，<strong>对答案</strong>，<strong>问老师</strong>；这也是个主动学习的过程。另外文档里，有俺滴<strong>手写笔记</strong>，大一上跟着<strong>赵迪老师</strong>上课，受益匪浅，学会了很多 <em><strong>学术语言</strong></em>()，<strong>大大滴推荐</strong>。另外这一篇也有<strong>加餐</strong>，给大家讲一下可以从哪里<strong>找试卷资源</strong>，这样大家也能自己去找资源！</p>
+<span id="more"></span>
+
+<h1 id="高代资料"><a href="#高代资料" class="headerlink" title="高代资料"></a>高代资料</h1><h2 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h2><blockquote>
+<p>话不多说，上链接！<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/%E5%8C%97%E8%88%AA%E4%BF%A1%E6%81%AF%E7%B1%BB%E9%AB%98%E4%BB%A3%E8%B5%84%E6%96%99/%E5%9B%BE%E4%B8%80.jpg" alt="图一"></p>
+</blockquote>
+<ul>
+<li><a href="https://bhpan.buaa.edu.cn/link/197EDC5E339248FC004CD796F84C3EB8">北航云盘-高代资料</a><br>有效期限：2025-10-01 23:59</li>
+<li>有效期快到了的话提醒我续费（</li>
+</ul>
+<h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><h2 id="加餐时间"><a href="#加餐时间" class="headerlink" title="加餐时间"></a>加餐时间</h2><blockquote>
+<p>持续更新中，未完待续。。。</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>北航信息类大一资料</category>
+      </categories>
+      <tags>
+        <tag>北航 大一 高代 资源</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>北航信息类数分一资料</title>
     <url>/2022/09/06/%E5%8C%97%E8%88%AA%E4%BF%A1%E6%81%AF%E7%B1%BB%E6%95%B0%E5%88%86%EF%BC%88%E4%B8%80%EF%BC%89%E8%B5%84%E6%96%99/</url>
     <content><![CDATA[<p>北航大一的数分（一）资料，有<strong>数分讲座的ppt</strong>以及<strong>2010-2022的期中考题</strong>、<strong>2010-2021的期末考题</strong>，其中期末的考题以及处理好了，题目和答案分开在两个文件夹内。但期中的考题答案和题目还合在一起，这里并不是俺懒（确信.jpg，而是学长觉得授人以鱼不如授人以渔，所以内有<strong>wps处理教程</strong>，赶紧学起来叭！！！</p>
 <span id="more"></span>
 
 <h1 id="数分（一）资料"><a href="#数分（一）资料" class="headerlink" title="数分（一）资料"></a>数分（一）资料</h1><h2 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h2><blockquote>
-<p>快点端上来罢 我已经等不及了<br><img src="/.io//%E5%9B%BE%E4%B8%80.jpg" alt="图1"></p>
+<p>快点端上来罢 我已经等不及了<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/%E5%8C%97%E8%88%AA%E4%BF%A1%E6%81%AF%E7%B1%BB%E6%95%B0%E5%88%86%EF%BC%88%E4%B8%80%EF%BC%89%E8%B5%84%E6%96%99/%E5%9B%BE%E4%B8%80.jpg" alt="图1"></p>
 </blockquote>
 <ul>
 <li><a href="https://bhpan.buaa.edu.cn/link/D8A4739E259BFEBEE88FD61C2F75F331">北航云盘-淑芬（一）资料</a><br>有效期限：2025-10-01 23:59</li>
@@ -136,11 +128,11 @@
 <li>ms office全家桶是非常强大的办公软件，用的好ms office当然能够解决好许多问题。而wps这一类金山的东西一直给人一种广告多不好用的印象，但其实金山软件公司在1988年创立，和ms争夺办公软件的市场许多年，wps在功能性上完全不输ms office，所以大家可以放心食用，另外广告这件事也不用担心，马上就没了（手动滑稽</li>
 </ul>
 <h3 id="具体教程"><a href="#具体教程" class="headerlink" title="具体教程"></a>具体教程</h3><ul>
-<li><p>我们打开2020-2021的期中试卷，看到里面还有答案。我们点击 <strong>编辑-&gt;编辑内容</strong> 可以发现页面变成了这样<br><img src="/.io//%E5%9B%BE%E4%BA%8C.png" alt="图二"></p>
+<li><p>我们打开2020-2021的期中试卷，看到里面还有答案。我们点击 <strong>编辑-&gt;编辑内容</strong> 可以发现页面变成了这样<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/%E5%8C%97%E8%88%AA%E4%BF%A1%E6%81%AF%E7%B1%BB%E6%95%B0%E5%88%86%EF%BC%88%E4%B8%80%EF%BC%89%E8%B5%84%E6%96%99/%E5%9B%BE%E4%BA%8C.png" alt="图二"></p>
 </li>
 <li><p>问题是这样不好处理选项啊，删错了怎么办？（可以ctrl+z）</p>
 <ul>
-<li>这样可以来<strong>处理大题</strong>，像这样，直接<strong>全部选中，delete</strong>，就okk了<br><img src="/.io//%E5%9B%BE%E4%B8%89.jpg" alt="图三"><br><img src="/.io//%E5%9B%BE%E5%9B%9B.jpg" alt="图四"><br><img src="/.io//%E5%9B%BE%E4%BA%94.jpg" alt="图五"></li>
+<li>这样可以来<strong>处理大题</strong>，像这样，直接<strong>全部选中，delete</strong>，就okk了<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/%E5%8C%97%E8%88%AA%E4%BF%A1%E6%81%AF%E7%B1%BB%E6%95%B0%E5%88%86%EF%BC%88%E4%B8%80%EF%BC%89%E8%B5%84%E6%96%99/%E5%9B%BE%E4%B8%89.jpg" alt="图三"><br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/%E5%8C%97%E8%88%AA%E4%BF%A1%E6%81%AF%E7%B1%BB%E6%95%B0%E5%88%86%EF%BC%88%E4%B8%80%EF%BC%89%E8%B5%84%E6%96%99/%E5%9B%BE%E5%9B%9B.jpg" alt="图四"><br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/%E5%8C%97%E8%88%AA%E4%BF%A1%E6%81%AF%E7%B1%BB%E6%95%B0%E5%88%86%EF%BC%88%E4%B8%80%EF%BC%89%E8%B5%84%E6%96%99/%E5%9B%BE%E4%BA%94.jpg" alt="图五"></li>
 </ul>
 </li>
 <li><p>那选择题怎么搞？ 可以点击 <strong>编辑-&gt;擦除</strong> ，去试一下很好搞的，绝对不是俺懒（确信.jpg。</p>
@@ -175,32 +167,40 @@
       </tags>
   </entry>
   <entry>
+    <title>blog配置教程</title>
+    <url>/2022/09/06/blog%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title>mips汇编翻译C代码典例</title>
+    <url>/2022/09/06/mips%E6%B1%87%E7%BC%96%E7%BF%BB%E8%AF%91C%E4%BB%A3%E7%A0%81%E5%85%B8%E4%BE%8B/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
     <title>工科大物-气体动理论总结</title>
     <url>/2022/09/06/%E5%B7%A5%E7%A7%91%E5%A4%A7%E7%89%A9-%E6%B0%94%E4%BD%93%E5%8A%A8%E7%90%86%E8%AE%BA%E6%80%BB%E7%BB%93/</url>
     <content><![CDATA[]]></content>
   </entry>
   <entry>
-    <title>北航信息类高代资料</title>
-    <url>/2022/09/06/%E5%8C%97%E8%88%AA%E4%BF%A1%E6%81%AF%E7%B1%BB%E9%AB%98%E4%BB%A3%E8%B5%84%E6%96%99/</url>
-    <content><![CDATA[<p>北航大一高代的资料，高代的题可能就不像数分的题整理的那么的整齐，可能<strong>有点零散</strong>，特别是期中的题，俺可能还一不小心删掉一部分（秃头），而且很多<strong>试题都没有答案</strong>。不过乐观点想，期中大家真的不用太担心，试题没有答案的话可以多<strong>和同学讨论</strong>，<strong>对答案</strong>，<strong>问老师</strong>；这也是个主动学习的过程。另外文档里，有俺滴<strong>手写笔记</strong>，大一上跟着<strong>赵迪老师</strong>上课，受益匪浅，学会了很多 <em><strong>学术语言</strong></em>()，<strong>大大滴推荐</strong>。另外这一篇也有<strong>加餐</strong>，给大家讲一下可以从哪里<strong>找试卷资源</strong>，这样大家也能自己去找资源！</p>
-<span id="more"></span>
+    <title>Hello World</title>
+    <url>/2022/09/05/hello-world/</url>
+    <content><![CDATA[<h1 id="hello-world"><a href="#hello-world" class="headerlink" title="hello world!"></a>hello world!</h1><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
 
-<h1 id="高代资料"><a href="#高代资料" class="headerlink" title="高代资料"></a>高代资料</h1><h2 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h2><blockquote>
-<p>话不多说，上链接！<br><img src="/.io//%E5%9B%BE%E4%B8%80.jpg" alt="图一"></p>
-</blockquote>
-<ul>
-<li><a href="https://bhpan.buaa.edu.cn/link/197EDC5E339248FC004CD796F84C3EB8">北航云盘-高代资料</a><br>有效期限：2025-10-01 23:59</li>
-<li>有效期快到了的话提醒我续费（</li>
-</ul>
-<h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><h2 id="加餐时间"><a href="#加餐时间" class="headerlink" title="加餐时间"></a>加餐时间</h2><blockquote>
-<p>持续更新中，未完待续。。。</p>
-</blockquote>
+<span id="more"></span> 
+
+<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
 ]]></content>
-      <categories>
-        <category>北航信息类大一资料</category>
-      </categories>
-      <tags>
-        <tag>北航 大一 高代 资源</tag>
-      </tags>
   </entry>
 </search>
