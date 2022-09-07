@@ -21,18 +21,22 @@
     var CONFIG = {"hostname":"volcaxiao.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"livere","storage":true,"lazyload":false,"nav":null,"activeClass":"livere"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":5,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="北航CS，学习分享，记得看welcome">
+  <meta name="description" content="系边上老师的课边做的一些笔记以及自己的一些想法，但有时候可能会拖更，分享给大家，有不妥之处，敬请评论区指正。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="工科大物-气体动理论总结">
 <meta property="og:url" content="http://volcaxiao.github.io/2022/09/06/%E5%B7%A5%E7%A7%91%E5%A4%A7%E7%89%A9-%E6%B0%94%E4%BD%93%E5%8A%A8%E7%90%86%E8%AE%BA%E6%80%BB%E7%BB%93/index.html">
 <meta property="og:site_name" content="volca&#39;s blog">
-<meta property="og:description" content="北航CS，学习分享，记得看welcome">
+<meta property="og:description" content="系边上老师的课边做的一些笔记以及自己的一些想法，但有时候可能会拖更，分享给大家，有不妥之处，敬请评论区指正。">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/%E5%B7%A5%E7%A7%91%E5%A4%A7%E7%89%A9-%E6%B0%94%E4%BD%93%E5%8A%A8%E7%90%86%E8%AE%BA%E6%80%BB%E7%BB%93/%E5%9B%BE2.1.jpg">
 <meta property="article:published_time" content="2022-09-06T03:01:09.000Z">
-<meta property="article:modified_time" content="2022-09-06T03:01:09.988Z">
+<meta property="article:modified_time" content="2022-09-07T02:41:35.074Z">
 <meta property="article:author" content="volcaxiao">
-<meta property="article:tag" content="CS,北航,学习,数理,分享">
+<meta property="article:tag" content="物理">
+<meta property="article:tag" content="热力学">
+<meta property="article:tag" content="气体动理论">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/%E5%B7%A5%E7%A7%91%E5%A4%A7%E7%89%A9-%E6%B0%94%E4%BD%93%E5%8A%A8%E7%90%86%E8%AE%BA%E6%80%BB%E7%BB%93/%E5%9B%BE2.1.jpg">
 
 <link rel="canonical" href="http://volcaxiao.github.io/2022/09/06/%E5%B7%A5%E7%A7%91%E5%A4%A7%E7%89%A9-%E6%B0%94%E4%BD%93%E5%8A%A8%E7%90%86%E8%AE%BA%E6%80%BB%E7%BB%93/">
 
@@ -235,6 +239,22 @@
 
               <time title="创建时间：2022-09-06 11:01:09" itemprop="dateCreated datePublished" datetime="2022-09-06T11:01:09+08:00">2022-09-06</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-09-07 10:41:35" itemprop="dateModified" datetime="2022-09-07T10:41:35+08:00">2022-09-07</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%B7%A5%E7%A7%91%E5%A4%A7%E5%AD%A6%E7%89%A9%E7%90%86/" itemprop="url" rel="index"><span itemprop="name">工科大学物理</span></a>
+                </span>
+            </span>
 
           
             <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
@@ -249,7 +269,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>0</span>
+              <span>1.1k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -268,7 +288,55 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        
+        <p>系边上老师的课边做的一些笔记以及自己的一些想法，但有时候可能会拖更，分享给大家，有不妥之处，敬请评论区指正。</p>
+<span id="more"></span>
+
+<h1 id="气体动理论总结（持续更新中…）"><a href="#气体动理论总结（持续更新中…）" class="headerlink" title="气体动理论总结（持续更新中…）"></a>气体动理论总结（持续更新中…）</h1><h2 id="一、基本概念、微观结构、统计规律"><a href="#一、基本概念、微观结构、统计规律" class="headerlink" title="一、基本概念、微观结构、统计规律"></a>一、基本概念、微观结构、统计规律</h2><h3 id="1、热力学系统与外界"><a href="#1、热力学系统与外界" class="headerlink" title="1、热力学系统与外界"></a>1、热力学系统与外界</h3><ul>
+<li>热力学系统：一般相对较大、能被察觉，包含大量的分子原子。</li>
+<li>外界：系统之外（严谨的废话）。</li>
+</ul>
+<h3 id="2、物质的微观结构"><a href="#2、物质的微观结构" class="headerlink" title="2、物质的微观结构"></a>2、物质的微观结构</h3><ul>
+<li>宏观的物体都由大量微观粒子构成</li>
+<li>所有分子都在不停无规则的热运动</li>
+<li>分子间存在相互作用力</li>
+</ul>
+<h3 id="3、气体分子热运动的主要特征"><a href="#3、气体分子热运动的主要特征" class="headerlink" title="3、气体分子热运动的主要特征"></a>3、气体分子热运动的主要特征</h3><ul>
+<li>分子间间距大</li>
+<li>碰撞频繁</li>
+<li>遵从牛顿运动定律（相对较低速）</li>
+</ul>
+<h3 id="4、理想气体微观模型"><a href="#4、理想气体微观模型" class="headerlink" title="4、理想气体微观模型"></a>4、理想气体微观模型</h3><ul>
+<li>气体分子看作小球，可以弹性也可以刚性</li>
+<li>分子间只有相互碰撞，没有其他相互作用，所以没有分子间势能</li>
+<li>碰撞时分子看成完全弹性小球</li>
+</ul>
+<h3 id="5、平衡态"><a href="#5、平衡态" class="headerlink" title="5、平衡态"></a>5、平衡态</h3><ul>
+<li>是指在系统不受外界影响时，各部分宏观性质长时间不随时间改变的状态</li>
+<li>平衡态应用：热力学第三定律</li>
+</ul>
+<h3 id="6、温度"><a href="#6、温度" class="headerlink" title="6、温度"></a>6、温度</h3><hr>
+<p>整理老师ppt的部分结束了，俺懒得copy了，接下来就是一些理论的推导过程以及我觉得重要的地方</p>
+<h2 id="理想气体平衡态时宏观描述"><a href="#理想气体平衡态时宏观描述" class="headerlink" title="理想气体平衡态时宏观描述"></a>理想气体平衡态时宏观描述</h2><blockquote>
+<p>注意表述，有哪些定语，理想气体、平衡态、宏观</p>
+</blockquote>
+<ul>
+<li>有V(体积)、P(压强)、T(温度)、M(质量)、、、气体的宏观量，并且有由它们相互之间构成的关系——克拉伯龙方程</li>
+<li>还有许多由实验得来的定律，等温的玻意尔定律，等容的查理定律，等压的盖吕萨克定律都可以在克拉伯龙方程得到体现，相信大家高中学的都挺好，这些不在话下。</li>
+</ul>
+<blockquote>
+<p>$PV&#x3D; \nu RT$    ($\nu$为摩尔数，T单位为开尔文K)<br>它有许多变式<br>$\because \nu&#x3D;\frac{m}{M}&#x3D;\frac{N}{N_A}$<br>$\therefore \dotsb$<br>$\because k &#x3D; \frac{R}{N_A}$（k为玻尔兹曼常数）<br>$\because n&#x3D;\frac{N}{V} &#x3D; \frac{\nu N_A}{V}$ (n为分子数密度)<br>$\therefore 它又能写成 PV&#x3D;NkT, P&#x3D;nkT$<br>其中常数$R&#x3D;8.314510J&#x2F;molK$<br>$k&#x3D;1.380658 \times 10^{-23} J&#x2F;K$</p>
+</blockquote>
+<h2 id="理想气体压强公式"><a href="#理想气体压强公式" class="headerlink" title="理想气体压强公式"></a>理想气体压强公式</h2><ul>
+<li>首先得清楚，压强的来源是每一个小分子对于器壁都会有冲击力，但是这里的P是大量分子撞击的宏观结果，单个的分子无法讨论压强。</li>
+<li>下面开始推导</li>
+</ul>
+<blockquote>
+<p>在一个边长分别为$l_1,l_2,l_3$的全反射壁容器内<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/%E5%B7%A5%E7%A7%91%E5%A4%A7%E7%89%A9-%E6%B0%94%E4%BD%93%E5%8A%A8%E7%90%86%E8%AE%BA%E6%80%BB%E7%BB%93/%E5%9B%BE2.1.jpg" alt="容器"></p>
+</blockquote>
+<h2 id="分子碰撞基本理论——平均自由程"><a href="#分子碰撞基本理论——平均自由程" class="headerlink" title="分子碰撞基本理论——平均自由程"></a>分子碰撞基本理论——平均自由程</h2><p>Maxwell速率分布</p>
+<h2 id="温度公式"><a href="#温度公式" class="headerlink" title="温度公式"></a>温度公式</h2><p>温度与平动动能有关，相同温度不同气体，平动动能一定相等，但总动能和内能不一定相等</p>
+<h2 id="阿佛加德罗定律"><a href="#阿佛加德罗定律" class="headerlink" title="阿佛加德罗定律"></a>阿佛加德罗定律</h2><h2 id="道尔顿分压定理"><a href="#道尔顿分压定理" class="headerlink" title="道尔顿分压定理"></a>道尔顿分压定理</h2><h2 id="能量均分定理"><a href="#能量均分定理" class="headerlink" title="能量均分定理"></a>能量均分定理</h2><h2 id="气体内能的讨论"><a href="#气体内能的讨论" class="headerlink" title="气体内能的讨论"></a>气体内能的讨论</h2><h2 id="Maxwell速率分布"><a href="#Maxwell速率分布" class="headerlink" title="Maxwell速率分布"></a>Maxwell速率分布</h2><p>最可几&#x2F;最概然 速率 无序度增加</p>
+
     </div>
 
     
@@ -293,6 +361,12 @@
 
 
       <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/%E7%89%A9%E7%90%86/" rel="tag"><i class="fa fa-tag"></i> 物理</a>
+              <a href="/tags/%E7%83%AD%E5%8A%9B%E5%AD%A6/" rel="tag"><i class="fa fa-tag"></i> 热力学</a>
+              <a href="/tags/%E6%B0%94%E4%BD%93%E5%8A%A8%E7%90%86%E8%AE%BA/" rel="tag"><i class="fa fa-tag"></i> 气体动理论</a>
+          </div>
 
         
 
@@ -370,6 +444,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B0%94%E4%BD%93%E5%8A%A8%E7%90%86%E8%AE%BA%E6%80%BB%E7%BB%93%EF%BC%88%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%E4%B8%AD%E2%80%A6%EF%BC%89"><span class="nav-number">1.</span> <span class="nav-text">气体动理论总结（持续更新中…）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5%E3%80%81%E5%BE%AE%E8%A7%82%E7%BB%93%E6%9E%84%E3%80%81%E7%BB%9F%E8%AE%A1%E8%A7%84%E5%BE%8B"><span class="nav-number">1.1.</span> <span class="nav-text">一、基本概念、微观结构、统计规律</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%E3%80%81%E7%83%AD%E5%8A%9B%E5%AD%A6%E7%B3%BB%E7%BB%9F%E4%B8%8E%E5%A4%96%E7%95%8C"><span class="nav-number">1.1.1.</span> <span class="nav-text">1、热力学系统与外界</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%E3%80%81%E7%89%A9%E8%B4%A8%E7%9A%84%E5%BE%AE%E8%A7%82%E7%BB%93%E6%9E%84"><span class="nav-number">1.1.2.</span> <span class="nav-text">2、物质的微观结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3%E3%80%81%E6%B0%94%E4%BD%93%E5%88%86%E5%AD%90%E7%83%AD%E8%BF%90%E5%8A%A8%E7%9A%84%E4%B8%BB%E8%A6%81%E7%89%B9%E5%BE%81"><span class="nav-number">1.1.3.</span> <span class="nav-text">3、气体分子热运动的主要特征</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4%E3%80%81%E7%90%86%E6%83%B3%E6%B0%94%E4%BD%93%E5%BE%AE%E8%A7%82%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.1.4.</span> <span class="nav-text">4、理想气体微观模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5%E3%80%81%E5%B9%B3%E8%A1%A1%E6%80%81"><span class="nav-number">1.1.5.</span> <span class="nav-text">5、平衡态</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6%E3%80%81%E6%B8%A9%E5%BA%A6"><span class="nav-number">1.1.6.</span> <span class="nav-text">6、温度</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%90%86%E6%83%B3%E6%B0%94%E4%BD%93%E5%B9%B3%E8%A1%A1%E6%80%81%E6%97%B6%E5%AE%8F%E8%A7%82%E6%8F%8F%E8%BF%B0"><span class="nav-number">1.2.</span> <span class="nav-text">理想气体平衡态时宏观描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%90%86%E6%83%B3%E6%B0%94%E4%BD%93%E5%8E%8B%E5%BC%BA%E5%85%AC%E5%BC%8F"><span class="nav-number">1.3.</span> <span class="nav-text">理想气体压强公式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E5%AD%90%E7%A2%B0%E6%92%9E%E5%9F%BA%E6%9C%AC%E7%90%86%E8%AE%BA%E2%80%94%E2%80%94%E5%B9%B3%E5%9D%87%E8%87%AA%E7%94%B1%E7%A8%8B"><span class="nav-number">1.4.</span> <span class="nav-text">分子碰撞基本理论——平均自由程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B8%A9%E5%BA%A6%E5%85%AC%E5%BC%8F"><span class="nav-number">1.5.</span> <span class="nav-text">温度公式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%98%BF%E4%BD%9B%E5%8A%A0%E5%BE%B7%E7%BD%97%E5%AE%9A%E5%BE%8B"><span class="nav-number">1.6.</span> <span class="nav-text">阿佛加德罗定律</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%81%93%E5%B0%94%E9%A1%BF%E5%88%86%E5%8E%8B%E5%AE%9A%E7%90%86"><span class="nav-number">1.7.</span> <span class="nav-text">道尔顿分压定理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%83%BD%E9%87%8F%E5%9D%87%E5%88%86%E5%AE%9A%E7%90%86"><span class="nav-number">1.8.</span> <span class="nav-text">能量均分定理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B0%94%E4%BD%93%E5%86%85%E8%83%BD%E7%9A%84%E8%AE%A8%E8%AE%BA"><span class="nav-number">1.9.</span> <span class="nav-text">气体内能的讨论</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Maxwell%E9%80%9F%E7%8E%87%E5%88%86%E5%B8%83"><span class="nav-number">1.10.</span> <span class="nav-text">Maxwell速率分布</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -392,13 +467,13 @@
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">3</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -467,12 +542,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">3k</span>
+    <span title="站点总字数">4k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3 分钟</span>
+    <span title="站点阅读时长">4 分钟</span>
 </div>
 
 

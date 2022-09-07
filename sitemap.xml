@@ -2,7 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://volcaxiao.github.io/2022/09/06/%E5%8C%97%E8%88%AA%E4%BF%A1%E6%81%AF%E7%B1%BB%E9%AB%98%E4%BB%A3%E8%B5%84%E6%96%99/</loc>
+    <loc>http://volcaxiao.github.io/2022/09/06/%E5%B7%A5%E7%A7%91%E5%A4%A7%E7%89%A9-%E6%B0%94%E4%BD%93%E5%8A%A8%E7%90%86%E8%AE%BA%E6%80%BB%E7%BB%93/</loc>
+    
+    <lastmod>2022-09-07</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://volcaxiao.github.io/2022/09/06/welcome/</loc>
     
     <lastmod>2022-09-07</lastmod>
     
@@ -20,7 +29,7 @@
   </url>
   
   <url>
-    <loc>http://volcaxiao.github.io/2022/09/06/welcome/</loc>
+    <loc>http://volcaxiao.github.io/2022/09/06/%E5%8C%97%E8%88%AA%E4%BF%A1%E6%81%AF%E7%B1%BB%E9%AB%98%E4%BB%A3%E8%B5%84%E6%96%99/</loc>
     
     <lastmod>2022-09-07</lastmod>
     
@@ -39,15 +48,6 @@
   
   <url>
     <loc>http://volcaxiao.github.io/2022/09/06/mips%E6%B1%87%E7%BC%96%E7%BF%BB%E8%AF%91C%E4%BB%A3%E7%A0%81%E5%85%B8%E4%BE%8B/</loc>
-    
-    <lastmod>2022-09-06</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://volcaxiao.github.io/2022/09/06/%E5%B7%A5%E7%A7%91%E5%A4%A7%E7%89%A9-%E6%B0%94%E4%BD%93%E5%8A%A8%E7%90%86%E8%AE%BA%E6%80%BB%E7%BB%93/</loc>
     
     <lastmod>2022-09-06</lastmod>
     
@@ -119,21 +119,77 @@
 
   
   <url>
-    <loc>http://volcaxiao.github.io/tags/welcome-start/</loc>
+    <loc>http://volcaxiao.github.io/tags/welcome/</loc>
     <lastmod>2022-09-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://volcaxiao.github.io/tags/%E5%8C%97%E8%88%AA-%E5%A4%A7%E4%B8%80-%E9%AB%98%E4%BB%A3-%E8%B5%84%E6%BA%90/</loc>
+    <loc>http://volcaxiao.github.io/tags/start/</loc>
     <lastmod>2022-09-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://volcaxiao.github.io/tags/%E5%8C%97%E8%88%AA-%E5%A4%A7%E4%B8%80-%E6%95%B0%E5%88%86-wps/</loc>
+    <loc>http://volcaxiao.github.io/tags/%E5%8C%97%E8%88%AA/</loc>
+    <lastmod>2022-09-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://volcaxiao.github.io/tags/%E5%A4%A7%E4%B8%80/</loc>
+    <lastmod>2022-09-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://volcaxiao.github.io/tags/%E6%95%B0%E5%88%86/</loc>
+    <lastmod>2022-09-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://volcaxiao.github.io/tags/wps/</loc>
+    <lastmod>2022-09-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://volcaxiao.github.io/tags/%E7%89%A9%E7%90%86/</loc>
+    <lastmod>2022-09-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://volcaxiao.github.io/tags/%E7%83%AD%E5%8A%9B%E5%AD%A6/</loc>
+    <lastmod>2022-09-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://volcaxiao.github.io/tags/%E6%B0%94%E4%BD%93%E5%8A%A8%E7%90%86%E8%AE%BA/</loc>
+    <lastmod>2022-09-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://volcaxiao.github.io/tags/%E9%AB%98%E4%BB%A3/</loc>
+    <lastmod>2022-09-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://volcaxiao.github.io/tags/%E8%B5%84%E6%BA%90/</loc>
     <lastmod>2022-09-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -150,6 +206,13 @@
   
   <url>
     <loc>http://volcaxiao.github.io/categories/%E5%8C%97%E8%88%AA%E4%BF%A1%E6%81%AF%E7%B1%BB%E5%A4%A7%E4%B8%80%E8%B5%84%E6%96%99/</loc>
+    <lastmod>2022-09-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://volcaxiao.github.io/categories/%E5%B7%A5%E7%A7%91%E5%A4%A7%E5%AD%A6%E7%89%A9%E7%90%86/</loc>
     <lastmod>2022-09-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
