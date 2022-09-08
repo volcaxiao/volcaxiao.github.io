@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>blog配置教程</title>
-    <url>/2022/09/06/blog%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/</url>
-    <content><![CDATA[]]></content>
-  </entry>
-  <entry>
     <title>Hello World</title>
     <url>/2022/09/05/hello-world/</url>
     <content><![CDATA[<h1 id="hello-world"><a href="#hello-world" class="headerlink" title="hello world!"></a>hello world!</h1><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
@@ -22,49 +17,14 @@
 ]]></content>
   </entry>
   <entry>
-    <title>mips汇编翻译C代码典例</title>
-    <url>/2022/09/06/mips%E6%B1%87%E7%BC%96%E7%BF%BB%E8%AF%91C%E4%BB%A3%E7%A0%81%E5%85%B8%E4%BE%8B/</url>
+    <title>blog配置教程</title>
+    <url>/2022/09/06/blog%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/</url>
     <content><![CDATA[]]></content>
   </entry>
   <entry>
-    <title>北航信息类高代资料</title>
-    <url>/2022/09/06/%E5%8C%97%E8%88%AA%E4%BF%A1%E6%81%AF%E7%B1%BB%E9%AB%98%E4%BB%A3%E8%B5%84%E6%96%99/</url>
-    <content><![CDATA[<p>北航大一高代的资料，高代的题可能就不像数分的题整理的那么的整齐，可能<strong>有点零散</strong>，特别是期中的题，俺可能还一不小心删掉一部分（秃头），而且很多<strong>试题都没有答案</strong>。不过乐观点想，期中大家真的不用太担心，试题没有答案的话可以多<strong>和同学讨论</strong>，<strong>对答案</strong>，<strong>问老师</strong>；这也是个主动学习的过程。另外文档里，有俺滴<strong>手写笔记</strong>，大一上跟着<strong>赵迪老师</strong>上课，受益匪浅，学会了很多 <strong><em>学术语言</em></strong>()，<strong>大大滴推荐</strong>。另外这一篇也有<strong>加餐</strong>，给大家讲一下可以从哪里<strong>找试卷资源</strong>，这样大家也能自己去找资源！</p>
-<span id="more"></span>
-<h1 id="高代资料"><a href="#高代资料" class="headerlink" title="高代资料"></a>高代资料</h1><h2 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h2><blockquote>
-<p>话不多说，上链接！<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/%E5%8C%97%E8%88%AA%E4%BF%A1%E6%81%AF%E7%B1%BB%E9%AB%98%E4%BB%A3%E8%B5%84%E6%96%99/%E5%9B%BE%E4%B8%80.jpg" alt="图一"></p>
-</blockquote>
-<ul>
-<li><a href="https://bhpan.buaa.edu.cn:443/link/197EDC5E339248FC004CD796F84C3EB8">北航云盘-高代资料</a><br>有效期限：2025-10-01 23:59</li>
-<li>有效期快到了的话提醒我续费（</li>
-</ul>
-<h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><h3 id="高代期中"><a href="#高代期中" class="headerlink" title="高代期中"></a>高代期中</h3><ul>
-<li>期中这个文件夹里是些零零碎碎的东西，其中有一本 <strong>！几何书（教材）</strong> 那上面应该就是你们期中考试的大致范围了。</li>
-<li>不过高代的期中完全不用担心，只占10的平时分，而且巨简单，高代难的在后面<strong>概念多</strong>起来的时候，容易头晕。</li>
-</ul>
-<h3 id="高代期末"><a href="#高代期末" class="headerlink" title="高代期末"></a>高代期末</h3><ul>
-<li>这个文件夹里，有高代的<strong>芝士点总结</strong>，还有<strong>真题试卷</strong>和<strong>练习的试卷</strong>，知识点可以看看，主要多刷题多总结。</li>
-</ul>
-<h3 id="最后两个文件"><a href="#最后两个文件" class="headerlink" title="最后两个文件"></a>最后两个文件</h3><ul>
-<li>这两个文件，一个是<strong>教材的答案</strong>，不是教材的顺序，但是很多题是重合的，<strong>仔细找找</strong>应该能找到答案。</li>
-<li>另一个是学长<strong>面向高代考纲（手动滑稽）</strong> 的一手资料，里面会有一些<strong>难懂难蚌</strong>的学术词汇，大家可以简单看看。</li>
-</ul>
-<h2 id="加餐时间"><a href="#加餐时间" class="headerlink" title="加餐时间"></a>加餐时间</h2><blockquote>
-<p>此次的加餐主要是为了解决资源检索的问题，关于数分高代，或说一些其他科目(程设)，有哪些资料的来源。</p>
-</blockquote>
-<h3 id="梦拓学长学姐"><a href="#梦拓学长学姐" class="headerlink" title="梦拓学长学姐"></a>梦拓学长学姐</h3><h3 id="老师发的资料"><a href="#老师发的资料" class="headerlink" title="老师发的资料"></a>老师发的资料</h3><h3 id="腾讯乐享"><a href="#腾讯乐享" class="headerlink" title="腾讯乐享"></a>腾讯乐享</h3><h3 id="各种群聊"><a href="#各种群聊" class="headerlink" title="各种群聊"></a>各种群聊</h3><h3 id="CSDN"><a href="#CSDN" class="headerlink" title="CSDN"></a>CSDN</h3><h3 id="github"><a href="#github" class="headerlink" title="github"></a>github</h3><h3 id="菜鸟教程"><a href="#菜鸟教程" class="headerlink" title="菜鸟教程"></a>菜鸟教程</h3><blockquote>
-<p>持续更新中，未完待续。。。</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>北航信息类大一资料</category>
-      </categories>
-      <tags>
-        <tag>北航</tag>
-        <tag>大一</tag>
-        <tag>高代</tag>
-        <tag>资源</tag>
-      </tags>
+    <title>mips汇编翻译C代码典例</title>
+    <url>/2022/09/06/mips%E6%B1%87%E7%BC%96%E7%BF%BB%E8%AF%91C%E4%BB%A3%E7%A0%81%E5%85%B8%E4%BE%8B/</url>
+    <content><![CDATA[]]></content>
   </entry>
   <entry>
     <title>welcome</title>
@@ -205,6 +165,46 @@
         <tag>大一</tag>
         <tag>数分</tag>
         <tag>wps</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>北航信息类高代资料</title>
+    <url>/2022/09/06/%E5%8C%97%E8%88%AA%E4%BF%A1%E6%81%AF%E7%B1%BB%E9%AB%98%E4%BB%A3%E8%B5%84%E6%96%99/</url>
+    <content><![CDATA[<p>北航大一高代的资料，高代的题可能就不像数分的题整理的那么的整齐，可能<strong>有点零散</strong>，特别是期中的题，俺可能还一不小心删掉一部分（秃头），而且很多<strong>试题都没有答案</strong>。不过乐观点想，期中大家真的不用太担心，试题没有答案的话可以多<strong>和同学讨论</strong>，<strong>对答案</strong>，<strong>问老师</strong>；这也是个主动学习的过程。另外文档里，有俺滴<strong>手写笔记</strong>，大一上跟着<strong>赵迪老师</strong>上课，受益匪浅，学会了很多 <strong><em>学术语言</em></strong>()，<strong>大大滴推荐</strong>。另外这一篇也有<strong>加餐</strong>，给大家讲一下可以从哪里<strong>找试卷资源</strong>，这样大家也能自己去找资源！</p>
+<span id="more"></span>
+<h1 id="高代资料"><a href="#高代资料" class="headerlink" title="高代资料"></a>高代资料</h1><h2 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h2><blockquote>
+<p>话不多说，上链接！<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/%E5%8C%97%E8%88%AA%E4%BF%A1%E6%81%AF%E7%B1%BB%E9%AB%98%E4%BB%A3%E8%B5%84%E6%96%99/%E5%9B%BE%E4%B8%80.jpg" alt="图一"></p>
+</blockquote>
+<ul>
+<li><a href="https://bhpan.buaa.edu.cn:443/link/197EDC5E339248FC004CD796F84C3EB8">北航云盘-高代资料</a><br>有效期限：2025-10-01 23:59</li>
+<li>有效期快到了的话提醒我续费（</li>
+</ul>
+<h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><h3 id="高代期中"><a href="#高代期中" class="headerlink" title="高代期中"></a>高代期中</h3><ul>
+<li>期中这个文件夹里是些零零碎碎的东西，其中有一本 <strong>！几何书（教材）</strong> 那上面应该就是你们期中考试的大致范围了。</li>
+<li>不过高代的期中完全不用担心，只占10的平时分，而且巨简单，高代难的在后面<strong>概念多</strong>起来的时候，容易头晕。</li>
+</ul>
+<h3 id="高代期末"><a href="#高代期末" class="headerlink" title="高代期末"></a>高代期末</h3><ul>
+<li>这个文件夹里，有高代的<strong>芝士点总结</strong>，还有<strong>真题试卷</strong>和<strong>练习的试卷</strong>，知识点可以看看，主要多刷题多总结。</li>
+</ul>
+<h3 id="最后两个文件"><a href="#最后两个文件" class="headerlink" title="最后两个文件"></a>最后两个文件</h3><ul>
+<li>这两个文件，一个是<strong>教材的答案</strong>，不是教材的顺序，但是很多题是重合的，<strong>仔细找找</strong>应该能找到答案。</li>
+<li>另一个是学长<strong>面向高代考纲（手动滑稽）</strong> 的一手资料，里面会有一些<strong>难懂难蚌</strong>的学术词汇，大家可以简单看看。</li>
+</ul>
+<h2 id="加餐时间"><a href="#加餐时间" class="headerlink" title="加餐时间"></a>加餐时间</h2><blockquote>
+<p>此次的加餐主要是为了解决资源检索的问题，关于数分高代，或说一些其他科目(程设)，有哪些资料的来源。</p>
+</blockquote>
+<h3 id="梦拓学长学姐"><a href="#梦拓学长学姐" class="headerlink" title="梦拓学长学姐"></a>梦拓学长学姐</h3><h3 id="老师发的资料"><a href="#老师发的资料" class="headerlink" title="老师发的资料"></a>老师发的资料</h3><h3 id="腾讯乐享"><a href="#腾讯乐享" class="headerlink" title="腾讯乐享"></a>腾讯乐享</h3><h3 id="各种群聊"><a href="#各种群聊" class="headerlink" title="各种群聊"></a>各种群聊</h3><h3 id="CSDN"><a href="#CSDN" class="headerlink" title="CSDN"></a>CSDN</h3><h3 id="github"><a href="#github" class="headerlink" title="github"></a>github</h3><h3 id="菜鸟教程"><a href="#菜鸟教程" class="headerlink" title="菜鸟教程"></a>菜鸟教程</h3><blockquote>
+<p>持续更新中，未完待续。。。</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>北航信息类大一资料</category>
+      </categories>
+      <tags>
+        <tag>北航</tag>
+        <tag>大一</tag>
+        <tag>高代</tag>
+        <tag>资源</tag>
       </tags>
   </entry>
   <entry>
