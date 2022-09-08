@@ -1,24 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>blog配置教程</title>
+    <url>/2022/09/06/blog%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
     <title>Hello World</title>
     <url>/2022/09/05/hello-world/</url>
     <content><![CDATA[<h1 id="hello-world"><a href="#hello-world" class="headerlink" title="hello world!"></a>hello world!</h1><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
 <span id="more"></span> 
-
 <p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
 <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
 <p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
 <h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
 <p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
 <h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
 <p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
 <h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
 <p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
 ]]></content>
   </entry>
@@ -28,16 +27,50 @@
     <content><![CDATA[]]></content>
   </entry>
   <entry>
-    <title>blog配置教程</title>
-    <url>/2022/09/06/blog%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/</url>
-    <content><![CDATA[]]></content>
+    <title>北航信息类高代资料</title>
+    <url>/2022/09/06/%E5%8C%97%E8%88%AA%E4%BF%A1%E6%81%AF%E7%B1%BB%E9%AB%98%E4%BB%A3%E8%B5%84%E6%96%99/</url>
+    <content><![CDATA[<p>北航大一高代的资料，高代的题可能就不像数分的题整理的那么的整齐，可能<strong>有点零散</strong>，特别是期中的题，俺可能还一不小心删掉一部分（秃头），而且很多<strong>试题都没有答案</strong>。不过乐观点想，期中大家真的不用太担心，试题没有答案的话可以多<strong>和同学讨论</strong>，<strong>对答案</strong>，<strong>问老师</strong>；这也是个主动学习的过程。另外文档里，有俺滴<strong>手写笔记</strong>，大一上跟着<strong>赵迪老师</strong>上课，受益匪浅，学会了很多 <strong><em>学术语言</em></strong>()，<strong>大大滴推荐</strong>。另外这一篇也有<strong>加餐</strong>，给大家讲一下可以从哪里<strong>找试卷资源</strong>，这样大家也能自己去找资源！</p>
+<span id="more"></span>
+<h1 id="高代资料"><a href="#高代资料" class="headerlink" title="高代资料"></a>高代资料</h1><h2 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h2><blockquote>
+<p>话不多说，上链接！<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/%E5%8C%97%E8%88%AA%E4%BF%A1%E6%81%AF%E7%B1%BB%E9%AB%98%E4%BB%A3%E8%B5%84%E6%96%99/%E5%9B%BE%E4%B8%80.jpg" alt="图一"></p>
+</blockquote>
+<ul>
+<li><a href="https://bhpan.buaa.edu.cn:443/link/197EDC5E339248FC004CD796F84C3EB8">北航云盘-高代资料</a><br>有效期限：2025-10-01 23:59</li>
+<li>有效期快到了的话提醒我续费（</li>
+</ul>
+<h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><h3 id="高代期中"><a href="#高代期中" class="headerlink" title="高代期中"></a>高代期中</h3><ul>
+<li>期中这个文件夹里是些零零碎碎的东西，其中有一本 <strong>！几何书（教材）</strong> 那上面应该就是你们期中考试的大致范围了。</li>
+<li>不过高代的期中完全不用担心，只占10的平时分，而且巨简单，高代难的在后面<strong>概念多</strong>起来的时候，容易头晕。</li>
+</ul>
+<h3 id="高代期末"><a href="#高代期末" class="headerlink" title="高代期末"></a>高代期末</h3><ul>
+<li>这个文件夹里，有高代的<strong>芝士点总结</strong>，还有<strong>真题试卷</strong>和<strong>练习的试卷</strong>，知识点可以看看，主要多刷题多总结。</li>
+</ul>
+<h3 id="最后两个文件"><a href="#最后两个文件" class="headerlink" title="最后两个文件"></a>最后两个文件</h3><ul>
+<li>这两个文件，一个是<strong>教材的答案</strong>，不是教材的顺序，但是很多题是重合的，<strong>仔细找找</strong>应该能找到答案。</li>
+<li>另一个是学长<strong>面向高代考纲（手动滑稽）</strong> 的一手资料，里面会有一些<strong>难懂难蚌</strong>的学术词汇，大家可以简单看看。</li>
+</ul>
+<h2 id="加餐时间"><a href="#加餐时间" class="headerlink" title="加餐时间"></a>加餐时间</h2><blockquote>
+<p>此次的加餐主要是为了解决资源检索的问题，关于数分高代，或说一些其他科目(程设)，有哪些资料的来源。</p>
+</blockquote>
+<h3 id="梦拓学长学姐"><a href="#梦拓学长学姐" class="headerlink" title="梦拓学长学姐"></a>梦拓学长学姐</h3><h3 id="老师发的资料"><a href="#老师发的资料" class="headerlink" title="老师发的资料"></a>老师发的资料</h3><h3 id="腾讯乐享"><a href="#腾讯乐享" class="headerlink" title="腾讯乐享"></a>腾讯乐享</h3><h3 id="各种群聊"><a href="#各种群聊" class="headerlink" title="各种群聊"></a>各种群聊</h3><h3 id="CSDN"><a href="#CSDN" class="headerlink" title="CSDN"></a>CSDN</h3><h3 id="github"><a href="#github" class="headerlink" title="github"></a>github</h3><h3 id="菜鸟教程"><a href="#菜鸟教程" class="headerlink" title="菜鸟教程"></a>菜鸟教程</h3><blockquote>
+<p>持续更新中，未完待续。。。</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>北航信息类大一资料</category>
+      </categories>
+      <tags>
+        <tag>北航</tag>
+        <tag>大一</tag>
+        <tag>高代</tag>
+        <tag>资源</tag>
+      </tags>
   </entry>
   <entry>
     <title>welcome</title>
     <url>/2022/09/06/welcome/</url>
     <content><![CDATA[<p>欢迎来到volca’s blog_world，在这里大家可以讨论学习，侃侃大山，<del>发一发电</del>。初临blog，一定要看完这篇welcome，要有正确的打开方式喔。<br><strong>更新时间：2022-09-06</strong></p>
 <span id="more"></span>
-
 <h1 id="let’s-start"><a href="#let’s-start" class="headerlink" title="let’s start"></a>let’s start</h1><h2 id="功能简介"><a href="#功能简介" class="headerlink" title="功能简介"></a>功能简介</h2><h3 id="评论区"><a href="#评论区" class="headerlink" title="评论区"></a>评论区</h3><ul>
 <li>这里是大家合法<del>发电</del>的地方，不过也得请<strong>合理合法</strong>哈！</li>
 <li>评论区用的是<a href="https://livere.com/">来必力</a>，大家用QQ，微信等<strong>登录后</strong>就可以评论啦。</li>
@@ -52,10 +85,10 @@
 </ul>
 <h3 id="分享功能（待上线。。。）"><a href="#分享功能（待上线。。。）" class="headerlink" title="分享功能（待上线。。。）"></a>分享功能（待上线。。。）</h3><ul>
 <li>可以对于每一篇文章进行分享</li>
-<li>但由于博主能力有限且胆小（怕配崩咯），此功能 <em><strong>暂时没有上线</strong></em> ，博主俺呀努力点早日搞出来叭~</li>
+<li>但由于博主能力有限且胆小（怕配崩咯），此功能 <strong><em>暂时没有上线</em></strong> ，博主俺呀努力点早日搞出来叭~</li>
 </ul>
 <h3 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h3><ul>
-<li>这一点可以结合着后面的<a href="#%E5%86%85%E5%AE%B9%E7%AE%80%E4%BB%8B">内容简介</a>一起食用喔~</li>
+<li>这一点可以结合着后面的<a href="#内容简介">内容简介</a>一起食用喔~</li>
 <li>分类的应该还是合理的，按需选取喔</li>
 </ul>
 <h2 id="内容简介"><a href="#内容简介" class="headerlink" title="内容简介"></a>内容简介</h2><blockquote>
@@ -111,12 +144,11 @@
     <url>/2022/09/06/%E5%8C%97%E8%88%AA%E4%BF%A1%E6%81%AF%E7%B1%BB%E6%95%B0%E5%88%86%EF%BC%88%E4%B8%80%EF%BC%89%E8%B5%84%E6%96%99/</url>
     <content><![CDATA[<p>北航大一的数分（一）资料，有<strong>数分讲座的ppt</strong>以及<strong>2010-2022的期中考题</strong>、<strong>2010-2021的期末考题</strong>，其中期末的考题以及处理好了，题目和答案分开在两个文件夹内。但期中的考题答案和题目还合在一起，这里并不是俺懒（确信.jpg，而是学长觉得授人以鱼不如授人以渔，所以内有<strong>wps处理教程</strong>，赶紧学起来叭！！！</p>
 <span id="more"></span>
-
 <h1 id="数分（一）资料"><a href="#数分（一）资料" class="headerlink" title="数分（一）资料"></a>数分（一）资料</h1><h2 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h2><blockquote>
 <p>快点端上来罢 我已经等不及了<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/%E5%8C%97%E8%88%AA%E4%BF%A1%E6%81%AF%E7%B1%BB%E6%95%B0%E5%88%86%EF%BC%88%E4%B8%80%EF%BC%89%E8%B5%84%E6%96%99/%E5%9B%BE%E4%B8%80.jpg" alt="图1"></p>
 </blockquote>
 <ul>
-<li><a href="https://bhpan.buaa.edu.cn/link/D8A4739E259BFEBEE88FD61C2F75F331">北航云盘-淑芬（一）资料</a><br>有效期限：2025-10-01 23:59</li>
+<li><a href="https://bhpan.buaa.edu.cn:443/link/D8A4739E259BFEBEE88FD61C2F75F331">北航云盘-淑芬（一）资料</a><br>有效期限：2025-10-01 23:59</li>
 <li>有效期快到了的话提醒我续费（</li>
 </ul>
 <h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><ul>
@@ -125,11 +157,11 @@
 </ul>
 </li>
 <li>第二个文件夹，数分期中的试卷，这个对于大家挺重要的，而且建议打印下来，<strong>刷纸质版</strong>。往年题是真的要认真刷的！！！<ul>
-<li>但是你们也注意到，答案和题目混在一块，别急，<a href="#%E6%AD%A3%E7%89%87%E5%BC%80%E5%A7%8B-wps_pdf%E5%A4%84%E7%90%86">去后面看看，有好东西</a>。按照这里一步一步走就可以自己造试卷了，而且有北航专属彩蛋相送。</li>
+<li>但是你们也注意到，答案和题目混在一块，别急，<a href="#正片开始-wps_pdf处理">去后面看看，有好东西</a>。按照这里一步一步走就可以自己造试卷了，而且有北航专属彩蛋相送。</li>
 </ul>
 </li>
 <li>第三个文件夹，数分期末试卷，这里就都喂你们口中了，利用好喔~<ul>
-<li>看完这里以后别急着走哈，后面有学长头铁的<strong>备考建议</strong>捏~~~~<a href="#%E5%A4%87%E8%80%83%E5%BB%BA%E8%AE%AE%E5%8F%8A%E5%86%99%E5%9C%A8%E6%9C%80%E5%90%8E%E7%9A%84%E8%AF%9D">备考建议</a></li>
+<li>看完这里以后别急着走哈，后面有学长头铁的<strong>备考建议</strong>捏~~~~<a href="#备考建议及写在最后的话">备考建议</a></li>
 </ul>
 </li>
 </ul>
@@ -137,8 +169,7 @@
 <li>ms office全家桶是非常强大的办公软件，用的好ms office当然能够解决好许多问题。而wps这一类金山的东西一直给人一种广告多不好用的印象，但其实金山软件公司在1988年创立，和ms争夺办公软件的市场许多年，wps在功能性上完全不输ms office，所以大家可以放心食用，另外广告这件事也不用担心，马上就没了（手动滑稽</li>
 </ul>
 <h3 id="具体教程"><a href="#具体教程" class="headerlink" title="具体教程"></a>具体教程</h3><ul>
-<li><p>我们打开2020-2021的期中试卷，看到里面还有答案。我们点击 <strong>编辑-&gt;编辑内容</strong> 可以发现页面变成了这样<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/%E5%8C%97%E8%88%AA%E4%BF%A1%E6%81%AF%E7%B1%BB%E6%95%B0%E5%88%86%EF%BC%88%E4%B8%80%EF%BC%89%E8%B5%84%E6%96%99/%E5%9B%BE%E4%BA%8C.png" alt="图二"></p>
-</li>
+<li>我们打开2020-2021的期中试卷，看到里面还有答案。我们点击 <strong>编辑-&gt;编辑内容</strong> 可以发现页面变成了这样<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/%E5%8C%97%E8%88%AA%E4%BF%A1%E6%81%AF%E7%B1%BB%E6%95%B0%E5%88%86%EF%BC%88%E4%B8%80%EF%BC%89%E8%B5%84%E6%96%99/%E5%9B%BE%E4%BA%8C.png" alt="图二"></li>
 <li><p>问题是这样不好处理选项啊，删错了怎么办？（可以ctrl+z）</p>
 <ul>
 <li>这样可以来<strong>处理大题</strong>，像这样，直接<strong>全部选中，delete</strong>，就okk了<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/%E5%8C%97%E8%88%AA%E4%BF%A1%E6%81%AF%E7%B1%BB%E6%95%B0%E5%88%86%EF%BC%88%E4%B8%80%EF%BC%89%E8%B5%84%E6%96%99/%E5%9B%BE%E4%B8%89.jpg" alt="图三"><br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/%E5%8C%97%E8%88%AA%E4%BF%A1%E6%81%AF%E7%B1%BB%E6%95%B0%E5%88%86%EF%BC%88%E4%B8%80%EF%BC%89%E8%B5%84%E6%96%99/%E5%9B%BE%E5%9B%9B.jpg" alt="图四"><br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/%E5%8C%97%E8%88%AA%E4%BF%A1%E6%81%AF%E7%B1%BB%E6%95%B0%E5%88%86%EF%BC%88%E4%B8%80%EF%BC%89%E8%B5%84%E6%96%99/%E5%9B%BE%E4%BA%94.jpg" alt="图五"></li>
@@ -146,10 +177,8 @@
 </li>
 <li><p>那选择题怎么搞？ 可以点击 <strong>编辑-&gt;擦除</strong> ，去试一下很好搞的，绝对不是俺懒（确信.jpg。</p>
 </li>
-<li><p>编辑内容功能还可以用来<strong>去除部分水印</strong>，留给大家遇到了再自己去尝试了，当然有需求可以评论区告诉我。</p>
-</li>
-<li><p>最后，全都处理完后记得<strong>另存为</strong>，放到另一个文件夹里。（<strong>管理资料</strong>的能力也同样重要！</p>
-</li>
+<li>编辑内容功能还可以用来<strong>去除部分水印</strong>，留给大家遇到了再自己去尝试了，当然有需求可以评论区告诉我。</li>
+<li>最后，全都处理完后记得<strong>另存为</strong>，放到另一个文件夹里。（<strong>管理资料</strong>的能力也同样重要！</li>
 </ul>
 <h3 id="白嫖wps会员方法"><a href="#白嫖wps会员方法" class="headerlink" title="白嫖wps会员方法"></a>白嫖wps会员方法</h3><ul>
 <li>有人说（也有可能没有）：学长学长，wps它没有会员不好用哇！</li>
@@ -183,7 +212,6 @@
     <url>/2022/09/06/%E5%B7%A5%E7%A7%91%E5%A4%A7%E7%89%A9-%E6%B0%94%E4%BD%93%E5%8A%A8%E7%90%86%E8%AE%BA%E6%80%BB%E7%BB%93/</url>
     <content><![CDATA[<p>系边上老师的课边做的一些笔记以及自己的一些想法，但有时候可能会拖更，分享给大家，有不妥之处，敬请评论区指正。</p>
 <span id="more"></span>
-
 <h1 id="气体动理论总结（持续更新中…）"><a href="#气体动理论总结（持续更新中…）" class="headerlink" title="气体动理论总结（持续更新中…）"></a>气体动理论总结（持续更新中…）</h1><h2 id="一、基本概念、微观结构、统计规律"><a href="#一、基本概念、微观结构、统计规律" class="headerlink" title="一、基本概念、微观结构、统计规律"></a>一、基本概念、微观结构、统计规律</h2><h3 id="1、热力学系统与外界"><a href="#1、热力学系统与外界" class="headerlink" title="1、热力学系统与外界"></a>1、热力学系统与外界</h3><ul>
 <li>热力学系统：一般相对较大、能被察觉，包含大量的分子原子。</li>
 <li>外界：系统之外（严谨的废话）。</li>
@@ -217,7 +245,7 @@
 <li>还有许多由实验得来的定律，等温的玻意尔定律，等容的查理定律，等压的盖吕萨克定律都可以在克拉伯龙方程得到体现，相信大家高中学的都挺好，这些不在话下。</li>
 </ul>
 <blockquote>
-<p>$PV&#x3D; \nu RT$    ($\nu$为摩尔数，T单位为开尔文K)<br>它有许多变式<br>$\because \nu&#x3D;\frac{m}{M}&#x3D;\frac{N}{N_A}$<br>$\therefore \dotsb$<br>$\because k &#x3D; \frac{R}{N_A}$（k为玻尔兹曼常数）<br>$\because n&#x3D;\frac{N}{V} &#x3D; \frac{\nu N_A}{V}$ (n为分子数密度)<br>$\therefore 它又能写成 PV&#x3D;NkT, P&#x3D;nkT$<br>其中常数$R&#x3D;8.314510J&#x2F;molK$<br>$k&#x3D;1.380658 \times 10^{-23} J&#x2F;K$</p>
+<p>$PV= \nu RT$    ($\nu$为摩尔数，T单位为开尔文K)<br>它有许多变式<br>$\because \nu=\frac{m}{M}=\frac{N}{N_A}$<br>$\therefore \dotsb$<br>$\because k = \frac{R}{N_A}$（k为玻尔兹曼常数）<br>$\because n=\frac{N}{V} = \frac{\nu N_A}{V}$ (n为分子数密度)<br>$\therefore 它又能写成 PV=NkT, P=nkT$<br>其中常数$R=8.314510J/molK$<br>$k=1.380658 \times 10^{-23} J/K$</p>
 </blockquote>
 <h2 id="理想气体压强公式"><a href="#理想气体压强公式" class="headerlink" title="理想气体压强公式"></a>理想气体压强公式</h2><ul>
 <li>首先得清楚，压强的来源是每一个小分子对于器壁都会有冲击力，但是这里的P是大量分子撞击的宏观结果，单个的分子无法讨论压强。</li>
@@ -228,7 +256,7 @@
 </blockquote>
 <h2 id="分子碰撞基本理论——平均自由程"><a href="#分子碰撞基本理论——平均自由程" class="headerlink" title="分子碰撞基本理论——平均自由程"></a>分子碰撞基本理论——平均自由程</h2><p>Maxwell速率分布</p>
 <h2 id="温度公式"><a href="#温度公式" class="headerlink" title="温度公式"></a>温度公式</h2><p>温度与平动动能有关，相同温度不同气体，平动动能一定相等，但总动能和内能不一定相等</p>
-<h2 id="阿佛加德罗定律"><a href="#阿佛加德罗定律" class="headerlink" title="阿佛加德罗定律"></a>阿佛加德罗定律</h2><h2 id="道尔顿分压定理"><a href="#道尔顿分压定理" class="headerlink" title="道尔顿分压定理"></a>道尔顿分压定理</h2><h2 id="能量均分定理"><a href="#能量均分定理" class="headerlink" title="能量均分定理"></a>能量均分定理</h2><h2 id="气体内能的讨论"><a href="#气体内能的讨论" class="headerlink" title="气体内能的讨论"></a>气体内能的讨论</h2><h2 id="Maxwell速率分布"><a href="#Maxwell速率分布" class="headerlink" title="Maxwell速率分布"></a>Maxwell速率分布</h2><p>最可几&#x2F;最概然 速率 无序度增加</p>
+<h2 id="阿佛加德罗定律"><a href="#阿佛加德罗定律" class="headerlink" title="阿佛加德罗定律"></a>阿佛加德罗定律</h2><h2 id="道尔顿分压定理"><a href="#道尔顿分压定理" class="headerlink" title="道尔顿分压定理"></a>道尔顿分压定理</h2><h2 id="能量均分定理"><a href="#能量均分定理" class="headerlink" title="能量均分定理"></a>能量均分定理</h2><h2 id="气体内能的讨论"><a href="#气体内能的讨论" class="headerlink" title="气体内能的讨论"></a>气体内能的讨论</h2><h2 id="Maxwell速率分布"><a href="#Maxwell速率分布" class="headerlink" title="Maxwell速率分布"></a>Maxwell速率分布</h2><p>最可几/最概然 速率 无序度增加</p>
 ]]></content>
       <categories>
         <category>工科大学物理</category>
@@ -237,47 +265,120 @@
         <tag>物理</tag>
         <tag>热力学</tag>
         <tag>气体动理论</tag>
+        <tag>大二</tag>
       </tags>
   </entry>
   <entry>
-    <title>北航信息类高代资料</title>
-    <url>/2022/09/06/%E5%8C%97%E8%88%AA%E4%BF%A1%E6%81%AF%E7%B1%BB%E9%AB%98%E4%BB%A3%E8%B5%84%E6%96%99/</url>
-    <content><![CDATA[<p>北航大一高代的资料，高代的题可能就不像数分的题整理的那么的整齐，可能<strong>有点零散</strong>，特别是期中的题，俺可能还一不小心删掉一部分（秃头），而且很多<strong>试题都没有答案</strong>。不过乐观点想，期中大家真的不用太担心，试题没有答案的话可以多<strong>和同学讨论</strong>，<strong>对答案</strong>，<strong>问老师</strong>；这也是个主动学习的过程。另外文档里，有俺滴<strong>手写笔记</strong>，大一上跟着<strong>赵迪老师</strong>上课，受益匪浅，学会了很多 <em><strong>学术语言</strong></em>()，<strong>大大滴推荐</strong>。另外这一篇也有<strong>加餐</strong>，给大家讲一下可以从哪里<strong>找试卷资源</strong>，这样大家也能自己去找资源！</p>
+    <title>离散数学（二）第五章总结</title>
+    <url>/2022/09/06/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%EF%BC%88%E4%BA%8C%EF%BC%89%E7%AC%AC%E4%BA%94%E7%AB%A0%E6%80%BB%E7%BB%93/</url>
+    <content><![CDATA[<p>也系边上老师的课边做的一些笔记以及自己的一些想法，但有时候可能会拖更，分享给大家，有不妥之处，敬请评论区指正。</p>
 <span id="more"></span>
-
-<h1 id="高代资料"><a href="#高代资料" class="headerlink" title="高代资料"></a>高代资料</h1><h2 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h2><blockquote>
-<p>话不多说，上链接！<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/%E5%8C%97%E8%88%AA%E4%BF%A1%E6%81%AF%E7%B1%BB%E9%AB%98%E4%BB%A3%E8%B5%84%E6%96%99/%E5%9B%BE%E4%B8%80.jpg" alt="图一"></p>
+<h1 id="集合的基本概念及其运算"><a href="#集合的基本概念及其运算" class="headerlink" title="集合的基本概念及其运算"></a>集合的基本概念及其运算</h1><h2 id="集合与元素"><a href="#集合与元素" class="headerlink" title="集合与元素"></a>集合与元素</h2><ul>
+<li>集合要有明确特征，不能是模糊概念，如：高个子学生</li>
+<li>集合的表示方法：<ul>
+<li>枚举法</li>
+<li>抽象法：用谓词来概括，$S=\{x|P(x)\}$<ul>
+<li>抽象描述不唯一。</li>
+<li>不能取$p(x)为x \notin x$，否则罗素悖论<blockquote>
+<p>$T=\{x|x \notin x\},有\forall x,x \in T \Leftrightarrow x \notin x$<br>$假设这里的x就是T，那么就有T \in T \Leftrightarrow T \notin T$<br>猫了个打盹（）</p>
+</blockquote>
+</li>
+<li>所以其实抽象原则有点危险，Cantor悖论，理发师悖论，说谎者悖论。</li>
+<li>悖论产生的原因：自引用，自作用。</li>
+</ul>
+</li>
+<li>归纳定义：包含基本项、归纳项、以及最小化。（可以类比一下上学期公理系统的定义）<ul>
+<li>基本项和归纳项不难理解，归纳项就是推演规则。<blockquote>
+<p>这里我们来定义一个集合A<br>$非空集合S_0 \subseteq A (基本项)$<br>$一组规则，\forall x \in A,x \stackrel{这一组规则}{\longrightarrow} y,y \in A (归纳项)$</p>
+</blockquote>
+</li>
+<li>这里重点辨析一下极小化：<blockquote>
+<p>保证A中每个元素都可通过有限次使用1或2来获得。<br>$如果集合 S \subseteq A 也满足 1和2，则 A \subseteq S$<br>$（如果集合 S \subseteq A 也满足 1和 2，则 S = A ）$<br>最小化很必要，就是说如果只有1和2两句话，A中有其他不符合1、2规则的元素也可以满足，归纳定义法定义的集合就不唯一！！！<br>为什么叫极小化，就是说A中没有其他多余的元素，是通过1、2能得到的最小集合，清清爽爽。</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="集合的相等与包含"><a href="#集合的相等与包含" class="headerlink" title="集合的相等与包含"></a>集合的相等与包含</h2><blockquote>
+<p>相等和包含的定义在高中的时候就说过了，这里说点不一样的。</p>
 </blockquote>
 <ul>
-<li><a href="https://bhpan.buaa.edu.cn/link/197EDC5E339248FC004CD796F84C3EB8">北航云盘-高代资料</a><br>有效期限：2025-10-01 23:59</li>
-<li>有效期快到了的话提醒我续费（</li>
-</ul>
-<h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><h3 id="高代期中"><a href="#高代期中" class="headerlink" title="高代期中"></a>高代期中</h3><ul>
-<li>期中这个文件夹里是些零零碎碎的东西，其中有一本 <strong>！几何书（教材）</strong> 那上面应该就是你们期中考试的大致范围了。</li>
-<li>不过高代的期中完全不用担心，只占10的平时分，而且巨简单，高代难的在后面<strong>概念多</strong>起来的时候，容易头晕。</li>
-</ul>
-<h3 id="高代期末"><a href="#高代期末" class="headerlink" title="高代期末"></a>高代期末</h3><ul>
-<li>这个文件夹里，有高代的<strong>芝士点总结</strong>，还有<strong>真题试卷</strong>和<strong>练习的试卷</strong>，知识点可以看看，主要多刷题多总结。</li>
-</ul>
-<h3 id="最后两个文件"><a href="#最后两个文件" class="headerlink" title="最后两个文件"></a>最后两个文件</h3><ul>
-<li>这两个文件，一个是<strong>教材的答案</strong>，不是教材的顺序，但是很多题是重合的，<strong>仔细找找</strong>应该能找到答案。</li>
-<li>另一个是学长<strong>面向高代考纲（手动滑稽）</strong> 的一手资料，里面会有一些<strong>难懂难蚌</strong>的学术词汇，大家可以简单看看。</li>
-</ul>
-<h2 id="加餐时间"><a href="#加餐时间" class="headerlink" title="加餐时间"></a>加餐时间</h2><blockquote>
-<p>此次的加餐主要是为了解决资源检索的问题，关于数分高代，或说一些其他科目(程设)，有哪些资料的来源。</p>
+<li>集合与元素的排列次序与元素重复出现的次数无关<blockquote>
+<p>体现为{1,2,3}={3,1,2}<br>{a,b,c}={a,a,c,b,b,c}(这个也叫多重集)</p>
 </blockquote>
-<h3 id="梦拓学长学姐"><a href="#梦拓学长学姐" class="headerlink" title="梦拓学长学姐"></a>梦拓学长学姐</h3><h3 id="老师发的资料"><a href="#老师发的资料" class="headerlink" title="老师发的资料"></a>老师发的资料</h3><h3 id="腾讯乐享"><a href="#腾讯乐享" class="headerlink" title="腾讯乐享"></a>腾讯乐享</h3><h3 id="各种群聊"><a href="#各种群聊" class="headerlink" title="各种群聊"></a>各种群聊</h3><h3 id="CSDN"><a href="#CSDN" class="headerlink" title="CSDN"></a>CSDN</h3><h3 id="github"><a href="#github" class="headerlink" title="github"></a>github</h3><h3 id="菜鸟教程"><a href="#菜鸟教程" class="headerlink" title="菜鸟教程"></a>菜鸟教程</h3><blockquote>
-<p>持续更新中，未完待续。。。</p>
+</li>
+<li>相等与包含的等价表示<blockquote>
+<p>$A=B \Leftrightarrow \forall x(x \in A \leftrightarrow x \in B)$<br>$A \subseteq B \Leftrightarrow \forall x (x \in A \rightarrow x \in B)$<br>$A \subset B \Leftrightarrow A \subseteq B \wedge A \neq B \Leftrightarrow \forall x(x \in A \rightarrow x \in B) \wedge \exists x(x \in B \wedge x \notin A)$</p>
 </blockquote>
+</li>
+<li>集合的元素可以是集合<blockquote>
+<p>所以这里就有必要辨析一下 $ “\in” 和 “\subseteq” $ 的区别<br>例：A={1,2,{1,2,3}}<br>$1 \in A$<br>$\{1,2\} \subseteq A$<br>$\{1,2,3\} \in A$<br>$\{1,\{1,2,3\}\} \subseteq A $<br>在这里，“1”，“2”，“{1，2，3}”是平级的。这里我们可以类比电脑的文件夹存储方式。</p>
+</blockquote>
+</li>
+<li>还有一个关系，咱们可以看看。<blockquote>
+<p>$ 设A，B，C都是集合，若 A \subseteq B 且 B \subseteq C,则 A \subseteq C $<br>$ 但是，若A \in B,B \in C,则A不一定\in C $<br>$ 例： A = \{ 1 \},B = \{ \{ 1 \} \} , C = \{ \{ \{ 1 \} \} \} (晕.jpg) $</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="幂集"><a href="#幂集" class="headerlink" title="幂集"></a>幂集</h2><ul>
+<li>集合A的全部子集构成的集合 称为A的 幂集，记作ρ（A）。<blockquote>
+<p>$ \rho ( A ) = \{ X | X \subseteq A \} $<br>$ \therefore B \subseteq A \iff B \in \rho ( A ) $</p>
+</blockquote>
+</li>
+<li>基数，有穷集合A中所含有元素的个数称为 A 的基数。记作#A。<blockquote>
+<p>对于A中的每个元素在A的幂集元素中只有两种选择，(to be | not to be) ,所以只要A是有穷集合，则 $ \sharp \rho ( A ) = 2 ^ { \sharp A } $</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="集合的运算"><a href="#集合的运算" class="headerlink" title="集合的运算"></a>集合的运算</h2><ul>
+<li>$有\cup,\cap,-(差，也叫对称补),\sim(补，也称绝对补)，\oplus(叫对称差)$<ul>
+<li>$为啥\sim叫绝对补捏,因为\sim A = U - A$<blockquote>
+<p>$所以 x \notin A \iff x \in \sim A$</p>
+</blockquote>
+</li>
+<li>$那为啥\oplus 叫对称差捏,因为A \oplus B = (A-B) \cup (B-A)$<blockquote>
+<p>就是去除掉相同的部分，跟异或有点像有米有。</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li>$还有俩特殊的\bigcup、\bigcap,推广到n个集合的情况$<ul>
+<li>$记作:\bigcup_{i=1}^{n}A_i ,也可以写成无穷的形式: \bigcap_{i=1}^{\infty}A_i$</li>
+</ul>
+</li>
+<li>集合族，集合的聚合：如果一个集合的所有元素都是集合，则称该集合为 集合族 或 集合的聚合。<ul>
+<li>$ 标码集合的概念：A = \{A_{s1},A_{s2},\dots\} ,J=\{s1,s2,\dots\}$<blockquote>
+<p>$则A可以简化写成：A=\{A_i|i \in J\},咱们把A叫加标集合，J叫标码集合$</p>
+</blockquote>
+</li>
+<li>$聚合上的\bigcup,\bigcap运算也有点讲究，主要体现在\bigcap 上$<blockquote>
+<p>$集合族A，A元素的并集可以表示为\bigcup A 或者 \bigcup_{i\in J}A_i$，即有就留下。<br>$即：\bigcup A =\{x| \exists S(S \in A \vee x \in S)\}$<br>$特殊的来了，对于\bigcap 咱们要求A \neq \phi,命名同上$<br>$我们定义：\bigcap A= \{x| \forall S (S \in A \rightarrow x \in S)\},$<br>$\therefore 若A=\phi，则S\in A \rightarrow x \in S 永真，\bigcap A 为U。$<br>$这里的\bigcup A有取所有A的元素都有的元素就留下$</p>
+<ul>
+<li>我觉得在这个定义上，和运算上的 $ \times \div $ 有点像，但我基础不够说不出来有什么内部的联系，等我研究一下，有成果在评论区告诉大家</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</li>
+<li>另外，由集合族定义牵扯的广义分配律，广义德摩根律大家也可以去看看形式，这里不赘述了</li>
+<li>还有一有意思的原理：（集合恒等式的基本形式可以与逻辑等值式类比）<ul>
+<li>对偶原理：在不含有 $ -和\oplus $ 的集合恒等式中，将 $ \cup 与\cap $ 互换，$ \phi 与 U $ 互换，得到的仍是集合恒等式（或者可以用逻辑上的对偶定理来理解，真值不变）。<blockquote>
+<p>是不是很有趣，为啥会这样呢。这两个玩意都是布尔代数的特例，可以去了解一下<a href="https://baike.baidu.com/item/%E5%B8%83%E5%B0%94%E4%BB%A3%E6%95%B0/525084">布尔代数</a></p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
 ]]></content>
       <categories>
-        <category>北航信息类大一资料</category>
+        <category>离散数学（二）</category>
       </categories>
       <tags>
-        <tag>北航</tag>
-        <tag>大一</tag>
-        <tag>高代</tag>
-        <tag>资源</tag>
+        <tag>大二</tag>
+        <tag>离散数学2</tag>
+        <tag>集合</tag>
       </tags>
   </entry>
 </search>
