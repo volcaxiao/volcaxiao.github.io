@@ -1,6 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>blog配置教程</title>
+    <url>/2022/09/06/blog%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/2022/09/05/hello-world/</url>
+    <content><![CDATA[<h1 id="hello-world"><a href="#hello-world" class="headerlink" title="hello world!"></a>hello world!</h1><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+<p><code>printf&quot;hello world!&quot;</code></p>
+<span id="more"></span> 
+<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>mips汇编翻译C代码典例</title>
+    <url>/2022/09/06/mips%E6%B1%87%E7%BC%96%E7%BF%BB%E8%AF%91C%E4%BB%A3%E7%A0%81%E5%85%B8%E4%BE%8B/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
     <title>welcome</title>
     <url>/2022/09/06/welcome/</url>
     <content><![CDATA[<p>欢迎来到volca’s blog_world，在这里大家可以讨论学习，侃侃大山，<del>发一发电</del>。初临blog，一定要看完这篇welcome，要有正确的打开方式喔。<br><strong>更新时间：2022-09-06</strong></p>
@@ -120,7 +147,7 @@
 <li>不用担心，北航有办法</li>
 <li>网址：s.buaa.edu.cn（在校外用vpn1就可以上）</li>
 <li><strong>登录后</strong>在下载中心点击<strong>金山软件</strong>-&gt;<strong>wps激活绑定</strong>，这样就能加入北航的企业团队啦，就有了白嫖的企业vip！</li>
-<li>而且在<a href="s.buaa.edu.cn">北航正版软件平台</a>上，你还能看到其他有用的软件，按需自取吧！</li>
+<li>而且在<a href="https://s.buaa.edu.cn">北航正版软件平台</a>上，你还能看到其他有用的软件，按需自取吧！</li>
 </ul>
 <h2 id="备考建议及写在最后的话"><a href="#备考建议及写在最后的话" class="headerlink" title="备考建议及写在最后的话"></a>备考建议及写在最后的话</h2><ul>
 <li>最后是学长的唠叨，数分高代作为两个大宗科目（恐怖的6学分），希望大家都能把握好。</li>
@@ -180,122 +207,6 @@
         <tag>大一</tag>
         <tag>高代</tag>
         <tag>资源</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>离散数学（二）第五章总结</title>
-    <url>/2022/09/06/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%EF%BC%88%E4%BA%8C%EF%BC%89%E7%AC%AC%E4%BA%94%E7%AB%A0%E6%80%BB%E7%BB%93/</url>
-    <content><![CDATA[<p>也系边上老师的课边做的一些笔记以及自己的一些想法，但有时候可能会拖更，分享给大家，有不妥之处，敬请评论区指正。</p>
-<span id="more"></span>
-<h1 id="集合的基本概念及其运算"><a href="#集合的基本概念及其运算" class="headerlink" title="集合的基本概念及其运算"></a>集合的基本概念及其运算</h1><h2 id="集合与元素"><a href="#集合与元素" class="headerlink" title="集合与元素"></a>集合与元素</h2><ul>
-<li>集合要有明确特征，不能是模糊概念，如：高个子学生</li>
-<li>集合的表示方法：<ul>
-<li>枚举法</li>
-<li>抽象法：用谓词来概括，$S=\{x|P(x)\}$<ul>
-<li>抽象描述不唯一。</li>
-<li>不能取$p(x)为x \notin x$，否则罗素悖论<blockquote>
-<p>$T=\{x|x \notin x\},有\forall x,x \in T \Leftrightarrow x \notin x$<br>$假设这里的x就是T，那么就有T \in T \Leftrightarrow T \notin T$ <br><br>猫了个打盹（）</p>
-</blockquote>
-</li>
-<li>所以其实抽象原则有点危险，Cantor悖论，理发师悖论，说谎者悖论。</li>
-<li>悖论产生的原因：自引用，自作用。</li>
-</ul>
-</li>
-<li>归纳定义：包含基本项、归纳项、以及最小化。（可以类比一下上学期公理系统的定义）<ul>
-<li>基本项和归纳项不难理解，归纳项就是推演规则。<blockquote>
-<p>这里我们来定义一个集合A<br>$非空集合S_0 \subseteq A (基本项)$ <br><br>$一组规则，\forall x \in A,x \stackrel{这一组规则}{\longrightarrow} y,y \in A (归纳项)$</p>
-</blockquote>
-</li>
-<li>这里重点辨析一下极小化：<blockquote>
-<p>保证A中每个元素都可通过有限次使用1或2来获得。<br>$如果集合 S \subseteq A 也满足 1和2，则 A \subseteq S$<br>$（如果集合 S \subseteq A 也满足 1和 2，则 S = A ）$ <br><br>最小化很必要，就是说如果只有1和2两句话，A中有其他不符合1、2规则的元素也可以满足，归纳定义法定义的集合就不唯一！！！<br>为什么叫极小化，就是说A中没有其他多余的元素，是通过1、2能得到的最小集合，清清爽爽。</p>
-</blockquote>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="集合的相等与包含"><a href="#集合的相等与包含" class="headerlink" title="集合的相等与包含"></a>集合的相等与包含</h2><blockquote>
-<p>相等和包含的定义在高中的时候就说过了，这里说点不一样的。</p>
-</blockquote>
-<ul>
-<li>集合与元素的排列次序与元素重复出现的次数无关<blockquote>
-<p>体现为{1,2,3}={3,1,2}<br>{a,b,c}={a,a,c,b,b,c}(这个也叫多重集)</p>
-</blockquote>
-</li>
-<li>相等与包含的等价表示<blockquote>
-<p>$A=B \Leftrightarrow \forall x(x \in A \leftrightarrow x \in B)$<br>$A \subseteq B \Leftrightarrow \forall x (x \in A \rightarrow x \in B)$<br>$A \subset B \Leftrightarrow A \subseteq B \wedge A \neq B \Leftrightarrow \forall x(x \in A \rightarrow x \in B) \wedge \exists x(x \in B \wedge x \notin A)$</p>
-</blockquote>
-</li>
-<li>集合的元素可以是集合<blockquote>
-<p>所以这里就有必要辨析一下 $ “\in” 和 “\subseteq” $ 的区别<br>例：A={1,2,{1,2,3}}<br>$\therefore 1 \in A$<br><br>$\{1,2\} \subseteq A$<br><br>$\{1,2,3\} \in A$<br><br>$\{1,\{1,2,3\}\} \subseteq A $<br><br>在这里，“1”，“2”，“{1，2，3}”是平级的。这里我们可以类比电脑的文件夹存储方式。</p>
-</blockquote>
-</li>
-<li>还有一个关系，咱们可以看看。<blockquote>
-<p>$ 设A，B，C都是集合，若 A \subseteq B 且 B \subseteq C,则 A \subseteq C $<br>$ 但是，若A \in B,B \in C,则A不一定\in C $<br>$ 例： A = \{ 1 \},B = \{ \{ 1 \} \} , C = \{ \{ \{ 1 \} \} \} (晕.jpg) $</p>
-</blockquote>
-</li>
-</ul>
-<h2 id="幂集"><a href="#幂集" class="headerlink" title="幂集"></a>幂集</h2><ul>
-<li>集合A的全部子集构成的集合 称为A的 幂集，记作 $ \rho(A) $。<blockquote>
-<p>$ \rho ( A ) = \{ X | X \subseteq A \} $<br>$ \therefore B \subseteq A \iff B \in \rho ( A ) $</p>
-</blockquote>
-</li>
-<li>基数，有穷集合A中所含有元素的个数称为 A 的基数。记作#A。<blockquote>
-<p>对于A中的每个元素在A的幂集元素中只有两种选择，(to be | not to be) ,所以只要A是有穷集合，则 $ \sharp \rho ( A ) = 2 ^ { \sharp A } $</p>
-</blockquote>
-</li>
-</ul>
-<h2 id="集合的运算"><a href="#集合的运算" class="headerlink" title="集合的运算"></a>集合的运算</h2><ul>
-<li>$有\cup,\cap,-(差，也叫对称补),\sim(补，也称绝对补)，\oplus(叫对称差)$<ul>
-<li>$为啥\sim叫绝对补捏,因为\sim A = U - A$<blockquote>
-<p>$所以 x \notin A \iff x \in \sim A$</p>
-</blockquote>
-</li>
-<li>$那为啥\oplus 叫对称差捏,因为A \oplus B = (A-B) \cup (B-A)$<blockquote>
-<p>就是去除掉相同的部分，跟异或有点像有米有。</p>
-</blockquote>
-</li>
-</ul>
-</li>
-<li>$还有俩特殊的\bigcup、\bigcap,推广到n个集合的情况$<ul>
-<li>$记作:\bigcup_{i=1}^{n}A_i ,也可以写成无穷的形式: \bigcap_{i=1}^{\infty}A_i$</li>
-</ul>
-</li>
-<li>集合族，集合的聚合：如果一个集合的所有元素都是集合，则称该集合为 集合族 或 集合的聚合。<ul>
-<li>$ 标码集合的概念：A = \{A_{s1},A_{s2},\dots\} ,J=\{s1,s2,\dots\}$<blockquote>
-<p>$则A可以简化写成：A=\{A_i|i \in J\},咱们把A叫加标集合，J叫标码集合$</p>
-</blockquote>
-</li>
-<li>$聚合上的\bigcup,\bigcap运算也有点讲究，主要体现在\bigcap 上$<blockquote>
-<p>$集合族A，A元素的并集可以表示为\bigcup A 或者 \bigcup_{i\in J}A_i$<br><br>即有就留下。<br>$即：\bigcup A =\{x| \exists S(S \in A \vee x \in S)\}$<br>$特殊的来了，对于\bigcap 咱们要求A \neq \phi,命名同上$<br>$我们定义：\bigcap A= \{x| \forall S (S \in A \rightarrow x \in S)\},$<br>$\therefore 若A=\phi，则S\in A \rightarrow x \in S 永真，\bigcap A 为U。$<br>$这里的\bigcup A有取所有A的元素都有的元素就留下$</p>
-<ul>
-<li>我觉得在这个定义上，和运算上的 $ \times \div $ 有点像，但我基础不够说不出来有什么内部的联系，等我研究一下，有成果在评论区告诉大家</li>
-</ul>
-</blockquote>
-</li>
-</ul>
-</li>
-<li>另外，由集合族定义牵扯的广义分配律，广义德摩根律大家也可以去看看形式，这里不赘述了</li>
-<li>还有一有意思的原理：（集合恒等式的基本形式可以与逻辑等值式类比）<ul>
-<li>对偶原理：在不含有 $ -和\oplus $ 的集合恒等式中，将 $ \cup 与\cap $ 互换，$ \phi 与 U $ 互换，得到的仍是集合恒等式（或者可以用逻辑上的对偶定理来理解，真值不变）。<blockquote>
-<p>是不是很有趣，为啥会这样呢。这两个玩意都是布尔代数的特例，可以去了解一下<a href="https://baike.baidu.com/item/%E5%B8%83%E5%B0%94%E4%BB%A3%E6%95%B0/525084">布尔代数</a></p>
-</blockquote>
-</li>
-</ul>
-</li>
-</ul>
-<blockquote>
-<p>未完待续。。。</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>离散数学（二）</category>
-      </categories>
-      <tags>
-        <tag>大二</tag>
-        <tag>离散数学2</tag>
-        <tag>集合</tag>
       </tags>
   </entry>
   <entry>
@@ -360,29 +271,162 @@
       </tags>
   </entry>
   <entry>
-    <title>blog配置教程</title>
-    <url>/2022/09/06/blog%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/</url>
-    <content><![CDATA[]]></content>
-  </entry>
-  <entry>
-    <title>mips汇编翻译C代码典例</title>
-    <url>/2022/09/06/mips%E6%B1%87%E7%BC%96%E7%BF%BB%E8%AF%91C%E4%BB%A3%E7%A0%81%E5%85%B8%E4%BE%8B/</url>
-    <content><![CDATA[]]></content>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/2022/09/05/hello-world/</url>
-    <content><![CDATA[<h1 id="hello-world"><a href="#hello-world" class="headerlink" title="hello world!"></a>hello world!</h1><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-<span id="more"></span> 
-<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+    <title>离散数学（二）第五章总结</title>
+    <url>/2022/09/06/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%EF%BC%88%E4%BA%8C%EF%BC%89%E7%AC%AC%E4%BA%94%E7%AB%A0%E6%80%BB%E7%BB%93/</url>
+    <content><![CDATA[<p>也系边上老师的课边做的一些笔记以及自己的一些想法，但有时候可能会拖更，分享给大家，有不妥之处，敬请评论区指正。</p>
+<span id="more"></span>
+<h1 id="集合的基本概念及其运算"><a href="#集合的基本概念及其运算" class="headerlink" title="集合的基本概念及其运算"></a>集合的基本概念及其运算</h1><h2 id="集合与元素"><a href="#集合与元素" class="headerlink" title="集合与元素"></a>集合与元素</h2><ul>
+<li>集合要有明确特征，不能是模糊概念，如：高个子学生</li>
+<li>集合的表示方法：<ul>
+<li>枚举法</li>
+<li>抽象法：用谓词来概括，$S=\{x|P(x)\}$<ul>
+<li>抽象描述不唯一。</li>
+<li>不能取 $p(x)为x \notin x$ ，否则罗素悖论<blockquote>
+<p>$T=\{x|x \notin x\},有\forall x,x \in T \Leftrightarrow x \notin x$<br>$假设这里的x就是T，那么就有T \in T \Leftrightarrow T \notin T$ <br><br>猫了个打盹（）</p>
+</blockquote>
+</li>
+<li>所以其实抽象原则有点危险，Cantor悖论，理发师悖论，说谎者悖论。</li>
+<li>悖论产生的原因：自引用，自作用。</li>
+</ul>
+</li>
+<li>归纳定义：包含基本项、归纳项、以及最小化。（可以类比一下上学期公理系统的定义）<ul>
+<li>基本项和归纳项不难理解，归纳项就是推演规则。<blockquote>
+<p>这里我们来定义一个集合A<br>$非空集合S_0 \subseteq A (基本项)$ <br><br>$一组规则，\forall x \in A,x \stackrel{这一组规则}{\longrightarrow} y,y \in A (归纳项)$</p>
+</blockquote>
+</li>
+<li>这里重点辨析一下极小化：<blockquote>
+<p>保证A中每个元素都可通过有限次使用1或2来获得。<br>$如果集合 S \subseteq A 也满足 1和2，则 A \subseteq S$<br>$（如果集合 S \subseteq A 也满足 1和 2，则 S = A ）$ <br><br>最小化很必要，就是说如果只有1和2两句话，A中有其他不符合1、2规则的元素也可以满足，归纳定义法定义的集合就不唯一！！！<br>为什么叫极小化，就是说A中没有其他多余的元素，是通过1、2能得到的最小集合，清清爽爽。</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="集合的相等与包含"><a href="#集合的相等与包含" class="headerlink" title="集合的相等与包含"></a>集合的相等与包含</h2><blockquote>
+<p>相等和包含的定义在高中的时候就说过了，这里说点不一样的。</p>
+</blockquote>
+<ul>
+<li>集合与元素的排列次序与元素重复出现的次数无关<blockquote>
+<p>体现为{1,2,3}={3,1,2}<br>{a,b,c}={a,a,c,b,b,c}(这个也叫多重集)</p>
+</blockquote>
+</li>
+<li>相等与包含的等价表示<blockquote>
+<p>$A=B \Leftrightarrow \forall x(x \in A \leftrightarrow x \in B)$<br>$A \subseteq B \Leftrightarrow \forall x (x \in A \rightarrow x \in B)$<br>$A \subset B \Leftrightarrow A \subseteq B \wedge A \neq B \Leftrightarrow \forall x(x \in A \rightarrow x \in B) \wedge \exists x(x \in B \wedge x \notin A)$</p>
+</blockquote>
+</li>
+<li>集合的元素可以是集合<blockquote>
+<p>所以这里就有必要辨析一下 $ “\in” 和 “\subseteq” $ 的区别<br>例：A={1,2,{1,2,3}}<br>$\therefore 1 \in A$<br><br>$\{1,2\} \subseteq A$<br><br>$\{1,2,3\} \in A$<br><br>$\{1,\{1,2,3\}\} \subseteq A $<br><br>在这里，“1”，“2”，“{1，2，3}”是平级的。这里我们可以类比电脑的文件夹存储方式。</p>
+</blockquote>
+</li>
+<li>还有一个关系，咱们可以看看。<blockquote>
+<p>$ 设A，B，C都是集合，若 A \subseteq B 且 B \subseteq C,则 A \subseteq C $<br>$ 但是，若A \in B,B \in C,则A不一定\in C $<br>$ 例： A = \{ 1 \},B = \{ \{ 1 \} \} , C = \{ \{ \{ 1 \} \} \} (晕.jpg) $</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="幂集"><a href="#幂集" class="headerlink" title="幂集"></a>幂集</h2><ul>
+<li>集合A的全部子集构成的集合 称为A的 幂集，记作 $ \rho(A) $。<blockquote>
+<p>$ \rho ( A ) = \{ X | X \subseteq A \} $<br>$ \therefore B \subseteq A \iff B \in \rho ( A ) $</p>
+</blockquote>
+</li>
+<li>基数，有穷集合A中所含有元素的个数称为 A 的基数。记作#A。<blockquote>
+<p>对于A中的每个元素在A的幂集元素中只有两种选择，(to be | not to be) ,所以只要A是有穷集合，则 $ \sharp \rho ( A ) = 2 ^ { \sharp A } $</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="集合的运算"><a href="#集合的运算" class="headerlink" title="集合的运算"></a>集合的运算</h2><ul>
+<li>$有\cup,\cap,-(差，也叫对称补),\sim(补，也称绝对补)，\oplus(叫对称差)$<ul>
+<li>$为啥 \sim 叫绝对补捏,因为\sim A = U - A$<blockquote>
+<p>$所以 x \notin A \iff x \in \sim A$</p>
+</blockquote>
+</li>
+<li>$那为啥\oplus 叫对称差捏,因为A \oplus B = (A-B) \cup (B-A)$<blockquote>
+<p>就是去除掉相同的部分，跟异或有点像有米有。</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li>$还有俩特殊的\bigcup、\bigcap,推广到n个集合的情况$<ul>
+<li>$记作:\bigcup_{i=1}^{n}A_i ,也可以写成无穷的形式: \bigcap_{i=1}^{\infty}A_i$</li>
+</ul>
+</li>
+<li>集合族，集合的聚合：如果一个集合的所有元素都是集合，则称该集合为 集合族 或 集合的聚合。<ul>
+<li>$ 标码集合的概念：A = \{A_{s1},A_{s2},\dots\} ,J=\{s1,s2,\dots\}$<blockquote>
+<p>$则A可以简化写成：A=\{A_i|i \in J\},咱们把A叫加标集合，J叫标码集合$</p>
+</blockquote>
+</li>
+<li>$聚合上的\bigcup,\bigcap运算也有点讲究，我们将其称为广义并、广义交，主要体现在\bigcap 上$<blockquote>
+<p>$集合族A，A元素的并集可以表示为\bigcup A 或者 \bigcup_{i\in J}A_i$<br><br>即有就留下。<br>$即：\bigcup A =\{x| \exists S(S \in A \vee x \in S)\}$<br>$特殊的来了，对于\bigcap 咱们要求A \neq \phi,命名同上$<br>$我们定义：\bigcap A= \{x| \forall S (S \in A \rightarrow x \in S)\},$<br>$\therefore 若A=\phi，则S\in A \rightarrow x \in S 永真，\bigcap A 为U。$<br>$这里的\bigcup A有取所有A的元素都有的元素就留下$</p>
+<ul>
+<li>我觉得在这个定义上，和运算上的 $ \times \div $ 有点像，但我基础不够说不出来有什么内部的联系，等我研究一下，有成果在评论区告诉大家</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</li>
+<li>另外，由集合族定义牵扯的广义分配律，广义德摩根律大家也可以去看看形式，这里不赘述了</li>
+<li>还有一有意思的原理：（集合恒等式的基本形式可以与逻辑等值式类比）<ul>
+<li>对偶原理：在不含有 $ -和\oplus $ 的集合恒等式中，将 $ \cup 与\cap $ 互换，$ \phi 与 U $ 互换，得到的仍是集合恒等式（或者可以用逻辑上的对偶定理来理解，真值不变）。<blockquote>
+<p>是不是很有趣，为啥会这样呢。这两个玩意都是布尔代数的特例，可以去了解一下<a href="https://baike.baidu.com/item/%E5%B8%83%E5%B0%94%E4%BB%A3%E6%95%B0/525084">布尔代数</a></p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li>咱们学过范式，我们可以用 $\{ \neg , \vee , \wedge \}$ 这个完备集来表示所有的逻辑情况，在集合里我们也可以用把所有的其他运算符化成 $\{\sim , \cup , \cap \}$ 来简化运算。当然很多时候可以用元素分析，需要灵活应对。<blockquote>
+<p>$ A - B = A \cap \sim B$<br>$ A \oplus B = (A-B) \cup (B-A)=(A \cap \sim B) \cup (B \cap \sim A)$ </p>
+</blockquote>
+</li>
+</ul>
+<h2 id="有穷集的计数原理"><a href="#有穷集的计数原理" class="headerlink" title="有穷集的计数原理"></a>有穷集的计数原理</h2><ul>
+<li>如题，有定理 $ \sharp (A \cup B) = \sharp A + \sharp B -\sharp (A \cap B)$</li>
+<li>可以画Venn图辅助理解。</li>
+</ul>
+<h2 id="集合的归纳定义法"><a href="#集合的归纳定义法" class="headerlink" title="集合的归纳定义法"></a>集合的归纳定义法</h2><ul>
+<li>在第一节<a href="#集合与元素">集合与元素</a>讲过基础的定义，其中我们说抽象定义有时会有点不清楚，所以我们学习更好的归纳定义。</li>
+<li>其中需注意的极小化定义，一般表述为“只有有限次应用基础语句和归纳语句得到的元素才是该集合中的元素”</li>
+</ul>
+<h2 id="有序偶和笛卡尔乘积"><a href="#有序偶和笛卡尔乘积" class="headerlink" title="有序偶和笛卡尔乘积"></a>有序偶和笛卡尔乘积</h2><ul>
+<li>有序偶：两个对象x、y，他们按规定的顺序构成的序列，称之为有序偶，记为 &lt; x , y &gt;。</li>
+<li>其中x称为第一元，y称为第二元。</li>
+<li>有序偶的集合表示：<blockquote>
+<p>&lt; x , y &gt; = { { x } , {x , y}}</p>
+<ul>
+<li>这样表示的话，有序偶的有序性得以体现。</li>
+</ul>
+</blockquote>
+</li>
+<li>$ n元序偶定义为：&lt; x_1 , x_2 , x_3 , \dots , x_n &gt; = &lt; &lt; x_1 , x_2 , \dots x_{n-1}&gt;, x_n &gt; $<ul>
+<li>尝试着写一下n元序偶的集合表示呗！</li>
+</ul>
+</li>
+<li>笛卡尔乘积：<blockquote>
+<p>$ A \times B = \{ &lt; x, y&gt; | x \in A \wedge y \in B\}$</p>
+<ul>
+<li>由于有序偶的有序性，所以笛卡尔积不符合交换律和结合律</li>
+<li>$ \sharp (A \times B) = \sharp A \cdot \sharp B (A,B为任意有限集) $</li>
+</ul>
+</blockquote>
+</li>
+<li>运算性质：<blockquote>
+<p>$ A \times (B \cup C) = (A \times B) \cup (A \times C)$<br><br>$ (A \cup B) \times C = (A \times C) \cup (B \times C)$</p>
+<ul>
+<li>类似的分配律性质对 $\cap , -$ 也适用 </li>
+</ul>
+</blockquote>
+</li>
+<li>n个集合的笛卡尔积推广，自己类推一下叭。</li>
+</ul>
+<blockquote>
+<p>未完待续。。。</p>
+</blockquote>
 ]]></content>
+      <categories>
+        <category>离散数学（二）</category>
+      </categories>
+      <tags>
+        <tag>大二</tag>
+        <tag>离散数学2</tag>
+        <tag>集合</tag>
+      </tags>
   </entry>
 </search>

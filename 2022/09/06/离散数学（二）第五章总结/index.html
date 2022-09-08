@@ -29,7 +29,7 @@
 <meta property="og:description" content="也系边上老师的课边做的一些笔记以及自己的一些想法，但有时候可能会拖更，分享给大家，有不妥之处，敬请评论区指正。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-09-06T03:01:12.000Z">
-<meta property="article:modified_time" content="2022-09-08T03:08:29.541Z">
+<meta property="article:modified_time" content="2022-09-08T08:13:44.577Z">
 <meta property="article:author" content="volcaxiao">
 <meta property="article:tag" content="大二">
 <meta property="article:tag" content="离散数学2">
@@ -242,7 +242,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-09-08 11:08:29" itemprop="dateModified" datetime="2022-09-08T11:08:29+08:00">2022-09-08</time>
+                <time title="修改时间：2022-09-08 16:13:44" itemprop="dateModified" datetime="2022-09-08T16:13:44+08:00">2022-09-08</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -267,14 +267,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>2.6k</span>
+              <span>3.4k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
+              <span>3 分钟</span>
             </span>
 
         </div>
@@ -294,7 +294,7 @@
 <li>枚举法</li>
 <li>抽象法：用谓词来概括，$S=\{x|P(x)\}$<ul>
 <li>抽象描述不唯一。</li>
-<li>不能取$p(x)为x \notin x$，否则罗素悖论<blockquote>
+<li>不能取 $p(x)为x \notin x$ ，否则罗素悖论<blockquote>
 <p>$T=\{x|x \notin x\},有\forall x,x \in T \Leftrightarrow x \notin x$<br>$假设这里的x就是T，那么就有T \in T \Leftrightarrow T \notin T$ <br><br>猫了个打盹（）</p>
 </blockquote>
 </li>
@@ -349,7 +349,7 @@
 </ul>
 <h2 id="集合的运算"><a href="#集合的运算" class="headerlink" title="集合的运算"></a>集合的运算</h2><ul>
 <li>$有\cup,\cap,-(差，也叫对称补),\sim(补，也称绝对补)，\oplus(叫对称差)$<ul>
-<li>$为啥\sim叫绝对补捏,因为\sim A = U - A$<blockquote>
+<li>$为啥 \sim 叫绝对补捏,因为\sim A = U - A$<blockquote>
 <p>$所以 x \notin A \iff x \in \sim A$</p>
 </blockquote>
 </li>
@@ -368,7 +368,7 @@
 <p>$则A可以简化写成：A=\{A_i|i \in J\},咱们把A叫加标集合，J叫标码集合$</p>
 </blockquote>
 </li>
-<li>$聚合上的\bigcup,\bigcap运算也有点讲究，主要体现在\bigcap 上$<blockquote>
+<li>$聚合上的\bigcup,\bigcap运算也有点讲究，我们将其称为广义并、广义交，主要体现在\bigcap 上$<blockquote>
 <p>$集合族A，A元素的并集可以表示为\bigcup A 或者 \bigcup_{i\in J}A_i$<br><br>即有就留下。<br>$即：\bigcup A =\{x| \exists S(S \in A \vee x \in S)\}$<br>$特殊的来了，对于\bigcap 咱们要求A \neq \phi,命名同上$<br>$我们定义：\bigcap A= \{x| \forall S (S \in A \rightarrow x \in S)\},$<br>$\therefore 若A=\phi，则S\in A \rightarrow x \in S 永真，\bigcap A 为U。$<br>$这里的\bigcup A有取所有A的元素都有的元素就留下$</p>
 <ul>
 <li>我觉得在这个定义上，和运算上的 $ \times \div $ 有点像，但我基础不够说不出来有什么内部的联系，等我研究一下，有成果在评论区告诉大家</li>
@@ -385,6 +385,49 @@
 </li>
 </ul>
 </li>
+<li>咱们学过范式，我们可以用 $\{ \neg , \vee , \wedge \}$ 这个完备集来表示所有的逻辑情况，在集合里我们也可以用把所有的其他运算符化成 $\{\sim , \cup , \cap \}$ 来简化运算。当然很多时候可以用元素分析，需要灵活应对。<blockquote>
+<p>$ A - B = A \cap \sim B$<br>$ A \oplus B = (A-B) \cup (B-A)=(A \cap \sim B) \cup (B \cap \sim A)$ </p>
+</blockquote>
+</li>
+</ul>
+<h2 id="有穷集的计数原理"><a href="#有穷集的计数原理" class="headerlink" title="有穷集的计数原理"></a>有穷集的计数原理</h2><ul>
+<li>如题，有定理 $ \sharp (A \cup B) = \sharp A + \sharp B -\sharp (A \cap B)$</li>
+<li>可以画Venn图辅助理解。</li>
+</ul>
+<h2 id="集合的归纳定义法"><a href="#集合的归纳定义法" class="headerlink" title="集合的归纳定义法"></a>集合的归纳定义法</h2><ul>
+<li>在第一节<a href="#集合与元素">集合与元素</a>讲过基础的定义，其中我们说抽象定义有时会有点不清楚，所以我们学习更好的归纳定义。</li>
+<li>其中需注意的极小化定义，一般表述为“只有有限次应用基础语句和归纳语句得到的元素才是该集合中的元素”</li>
+</ul>
+<h2 id="有序偶和笛卡尔乘积"><a href="#有序偶和笛卡尔乘积" class="headerlink" title="有序偶和笛卡尔乘积"></a>有序偶和笛卡尔乘积</h2><ul>
+<li>有序偶：两个对象x、y，他们按规定的顺序构成的序列，称之为有序偶，记为 &lt; x , y &gt;。</li>
+<li>其中x称为第一元，y称为第二元。</li>
+<li>有序偶的集合表示：<blockquote>
+<p>&lt; x , y &gt; = { { x } , {x , y}}</p>
+<ul>
+<li>这样表示的话，有序偶的有序性得以体现。</li>
+</ul>
+</blockquote>
+</li>
+<li>$ n元序偶定义为：&lt; x_1 , x_2 , x_3 , \dots , x_n &gt; = &lt; &lt; x_1 , x_2 , \dots x_{n-1}&gt;, x_n &gt; $<ul>
+<li>尝试着写一下n元序偶的集合表示呗！</li>
+</ul>
+</li>
+<li>笛卡尔乘积：<blockquote>
+<p>$ A \times B = \{ &lt; x, y&gt; | x \in A \wedge y \in B\}$</p>
+<ul>
+<li>由于有序偶的有序性，所以笛卡尔积不符合交换律和结合律</li>
+<li>$ \sharp (A \times B) = \sharp A \cdot \sharp B (A,B为任意有限集) $</li>
+</ul>
+</blockquote>
+</li>
+<li>运算性质：<blockquote>
+<p>$ A \times (B \cup C) = (A \times B) \cup (A \times C)$<br><br>$ (A \cup B) \times C = (A \times C) \cup (B \times C)$</p>
+<ul>
+<li>类似的分配律性质对 $\cap , -$ 也适用 </li>
+</ul>
+</blockquote>
+</li>
+<li>n个集合的笛卡尔积推广，自己类推一下叭。</li>
 </ul>
 <blockquote>
 <p>未完待续。。。</p>
@@ -497,7 +540,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%9B%86%E5%90%88%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5%E5%8F%8A%E5%85%B6%E8%BF%90%E7%AE%97"><span class="nav-number">1.</span> <span class="nav-text">集合的基本概念及其运算</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9B%86%E5%90%88%E4%B8%8E%E5%85%83%E7%B4%A0"><span class="nav-number">1.1.</span> <span class="nav-text">集合与元素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9B%86%E5%90%88%E7%9A%84%E7%9B%B8%E7%AD%89%E4%B8%8E%E5%8C%85%E5%90%AB"><span class="nav-number">1.2.</span> <span class="nav-text">集合的相等与包含</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B9%82%E9%9B%86"><span class="nav-number">1.3.</span> <span class="nav-text">幂集</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9B%86%E5%90%88%E7%9A%84%E8%BF%90%E7%AE%97"><span class="nav-number">1.4.</span> <span class="nav-text">集合的运算</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%9B%86%E5%90%88%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5%E5%8F%8A%E5%85%B6%E8%BF%90%E7%AE%97"><span class="nav-number">1.</span> <span class="nav-text">集合的基本概念及其运算</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9B%86%E5%90%88%E4%B8%8E%E5%85%83%E7%B4%A0"><span class="nav-number">1.1.</span> <span class="nav-text">集合与元素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9B%86%E5%90%88%E7%9A%84%E7%9B%B8%E7%AD%89%E4%B8%8E%E5%8C%85%E5%90%AB"><span class="nav-number">1.2.</span> <span class="nav-text">集合的相等与包含</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B9%82%E9%9B%86"><span class="nav-number">1.3.</span> <span class="nav-text">幂集</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9B%86%E5%90%88%E7%9A%84%E8%BF%90%E7%AE%97"><span class="nav-number">1.4.</span> <span class="nav-text">集合的运算</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%89%E7%A9%B7%E9%9B%86%E7%9A%84%E8%AE%A1%E6%95%B0%E5%8E%9F%E7%90%86"><span class="nav-number">1.5.</span> <span class="nav-text">有穷集的计数原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9B%86%E5%90%88%E7%9A%84%E5%BD%92%E7%BA%B3%E5%AE%9A%E4%B9%89%E6%B3%95"><span class="nav-number">1.6.</span> <span class="nav-text">集合的归纳定义法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%89%E5%BA%8F%E5%81%B6%E5%92%8C%E7%AC%9B%E5%8D%A1%E5%B0%94%E4%B9%98%E7%A7%AF"><span class="nav-number">1.7.</span> <span class="nav-text">有序偶和笛卡尔乘积</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -595,12 +638,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">7k</span>
+    <span title="站点总字数">8k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">6 分钟</span>
+    <span title="站点阅读时长">7 分钟</span>
 </div>
 
 
