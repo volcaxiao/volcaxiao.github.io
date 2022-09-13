@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>blog配置教程</title>
-    <url>/2022/09/06/blog%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/</url>
+    <title>OO_pre_Summary</title>
+    <url>/2022/09/10/OO-pre-Summary/</url>
     <content><![CDATA[]]></content>
   </entry>
   <entry>
@@ -21,6 +21,11 @@
 <h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
 <p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
 ]]></content>
+  </entry>
+  <entry>
+    <title>blog配置教程</title>
+    <url>/2022/09/06/blog%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/</url>
+    <content><![CDATA[]]></content>
   </entry>
   <entry>
     <title>mips汇编翻译C代码典例</title>
@@ -271,6 +276,65 @@
       </tags>
   </entry>
   <entry>
+    <title>工科大物-热力学基础总结</title>
+    <url>/2022/09/13/%E5%B7%A5%E7%A7%91%E5%A4%A7%E7%89%A9-%E7%83%AD%E5%8A%9B%E5%AD%A6%E5%9F%BA%E7%A1%80%E6%80%BB%E7%BB%93/</url>
+    <content><![CDATA[<p>系边上老师的课边做的一些笔记以及自己的一些想法，但有时候可能会拖更，分享给大家，有不妥之处，敬请评论区指正。</p>
+<span id="more"></span>
+<h1 id="热力学总结"><a href="#热力学总结" class="headerlink" title="热力学总结"></a>热力学总结</h1><h2 id="内能、功、热量、热一律"><a href="#内能、功、热量、热一律" class="headerlink" title="内能、功、热量、热一律"></a>内能、功、热量、热一律</h2><ul>
+<li>系统的状态发生变化 -&gt; 热力学过程<ul>
+<li>弛豫时间：系统由非平衡态达到平衡态所需的时间</li>
+<li>准静态过程（平衡过程）：过程无限（理想过程）缓慢，每个中间过程都无限接近平衡态（每一点都满足 $ PV = \nu RT$），可以用P-V图表示。</li>
+</ul>
+</li>
+<li>做功（机械能转化的量度）：在准静态过程中：<blockquote>
+<p>$状态从 (P_1,v_1,T_1)到(P_2,V_2,T_2)$<br>$ A = \int _{1 \rightarrow 2} \vec{F} \cdot d \vec{l} $<br>$ = \int_{1 \rightarrow 2} P \cdot S \cdot dl = \int _{v_1} ^{v_2} P dV $</p>
+<ul>
+<li>在P-V图上体现为始末状态所围的面积</li>
+<li>$ \Delta V &gt; 0 气体对外界做正功  ，在P-V图上，顺时钟循环 A &gt; 0 $</li>
+</ul>
+</blockquote>
+</li>
+<li>热量也是一种能量交换的度量！</li>
+<li>热力学第一定律：<blockquote>
+<p>$ 系统内能的增量：\Delta E = A’ + Q (A’ 为外界对系统做的功，Q为外界向系统传递的热量) $<br>$\therefore 外界对系统传递的热量 Q = \Delta E + A$<br>$ Q = dE + A$</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="气体的摩尔热容量"><a href="#气体的摩尔热容量" class="headerlink" title="气体的摩尔热容量"></a>气体的摩尔热容量</h2><ul>
+<li>$热容C：C = \lim _{ \Delta T \to 0 } \frac{ \Delta Q }{ \Delta T} = \frac{dQ}{dT} $</li>
+<li>$比热容：单位质量物质的热容 C_b = \frac{dQ}{mdT} : J/Kg \cdot K$</li>
+<li>$ 摩尔热容：J / mol \cdot K$</li>
+<li>定容摩尔热容：<blockquote>
+<p> $ C_{V,m} = \frac{ (dQ)_V }{ \nu dT } = \frac{dE}{dT}+ P\frac{dV}{dT} \stackrel{dV=0}{=} \frac{dE}{dT} = \frac{i}{2}R $</p>
+</blockquote>
+</li>
+<li>定压摩尔热容：<blockquote>
+<p>$ C_{P,m} = \frac{dE}{dT}+ P\frac{dV}{dT} = \frac{i}{2}R+ P\frac{dV}{dT} \stackrel{PV=RT}{==} (\frac{i}{2}+1)R $</p>
+</blockquote>
+</li>
+<li>比热容比（泊松比）：定压摩尔热容比定容摩尔热容</li>
+<li>准静态过程的热量的计算</li>
+</ul>
+<h2 id="等值过程的过程方程和能量关系"><a href="#等值过程的过程方程和能量关系" class="headerlink" title="等值过程的过程方程和能量关系"></a>等值过程的过程方程和能量关系</h2><blockquote>
+<p>我们研究一个过程可以着重研究四个方面：其特点、过程方程、过程曲线、能量关系。</p>
+</blockquote>
+<ul>
+<li>等压过程</li>
+<li>等容过程</li>
+<li>等温过程</li>
+</ul>
+]]></content>
+      <categories>
+        <category>工科大学物理</category>
+      </categories>
+      <tags>
+        <tag>物理</tag>
+        <tag>热力学</tag>
+        <tag>大二</tag>
+        <tag>热力学基础</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>离散数学（二）第五章总结</title>
     <url>/2022/09/06/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%EF%BC%88%E4%BA%8C%EF%BC%89%E7%AC%AC%E4%BA%94%E7%AB%A0%E6%80%BB%E7%BB%93/</url>
     <content><![CDATA[<p>也系边上老师的课边做的一些笔记以及自己的一些想法，但有时候可能会拖更，分享给大家，有不妥之处，敬请评论区指正。</p>
@@ -356,7 +420,7 @@
 </blockquote>
 </li>
 <li>$聚合上的\bigcup,\bigcap运算也有点讲究，我们将其称为广义并、广义交，主要体现在\bigcap 上$<blockquote>
-<p>$集合族A，A元素的并集可以表示为\bigcup A 或者 \bigcup_{i\in J}A_i$<br><br>即有就留下。<br>$即：\bigcup A =\{x| \exists S(S \in A \vee x \in S)\}$<br>$特殊的来了，对于\bigcap 咱们要求A \neq \phi,命名同上$<br>$我们定义：\bigcap A= \{x| \forall S (S \in A \rightarrow x \in S)\},$<br>$\therefore 若A=\phi，则S\in A \rightarrow x \in S 永真，\bigcap A 为U。$<br>$这里的\bigcup A有取所有A的元素都有的元素就留下$</p>
+<p>$集合族A，A元素的并集可以表示为\bigcup A 或者 \bigcup_{i\in J}A_i$ <br><br>即有就留下。<br>$即：\bigcup A =\{x| \exists S(S \in A \vee x \in S)\}$<br>$特殊的来了，对于\bigcap 咱们要求A \neq \phi,命名同上$<br>$我们定义：\bigcap A= \{x| \forall S (S \in A \rightarrow x \in S)\},$<br>$\therefore 若A=\phi，则S\in A \rightarrow x \in S 永真，\bigcap A 为U。$<br>$这里的\bigcup A有取所有A的元素都有的元素就留下$</p>
 <ul>
 <li>我觉得在这个定义上，和运算上的 $ \times \div $ 有点像，但我基础不够说不出来有什么内部的联系，等我研究一下，有成果在评论区告诉大家</li>
 </ul>
