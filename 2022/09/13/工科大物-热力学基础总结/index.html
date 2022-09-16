@@ -28,14 +28,17 @@
 <meta property="og:site_name" content="volca&#39;s blog">
 <meta property="og:description" content="系边上老师的课边做的一些笔记以及自己的一些想法，但有时候可能会拖更，分享给大家，有不妥之处，敬请评论区指正。">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/pict_1.jpg">
+<meta property="og:image" content="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/pict_2.jpg">
 <meta property="article:published_time" content="2022-09-13T10:36:41.000Z">
-<meta property="article:modified_time" content="2022-09-13T10:38:53.157Z">
+<meta property="article:modified_time" content="2022-09-16T08:24:30.001Z">
 <meta property="article:author" content="volcaxiao">
+<meta property="article:tag" content="大二">
 <meta property="article:tag" content="物理">
 <meta property="article:tag" content="热力学">
-<meta property="article:tag" content="大二">
 <meta property="article:tag" content="热力学基础">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/pict_1.jpg">
 
 <link rel="canonical" href="http://volcaxiao.github.io/2022/09/13/%E5%B7%A5%E7%A7%91%E5%A4%A7%E7%89%A9-%E7%83%AD%E5%8A%9B%E5%AD%A6%E5%9F%BA%E7%A1%80%E6%80%BB%E7%BB%93/">
 
@@ -235,10 +238,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-09-13 18:36:41 / 修改时间：18:38:53" itemprop="dateCreated datePublished" datetime="2022-09-13T18:36:41+08:00">2022-09-13</time>
+              <time title="创建时间：2022-09-13 18:36:41" itemprop="dateCreated datePublished" datetime="2022-09-13T18:36:41+08:00">2022-09-13</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-09-16 16:24:30" itemprop="dateModified" datetime="2022-09-16T16:24:30+08:00">2022-09-16</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -262,14 +271,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>953</span>
+              <span>2.1k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
+              <span>2 分钟</span>
             </span>
 
         </div>
@@ -322,10 +331,58 @@
 <p>我们研究一个过程可以着重研究四个方面：其特点、过程方程、过程曲线、能量关系。</p>
 </blockquote>
 <ul>
-<li>等压过程</li>
-<li>等容过程</li>
-<li>等温过程</li>
+<li>等压过程<blockquote>
+<p>$ P=const, \frac{V}{T}=const$<br>$ A = \int _{V_1}^{V_2} P dV = \nu R \Delta T  $<br>$ \Delta E = \nu \frac{i}{2} R \Delta T = Q_P - A $<br>$ Q_P = \nu C_{P,m} (T_2-T_1) $</p>
+</blockquote>
+</li>
+<li>等容过程<blockquote>
+<p>$ A = 0 (dV = 0) $<br>$ \Delta E = \nu \frac{i}{2} R \Delta T  $<br>$ Q_V = \Delta E = \nu C_{V,m} \Delta T = \frac{i}{2} V \Delta P $</p>
+</blockquote>
+</li>
+<li>等温过程<blockquote>
+<p>$PV = const, \Delta E = 0 $<br>$Q_T =  \nu C_{T,m} \Delta T $<br>$\because \Delta T = 0,Q_T为有限量 \Rightarrow C_{T,m} = +\infty  $<br>$Q_T = A = \int _{1 \to 2} PdV = \int_{V_1}^{V_2} \nu \frac{R}{V}TdV $<br>$=\nu R T \ln{\frac{V_2}{V_1} } = \nu R T \ln{\frac{P_1}{P_2} } $</p>
+</blockquote>
+</li>
 </ul>
+<h2 id="绝热过程"><a href="#绝热过程" class="headerlink" title="绝热过程"></a>绝热过程</h2><ul>
+<li>绝热过程：系统在整个过程中，始终不和外界交换热量。<blockquote>
+<p>$ 特点：dQ = 0 , C_{Q,m} = 0 $<br>$ dQ = 0 \Rightarrow dA + dE = 0 $<br>$ 我们利用等容关系能得到：-PdV = \nu C_{V,m} dT $<br>$ 但是我们在绝热过程中P,V都会变$<br>$ \therefore 对克拉伯龙方程微分 $<br>$ PdV+ VdP = \nu R dT $<br>$ 把上式代入得：(C_{V,m}+ R)PdV = - C_{V,m} V dP $<br>$\therefore \frac{dP}{P} = - \gamma \frac{dV}{V} $<br>$ 两边求导：PV^{\gamma} = const (过程/泊松方程) $</p>
+</blockquote>
+</li>
+<li><p>绝热曲线：<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/pict_1.jpg" alt="pict1"></p>
+<ul>
+<li>我们来仔细辨析一下其中的原理，从宏观和微观的角度。</li>
+</ul>
+</li>
+<li><p>能量关系：</p>
+<blockquote>
+<p>$ \Delta E = \nu \frac{i}{2} R \Delta T = \nu C_{V,m} \Delta T = -A$<br>$\because \frac{i}{2} = \frac{1}{\gamma - 1} $<br>$\therefore A = \frac{P_1 V_1 - P_2 V_2}{ \gamma - 1} $</p>
+<ul>
+<li>当然，我们也可以通过理气对外做功的方程以及泊松方程直接求A<br>$A = \int_{V_2}^{V_1} PdV =  $</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<h2 id="多方过程"><a href="#多方过程" class="headerlink" title="多方过程"></a>多方过程</h2><ul>
+<li>多方过程：理想气体的一般过程。</li>
+<li>$ 过程方程：PV^n = const $<ul>
+<li>从方程可以看出，这个过程介于等压过程和等容过程之间，为啥这么说捏？<blockquote>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="循环过程"><a href="#循环过程" class="headerlink" title="循环过程"></a>循环过程</h2><ul>
+<li>循环过程：从初始状态出发，一系列变化回到初始状态<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/pict_2.jpg" alt="pict2"></li>
+<li>$特点：\Delta E = 0 \therefore A = Q $<blockquote>
+<p>$A = \int_LPdV = \plusmn S_{abcda} $<br>$ A的\plusmn 取决于L路径的正负$</p>
+</blockquote>
+</li>
+<li>应用：热机与制冷机</li>
+</ul>
+<h2 id="拓展—热力经济学"><a href="#拓展—热力经济学" class="headerlink" title="拓展—热力经济学"></a>拓展—热力经济学</h2><blockquote>
+<p>持续更新中。。。</p>
+</blockquote>
 
     </div>
 
@@ -353,9 +410,9 @@
       <footer class="post-footer">
           
           <div class="post-tags">
+              <a href="/tags/%E5%A4%A7%E4%BA%8C/" rel="tag"><i class="fa fa-tag"></i> 大二</a>
               <a href="/tags/%E7%89%A9%E7%90%86/" rel="tag"><i class="fa fa-tag"></i> 物理</a>
               <a href="/tags/%E7%83%AD%E5%8A%9B%E5%AD%A6/" rel="tag"><i class="fa fa-tag"></i> 热力学</a>
-              <a href="/tags/%E5%A4%A7%E4%BA%8C/" rel="tag"><i class="fa fa-tag"></i> 大二</a>
               <a href="/tags/%E7%83%AD%E5%8A%9B%E5%AD%A6%E5%9F%BA%E7%A1%80/" rel="tag"><i class="fa fa-tag"></i> 热力学基础</a>
           </div>
 
@@ -365,8 +422,8 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2022/09/10/OO-pre-Summary/" rel="prev" title="OO_pre_Summary">
-      <i class="fa fa-chevron-left"></i> OO_pre_Summary
+    <a href="/2022/09/13/mips%E6%B1%87%E7%BC%96%E7%BF%BB%E8%AF%91C%E4%BB%A3%E7%A0%81%E5%85%B8%E4%BE%8B/" rel="prev" title="mips汇编翻译C代码典例">
+      <i class="fa fa-chevron-left"></i> mips汇编翻译C代码典例
     </a></div>
       <div class="post-nav-item"></div>
     </div>
@@ -432,7 +489,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%83%AD%E5%8A%9B%E5%AD%A6%E6%80%BB%E7%BB%93"><span class="nav-number">1.</span> <span class="nav-text">热力学总结</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%85%E8%83%BD%E3%80%81%E5%8A%9F%E3%80%81%E7%83%AD%E9%87%8F%E3%80%81%E7%83%AD%E4%B8%80%E5%BE%8B"><span class="nav-number">1.1.</span> <span class="nav-text">内能、功、热量、热一律</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B0%94%E4%BD%93%E7%9A%84%E6%91%A9%E5%B0%94%E7%83%AD%E5%AE%B9%E9%87%8F"><span class="nav-number">1.2.</span> <span class="nav-text">气体的摩尔热容量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AD%89%E5%80%BC%E8%BF%87%E7%A8%8B%E7%9A%84%E8%BF%87%E7%A8%8B%E6%96%B9%E7%A8%8B%E5%92%8C%E8%83%BD%E9%87%8F%E5%85%B3%E7%B3%BB"><span class="nav-number">1.3.</span> <span class="nav-text">等值过程的过程方程和能量关系</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%83%AD%E5%8A%9B%E5%AD%A6%E6%80%BB%E7%BB%93"><span class="nav-number">1.</span> <span class="nav-text">热力学总结</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%85%E8%83%BD%E3%80%81%E5%8A%9F%E3%80%81%E7%83%AD%E9%87%8F%E3%80%81%E7%83%AD%E4%B8%80%E5%BE%8B"><span class="nav-number">1.1.</span> <span class="nav-text">内能、功、热量、热一律</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B0%94%E4%BD%93%E7%9A%84%E6%91%A9%E5%B0%94%E7%83%AD%E5%AE%B9%E9%87%8F"><span class="nav-number">1.2.</span> <span class="nav-text">气体的摩尔热容量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AD%89%E5%80%BC%E8%BF%87%E7%A8%8B%E7%9A%84%E8%BF%87%E7%A8%8B%E6%96%B9%E7%A8%8B%E5%92%8C%E8%83%BD%E9%87%8F%E5%85%B3%E7%B3%BB"><span class="nav-number">1.3.</span> <span class="nav-text">等值过程的过程方程和能量关系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%9D%E7%83%AD%E8%BF%87%E7%A8%8B"><span class="nav-number">1.4.</span> <span class="nav-text">绝热过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%9A%E6%96%B9%E8%BF%87%E7%A8%8B"><span class="nav-number">1.5.</span> <span class="nav-text">多方过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BE%AA%E7%8E%AF%E8%BF%87%E7%A8%8B"><span class="nav-number">1.6.</span> <span class="nav-text">循环过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8B%93%E5%B1%95%E2%80%94%E7%83%AD%E5%8A%9B%E7%BB%8F%E6%B5%8E%E5%AD%A6"><span class="nav-number">1.7.</span> <span class="nav-text">拓展—热力经济学</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -455,13 +512,13 @@
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-count">18</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -530,12 +587,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">9k</span>
+    <span title="站点总字数">10k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">8 分钟</span>
+    <span title="站点阅读时长">9 分钟</span>
 </div>
 
 
