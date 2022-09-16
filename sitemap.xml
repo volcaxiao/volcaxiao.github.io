@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://volcaxiao.github.io/2022/09/06/welcome/</loc>
+    <loc>http://volcaxiao.github.io/AA-column/%E7%A9%BA%E9%97%B4%E8%A7%A3%E6%9E%90%E5%87%A0%E4%BD%95%E5%9F%BA%E7%A1%80.html</loc>
     
     <lastmod>2022-09-16</lastmod>
     
@@ -12,6 +12,15 @@
   
   <url>
     <loc>http://volcaxiao.github.io/about/index.html</loc>
+    
+    <lastmod>2022-09-16</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://volcaxiao.github.io/2022/09/06/welcome/</loc>
     
     <lastmod>2022-09-16</lastmod>
     
