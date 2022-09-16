@@ -162,7 +162,7 @@
 <h2 id="循环过程"><a href="#循环过程" class="headerlink" title="循环过程"></a>循环过程</h2><ul>
 <li>循环过程：从初始状态出发，一系列变化回到初始状态<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/pict_2.jpg" alt="pict2"></li>
 <li>$特点：\Delta E = 0 \therefore A = Q $<blockquote>
-<p>$A = \int_LPdV = \plusmn S_{abcda} $<br>$ A的\plusmn 取决于L路径的正负$</p>
+<p>$A = \int_LPdV = \pm S_{abcda} $<br>$ A的\pm 取决于L路径的正负$</p>
 </blockquote>
 </li>
 <li>应用：热机与制冷机</li>
