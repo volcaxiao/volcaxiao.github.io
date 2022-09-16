@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://volcaxiao.github.io/2022/09/06/welcome/</loc>
+    <lastmod>2022-09-16</lastmod>
+  </url>
+  <url>
     <loc>http://volcaxiao.github.io/2022/09/13/%E5%B7%A5%E7%A7%91%E5%A4%A7%E7%89%A9-%E7%83%AD%E5%8A%9B%E5%AD%A6%E5%9F%BA%E7%A1%80%E6%80%BB%E7%BB%93/</loc>
     <lastmod>2022-09-16</lastmod>
   </url>
@@ -22,10 +26,6 @@
   </url>
   <url>
     <loc>http://volcaxiao.github.io/2022/09/05/hello-world/</loc>
-    <lastmod>2022-09-08</lastmod>
-  </url>
-  <url>
-    <loc>http://volcaxiao.github.io/2022/09/06/welcome/</loc>
     <lastmod>2022-09-08</lastmod>
   </url>
   <url>
