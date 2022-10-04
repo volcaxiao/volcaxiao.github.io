@@ -82,6 +82,86 @@
       </tags>
   </entry>
   <entry>
+    <title>CO_P0状态编码分享</title>
+    <url>/2022/10/04/CO-P0%E7%8A%B6%E6%80%81%E7%BC%96%E7%A0%81%E5%88%86%E4%BA%AB/</url>
+    <content><![CDATA[<p>时隔半个月，终于有了更新，主要是一些P0的经验分享——状态编码，当然有一些零零散散的芝士点，会在后面补足的，记得催催。。。</p>
+<span id="more"></span>
+<h1 id="状态编码的分享"><a href="#状态编码的分享" class="headerlink" title="状态编码的分享"></a>状态编码的分享</h1><h2 id="写在前头"><a href="#写在前头" class="headerlink" title="写在前头"></a>写在前头</h2><p>相信的大家都开始写状态机了，FSM分为三个部分，主要是状态转移、状态储存、状态输出，其中状态转移、状态输出主要是组合逻辑的操作，因此将这两个模块封装后，可以进行类似于组合逻辑的电路的黑箱测试的操作。<br>当然，我们可以用分析电路(analyze circuit)的功能，非常方便的得到我们想要的电路。<br>这些问题都解决了，留给我们自己的事情就只剩下状态编码的选择、状态转移（输出）的真值表了。</p>
+<blockquote>
+<p>当然，还有计算机组成课程历史上的一颗明珠——qshr机（指路<a href="http://cscore.buaa.edu.cn/#/discussion_area/579/689/posts">自主研发：权尚浩然型有限状态机</a>），可以省去选状态编码这种憋死选择困难症的操作，直观可读性强，是计算机仿真史上的一个重大发明，虚拟现实专业的同学也应该好好学习借鉴</p>
+</blockquote>
+<hr>
+<p>所以我们来重点看看选择状态编码的门道。<br>这里我们以logisim导航这一题为例，看看不同的状态编码的选择之间的差别。</p>
+<h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><p><a href="#状态转移图">状态转移图</a><br><a href="#自己乱编的码">自己乱编的码</a><br><a href="#8421顺序编码">8421顺序编码</a><br><a href="#格雷码">格雷码</a><br><a href="#独热码">独热码</a><br><a href="#瞻仰qshr机">瞻仰qshr机</a></p>
+<h2 id="状态转移图"><a href="#状态转移图" class="headerlink" title="状态转移图"></a>状态转移图</h2><ul>
+<li>这道题的状态转移图，其实不太好用常见的圈箭头的表示，倒是路径图已经有了，直接在这上面看着打表会方便一点<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/1自己的编码图.jpg" alt="自己乱编码的图"></li>
+</ul>
+<h2 id="自己乱编的码"><a href="#自己乱编的码" class="headerlink" title="自己乱编的码"></a>自己乱编的码</h2><blockquote>
+<p>编码中还需要注意一个问题，就是我们输入的三位数从高位到地位应该是(l2,l1,l0),所以在我们打表的时候的命名请按照(l2,l1,l0,d1,d0)的顺序(分别表示location,direction),同样输出我们使用(L2,L1,L0,hit)的顺序。这样符合逻辑！</p>
+<p>在打完表以后，也要注意，分离器(splitter)分离出来的位次依次是(l0,l1,l2)，所以为了好看，打完表以后，把输入输出的顺序调一下！调成(l0,l1,l2,hit)</p>
+</blockquote>
+<ul>
+<li>上图是我自己的胡乱编码，其实也不胡乱，中间三个状态是独热码表示。他的效果如下：<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/1自己码.png" alt="自己码"></li>
+</ul>
+<h2 id="8421顺序编码"><a href="#8421顺序编码" class="headerlink" title="8421顺序编码"></a>8421顺序编码</h2><ul>
+<li>顺序编码是我们最好理解的一种编码，最符合我们人类的直觉往往最不符合计算机的直觉，因为虽然顺序编码的最为紧密（紧密也有紧密的好处），但是由于相邻两个状态之间的变化太大，实际的硬件的寄存器很难做到同时发生变化，所以出错的概率很高（我们叫做毛刺现象）。</li>
+<li>所以在我们平常的作业中使使可能没太大问题，但是实际应用中用的很少。<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/2_8421码.png" alt="8421码"></li>
+</ul>
+<h2 id="格雷码"><a href="#格雷码" class="headerlink" title="格雷码"></a>格雷码</h2><ul>
+<li>格雷码的特点就是解决了顺序码的缺点，相邻的两状态之间编码之变一位，就不会出现毛刺的现象。</li>
+<li>但是格雷码最大的问题在于设计的难度</li>
+<li>其实格雷码最好是初态和末态也只差一位，但我实在有点找不到，有能够找到的dl可以在评论区指出。<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/3_格雷码.png" alt="格雷码"></li>
+</ul>
+<h2 id="独热码"><a href="#独热码" class="headerlink" title="独热码"></a>独热码</h2><ul>
+<li>独热码的编码可能是唯一一个计算机好理解，人也好理解的编码，再加上他一下只需要变动两次（置一+置零），所以毛刺的概率低。</li>
+<li>而且，虽然说编码不太紧密，用到的寄存器位数多（也就是触发器多），但是这也使得组合逻辑电路会精简一些，大家可以看接下来的实现。</li>
+<li>就是这两个特点使得独热码在实际应用中十分广泛。<blockquote>
+<p>独热码适合写条件复杂但是状态少的状态机；<br>  格雷码适合写条件不复杂但是状态多的状态机。</p>
+</blockquote>
+</li>
+<li>这里分享一个小妙招，格雷码一个一个的在Analysis里打表不方便（位数太多了），而其实独热码大多数位数都是零，所以可以先构造出这样的电路<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/独热码构造捷径.png" alt="独热码构造捷径"></li>
+<li>然后再Project -&gt; Analyze circuit,出来的初始真值表就是全置零的啦。</li>
+<li>如下图（独热码的真值表太长了我就不晒出来了）<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/4_独热码.png" alt="独热码"></li>
+<li>当然这肯定不是最简化的电路，你可以根据要求自己搭更加简单的电路，包括说用复用器来实现更简化，在这里就不赘述了。</li>
+</ul>
+<h2 id="瞻仰qshr机"><a href="#瞻仰qshr机" class="headerlink" title="瞻仰qshr机"></a>瞻仰qshr机</h2><ul>
+<li>对于qshr机，评论区zytgg的评论一针见血：<blockquote>
+<p>是否等价于把独热编码的状态机按位拆开？</p>
+<ul>
+<li>确实，独热码的思路就是有多少状态就用多少触发器，qshr机也就是这么个道理，每一个状态都用一个寄存器存下，和我们画状态转移图的时候的思路是一致的。</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<blockquote>
+<p>介于qshr机在计算机仿真史上做出的贡献，我们看到了，对于这个题navigation来说，有很直观的状态转移图，还记得我在最开始说的嘛，”这道题的状态转移图，其实不太好用常见的圈箭头的表示，倒是路径图已经有了，直接在这上面看着打表会方便一点”，不用打表，题图即是状态转移图！！！</p>
+</blockquote>
+<ul>
+<li><p>所以我们把原基础的qshr机封装一下，让他看起来更具有仿真的意味！<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/qshr机改良版.png" alt="qshr机封装版"></p>
+</li>
+<li><p>虽然只是对qshr机的拙略模仿，但是你们不觉得很酷嘛，这很符合我对未来的想象（）。</p>
+</li>
+</ul>
+<hr>
+<h2 id="写到最后"><a href="#写到最后" class="headerlink" title="写到最后"></a>写到最后</h2><ul>
+<li>其实有限状态机核心的部分就是状态转移，状态转移核心的部分就是编码选择和打表，掌握好了这几个地方，封装再好点（便于调试），有限状态机就不难啦。</li>
+<li>感谢qshr大佬的灵感支持！</li>
+<li>感谢zyt、cys等佬的理论拓展！</li>
+<li>有不妥之处请各位大佬指出，谢谢观看！</li>
+</ul>
+]]></content>
+      <categories>
+        <category>BUAA计算机组成原理</category>
+      </categories>
+      <tags>
+        <tag>北航</tag>
+        <tag>CO</tag>
+        <tag>P0</tag>
+        <tag>状态编码</tag>
+        <tag>logisim</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>工科大物-热力学基础总结</title>
     <url>/2022/09/13/%E5%B7%A5%E7%A7%91%E5%A4%A7%E7%89%A9-%E7%83%AD%E5%8A%9B%E5%AD%A6%E5%9F%BA%E7%A1%80%E6%80%BB%E7%BB%93/</url>
     <content><![CDATA[<p>系边上老师的课边做的一些笔记以及自己的一些想法，但有时候可能会拖更，分享给大家，有不妥之处，敬请评论区指正。</p>
@@ -196,14 +276,36 @@
 <h1 id="mips汇编翻译C代码典例"><a href="#mips汇编翻译C代码典例" class="headerlink" title="mips汇编翻译C代码典例"></a>mips汇编翻译C代码典例</h1><blockquote>
 <p>说是翻译C代码，其实要是在介绍如何MIPS汇编语言实现高级语言中出现的条件、循环、子程序结构。</p>
 </blockquote>
+<ul>
+<li><p>push和pop要遵循LIFO</p>
+</li>
+<li><p>打好macro</p>
+</li>
+<li><p>t寄存器调用者维护，是指push和pop</p>
+</li>
+<li><p>s寄存器被调用者维护，是指被调用函数不应改变s寄存器的值</p>
+</li>
+<li><p>固定for和if的写法，记得在for最后写上i++ j begin</p>
+</li>
+<li><p>常见macro写法并通过脚本新建文件</p>
+</li>
+<li><p>多重逻辑条件的写法（博主的亲身经验）</p>
+</li>
+<li><p>函数的一般性写法</p>
+</li>
+<li><p>二维数组的写法</p>
+</li>
+<li><p>mips一般代码建议</p>
+</li>
+</ul>
 ]]></content>
       <categories>
         <category>BUAA计算机组成原理</category>
       </categories>
       <tags>
         <tag>北航</tag>
-        <tag>大二</tag>
         <tag>CO</tag>
+        <tag>大二</tag>
         <tag>计组</tag>
         <tag>MIPS</tag>
       </tags>
@@ -211,7 +313,18 @@
   <entry>
     <title>OO_pre_Summary</title>
     <url>/2022/09/10/OO-pre-Summary/</url>
-    <content><![CDATA[]]></content>
+    <content><![CDATA[<p>常见styleCheck报错改进合集，git相关知识，在题解过程中了解java语法以及面向对象知识</p>
+<span id="more"></span>]]></content>
+      <categories>
+        <category>BUAA面向对象</category>
+      </categories>
+      <tags>
+        <tag>北航</tag>
+        <tag>OO</tag>
+        <tag>面向对象</tag>
+        <tag>大二</tag>
+        <tag>pre</tag>
+      </tags>
   </entry>
   <entry>
     <title>北航信息类数分一资料</title>
@@ -424,7 +537,7 @@
 </ul>
 </li>
 <li>咱们学过范式，我们可以用 $\{ \neg , \vee , \wedge \}$ 这个完备集来表示所有的逻辑情况，在集合里我们也可以用把所有的其他运算符化成 $\{\sim , \cup , \cap \}$ 来简化运算。当然很多时候可以用元素分析，需要灵活应对。<blockquote>
-<p>$ A - B = A \cap \sim B$<br>$ A \oplus B = (A-B) \cup (B-A)=(A \cap \sim B) \cup (B \cap \sim A)$ </p>
+<p>$ A - B = A \cap \sim B$<br>$ A \oplus B = (A-B) \cup (B-A)=(A \cap \sim B) \cup (B \cap \sim A)$</p>
 </blockquote>
 </li>
 </ul>
