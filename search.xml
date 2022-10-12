@@ -82,6 +82,133 @@
       </tags>
   </entry>
   <entry>
+    <title>mips常用宏定义</title>
+    <url>/2022/10/12/mips%E5%B8%B8%E7%94%A8%E5%AE%8F%E5%AE%9A%E4%B9%89/</url>
+    <content><![CDATA[<p>我们知道mips的灵活性高，但是可读性差，所以要改变可读性差的问题，我们可以使用宏定义，像写c一样写汇编（）。</p>
+<span id="more"></span>
+<h1 id="mips常用宏定义"><a href="#mips常用宏定义" class="headerlink" title="mips常用宏定义"></a>mips常用宏定义</h1><ul>
+<li>下面是一些常用的宏定义，当然你可以视情况而定，将代码段中重用次数高的，或者是用汇编写意义不太明确的代码写成宏。这样调试的时候，别人和自己看代码的时候，都会舒服许多。</li>
+</ul>
+<h2 id="end-the-program"><a href="#end-the-program" class="headerlink" title="end the program"></a>end the program</h2><ul>
+<li>虽然重用度肯定不高（），但表意明确。</li>
+</ul>
+<figure class="highlight mips"><table><tr><td class="code"><pre><span class="line"><span class="comment">#end the program</span></span><br><span class="line"><span class="meta">.macro</span> end</span><br><span class="line">    li  $<span class="built_in">v0</span>, <span class="number">10</span></span><br><span class="line">    <span class="keyword">syscall</span></span><br><span class="line"><span class="keyword"></span>.end_macro</span><br></pre></td></tr></table></figure>
+<h2 id="write-amp-read类"><a href="#write-amp-read类" class="headerlink" title="write&amp;read类"></a>write&amp;read类</h2><ul>
+<li>我们知道这些都是靠syscall实现的，所以可以这么来写</li>
+<li>另外这种带参数的宏使得宏定义具有类似于C函数的特性。</li>
+</ul>
+<figure class="highlight mips"><table><tr><td class="code"><pre><span class="line"><span class="comment">#printInt</span></span><br><span class="line"><span class="meta">.macro</span> printInt(%src)</span><br><span class="line">    <span class="keyword">move </span>   $<span class="built_in">a0</span>, %src</span><br><span class="line">    li      $<span class="built_in">v0</span>, <span class="number">1</span></span><br><span class="line">    <span class="keyword">syscall</span></span><br><span class="line"><span class="keyword"></span>.end_macro</span><br><span class="line"><span class="comment">#getInt</span></span><br><span class="line"><span class="meta">.macro</span> getInt(%des)</span><br><span class="line">    li      $<span class="built_in">v0</span>, <span class="number">5</span></span><br><span class="line">    <span class="keyword">syscall</span></span><br><span class="line"><span class="keyword"></span>    <span class="keyword">move </span>   %des, $<span class="built_in">v0</span></span><br><span class="line">.end_macro</span><br><span class="line">栗子:</span><br><span class="line">getInt($<span class="built_in">s0</span>)</span><br><span class="line">printInt($<span class="built_in">s0</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#直接打印字符串</span></span><br><span class="line"><span class="meta">.macro</span> printStr(%str)</span><br><span class="line">    <span class="meta">.data</span> </span><br><span class="line"><span class="symbol">        tmpLabel:</span>   .asciiz %str</span><br><span class="line">    <span class="meta">.text</span></span><br><span class="line">        li  $<span class="built_in">v0</span>, <span class="number">4</span></span><br><span class="line">        la  $<span class="built_in">a0</span>, tmpLabel</span><br><span class="line">        <span class="keyword">syscall</span></span><br><span class="line"><span class="keyword"></span>.end_macro</span><br><span class="line">栗子:</span><br><span class="line">printStr(<span class="string">&quot;Hello CO!&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#打印特定地址的字符串</span></span><br><span class="line"><span class="meta">.macro</span> printStrOf(%src)</span><br><span class="line">    li  $<span class="built_in">v0</span>, <span class="number">4</span></span><br><span class="line">    la  $<span class="built_in">a0</span>, %src</span><br><span class="line">    <span class="keyword">syscall</span></span><br><span class="line"><span class="keyword"></span>.end_macro</span><br><span class="line">栗子:</span><br><span class="line"><span class="meta">.data</span></span><br><span class="line"><span class="symbol">    myStr:</span>  .asciiz <span class="string">&quot;Hello CO!&quot;</span></span><br><span class="line"><span class="meta">.text</span></span><br><span class="line">    printStrOf(myStr)</span><br></pre></td></tr></table></figure>
+<h2 id="push-amp-pop"><a href="#push-amp-pop" class="headerlink" title="push&amp;pop"></a>push&amp;pop</h2><ul>
+<li>我们在写函数的时候时常要用到push和pop操作，所以做好写一个宏。</li>
+</ul>
+<figure class="highlight mips"><table><tr><td class="code"><pre><span class="line"><span class="comment">#push</span></span><br><span class="line"><span class="meta">.macro</span> push(%src)</span><br><span class="line">    <span class="keyword">sw </span>     %src, <span class="number">0</span>($<span class="built_in">sp</span>)</span><br><span class="line">    <span class="keyword">subi </span>   $<span class="built_in">sp</span>, $<span class="built_in">sp</span>, <span class="number">4</span></span><br><span class="line">.end_macro</span><br><span class="line"><span class="comment">#pop</span></span><br><span class="line"><span class="meta">.macro</span> pop(%des)</span><br><span class="line">    <span class="keyword">addi </span>   $<span class="built_in">sp</span>, $<span class="built_in">sp</span>, <span class="number">4</span></span><br><span class="line">    <span class="keyword">lw </span>     %des, <span class="number">0</span>($<span class="built_in">sp</span>)</span><br><span class="line">.end_macro</span><br><span class="line">栗子:</span><br><span class="line"><span class="symbol">    fun:</span></span><br><span class="line">    push($<span class="built_in">ra</span>)</span><br><span class="line">    push($<span class="built_in">s0</span>)</span><br><span class="line">    push($<span class="built_in">t0</span>)</span><br><span class="line">        ...</span><br><span class="line">    pop($<span class="built_in">t0</span>)</span><br><span class="line">    pop($<span class="built_in">s0</span>)</span><br><span class="line">    pop($<span class="built_in">ra</span>)</span><br><span class="line">    <span class="keyword">jr </span> $<span class="built_in">ra</span></span><br></pre></td></tr></table></figure>
+<h2 id="getIndex类"><a href="#getIndex类" class="headerlink" title="getIndex类"></a>getIndex类</h2><ul>
+<li>常见的有get二维数组（矩阵）的系数，还有数组的系数</li>
+</ul>
+<figure class="highlight mips"><table><tr><td class="code"><pre><span class="line"><span class="comment">#get the vector index</span></span><br><span class="line"><span class="meta">.macro</span> get_vector_index(%index, %x)</span><br><span class="line">    <span class="keyword">sll </span>    %index, %x, <span class="number">2</span></span><br><span class="line">.end_macro</span><br><span class="line"><span class="comment">#get the matrix index</span></span><br><span class="line"><span class="meta">.macro</span> get_matrix_Index(%ans, %i, %<span class="keyword">j)</span></span><br><span class="line"><span class="keyword"></span>    li      %ans, your_number_of_columns    <span class="comment">#这里填上你的矩阵列数/行数</span></span><br><span class="line">    <span class="keyword">multu </span>  %i, %ans</span><br><span class="line">    <span class="keyword">mflo </span>   %ans</span><br><span class="line">    <span class="keyword">add </span>    %ans, %ans, %<span class="keyword">j</span></span><br><span class="line"><span class="keyword"></span>    <span class="keyword">sll </span>    %ans, %ans, <span class="number">2</span></span><br><span class="line">.end_macro</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>待补充</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>BUAA计算机组成原理</category>
+      </categories>
+      <tags>
+        <tag>北航</tag>
+        <tag>CO</tag>
+        <tag>大二</tag>
+        <tag>计组</tag>
+        <tag>MIPS</tag>
+        <tag>P2</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>mips汇编翻译C代码典例/经验</title>
+    <url>/2022/10/12/mips%E6%B1%87%E7%BC%96%E7%BF%BB%E8%AF%91C%E4%BB%A3%E7%A0%81%E5%85%B8%E4%BE%8B/</url>
+    <content><![CDATA[<p>汇编语言是一种比机械码稍高级一点的语言，而MIPS的汇编语言是一种专用于MIPS架构的CPU的汇编语言，相较于ARM，X86等现在主流的架构的汇编语言，MIPS较为简单，适合入门。<br>MIPS汇编语言是可以一对一翻译成机械码的，每条指令的翻译规则不同，这里需要查手册来解决。<br>至于我们学的C/C++等高级语言，也可以翻译成汇编语言，这个过程叫编译，一般来说编译器可以办成这件事，但对于我们需要学习MIPS的人来说，这需要咱们自己来。</p>
+<span id="more"></span>
+<h1 id="mips汇编翻译C代码典例-经验"><a href="#mips汇编翻译C代码典例-经验" class="headerlink" title="mips汇编翻译C代码典例/经验"></a>mips汇编翻译C代码典例/经验</h1><blockquote>
+<p>说是翻译C代码，其实要是在介绍如何MIPS汇编语言实现高级语言中出现的条件、循环、子程序结构。</p>
+</blockquote>
+<h2 id="二维数组的写法-内存的申请"><a href="#二维数组的写法-内存的申请" class="headerlink" title="二维数组的写法/内存的申请"></a>二维数组的写法/内存的申请</h2><ul>
+<li>写法一：比较的基础，<code>data: .sapce memory_size_bit</code>，注意单位是bit</li>
+<li>写法二：辨析.word/.byte/.half的两种写法(以.word为例)</li>
+</ul>
+<figure class="highlight mips"><table><tr><td class="code"><pre><span class="line"><span class="symbol">data:</span>   <span class="meta">.word</span> <span class="number">64</span>        <span class="comment">#以字的形式储存64这个数，而不是像.space一样申请64字的内存</span></span><br><span class="line"><span class="symbol">data:</span>   <span class="meta">.word</span> <span class="number">0</span> : <span class="number">64</span>    <span class="comment">#以0为初始数据填到64个字的内存里，这才是我们想达到的效果</span></span><br><span class="line"><span class="comment">#所以你也可以</span></span><br><span class="line"><span class="symbol">data:</span>   <span class="meta">.word</span> <span class="number">1</span> : <span class="number">64</span>    <span class="comment">#得到64个(int)1</span></span><br></pre></td></tr></table></figure>
+<h2 id="打好macro"><a href="#打好macro" class="headerlink" title="打好macro"></a>打好macro</h2><ul>
+<li>打好macro很重要，他的功能类似于函数，能够消除ctrl+CV的代码重用（ly：这是一个很糟糕的事情），提高代码的可读性。</li>
+<li>有很多常用的macro比如print、read、end、push等这些，详细请见我的另一个博客：<a href="http://volcaxiao.github.io/2022/10/12/mips常用宏定义/">mips常用宏定义</a></li>
+<li>但我们每一次写mips都得自己手打macro，实在是不太优雅，于是我们可以用脚本来实现这样一个无脑功能。</li>
+<li>通过脚本新建文件</li>
+</ul>
+<h2 id="函数一般模板写法"><a href="#函数一般模板写法" class="headerlink" title="函数一般模板写法"></a>函数一般模板写法</h2><ul>
+<li>我们在函数调用的时候基本上可以遵循这样一个模板</li>
+</ul>
+<figure class="highlight mips"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 入栈</span></span><br><span class="line">push($<span class="built_in">ra</span>)</span><br><span class="line"><span class="comment"># push(...)</span></span><br><span class="line"><span class="comment"># 传参</span></span><br><span class="line"><span class="keyword">move </span>   $<span class="built_in">t0</span>, $<span class="built_in">a0</span></span><br><span class="line"><span class="comment">#函数过程</span></span><br><span class="line"><span class="comment"># ...</span></span><br><span class="line"><span class="comment"># 出栈</span></span><br><span class="line"><span class="comment"># pop(...)</span></span><br><span class="line">pop($<span class="built_in">ra</span>)</span><br><span class="line"><span class="comment"># return</span></span><br><span class="line"><span class="keyword">jr </span>     $<span class="built_in">ra</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>虽然模板很简单，但我们还是得注意几个小问题</p>
+</li>
+<li><p>我们一般会把a_n作为函数的参数传递（约定俗成，本质上讲a_n和t_n啥的都是一样的，但是不约定规范，可读性和可维护性都会大打折扣）</p>
+</li>
+<li>push和pop要遵循LIFO(last in first out)，可不能一顿无脑pp，先push的要后面pop，要不然就会出现你的return到了一个不知名的地方。（很诡异</li>
+<li>调用函数时，调用者里的用过的t函数一般要push进栈，为啥呢，也是约定俗成，具体请看下一节<a href="#ts寄存器之辩">t/s寄存器之辩</a></li>
+</ul>
+<h2 id="t-s寄存器之辩"><a href="#t-s寄存器之辩" class="headerlink" title="t/s寄存器之辩"></a>t/s寄存器之辩</h2><ul>
+<li><p>这仅是我按照“t寄存器调用者维护，s寄存器被调用者维护”的一些个人的理解，自己看教程的时候其实不是很明白这句话的意思，但在后面打代码的过程中自己悟到了一些。</p>
+</li>
+<li><p>t寄存器调用者维护：</p>
+<ul>
+<li>t是指temporary，你把光标放置到Mars的寄存器处能够得到这个提示，意思就相当于临时变量。</li>
+<li>由调用者维护的意思是你在调用别的函数时，你得保证你的t寄存器调用前和return后不会发生变化（类比在C中的临时变量），所以你应该去维护他。</li>
+<li>一般的维护方法是用栈，在调用前先把t压入栈，调用后再把t pop出来，于是你的t就不会改变。</li>
+</ul>
+</li>
+<li><p>s寄存器被调用者维护：</p>
+<ul>
+<li>s的含义是saved temporary，是指被调用函数不应改变s寄存器的值，就算要改变也应该先入栈最后再出栈。</li>
+<li>总之，被调用函数在编写时应该要保证，函数前后s寄存器的值不发生变化。</li>
+</ul>
+</li>
+<li><p>这是约定下来的规范，只有这样，用汇编这种灵活的语言才不会出岔子。</p>
+</li>
+</ul>
+<h2 id="条件循环语句固定写法"><a href="#条件循环语句固定写法" class="headerlink" title="条件循环语句固定写法"></a>条件循环语句固定写法</h2><h3 id="条件语句"><a href="#条件语句" class="headerlink" title="条件语句"></a>条件语句</h3><ul>
+<li>最基础的肯定还是if-else结构的语句，大致可以按照下面的写法：</li>
+</ul>
+<figure class="highlight mips"><table><tr><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+<ul>
+<li>另外进阶一点的是if-else_if-else结构</li>
+</ul>
+<figure class="highlight mips"><table><tr><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+<ul>
+<li>最后是switch语句</li>
+</ul>
+<h3 id="循环语句"><a href="#循环语句" class="headerlink" title="循环语句"></a>循环语句</h3><ul>
+<li>固定for和if的写法，记得在for最后写上i++ j begin</li>
+</ul>
+<h3 id="多重逻辑判断"><a href="#多重逻辑判断" class="headerlink" title="多重逻辑判断"></a>多重逻辑判断</h3><ul>
+<li>多重逻辑条件的写法</li>
+</ul>
+<h2 id="mips一般代码建议"><a href="#mips一般代码建议" class="headerlink" title="mips一般代码建议"></a>mips一般代码建议</h2><ul>
+<li>写比对的C代码</li>
+<li>写好注释</li>
+<li>写好label</li>
+<li>写好macro</li>
+</ul>
+]]></content>
+      <categories>
+        <category>BUAA计算机组成原理</category>
+      </categories>
+      <tags>
+        <tag>北航</tag>
+        <tag>CO</tag>
+        <tag>大二</tag>
+        <tag>计组</tag>
+        <tag>MIPS</tag>
+        <tag>P2</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>从线性方程组到矩阵讲课材料</title>
     <url>/2022/10/08/%E4%BB%8E%E7%BA%BF%E6%80%A7%E6%96%B9%E7%A8%8B%E7%BB%84%E5%88%B0%E7%9F%A9%E9%98%B5%E8%AE%B2%E8%AF%BE%E6%9D%90%E6%96%99/</url>
     <content><![CDATA[<p>朋辈辅导师第三周直播课-空间解析几何基础的备课资料，大家有需要自取。</p>
@@ -574,48 +701,6 @@ AB =AC =I
         <tag>物理</tag>
         <tag>热力学</tag>
         <tag>热力学基础</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>mips汇编翻译C代码典例</title>
-    <url>/2022/09/13/mips%E6%B1%87%E7%BC%96%E7%BF%BB%E8%AF%91C%E4%BB%A3%E7%A0%81%E5%85%B8%E4%BE%8B/</url>
-    <content><![CDATA[<p>汇编语言是一种比机械码稍高级一点的语言，而MIPS的汇编语言是一种专用于MIPS架构的CPU的汇编语言，相较于ARM，X86等现在主流的架构的汇编语言，MIPS较为简单，适合入门。<br>MIPS汇编语言是可以一对一翻译成机械码的，每条指令的翻译规则不同，这里需要查手册来解决。<br>至于我们学的C/C++等高级语言，也可以翻译成汇编语言，这个过程叫编译，一般来说编译器可以办成这件事，但对于我们需要学习MIPS的人来说，这需要咱们自己来。</p>
-<span id="more"></span>
-<h1 id="mips汇编翻译C代码典例"><a href="#mips汇编翻译C代码典例" class="headerlink" title="mips汇编翻译C代码典例"></a>mips汇编翻译C代码典例</h1><blockquote>
-<p>说是翻译C代码，其实要是在介绍如何MIPS汇编语言实现高级语言中出现的条件、循环、子程序结构。</p>
-</blockquote>
-<ul>
-<li><p>push和pop要遵循LIFO</p>
-</li>
-<li><p>打好macro</p>
-</li>
-<li><p>t寄存器调用者维护，是指push和pop</p>
-</li>
-<li><p>s寄存器被调用者维护，是指被调用函数不应改变s寄存器的值</p>
-</li>
-<li><p>固定for和if的写法，记得在for最后写上i++ j begin</p>
-</li>
-<li><p>常见macro写法并通过脚本新建文件</p>
-</li>
-<li><p>多重逻辑条件的写法（博主的亲身经验）</p>
-</li>
-<li><p>函数的一般性写法</p>
-</li>
-<li><p>二维数组的写法</p>
-</li>
-<li><p>mips一般代码建议</p>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>BUAA计算机组成原理</category>
-      </categories>
-      <tags>
-        <tag>北航</tag>
-        <tag>CO</tag>
-        <tag>大二</tag>
-        <tag>计组</tag>
-        <tag>MIPS</tag>
       </tags>
   </entry>
   <entry>
