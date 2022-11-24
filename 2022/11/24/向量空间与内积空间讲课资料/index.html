@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"volcaxiao.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"livere","storage":true,"lazyload":false,"nav":null,"activeClass":"livere"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":5,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="朋辈辅导师第九周直播课-向量空间和内积空间的备课资料，大家有需要自取。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="向量空间与内积空间讲课资料">
+<meta property="og:url" content="http://volcaxiao.github.io/2022/11/24/%E5%90%91%E9%87%8F%E7%A9%BA%E9%97%B4%E4%B8%8E%E5%86%85%E7%A7%AF%E7%A9%BA%E9%97%B4%E8%AE%B2%E8%AF%BE%E8%B5%84%E6%96%99/index.html">
+<meta property="og:site_name" content="volca&#39;s blog">
+<meta property="og:description" content="朋辈辅导师第九周直播课-向量空间和内积空间的备课资料，大家有需要自取。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/1空间的定义.jpg">
+<meta property="og:image" content="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/3齐次解与非齐次解讨论.jpg">
+<meta property="og:image" content="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/4生成空间的定义.jpg">
+<meta property="og:image" content="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/2解空间的由来.jpg">
+<meta property="og:image" content="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/6内积与Gram.jpg">
+<meta property="og:image" content="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/6内积与Gram.jpg">
+<meta property="og:image" content="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/9内积与正交变换.jpg">
+<meta property="og:image" content="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/10Gram与二次型.jpg">
+<meta property="article:published_time" content="2022-11-24T03:11:28.000Z">
+<meta property="article:modified_time" content="2022-11-24T03:28:43.423Z">
+<meta property="article:author" content="volcaxiao">
+<meta property="article:tag" content="北航">
+<meta property="article:tag" content="大一">
+<meta property="article:tag" content="高代">
+<meta property="article:tag" content="资源">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/1空间的定义.jpg">
+
+<link rel="canonical" href="http://volcaxiao.github.io/2022/11/24/%E5%90%91%E9%87%8F%E7%A9%BA%E9%97%B4%E4%B8%8E%E5%86%85%E7%A7%AF%E7%A9%BA%E9%97%B4%E8%AE%B2%E8%AF%BE%E8%B5%84%E6%96%99/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>向量空间与内积空间讲课资料 | volca's blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">volca's blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-aa-column">
+
+    <a href="/AA-column/" rel="section"><i class="fa fa-columns fa-fw"></i>工科高等代数专栏</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>日程表</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <a href="https://github.com/volcaxiao" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://volcaxiao.github.io/2022/11/24/%E5%90%91%E9%87%8F%E7%A9%BA%E9%97%B4%E4%B8%8E%E5%86%85%E7%A7%AF%E7%A9%BA%E9%97%B4%E8%AE%B2%E8%AF%BE%E8%B5%84%E6%96%99/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/head.jpg">
+      <meta itemprop="name" content="volcaxiao">
+      <meta itemprop="description" content="北航CS，学习分享，记得看welcome">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="volca's blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          向量空间与内积空间讲课资料
+        </h1>
+
+        <div class="post-meta">
+
+        
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-11-24 11:11:28 / 修改时间：11:28:43" itemprop="dateCreated datePublished" datetime="2022-11-24T11:11:28+08:00">2022-11-24</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%8C%97%E8%88%AA%E4%BF%A1%E6%81%AF%E7%B1%BB%E5%A4%A7%E4%B8%80%E8%B5%84%E6%96%99/" itemprop="url" rel="index"><span itemprop="name">北航信息类大一资料</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.4k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>2 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>朋辈辅导师第九周直播课-向量空间和内积空间的备课资料，大家有需要自取。</p>
+<span id="more"></span>
+<p>资料在这-&gt;<a target="_blank" rel="noopener" href="https://bhpan.buaa.edu.cn:443/link/C7BC9C11CA3A9858EE1EDD8BBECCA983">向量空间与内积空间</a><br>有效期限：2025-11-11 23:59</p>
+<hr>
+<p>分割线，下面是备课本</p>
+<hr>
+<h1 id="向量空间与欧氏空间"><a href="#向量空间与欧氏空间" class="headerlink" title="向量空间与欧氏空间"></a>向量空间与欧氏空间</h1><ul>
+<li>高代的概念多的很啊，像我们的矩阵、线性方程组、还有向量，这些之间是一个什么关系呢，它们都统一的在空间这个框架里面被联系起来。所以在学习高代的时候一定要有一个意象化的空间的思想，这个思想对于大家好好的理解概念，会有很大的帮助。</li>
+</ul>
+<h2 id="提纲"><a href="#提纲" class="headerlink" title="提纲"></a>提纲</h2><p>[toc]</p>
+<h2 id="空间的定义"><a href="#空间的定义" class="headerlink" title="空间的定义"></a>空间的定义</h2><ul>
+<li>向量空间（线性空间）的原始定义：对加倍法封闭</li>
+<li>性质：零元一定在空间里</li>
+<li>拓展：矩阵空间，矩阵掰直就是向量</li>
+<li>那我们来看，联系来了，AX=0的解集就构成空间</li>
+<li>何以见得：证明对加倍法封闭</li>
+<li>该怎么意象化的理解封闭：你们可以用三维空间来理解，空间是一定过原点的，所以在三维空间中一个过原点的平面是空间，这样的话，在平面上的向量怎么组合都跳不出这个平面，这就叫封闭，没过原点的平面上的向量（注意这里的向量顶点分别在原点和平面上）稍微*2就出去了。<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/1空间的定义.jpg" alt="空间的定义"></li>
+</ul>
+<h2 id="从生成空间看到解空间"><a href="#从生成空间看到解空间" class="headerlink" title="从生成空间看到解空间"></a>从生成空间看到解空间</h2><h3 id="再次讨论齐次解与非齐次解"><a href="#再次讨论齐次解与非齐次解" class="headerlink" title="再次讨论齐次解与非齐次解"></a>再次讨论齐次解与非齐次解</h3><ul>
+<li><p>写出齐次方程的通解，基和广义坐标的关系，所以我们能看到解空间的影子</p>
+</li>
+<li><p>所以关于非齐次方程的解是否构成空间？</p>
+</li>
+<li>常见的问题：判断一个解是否为齐次方程或非齐次方程的解？</li>
+<li><p>补充：齐次方程解与非齐次方程解之间的关系<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/3齐次解与非齐次解讨论.jpg" alt="齐次解与非齐次解的讨论"></p>
+</li>
+<li><p>补充：高三定理：一个非齐次线性方程组有解，且所有解组成的解集的一个极大线性无关组含有n个解（秩为n），那么对应的齐次线性方程组基础解系含有n-1个解向量（解空间的维度为n-1），这个命题对吗？</p>
+<blockquote>
+<p>首先经过我上面的描述能证明：<br>  导出方程的解空间的基+一个特解组成的向量组依然无关<br>  然后：<br>  通过非齐次方程组通解的表达形式可知，该解系中任意一个解都能用上面的无关向量组表示，所以我们说该向量组是极大线性无关组。<br>  设这个无关组秩为n。<br>  则根据构造形式，它的导出方程的解空间秩为n-1</p>
+</blockquote>
+</li>
+<li>所以我们要说解空间了嘛？我知道你很急，但你先别急，让我先急（</li>
+<li>我们先来说关于空间的另一种理解，这种理解了以后，关于解空间问题迎刃而解。</li>
+</ul>
+<h3 id="生成空间的定义"><a href="#生成空间的定义" class="headerlink" title="生成空间的定义"></a>生成空间的定义</h3><ul>
+<li>关于空间的另一个理解：生成空间！important！！</li>
+<li>我们给定任意的一组向量，他们的线性组合，满足双封闭？事空间！</li>
+<li>但是还不够简洁，我们远不需要这些向量的全部，因为我们可以由其中的某些来表示全部，这个大家是知道的，叫极大线性无关组，</li>
+<li>所以我们有了另一个理解向量空间的视角：就好像是一个极大线性无关组的任意组合，它们生成了空间。我们把这个极大线性无关组叫做基，基的秩就是空间的维数。</li>
+<li>空间相同，就是基等价！<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/4生成空间的定义.jpg" alt="生成空间"></li>
+</ul>
+<h3 id="解空间"><a href="#解空间" class="headerlink" title="解空间"></a>解空间</h3><ul>
+<li>所以我们回过头来看看解空间是个什么回事。</li>
+<li>解空间就是由通解的基生成的。</li>
+<li>解空间的维度：两种理解，一种理解是解线性方程组得到，另一种理解更高级和优雅，是定义完内积空间之后得到。<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/2解空间的由来.jpg" alt="解空间的秩"></li>
+<li>然后大家很迫切的想要弄清楚空间的交和空间的和之间的关系，定义我就不多说了</li>
+<li>求空间的和：根据定义两边各取一个向量来表示，就把通解写到一块，所以为啥要理解了生成空间再来看这个，就是两个解空间的生成元放在一块，然后再生成一个空间嘛，所以对于维度公式我们也好理解了。</li>
+<li>求两个解空间的交有两种办法，一种是定义，把他们的线性方程组联立到一起，这样解出来的空间就既满足A，又满足B。但是一般如果你刚开始知道基，你就很难去反解出他的线性方程组(得求正交，有点麻烦)，但是你可以直接输出两个解空间集合重合的部分，方法就像上面说的，把两个通解的一般形式放一块，划个等号，然后解出来系数之间的关系。把关系再代回去，就得到了他们交空间的通解的形式(这个通解既能通过A的基生成，又能通过B的基生成)</li>
+<li>补充：空间的直和与空间的并。</li>
+</ul>
+<h2 id="欧氏空间的定义"><a href="#欧氏空间的定义" class="headerlink" title="欧氏空间的定义"></a>欧氏空间的定义</h2><ul>
+<li>我们理解了这么多以后其实还是会感觉有点空虚的，空虚在哪？关于解空间的维度我前面留了一个小坑，关于基本解与系数矩阵之间的关系若隐若现。</li>
+<li>这一些，我们在定义完内积之后，也将得到解决。</li>
+<li>我们常说的欧几里得空间就是内积空间，也就是加上内积的定义以后的向量空间！</li>
+</ul>
+<h3 id="内积与模长"><a href="#内积与模长" class="headerlink" title="内积与模长"></a>内积与模长</h3><ul>
+<li>关于内积是怎么定义的，大家早学过了，那么内积有些什么用呢</li>
+<li>内积正定性，定义模长</li>
+<li>正交向量的内积</li>
+<li>若一个向量与一个向量组都正交，那么他与这个生成空间正交</li>
+<li>所以我们可以来以另一个视角理解一下解齐次方程组：<ul>
+<li>我们把系数矩阵分行来看，我们把需要解的X乘过去的过程不就是在算他与每一行的内积嘛，它们的内积等于零，所以我们的解与系数矩阵的每一行都正交，所以我们的解空间是怎样的一个空间，是一个与A行向量生成的空间正交的空间，所以这也就不难解释，当A的秩为r，A行向量生成的空间的维数就是r，如果这是在一个总共为n的空间里，那我们的解空间与A空间正交，就有了dim = n-r的公式。这么去理解。<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/6内积与Gram.jpg" alt="内积与Gram"></li>
+</ul>
+</li>
+</ul>
+<h3 id="Gram方阵"><a href="#Gram方阵" class="headerlink" title="Gram方阵"></a>Gram方阵</h3><ul>
+<li>定义，所以易知是对称阵</li>
+<li>行列向量都是一样的，我们这里只讨论列向量</li>
+<li>我们想想，如果这些向量每一列都相互正交，Gram矩阵应该长什么样，变成了对角阵。</li>
+<li>你再想想如果每一个向量都是单位向量，那对角线变成了什么样，单位矩阵！！！</li>
+<li>所以我们换一个写法，把向量组拼成矩阵，这就是矩阵的乘法，不要说没学过，就是矩阵乘向量然后拼一块。</li>
+<li><p>所以$ A^T A = I$, 这就是正交阵的定义！</p>
+</li>
+<li><p>矩阵乘法的定义和正交矩阵的定义就来了，不管你有没有学过，反正这讲完了就都应该学过了。</p>
+</li>
+</ul>
+<h2 id="线性映射-amp-线性变换（看时间，待定）"><a href="#线性映射-amp-线性变换（看时间，待定）" class="headerlink" title="线性映射&amp;线性变换（看时间，待定）"></a>线性映射&amp;线性变换（看时间，待定）</h2><ul>
+<li>二维矩阵中的两个特殊的变换，旋转与反射。X向量乘上一个矩阵=另一个向量。</li>
+<li>所以我们可以把乘矩阵理解成一种变换，这个很重要，前面大家可能接触过乘上可逆矩阵就是初等变换（行变列变），还有可能接触过过渡矩阵给空间的基做变换。<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/6内积与Gram.jpg" alt="线性映射初步"></li>
+</ul>
+<h3 id="线性映射定义"><a href="#线性映射定义" class="headerlink" title="线性映射定义"></a>线性映射定义</h3><ul>
+<li>所以我们可以粗浅的定义线性映射为乘矩阵，这种映射可以是$R^m \rightarrow R^n $的，特别的，我们把$R^n \rightarrow R^n $叫做线性变换</li>
+</ul>
+<h3 id="特殊-正交变换"><a href="#特殊-正交变换" class="headerlink" title="特殊-正交变换"></a>特殊-正交变换</h3><ul>
+<li>更加特别的，我们把A矩阵是正交阵的这种叫做，正交变换</li>
+<li>正交变换性质：保长保正交，所以体现出来就是单纯的旋转。<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/9内积与正交变换.jpg" alt="正交变换"></li>
+</ul>
+<h2 id="由Gram初见合同与二次型"><a href="#由Gram初见合同与二次型" class="headerlink" title="由Gram初见合同与二次型"></a>由Gram初见合同与二次型</h2><p><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/10Gram与二次型.jpg" alt="Gram和二次型"></p>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>volcaxiao
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://volcaxiao.github.io/2022/11/24/%E5%90%91%E9%87%8F%E7%A9%BA%E9%97%B4%E4%B8%8E%E5%86%85%E7%A7%AF%E7%A9%BA%E9%97%B4%E8%AE%B2%E8%AF%BE%E8%B5%84%E6%96%99/" title="向量空间与内积空间讲课资料">http://volcaxiao.github.io/2022/11/24/向量空间与内积空间讲课资料/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/%E5%8C%97%E8%88%AA/" rel="tag"><i class="fa fa-tag"></i> 北航</a>
+              <a href="/tags/%E5%A4%A7%E4%B8%80/" rel="tag"><i class="fa fa-tag"></i> 大一</a>
+              <a href="/tags/%E9%AB%98%E4%BB%A3/" rel="tag"><i class="fa fa-tag"></i> 高代</a>
+              <a href="/tags/%E8%B5%84%E6%BA%90/" rel="tag"><i class="fa fa-tag"></i> 资源</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/10/21/oo-pre%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="prev" title="oo_pre学习笔记">
+      <i class="fa fa-chevron-left"></i> oo_pre学习笔记
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/11/24/%E7%9F%A9%E9%98%B5%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98%E8%AE%B2%E8%AF%BE%E8%B5%84%E6%96%99/" rel="next" title="矩阵相关问题讲课资料">
+      矩阵相关问题讲课资料 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="lv-container" data-id="city" data-uid="MTAyMC81NzIwMC8zMzY2NA=="></div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%90%91%E9%87%8F%E7%A9%BA%E9%97%B4%E4%B8%8E%E6%AC%A7%E6%B0%8F%E7%A9%BA%E9%97%B4"><span class="nav-number">1.</span> <span class="nav-text">向量空间与欧氏空间</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8F%90%E7%BA%B2"><span class="nav-number">1.1.</span> <span class="nav-text">提纲</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A9%BA%E9%97%B4%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="nav-number">1.2.</span> <span class="nav-text">空间的定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%8E%E7%94%9F%E6%88%90%E7%A9%BA%E9%97%B4%E7%9C%8B%E5%88%B0%E8%A7%A3%E7%A9%BA%E9%97%B4"><span class="nav-number">1.3.</span> <span class="nav-text">从生成空间看到解空间</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%8D%E6%AC%A1%E8%AE%A8%E8%AE%BA%E9%BD%90%E6%AC%A1%E8%A7%A3%E4%B8%8E%E9%9D%9E%E9%BD%90%E6%AC%A1%E8%A7%A3"><span class="nav-number">1.3.1.</span> <span class="nav-text">再次讨论齐次解与非齐次解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%9F%E6%88%90%E7%A9%BA%E9%97%B4%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="nav-number">1.3.2.</span> <span class="nav-text">生成空间的定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%A3%E7%A9%BA%E9%97%B4"><span class="nav-number">1.3.3.</span> <span class="nav-text">解空间</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AC%A7%E6%B0%8F%E7%A9%BA%E9%97%B4%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="nav-number">1.4.</span> <span class="nav-text">欧氏空间的定义</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%85%E7%A7%AF%E4%B8%8E%E6%A8%A1%E9%95%BF"><span class="nav-number">1.4.1.</span> <span class="nav-text">内积与模长</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Gram%E6%96%B9%E9%98%B5"><span class="nav-number">1.4.2.</span> <span class="nav-text">Gram方阵</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BA%BF%E6%80%A7%E6%98%A0%E5%B0%84-amp-%E7%BA%BF%E6%80%A7%E5%8F%98%E6%8D%A2%EF%BC%88%E7%9C%8B%E6%97%B6%E9%97%B4%EF%BC%8C%E5%BE%85%E5%AE%9A%EF%BC%89"><span class="nav-number">1.5.</span> <span class="nav-text">线性映射&amp;线性变换（看时间，待定）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BA%BF%E6%80%A7%E6%98%A0%E5%B0%84%E5%AE%9A%E4%B9%89"><span class="nav-number">1.5.1.</span> <span class="nav-text">线性映射定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%89%B9%E6%AE%8A-%E6%AD%A3%E4%BA%A4%E5%8F%98%E6%8D%A2"><span class="nav-number">1.5.2.</span> <span class="nav-text">特殊-正交变换</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%B1Gram%E5%88%9D%E8%A7%81%E5%90%88%E5%90%8C%E4%B8%8E%E4%BA%8C%E6%AC%A1%E5%9E%8B"><span class="nav-number">1.6.</span> <span class="nav-text">由Gram初见合同与二次型</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="volcaxiao"
+      src="/images/head.jpg">
+  <p class="site-author-name" itemprop="name">volcaxiao</p>
+  <div class="site-description" itemprop="description">北航CS，学习分享，记得看welcome</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/volcaxiao" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;volcaxiao" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:volcaxiaoc@buaa.edu.cn" title="E-Mail → mailto:volcaxiaoc@buaa.edu.cn" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://www.runoob.com/" title="https:&#x2F;&#x2F;www.runoob.com" rel="noopener" target="_blank">菜鸟教程</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.csdn.net/" title="https:&#x2F;&#x2F;www.csdn.net" rel="noopener" target="_blank">CSDN</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.luogu.com.cn/" title="https:&#x2F;&#x2F;www.luogu.com.cn" rel="noopener" target="_blank">洛谷</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://e.buaa.edu.cn/" title="https:&#x2F;&#x2F;e.buaa.edu.cn" rel="noopener" target="_blank">BUAA_VPN</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://hexo.io/" title="https:&#x2F;&#x2F;hexo.io" rel="noopener" target="_blank">Hexo</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://theme-next.js.org/" title="https:&#x2F;&#x2F;theme-next.js.org&#x2F;" rel="noopener" target="_blank">NexT</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2022-02 – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">volcaxiao</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">32k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">29 分钟</span>
+</div>
+
+
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <span id="busuanzi_container_site_pv">总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+    <span class="post-meta-divider">|</span>
+    <span id="busuanzi_container_site_uv">总访客数<span id="busuanzi_value_site_uv"></span>人</span>
+    <span class="post-meta-divider">|</span>
+<!-- 不蒜子计数初始值纠正 -->
+<script>
+$(document).ready(function() {
+
+    var int = setInterval(fixCount, 50);  // 50ms周期检测函数
+    var countOffset = 20000;  // 初始化首次数据
+
+    function fixCount() {            
+       if (document.getElementById("busuanzi_container_site_pv").style.display != "none")
+        {
+            $("#busuanzi_value_site_pv").html(parseInt($("#busuanzi_value_site_pv").html()) + countOffset); 
+            clearInterval(int);
+        }                  
+        if ($("#busuanzi_container_site_pv").css("display") != "none")
+        {
+            $("#busuanzi_value_site_uv").html(parseInt($("#busuanzi_value_site_uv").html()) + countOffset); // 加上初始数据 
+            clearInterval(int); // 停止检测
+        }  
+    }
+       	
+});
+</script> 
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/canvas_lines.min.js"></script>
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'forest',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+<script>
+NexT.utils.loadComments(document.querySelector('#lv-container'), () => {
+  window.livereOptions = {
+    refer: location.pathname.replace(CONFIG.root, '').replace('index.html', '')
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+});
+</script>
+
+</body>
+</html>
