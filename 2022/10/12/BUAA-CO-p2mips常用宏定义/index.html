@@ -21,20 +21,25 @@
     var CONFIG = {"hostname":"volcaxiao.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"livere","storage":true,"lazyload":false,"nav":null,"activeClass":"livere"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":5,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="hello world!1$ hexo new &quot;My New Post&quot; printf&quot;hello world!&quot;">
+  <meta name="description" content="我们知道mips的灵活性高，但是可读性差，所以要改变可读性差的问题，我们可以使用宏定义，像写c一样写汇编（）。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://volcaxiao.github.io/2022/09/05/hello-world/index.html">
+<meta property="og:title" content="BUAA-CO-p2mips常用宏定义">
+<meta property="og:url" content="http://volcaxiao.github.io/2022/10/12/BUAA-CO-p2mips%E5%B8%B8%E7%94%A8%E5%AE%8F%E5%AE%9A%E4%B9%89/index.html">
 <meta property="og:site_name" content="volca&#39;s blog">
-<meta property="og:description" content="hello world!1$ hexo new &quot;My New Post&quot; printf&quot;hello world!&quot;">
+<meta property="og:description" content="我们知道mips的灵活性高，但是可读性差，所以要改变可读性差的问题，我们可以使用宏定义，像写c一样写汇编（）。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-09-05T14:11:39.571Z">
-<meta property="article:modified_time" content="2022-09-08T03:40:19.228Z">
+<meta property="article:published_time" content="2022-10-12T09:48:06.000Z">
+<meta property="article:modified_time" content="2022-11-24T04:09:19.096Z">
 <meta property="article:author" content="volcaxiao">
-<meta property="article:tag" content="CS,北航,学习,数理,分享">
+<meta property="article:tag" content="北航">
+<meta property="article:tag" content="CO">
+<meta property="article:tag" content="大二">
+<meta property="article:tag" content="计组">
+<meta property="article:tag" content="MIPS">
+<meta property="article:tag" content="P2">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://volcaxiao.github.io/2022/09/05/hello-world/">
+<link rel="canonical" href="http://volcaxiao.github.io/2022/10/12/BUAA-CO-p2mips%E5%B8%B8%E7%94%A8%E5%AE%8F%E5%AE%9A%E4%B9%89/">
 
 
 <script id="page-configurations">
@@ -47,7 +52,7 @@
   };
 </script>
 
-  <title>Hello World | volca's blog</title>
+  <title>BUAA-CO-p2mips常用宏定义 | volca's blog</title>
   
 
 
@@ -213,7 +218,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://volcaxiao.github.io/2022/09/05/hello-world/">
+    <link itemprop="mainEntityOfPage" href="http://volcaxiao.github.io/2022/10/12/BUAA-CO-p2mips%E5%B8%B8%E7%94%A8%E5%AE%8F%E5%AE%9A%E4%B9%89/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/head.jpg">
@@ -226,7 +231,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Hello World
+          BUAA-CO-p2mips常用宏定义
         </h1>
 
         <div class="post-meta">
@@ -238,15 +243,24 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2022-09-05 22:11:39" itemprop="dateCreated datePublished" datetime="2022-09-05T22:11:39+08:00">2022-09-05</time>
+              <time title="创建时间：2022-10-12 17:48:06" itemprop="dateCreated datePublished" datetime="2022-10-12T17:48:06+08:00">2022-10-12</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-09-08 11:40:19" itemprop="dateModified" datetime="2022-09-08T11:40:19+08:00">2022-09-08</time>
+                <time title="修改时间：2022-11-24 12:09:19" itemprop="dateModified" datetime="2022-11-24T12:09:19+08:00">2022-11-24</time>
               </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/BUAA%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" itemprop="url" rel="index"><span itemprop="name">BUAA计算机组成原理</span></a>
+                </span>
+            </span>
 
           
             <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
@@ -261,7 +275,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>437</span>
+              <span>1.3k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -280,18 +294,31 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="hello-world"><a href="#hello-world" class="headerlink" title="hello world!"></a>hello world!</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-<p><code>printf&quot;hello world!&quot;</code></p>
-<span id="more"></span> 
-<p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+        <p>我们知道mips的灵活性高，但是可读性差，所以要改变可读性差的问题，我们可以使用宏定义，像写c一样写汇编（）。</p>
+<span id="more"></span>
+<h1 id="mips常用宏定义"><a href="#mips常用宏定义" class="headerlink" title="mips常用宏定义"></a>mips常用宏定义</h1><ul>
+<li>下面是一些常用的宏定义，当然你可以视情况而定，将代码段中重用次数高的，或者是用汇编写意义不太明确的代码写成宏。这样调试的时候，别人和自己看代码的时候，都会舒服许多。</li>
+</ul>
+<h2 id="end-the-program"><a href="#end-the-program" class="headerlink" title="end the program"></a>end the program</h2><ul>
+<li>虽然重用度肯定不高（），但表意明确。</li>
+</ul>
+<figure class="highlight mips"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#end the program</span></span><br><span class="line"><span class="meta">.macro</span> end</span><br><span class="line">    li  $<span class="built_in">v0</span>, <span class="number">10</span></span><br><span class="line">    <span class="keyword">syscall</span></span><br><span class="line"><span class="keyword"></span>.end_macro</span><br></pre></td></tr></table></figure>
+<h2 id="write-amp-read类"><a href="#write-amp-read类" class="headerlink" title="write&amp;read类"></a>write&amp;read类</h2><ul>
+<li>我们知道这些都是靠syscall实现的，所以可以这么来写</li>
+<li>另外这种带参数的宏使得宏定义具有类似于C函数的特性。</li>
+</ul>
+<figure class="highlight mips"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#printInt</span></span><br><span class="line"><span class="meta">.macro</span> printInt(%src)</span><br><span class="line">    <span class="keyword">move </span>   $<span class="built_in">a0</span>, %src</span><br><span class="line">    li      $<span class="built_in">v0</span>, <span class="number">1</span></span><br><span class="line">    <span class="keyword">syscall</span></span><br><span class="line"><span class="keyword"></span>.end_macro</span><br><span class="line"><span class="comment">#getInt</span></span><br><span class="line"><span class="meta">.macro</span> getInt(%des)</span><br><span class="line">    li      $<span class="built_in">v0</span>, <span class="number">5</span></span><br><span class="line">    <span class="keyword">syscall</span></span><br><span class="line"><span class="keyword"></span>    <span class="keyword">move </span>   %des, $<span class="built_in">v0</span></span><br><span class="line">.end_macro</span><br><span class="line">栗子:</span><br><span class="line">getInt($<span class="built_in">s0</span>)</span><br><span class="line">printInt($<span class="built_in">s0</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#直接打印字符串</span></span><br><span class="line"><span class="meta">.macro</span> printStr(%str)</span><br><span class="line">    <span class="meta">.data</span> </span><br><span class="line"><span class="symbol">        tmpLabel:</span>   .asciiz %str</span><br><span class="line">    <span class="meta">.text</span></span><br><span class="line">        li  $<span class="built_in">v0</span>, <span class="number">4</span></span><br><span class="line">        la  $<span class="built_in">a0</span>, tmpLabel</span><br><span class="line">        <span class="keyword">syscall</span></span><br><span class="line"><span class="keyword"></span>.end_macro</span><br><span class="line">栗子:</span><br><span class="line">printStr(<span class="string">&quot;Hello CO!&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#打印特定地址的字符串</span></span><br><span class="line"><span class="meta">.macro</span> printStrOf(%src)</span><br><span class="line">    li  $<span class="built_in">v0</span>, <span class="number">4</span></span><br><span class="line">    la  $<span class="built_in">a0</span>, %src</span><br><span class="line">    <span class="keyword">syscall</span></span><br><span class="line"><span class="keyword"></span>.end_macro</span><br><span class="line">栗子:</span><br><span class="line"><span class="meta">.data</span></span><br><span class="line"><span class="symbol">    myStr:</span>  .asciiz <span class="string">&quot;Hello CO!&quot;</span></span><br><span class="line"><span class="meta">.text</span></span><br><span class="line">    printStrOf(myStr)</span><br></pre></td></tr></table></figure>
+<h2 id="push-amp-pop"><a href="#push-amp-pop" class="headerlink" title="push&amp;pop"></a>push&amp;pop</h2><ul>
+<li>我们在写函数的时候时常要用到push和pop操作，所以做好写一个宏。</li>
+</ul>
+<figure class="highlight mips"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#push</span></span><br><span class="line"><span class="meta">.macro</span> push(%src)</span><br><span class="line">    <span class="keyword">sw </span>     %src, <span class="number">0</span>($<span class="built_in">sp</span>)</span><br><span class="line">    <span class="keyword">subi </span>   $<span class="built_in">sp</span>, $<span class="built_in">sp</span>, <span class="number">4</span></span><br><span class="line">.end_macro</span><br><span class="line"><span class="comment">#pop</span></span><br><span class="line"><span class="meta">.macro</span> pop(%des)</span><br><span class="line">    <span class="keyword">addi </span>   $<span class="built_in">sp</span>, $<span class="built_in">sp</span>, <span class="number">4</span></span><br><span class="line">    <span class="keyword">lw </span>     %des, <span class="number">0</span>($<span class="built_in">sp</span>)</span><br><span class="line">.end_macro</span><br><span class="line">栗子:</span><br><span class="line"><span class="symbol">    fun:</span></span><br><span class="line">    push($<span class="built_in">ra</span>)</span><br><span class="line">    push($<span class="built_in">s0</span>)</span><br><span class="line">    push($<span class="built_in">t0</span>)</span><br><span class="line">        ...</span><br><span class="line">    pop($<span class="built_in">t0</span>)</span><br><span class="line">    pop($<span class="built_in">s0</span>)</span><br><span class="line">    pop($<span class="built_in">ra</span>)</span><br><span class="line">    <span class="keyword">jr </span> $<span class="built_in">ra</span></span><br></pre></td></tr></table></figure>
+<h2 id="getIndex类"><a href="#getIndex类" class="headerlink" title="getIndex类"></a>getIndex类</h2><ul>
+<li>常见的有get二维数组（矩阵）的系数，还有数组的系数</li>
+</ul>
+<figure class="highlight mips"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#get the vector index</span></span><br><span class="line"><span class="meta">.macro</span> get_vector_index(%index, %x)</span><br><span class="line">    <span class="keyword">sll </span>    %index, %x, <span class="number">2</span></span><br><span class="line">.end_macro</span><br><span class="line"><span class="comment">#get the matrix index</span></span><br><span class="line"><span class="meta">.macro</span> get_matrix_Index(%ans, %i, %<span class="keyword">j)</span></span><br><span class="line"><span class="keyword"></span>    li      %ans, your_number_of_columns    <span class="comment">#这里填上你的矩阵列数/行数</span></span><br><span class="line">    <span class="keyword">multu </span>  %i, %ans</span><br><span class="line">    <span class="keyword">mflo </span>   %ans</span><br><span class="line">    <span class="keyword">add </span>    %ans, %ans, %<span class="keyword">j</span></span><br><span class="line"><span class="keyword"></span>    <span class="keyword">sll </span>    %ans, %ans, <span class="number">2</span></span><br><span class="line">.end_macro</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>待补充</p>
+</blockquote>
 
     </div>
 
@@ -307,7 +334,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://volcaxiao.github.io/2022/09/05/hello-world/" title="Hello World">http://volcaxiao.github.io/2022/09/05/hello-world/</a>
+    <a href="http://volcaxiao.github.io/2022/10/12/BUAA-CO-p2mips%E5%B8%B8%E7%94%A8%E5%AE%8F%E5%AE%9A%E4%B9%89/" title="BUAA-CO-p2mips常用宏定义">http://volcaxiao.github.io/2022/10/12/BUAA-CO-p2mips常用宏定义/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -317,16 +344,28 @@
 
 
       <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/%E5%8C%97%E8%88%AA/" rel="tag"><i class="fa fa-tag"></i> 北航</a>
+              <a href="/tags/CO/" rel="tag"><i class="fa fa-tag"></i> CO</a>
+              <a href="/tags/%E5%A4%A7%E4%BA%8C/" rel="tag"><i class="fa fa-tag"></i> 大二</a>
+              <a href="/tags/%E8%AE%A1%E7%BB%84/" rel="tag"><i class="fa fa-tag"></i> 计组</a>
+              <a href="/tags/MIPS/" rel="tag"><i class="fa fa-tag"></i> MIPS</a>
+              <a href="/tags/P2/" rel="tag"><i class="fa fa-tag"></i> P2</a>
+          </div>
 
         
 
 
         
     <div class="post-nav">
-      <div class="post-nav-item"></div>
       <div class="post-nav-item">
-    <a href="/2022/09/06/blog%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/" rel="next" title="blog配置教程">
-      blog配置教程 <i class="fa fa-chevron-right"></i>
+    <a href="/2022/10/12/BUAA-CO-p2mips%E6%B1%87%E7%BC%96%E7%BF%BB%E8%AF%91C%E4%BB%A3%E7%A0%81%E5%85%B8%E4%BE%8B/" rel="prev" title="BUAA-CO-p2mips汇编翻译C代码典例">
+      <i class="fa fa-chevron-left"></i> BUAA-CO-p2mips汇编翻译C代码典例
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/10/21/oo-pre%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="next" title="oo_pre学习笔记">
+      oo_pre学习笔记 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -391,7 +430,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#hello-world"><span class="nav-number">1.</span> <span class="nav-text">hello world!</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Start"><span class="nav-number">1.1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-new-post"><span class="nav-number">1.1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-server"><span class="nav-number">1.1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-static-files"><span class="nav-number">1.1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-to-remote-sites"><span class="nav-number">1.1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#mips%E5%B8%B8%E7%94%A8%E5%AE%8F%E5%AE%9A%E4%B9%89"><span class="nav-number">1.</span> <span class="nav-text">mips常用宏定义</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#end-the-program"><span class="nav-number">1.1.</span> <span class="nav-text">end the program</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#write-amp-read%E7%B1%BB"><span class="nav-number">1.2.</span> <span class="nav-text">write&amp;read类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#push-amp-pop"><span class="nav-number">1.3.</span> <span class="nav-text">push&amp;pop</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#getIndex%E7%B1%BB"><span class="nav-number">1.4.</span> <span class="nav-text">getIndex类</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -407,7 +446,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-count">16</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -489,12 +528,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">32k</span>
+    <span title="站点总字数">31k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">29 分钟</span>
+    <span title="站点阅读时长">28 分钟</span>
 </div>
 
 

@@ -21,25 +21,32 @@
     var CONFIG = {"hostname":"volcaxiao.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"livere","storage":true,"lazyload":false,"nav":null,"activeClass":"livere"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":5,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="我们知道mips的灵活性高，但是可读性差，所以要改变可读性差的问题，我们可以使用宏定义，像写c一样写汇编（）。">
+  <meta name="description" content="时隔半个月，终于有了更新，主要是一些P0的经验分享——状态编码，当然有一些零零散散的芝士点，会在后面补足的，记得催催。。。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="mips常用宏定义">
-<meta property="og:url" content="http://volcaxiao.github.io/2022/10/12/mips%E5%B8%B8%E7%94%A8%E5%AE%8F%E5%AE%9A%E4%B9%89/index.html">
+<meta property="og:title" content="BUAA-CO-p0状态编码分享">
+<meta property="og:url" content="http://volcaxiao.github.io/2022/10/04/BUAA-CO-p0%E7%8A%B6%E6%80%81%E7%BC%96%E7%A0%81%E5%88%86%E4%BA%AB/index.html">
 <meta property="og:site_name" content="volca&#39;s blog">
-<meta property="og:description" content="我们知道mips的灵活性高，但是可读性差，所以要改变可读性差的问题，我们可以使用宏定义，像写c一样写汇编（）。">
+<meta property="og:description" content="时隔半个月，终于有了更新，主要是一些P0的经验分享——状态编码，当然有一些零零散散的芝士点，会在后面补足的，记得催催。。。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-10-12T09:48:06.000Z">
-<meta property="article:modified_time" content="2022-10-12T09:50:10.866Z">
+<meta property="og:image" content="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/1自己的编码图.jpg">
+<meta property="og:image" content="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/1自己码.png">
+<meta property="og:image" content="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/2_8421码.png">
+<meta property="og:image" content="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/3_格雷码.png">
+<meta property="og:image" content="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/独热码构造捷径.png">
+<meta property="og:image" content="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/4_独热码.png">
+<meta property="og:image" content="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/qshr机改良版.png">
+<meta property="article:published_time" content="2022-10-04T07:50:44.000Z">
+<meta property="article:modified_time" content="2022-11-24T04:09:30.495Z">
 <meta property="article:author" content="volcaxiao">
 <meta property="article:tag" content="北航">
 <meta property="article:tag" content="CO">
-<meta property="article:tag" content="大二">
-<meta property="article:tag" content="计组">
-<meta property="article:tag" content="MIPS">
-<meta property="article:tag" content="P2">
+<meta property="article:tag" content="P0">
+<meta property="article:tag" content="状态编码">
+<meta property="article:tag" content="logisim">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/1自己的编码图.jpg">
 
-<link rel="canonical" href="http://volcaxiao.github.io/2022/10/12/mips%E5%B8%B8%E7%94%A8%E5%AE%8F%E5%AE%9A%E4%B9%89/">
+<link rel="canonical" href="http://volcaxiao.github.io/2022/10/04/BUAA-CO-p0%E7%8A%B6%E6%80%81%E7%BC%96%E7%A0%81%E5%88%86%E4%BA%AB/">
 
 
 <script id="page-configurations">
@@ -52,7 +59,7 @@
   };
 </script>
 
-  <title>mips常用宏定义 | volca's blog</title>
+  <title>BUAA-CO-p0状态编码分享 | volca's blog</title>
   
 
 
@@ -218,7 +225,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://volcaxiao.github.io/2022/10/12/mips%E5%B8%B8%E7%94%A8%E5%AE%8F%E5%AE%9A%E4%B9%89/">
+    <link itemprop="mainEntityOfPage" href="http://volcaxiao.github.io/2022/10/04/BUAA-CO-p0%E7%8A%B6%E6%80%81%E7%BC%96%E7%A0%81%E5%88%86%E4%BA%AB/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/head.jpg">
@@ -231,7 +238,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          mips常用宏定义
+          BUAA-CO-p0状态编码分享
         </h1>
 
         <div class="post-meta">
@@ -242,10 +249,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-10-12 17:48:06 / 修改时间：17:50:10" itemprop="dateCreated datePublished" datetime="2022-10-12T17:48:06+08:00">2022-10-12</time>
+              <time title="创建时间：2022-10-04 15:50:44" itemprop="dateCreated datePublished" datetime="2022-10-04T15:50:44+08:00">2022-10-04</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-11-24 12:09:30" itemprop="dateModified" datetime="2022-11-24T12:09:30+08:00">2022-11-24</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -269,14 +282,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>1.3k</span>
+              <span>1.9k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
+              <span>2 分钟</span>
             </span>
 
         </div>
@@ -288,31 +301,71 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>我们知道mips的灵活性高，但是可读性差，所以要改变可读性差的问题，我们可以使用宏定义，像写c一样写汇编（）。</p>
+        <p>时隔半个月，终于有了更新，主要是一些P0的经验分享——状态编码，当然有一些零零散散的芝士点，会在后面补足的，记得催催。。。</p>
 <span id="more"></span>
-<h1 id="mips常用宏定义"><a href="#mips常用宏定义" class="headerlink" title="mips常用宏定义"></a>mips常用宏定义</h1><ul>
-<li>下面是一些常用的宏定义，当然你可以视情况而定，将代码段中重用次数高的，或者是用汇编写意义不太明确的代码写成宏。这样调试的时候，别人和自己看代码的时候，都会舒服许多。</li>
-</ul>
-<h2 id="end-the-program"><a href="#end-the-program" class="headerlink" title="end the program"></a>end the program</h2><ul>
-<li>虽然重用度肯定不高（），但表意明确。</li>
-</ul>
-<figure class="highlight mips"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#end the program</span></span><br><span class="line"><span class="meta">.macro</span> end</span><br><span class="line">    li  $<span class="built_in">v0</span>, <span class="number">10</span></span><br><span class="line">    <span class="keyword">syscall</span></span><br><span class="line"><span class="keyword"></span>.end_macro</span><br></pre></td></tr></table></figure>
-<h2 id="write-amp-read类"><a href="#write-amp-read类" class="headerlink" title="write&amp;read类"></a>write&amp;read类</h2><ul>
-<li>我们知道这些都是靠syscall实现的，所以可以这么来写</li>
-<li>另外这种带参数的宏使得宏定义具有类似于C函数的特性。</li>
-</ul>
-<figure class="highlight mips"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#printInt</span></span><br><span class="line"><span class="meta">.macro</span> printInt(%src)</span><br><span class="line">    <span class="keyword">move </span>   $<span class="built_in">a0</span>, %src</span><br><span class="line">    li      $<span class="built_in">v0</span>, <span class="number">1</span></span><br><span class="line">    <span class="keyword">syscall</span></span><br><span class="line"><span class="keyword"></span>.end_macro</span><br><span class="line"><span class="comment">#getInt</span></span><br><span class="line"><span class="meta">.macro</span> getInt(%des)</span><br><span class="line">    li      $<span class="built_in">v0</span>, <span class="number">5</span></span><br><span class="line">    <span class="keyword">syscall</span></span><br><span class="line"><span class="keyword"></span>    <span class="keyword">move </span>   %des, $<span class="built_in">v0</span></span><br><span class="line">.end_macro</span><br><span class="line">栗子:</span><br><span class="line">getInt($<span class="built_in">s0</span>)</span><br><span class="line">printInt($<span class="built_in">s0</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#直接打印字符串</span></span><br><span class="line"><span class="meta">.macro</span> printStr(%str)</span><br><span class="line">    <span class="meta">.data</span> </span><br><span class="line"><span class="symbol">        tmpLabel:</span>   .asciiz %str</span><br><span class="line">    <span class="meta">.text</span></span><br><span class="line">        li  $<span class="built_in">v0</span>, <span class="number">4</span></span><br><span class="line">        la  $<span class="built_in">a0</span>, tmpLabel</span><br><span class="line">        <span class="keyword">syscall</span></span><br><span class="line"><span class="keyword"></span>.end_macro</span><br><span class="line">栗子:</span><br><span class="line">printStr(<span class="string">&quot;Hello CO!&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#打印特定地址的字符串</span></span><br><span class="line"><span class="meta">.macro</span> printStrOf(%src)</span><br><span class="line">    li  $<span class="built_in">v0</span>, <span class="number">4</span></span><br><span class="line">    la  $<span class="built_in">a0</span>, %src</span><br><span class="line">    <span class="keyword">syscall</span></span><br><span class="line"><span class="keyword"></span>.end_macro</span><br><span class="line">栗子:</span><br><span class="line"><span class="meta">.data</span></span><br><span class="line"><span class="symbol">    myStr:</span>  .asciiz <span class="string">&quot;Hello CO!&quot;</span></span><br><span class="line"><span class="meta">.text</span></span><br><span class="line">    printStrOf(myStr)</span><br></pre></td></tr></table></figure>
-<h2 id="push-amp-pop"><a href="#push-amp-pop" class="headerlink" title="push&amp;pop"></a>push&amp;pop</h2><ul>
-<li>我们在写函数的时候时常要用到push和pop操作，所以做好写一个宏。</li>
-</ul>
-<figure class="highlight mips"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#push</span></span><br><span class="line"><span class="meta">.macro</span> push(%src)</span><br><span class="line">    <span class="keyword">sw </span>     %src, <span class="number">0</span>($<span class="built_in">sp</span>)</span><br><span class="line">    <span class="keyword">subi </span>   $<span class="built_in">sp</span>, $<span class="built_in">sp</span>, <span class="number">4</span></span><br><span class="line">.end_macro</span><br><span class="line"><span class="comment">#pop</span></span><br><span class="line"><span class="meta">.macro</span> pop(%des)</span><br><span class="line">    <span class="keyword">addi </span>   $<span class="built_in">sp</span>, $<span class="built_in">sp</span>, <span class="number">4</span></span><br><span class="line">    <span class="keyword">lw </span>     %des, <span class="number">0</span>($<span class="built_in">sp</span>)</span><br><span class="line">.end_macro</span><br><span class="line">栗子:</span><br><span class="line"><span class="symbol">    fun:</span></span><br><span class="line">    push($<span class="built_in">ra</span>)</span><br><span class="line">    push($<span class="built_in">s0</span>)</span><br><span class="line">    push($<span class="built_in">t0</span>)</span><br><span class="line">        ...</span><br><span class="line">    pop($<span class="built_in">t0</span>)</span><br><span class="line">    pop($<span class="built_in">s0</span>)</span><br><span class="line">    pop($<span class="built_in">ra</span>)</span><br><span class="line">    <span class="keyword">jr </span> $<span class="built_in">ra</span></span><br></pre></td></tr></table></figure>
-<h2 id="getIndex类"><a href="#getIndex类" class="headerlink" title="getIndex类"></a>getIndex类</h2><ul>
-<li>常见的有get二维数组（矩阵）的系数，还有数组的系数</li>
-</ul>
-<figure class="highlight mips"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#get the vector index</span></span><br><span class="line"><span class="meta">.macro</span> get_vector_index(%index, %x)</span><br><span class="line">    <span class="keyword">sll </span>    %index, %x, <span class="number">2</span></span><br><span class="line">.end_macro</span><br><span class="line"><span class="comment">#get the matrix index</span></span><br><span class="line"><span class="meta">.macro</span> get_matrix_Index(%ans, %i, %<span class="keyword">j)</span></span><br><span class="line"><span class="keyword"></span>    li      %ans, your_number_of_columns    <span class="comment">#这里填上你的矩阵列数/行数</span></span><br><span class="line">    <span class="keyword">multu </span>  %i, %ans</span><br><span class="line">    <span class="keyword">mflo </span>   %ans</span><br><span class="line">    <span class="keyword">add </span>    %ans, %ans, %<span class="keyword">j</span></span><br><span class="line"><span class="keyword"></span>    <span class="keyword">sll </span>    %ans, %ans, <span class="number">2</span></span><br><span class="line">.end_macro</span><br></pre></td></tr></table></figure>
+<h1 id="状态编码的分享"><a href="#状态编码的分享" class="headerlink" title="状态编码的分享"></a>状态编码的分享</h1><h2 id="写在前头"><a href="#写在前头" class="headerlink" title="写在前头"></a>写在前头</h2><p>相信的大家都开始写状态机了，FSM分为三个部分，主要是状态转移、状态储存、状态输出，其中状态转移、状态输出主要是组合逻辑的操作，因此将这两个模块封装后，可以进行类似于组合逻辑的电路的黑箱测试的操作。<br>当然，我们可以用分析电路(analyze circuit)的功能，非常方便的得到我们想要的电路。<br>这些问题都解决了，留给我们自己的事情就只剩下状态编码的选择、状态转移（输出）的真值表了。</p>
 <blockquote>
-<p>待补充</p>
+<p>当然，还有计算机组成课程历史上的一颗明珠——qshr机（指路<a target="_blank" rel="noopener" href="http://cscore.buaa.edu.cn/#/discussion_area/579/689/posts">自主研发：权尚浩然型有限状态机</a>），可以省去选状态编码这种憋死选择困难症的操作，直观可读性强，是计算机仿真史上的一个重大发明，虚拟现实专业的同学也应该好好学习借鉴</p>
 </blockquote>
+<hr>
+<p>所以我们来重点看看选择状态编码的门道。<br>这里我们以logisim导航这一题为例，看看不同的状态编码的选择之间的差别。</p>
+<h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><p><a href="#状态转移图">状态转移图</a><br><a href="#自己乱编的码">自己乱编的码</a><br><a href="#8421顺序编码">8421顺序编码</a><br><a href="#格雷码">格雷码</a><br><a href="#独热码">独热码</a><br><a href="#瞻仰qshr机">瞻仰qshr机</a></p>
+<h2 id="状态转移图"><a href="#状态转移图" class="headerlink" title="状态转移图"></a>状态转移图</h2><ul>
+<li>这道题的状态转移图，其实不太好用常见的圈箭头的表示，倒是路径图已经有了，直接在这上面看着打表会方便一点<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/1自己的编码图.jpg" alt="自己乱编码的图"></li>
+</ul>
+<h2 id="自己乱编的码"><a href="#自己乱编的码" class="headerlink" title="自己乱编的码"></a>自己乱编的码</h2><blockquote>
+<p>编码中还需要注意一个问题，就是我们输入的三位数从高位到地位应该是(l2,l1,l0),所以在我们打表的时候的命名请按照(l2,l1,l0,d1,d0)的顺序(分别表示location,direction),同样输出我们使用(L2,L1,L0,hit)的顺序。这样符合逻辑！</p>
+<p>在打完表以后，也要注意，分离器(splitter)分离出来的位次依次是(l0,l1,l2)，所以为了好看，打完表以后，把输入输出的顺序调一下！调成(l0,l1,l2,hit)</p>
+</blockquote>
+<ul>
+<li>上图是我自己的胡乱编码，其实也不胡乱，中间三个状态是独热码表示。他的效果如下：<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/1自己码.png" alt="自己码"></li>
+</ul>
+<h2 id="8421顺序编码"><a href="#8421顺序编码" class="headerlink" title="8421顺序编码"></a>8421顺序编码</h2><ul>
+<li>顺序编码是我们最好理解的一种编码，最符合我们人类的直觉往往最不符合计算机的直觉，因为虽然顺序编码的最为紧密（紧密也有紧密的好处），但是由于相邻两个状态之间的变化太大，实际的硬件的寄存器很难做到同时发生变化，所以出错的概率很高（我们叫做毛刺现象）。</li>
+<li>所以在我们平常的作业中使使可能没太大问题，但是实际应用中用的很少。<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/2_8421码.png" alt="8421码"></li>
+</ul>
+<h2 id="格雷码"><a href="#格雷码" class="headerlink" title="格雷码"></a>格雷码</h2><ul>
+<li>格雷码的特点就是解决了顺序码的缺点，相邻的两状态之间编码之变一位，就不会出现毛刺的现象。</li>
+<li>但是格雷码最大的问题在于设计的难度</li>
+<li>其实格雷码最好是初态和末态也只差一位，但我实在有点找不到，有能够找到的dl可以在评论区指出。<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/3_格雷码.png" alt="格雷码"></li>
+</ul>
+<h2 id="独热码"><a href="#独热码" class="headerlink" title="独热码"></a>独热码</h2><ul>
+<li>独热码的编码可能是唯一一个计算机好理解，人也好理解的编码，再加上他一下只需要变动两次（置一+置零），所以毛刺的概率低。</li>
+<li>而且，虽然说编码不太紧密，用到的寄存器位数多（也就是触发器多），但是这也使得组合逻辑电路会精简一些，大家可以看接下来的实现。</li>
+<li>就是这两个特点使得独热码在实际应用中十分广泛。<blockquote>
+<p>独热码适合写条件复杂但是状态少的状态机；<br>  格雷码适合写条件不复杂但是状态多的状态机。</p>
+</blockquote>
+</li>
+<li>这里分享一个小妙招，格雷码一个一个的在Analysis里打表不方便（位数太多了），而其实独热码大多数位数都是零，所以可以先构造出这样的电路<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/独热码构造捷径.png" alt="独热码构造捷径"></li>
+<li>然后再Project -&gt; Analyze circuit,出来的初始真值表就是全置零的啦。</li>
+<li>如下图（独热码的真值表太长了我就不晒出来了）<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/4_独热码.png" alt="独热码"></li>
+<li>当然这肯定不是最简化的电路，你可以根据要求自己搭更加简单的电路，包括说用复用器来实现更简化，在这里就不赘述了。</li>
+</ul>
+<h2 id="瞻仰qshr机"><a href="#瞻仰qshr机" class="headerlink" title="瞻仰qshr机"></a>瞻仰qshr机</h2><ul>
+<li>对于qshr机，评论区zytgg的评论一针见血：<blockquote>
+<p>是否等价于把独热编码的状态机按位拆开？</p>
+<ul>
+<li>确实，独热码的思路就是有多少状态就用多少触发器，qshr机也就是这么个道理，每一个状态都用一个寄存器存下，和我们画状态转移图的时候的思路是一致的。</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<blockquote>
+<p>介于qshr机在计算机仿真史上做出的贡献，我们看到了，对于这个题navigation来说，有很直观的状态转移图，还记得我在最开始说的嘛，”这道题的状态转移图，其实不太好用常见的圈箭头的表示，倒是路径图已经有了，直接在这上面看着打表会方便一点”，不用打表，题图即是状态转移图！！！</p>
+</blockquote>
+<ul>
+<li><p>所以我们把原基础的qshr机封装一下，让他看起来更具有仿真的意味！<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/qshr机改良版.png" alt="qshr机封装版"></p>
+</li>
+<li><p>虽然只是对qshr机的拙略模仿，但是你们不觉得很酷嘛，这很符合我对未来的想象（）。</p>
+</li>
+</ul>
+<hr>
+<h2 id="写到最后"><a href="#写到最后" class="headerlink" title="写到最后"></a>写到最后</h2><ul>
+<li>其实有限状态机核心的部分就是状态转移，状态转移核心的部分就是编码选择和打表，掌握好了这几个地方，封装再好点（便于调试），有限状态机就不难啦。</li>
+<li>感谢qshr大佬的灵感支持！</li>
+<li>感谢zyt、cys等佬的理论拓展！</li>
+<li>有不妥之处请各位大佬指出，谢谢观看！</li>
+</ul>
 
     </div>
 
@@ -328,7 +381,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://volcaxiao.github.io/2022/10/12/mips%E5%B8%B8%E7%94%A8%E5%AE%8F%E5%AE%9A%E4%B9%89/" title="mips常用宏定义">http://volcaxiao.github.io/2022/10/12/mips常用宏定义/</a>
+    <a href="http://volcaxiao.github.io/2022/10/04/BUAA-CO-p0%E7%8A%B6%E6%80%81%E7%BC%96%E7%A0%81%E5%88%86%E4%BA%AB/" title="BUAA-CO-p0状态编码分享">http://volcaxiao.github.io/2022/10/04/BUAA-CO-p0状态编码分享/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -342,10 +395,9 @@
           <div class="post-tags">
               <a href="/tags/%E5%8C%97%E8%88%AA/" rel="tag"><i class="fa fa-tag"></i> 北航</a>
               <a href="/tags/CO/" rel="tag"><i class="fa fa-tag"></i> CO</a>
-              <a href="/tags/%E5%A4%A7%E4%BA%8C/" rel="tag"><i class="fa fa-tag"></i> 大二</a>
-              <a href="/tags/%E8%AE%A1%E7%BB%84/" rel="tag"><i class="fa fa-tag"></i> 计组</a>
-              <a href="/tags/MIPS/" rel="tag"><i class="fa fa-tag"></i> MIPS</a>
-              <a href="/tags/P2/" rel="tag"><i class="fa fa-tag"></i> P2</a>
+              <a href="/tags/P0/" rel="tag"><i class="fa fa-tag"></i> P0</a>
+              <a href="/tags/%E7%8A%B6%E6%80%81%E7%BC%96%E7%A0%81/" rel="tag"><i class="fa fa-tag"></i> 状态编码</a>
+              <a href="/tags/logisim/" rel="tag"><i class="fa fa-tag"></i> logisim</a>
           </div>
 
         
@@ -354,12 +406,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2022/10/12/mips%E6%B1%87%E7%BC%96%E7%BF%BB%E8%AF%91C%E4%BB%A3%E7%A0%81%E5%85%B8%E4%BE%8B/" rel="prev" title="mips汇编翻译C代码典例/经验">
-      <i class="fa fa-chevron-left"></i> mips汇编翻译C代码典例/经验
+    <a href="/2022/09/13/%E5%B7%A5%E7%A7%91%E5%A4%A7%E7%89%A9-%E7%83%AD%E5%8A%9B%E5%AD%A6%E5%9F%BA%E7%A1%80%E6%80%BB%E7%BB%93/" rel="prev" title="工科大物-热力学基础总结">
+      <i class="fa fa-chevron-left"></i> 工科大物-热力学基础总结
     </a></div>
       <div class="post-nav-item">
-    <a href="/2022/10/21/oo-pre%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="next" title="oo_pre学习笔记">
-      oo_pre学习笔记 <i class="fa fa-chevron-right"></i>
+    <a href="/2022/10/08/%E7%A9%BA%E9%97%B4%E8%A7%A3%E6%9E%90%E5%87%A0%E4%BD%95%E8%AE%B2%E8%AF%BE%E6%9D%90%E6%96%99-ppt%E3%80%81%E8%A7%86%E9%A2%91%E3%80%81%E5%A4%87%E8%AF%BE%E6%9C%AC%E7%AD%89/" rel="next" title="空间解析几何讲课材料-ppt、视频、备课本等">
+      空间解析几何讲课材料-ppt、视频、备课本等 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -424,7 +476,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#mips%E5%B8%B8%E7%94%A8%E5%AE%8F%E5%AE%9A%E4%B9%89"><span class="nav-number">1.</span> <span class="nav-text">mips常用宏定义</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#end-the-program"><span class="nav-number">1.1.</span> <span class="nav-text">end the program</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#write-amp-read%E7%B1%BB"><span class="nav-number">1.2.</span> <span class="nav-text">write&amp;read类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#push-amp-pop"><span class="nav-number">1.3.</span> <span class="nav-text">push&amp;pop</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#getIndex%E7%B1%BB"><span class="nav-number">1.4.</span> <span class="nav-text">getIndex类</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%8A%B6%E6%80%81%E7%BC%96%E7%A0%81%E7%9A%84%E5%88%86%E4%BA%AB"><span class="nav-number">1.</span> <span class="nav-text">状态编码的分享</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%99%E5%9C%A8%E5%89%8D%E5%A4%B4"><span class="nav-number">1.1.</span> <span class="nav-text">写在前头</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%AE%E5%BD%95"><span class="nav-number">1.2.</span> <span class="nav-text">目录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%8A%B6%E6%80%81%E8%BD%AC%E7%A7%BB%E5%9B%BE"><span class="nav-number">1.3.</span> <span class="nav-text">状态转移图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%87%AA%E5%B7%B1%E4%B9%B1%E7%BC%96%E7%9A%84%E7%A0%81"><span class="nav-number">1.4.</span> <span class="nav-text">自己乱编的码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8421%E9%A1%BA%E5%BA%8F%E7%BC%96%E7%A0%81"><span class="nav-number">1.5.</span> <span class="nav-text">8421顺序编码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%BC%E9%9B%B7%E7%A0%81"><span class="nav-number">1.6.</span> <span class="nav-text">格雷码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%8B%AC%E7%83%AD%E7%A0%81"><span class="nav-number">1.7.</span> <span class="nav-text">独热码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9E%BB%E4%BB%B0qshr%E6%9C%BA"><span class="nav-number">1.8.</span> <span class="nav-text">瞻仰qshr机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%99%E5%88%B0%E6%9C%80%E5%90%8E"><span class="nav-number">1.9.</span> <span class="nav-text">写到最后</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -440,7 +492,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-count">16</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -522,12 +574,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">32k</span>
+    <span title="站点总字数">31k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">29 分钟</span>
+    <span title="站点阅读时长">28 分钟</span>
 </div>
 
 

@@ -434,15 +434,15 @@
       </categories>
       <tags>
         <tag>北航</tag>
+        <tag>大二</tag>
         <tag>OO</tag>
         <tag>面向对象</tag>
-        <tag>大二</tag>
         <tag>pre</tag>
       </tags>
   </entry>
   <entry>
-    <title>mips常用宏定义</title>
-    <url>/2022/10/12/mips%E5%B8%B8%E7%94%A8%E5%AE%8F%E5%AE%9A%E4%B9%89/</url>
+    <title>BUAA-CO-p2mips常用宏定义</title>
+    <url>/2022/10/12/BUAA-CO-p2mips%E5%B8%B8%E7%94%A8%E5%AE%8F%E5%AE%9A%E4%B9%89/</url>
     <content><![CDATA[<p>我们知道mips的灵活性高，但是可读性差，所以要改变可读性差的问题，我们可以使用宏定义，像写c一样写汇编（）。</p>
 <span id="more"></span>
 <h1 id="mips常用宏定义"><a href="#mips常用宏定义" class="headerlink" title="mips常用宏定义"></a>mips常用宏定义</h1><ul>
@@ -482,8 +482,8 @@
       </tags>
   </entry>
   <entry>
-    <title>mips汇编翻译C代码典例/经验</title>
-    <url>/2022/10/12/mips%E6%B1%87%E7%BC%96%E7%BF%BB%E8%AF%91C%E4%BB%A3%E7%A0%81%E5%85%B8%E4%BE%8B/</url>
+    <title>BUAA-CO-p2mips汇编翻译C代码典例</title>
+    <url>/2022/10/12/BUAA-CO-p2mips%E6%B1%87%E7%BC%96%E7%BF%BB%E8%AF%91C%E4%BB%A3%E7%A0%81%E5%85%B8%E4%BE%8B/</url>
     <content><![CDATA[<p>汇编语言是一种比机械码稍高级一点的语言，而MIPS的汇编语言是一种专用于MIPS架构的CPU的汇编语言，相较于ARM，X86等现在主流的架构的汇编语言，MIPS较为简单，适合入门。<br>MIPS汇编语言是可以一对一翻译成机械码的，每条指令的翻译规则不同，这里需要查手册来解决。<br>至于我们学的C/C++等高级语言，也可以翻译成汇编语言，这个过程叫编译，一般来说编译器可以办成这件事，但对于我们需要学习MIPS的人来说，这需要咱们自己来。</p>
 <span id="more"></span>
 <h1 id="mips汇编翻译C代码典例-经验"><a href="#mips汇编翻译C代码典例-经验" class="headerlink" title="mips汇编翻译C代码典例/经验"></a>mips汇编翻译C代码典例/经验</h1><blockquote>
@@ -876,8 +876,8 @@ AB =AC =I
       </tags>
   </entry>
   <entry>
-    <title>CO_P0状态编码分享</title>
-    <url>/2022/10/04/CO-P0%E7%8A%B6%E6%80%81%E7%BC%96%E7%A0%81%E5%88%86%E4%BA%AB/</url>
+    <title>BUAA-CO-p0状态编码分享</title>
+    <url>/2022/10/04/BUAA-CO-p0%E7%8A%B6%E6%80%81%E7%BC%96%E7%A0%81%E5%88%86%E4%BA%AB/</url>
     <content><![CDATA[<p>时隔半个月，终于有了更新，主要是一些P0的经验分享——状态编码，当然有一些零零散散的芝士点，会在后面补足的，记得催催。。。</p>
 <span id="more"></span>
 <h1 id="状态编码的分享"><a href="#状态编码的分享" class="headerlink" title="状态编码的分享"></a>状态编码的分享</h1><h2 id="写在前头"><a href="#写在前头" class="headerlink" title="写在前头"></a>写在前头</h2><p>相信的大家都开始写状态机了，FSM分为三个部分，主要是状态转移、状态储存、状态输出，其中状态转移、状态输出主要是组合逻辑的操作，因此将这两个模块封装后，可以进行类似于组合逻辑的电路的黑箱测试的操作。<br>当然，我们可以用分析电路(analyze circuit)的功能，非常方便的得到我们想要的电路。<br>这些问题都解决了，留给我们自己的事情就只剩下状态编码的选择、状态转移（输出）的真值表了。</p>
@@ -1072,9 +1072,9 @@ AB =AC =I
       </categories>
       <tags>
         <tag>北航</tag>
+        <tag>大二</tag>
         <tag>OO</tag>
         <tag>面向对象</tag>
-        <tag>大二</tag>
         <tag>pre</tag>
       </tags>
   </entry>
@@ -1410,22 +1410,5 @@ AB =AC =I
     <title>blog配置教程</title>
     <url>/2022/09/06/blog%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/</url>
     <content><![CDATA[]]></content>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/2022/09/05/hello-world/</url>
-    <content><![CDATA[<h1 id="hello-world"><a href="#hello-world" class="headerlink" title="hello world!"></a>hello world!</h1><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-<p><code>printf&quot;hello world!&quot;</code></p>
-<span id="more"></span> 
-<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
   </entry>
 </search>
