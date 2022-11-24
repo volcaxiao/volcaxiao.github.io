@@ -21,40 +21,30 @@
     var CONFIG = {"hostname":"volcaxiao.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"livere","storage":true,"lazyload":false,"nav":null,"activeClass":"livere"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":5,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="朋辈辅导师第十二周直播课-矩阵相关典型问题的备课资料，大家有需要自取，备课本有点乱，建议配合视频一起食用。">
+  <meta name="description" content="BUAA-CO课程p4，用verilog实现单周期的CPU">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【BUAA-高代】矩阵相关问题讲课资料">
-<meta property="og:url" content="http://volcaxiao.github.io/2022/11/24/%E7%9F%A9%E9%98%B5%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98%E8%AE%B2%E8%AF%BE%E8%B5%84%E6%96%99/index.html">
+<meta property="og:title" content="【BUAA-CO】p4单周期CPU-verilog实现">
+<meta property="og:url" content="http://volcaxiao.github.io/2022/11/24/BUAA-CO-p4%E5%8D%95%E5%91%A8%E6%9C%9FCPU-verilog%E5%AE%9E%E7%8E%B0/index.html">
 <meta property="og:site_name" content="volca&#39;s blog">
-<meta property="og:description" content="朋辈辅导师第十二周直播课-矩阵相关典型问题的备课资料，大家有需要自取，备课本有点乱，建议配合视频一起食用。">
+<meta property="og:description" content="BUAA-CO课程p4，用verilog实现单周期的CPU">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/0唯一性表示例题1.jpg">
-<meta property="og:image" content="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/0唯一性表示例题2.jpg">
-<meta property="og:image" content="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/0化式.jpg">
-<meta property="og:image" content="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/4分块秩公式.jpg">
-<meta property="og:image" content="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/4不增秩公式.jpg">
-<meta property="og:image" content="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/4不增秩公式.jpg">
-<meta property="og:image" content="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/4积0公式.jpg">
-<meta property="og:image" content="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/4加减秩公式.jpg">
-<meta property="og:image" content="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/1秩一阵例题.jpg">
-<meta property="og:image" content="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/3换位公式例题.png">
-<meta property="og:image" content="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/3换位公式1.0.jpg">
-<meta property="og:image" content="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/3换位公式2.0.jpg">
-<meta property="og:image" content="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/3换位公式3.0.jpg">
-<meta property="og:image" content="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/2伴随阵定义及相伴公式.jpg">
-<meta property="og:image" content="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/2各种行列式值之间的关系.jpg">
-<meta property="og:image" content="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/2相伴秩公式.jpg">
-<meta property="article:published_time" content="2022-11-24T03:12:27.000Z">
-<meta property="article:modified_time" content="2022-11-24T08:07:50.280Z">
+<meta property="og:image" content="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/连线命名方式.jpg">
+<meta property="og:image" content="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/数据通路表.jpg">
+<meta property="og:image" content="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/控制信号表.jpg">
+<meta property="og:image" content="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/加法检测.jpg">
+<meta property="article:published_time" content="2022-11-24T08:14:48.000Z">
+<meta property="article:modified_time" content="2022-11-24T08:37:35.812Z">
 <meta property="article:author" content="volcaxiao">
 <meta property="article:tag" content="北航">
-<meta property="article:tag" content="大一">
-<meta property="article:tag" content="高代">
-<meta property="article:tag" content="资源">
+<meta property="article:tag" content="CO">
+<meta property="article:tag" content="大二">
+<meta property="article:tag" content="计组">
+<meta property="article:tag" content="MIPS">
+<meta property="article:tag" content="P4">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/0唯一性表示例题1.jpg">
+<meta name="twitter:image" content="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/连线命名方式.jpg">
 
-<link rel="canonical" href="http://volcaxiao.github.io/2022/11/24/%E7%9F%A9%E9%98%B5%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98%E8%AE%B2%E8%AF%BE%E8%B5%84%E6%96%99/">
+<link rel="canonical" href="http://volcaxiao.github.io/2022/11/24/BUAA-CO-p4%E5%8D%95%E5%91%A8%E6%9C%9FCPU-verilog%E5%AE%9E%E7%8E%B0/">
 
 
 <script id="page-configurations">
@@ -67,7 +57,7 @@
   };
 </script>
 
-  <title>【BUAA-高代】矩阵相关问题讲课资料 | volca's blog</title>
+  <title>【BUAA-CO】p4单周期CPU-verilog实现 | volca's blog</title>
   
 
 
@@ -233,7 +223,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://volcaxiao.github.io/2022/11/24/%E7%9F%A9%E9%98%B5%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98%E8%AE%B2%E8%AF%BE%E8%B5%84%E6%96%99/">
+    <link itemprop="mainEntityOfPage" href="http://volcaxiao.github.io/2022/11/24/BUAA-CO-p4%E5%8D%95%E5%91%A8%E6%9C%9FCPU-verilog%E5%AE%9E%E7%8E%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/head.jpg">
@@ -246,7 +236,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          【BUAA-高代】矩阵相关问题讲课资料
+          【BUAA-CO】p4单周期CPU-verilog实现
         </h1>
 
         <div class="post-meta">
@@ -259,7 +249,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2022-11-24 11:12:27 / 修改时间：16:07:50" itemprop="dateCreated datePublished" datetime="2022-11-24T11:12:27+08:00">2022-11-24</time>
+              <time title="创建时间：2022-11-24 16:14:48 / 修改时间：16:37:35" itemprop="dateCreated datePublished" datetime="2022-11-24T16:14:48+08:00">2022-11-24</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -267,7 +257,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%8C%97%E8%88%AA%E4%BF%A1%E6%81%AF%E7%B1%BB%E5%A4%A7%E4%B8%80%E8%B5%84%E6%96%99/" itemprop="url" rel="index"><span itemprop="name">北航信息类大一资料</span></a>
+                  <a href="/categories/BUAA%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" itemprop="url" rel="index"><span itemprop="name">BUAA计算机组成原理</span></a>
                 </span>
             </span>
 
@@ -284,14 +274,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>1.4k</span>
+              <span>2.1k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
+              <span>2 分钟</span>
             </span>
 
         </div>
@@ -303,104 +293,258 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>朋辈辅导师第十二周直播课-矩阵相关典型问题的备课资料，大家有需要自取，备课本有点乱，建议配合视频一起食用。</p>
+        <p>BUAA-CO课程p4，用verilog实现单周期的CPU</p>
 <span id="more"></span>
-<p>资料在这-&gt;<a target="_blank" rel="noopener" href="https://bhpan.buaa.edu.cn:443/link/F1D5448BCDB824AACC5FB3DF2F454490">矩阵相关典型问题</a><br>有效期限：2025-11-11 23:59</p>
-<hr>
-<p>分割线，下面是备课本</p>
-<hr>
-<h1 id="矩阵相关问题"><a href="#矩阵相关问题" class="headerlink" title="矩阵相关问题"></a>矩阵相关问题</h1><p>[toc]</p>
-<h2 id="矩阵的基本盘"><a href="#矩阵的基本盘" class="headerlink" title="矩阵的基本盘"></a>矩阵的基本盘</h2><h3 id="可逆定义定义及相关性质及求逆阵的方法"><a href="#可逆定义定义及相关性质及求逆阵的方法" class="headerlink" title="可逆定义定义及相关性质及求逆阵的方法"></a>可逆定义定义及相关性质及求逆阵的方法</h3><ul>
-<li>可逆的定义及相关性质<blockquote>
-<p>$若\exists B,AB=BA=I，则称A为可逆阵，B为A的逆阵,记作：A^{-1} = B $</p>
-</blockquote>
-</li>
-<li>性质：<blockquote>
-<p>$(ABC)^{-1} = C^{-1}B^{-1}A^{-1} $(proof)<br>行列式不为零则可逆<br>……</p>
-</blockquote>
-</li>
-<li><p>逆阵唯一性</p>
-<blockquote>
-<script type="math/tex; mode=display">
-  AB =AC =I  
-  则B = BI = B(AC) = (BA)C = C</script></blockquote>
-</li>
-<li><p>拓展唯一性例题的解法<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/0唯一性表示例题1.jpg" alt="唯一性例题"><br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/0唯一性表示例题2.jpg" alt="解法2"></p>
-</li>
-<li><p>保可逆，反序可逆</p>
-<blockquote>
-<p>A可逆，B可逆，则AB可逆<br>$proof: ABB^{-1}A^{-1} = I $<br>若AB = I ，BA也可逆。</p>
-</blockquote>
-</li>
-<li>求逆方法有三：增广，伴随，0化式（看见多项式赢麻啦）<blockquote>
-<p>增广矩阵的机理<br>伴随公式的引申<br>0化式，关于矩阵的多项式，例题，关于特征多项式（Caley定理）<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/0化式.jpg" alt="0化式"></p>
-</blockquote>
-</li>
+<h1 id="p4-log"><a href="#p4-log" class="headerlink" title="p4_log"></a>p4_log</h1><h2 id="模块化层次化"><a href="#模块化层次化" class="headerlink" title="模块化层次化"></a>模块化层次化</h2><ul>
+<li>整体结构与p3中logisim的分层一致，顶层端口定义为mips.v</li>
+<li>不同：<ul>
+<li>需要增加同步复位信号reset</li>
+<li>clk留端口，而不是内置</li>
 </ul>
-<h3 id="正交及相关性质"><a href="#正交及相关性质" class="headerlink" title="正交及相关性质"></a>正交及相关性质</h3><blockquote>
-<p>$A^TA = I,即A^{-1} = A^T,则称A为正交阵 $<br>性质：矩阵乘的转置,与矩阵乘的求逆类似</p>
-</blockquote>
-<ul>
-<li>保长、保内积、保正交<blockquote>
-<p>$我们知道向量的模长度公式是吧，对于列向量X，它的模长为||X||^2 = X^TX(内积的表示) ，所以列向量AX(A为正交阵)为||AX||^2 = X^TA^TAX ——保长性$<br>$保内积类似，(X,Y) = (AX,AY) = X^TY $<br>$保正交:两种理解：<br>A正交，B正交，则AB正交<br>X \perp Y \Leftrightarrow AX \perp AY $</p>
-</blockquote>
 </li>
-<li>线性变换初步<blockquote>
-<p>线性变换与内积空间来理解, Gram阵</p>
-</blockquote>
+<li>需要支持的指令集为：add, sub, ori, lw, sw, beq, lui, jal, jr, nop</li>
+<li>后期添加的指令为：slt,sll,lh,sh,lbu</li>
+</ul>
+<h2 id="设计方案"><a href="#设计方案" class="headerlink" title="设计方案"></a>设计方案</h2><ul>
+<li>模块化、端口定义等等大致和p3一致</li>
+<li>连线的时候的命名：推荐使用模块+输出端口命名法，小写字母表示，每一个模块的线放一块，这样输入的时候一目了然<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/连线命名方式.jpg" alt="连线命名"></li>
+<li>注意存储器地址访问的/4细节，思考题中的[11:2]应该就是出于这个考虑</li>
+</ul>
+<h3 id="datapath"><a href="#datapath" class="headerlink" title="datapath"></a>datapath</h3><ul>
+<li>所有的MUX放在同一个MUX.v的文件中，命名为：MUX_SelNum_bit(默认为32位), 如MUX_4,MUX_4_26,MUX_2_5;</li>
+</ul>
+<h4 id="RF"><a href="#RF" class="headerlink" title="RF"></a>RF</h4><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">信号名</th>
+<th style="text-align:center">IO</th>
+<th style="text-align:left">描述</th>
+<th style="text-align:left">备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">clk</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">时钟信号</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:center">reset</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">异步复位</td>
+</tr>
+<tr>
+<td style="text-align:center">WE</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">写使能信号</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:center">A1[4:0]</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">读出地址1</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:center">A2[4:0]</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">读出地址2</td>
+</tr>
+<tr>
+<td style="text-align:center">A3[4:0]</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">写入地址</td>
+</tr>
+<tr>
+<td style="text-align:center">WD[31:0]</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">写入的数据</td>
+</tr>
+<tr>
+<td style="text-align:center">RD1[31:0]</td>
+<td style="text-align:center">O</td>
+<td style="text-align:left">输出A1地址寄存器中的值</td>
+</tr>
+<tr>
+<td style="text-align:center">RD2[31:0]</td>
+<td style="text-align:center">O</td>
+<td style="text-align:left">输出A2地址寄存器中的值</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 id="NPC"><a href="#NPC" class="headerlink" title="NPC"></a>NPC</h4><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">信号名</th>
+<th style="text-align:center">IO</th>
+<th style="text-align:left">描述</th>
+<th style="text-align:left">备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">PC[31:0]</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">当前指令地址</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:center">Simm26[25:0]</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">地址偏移</td>
+</tr>
+<tr>
+<td style="text-align:center">ra[31:0]</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">返回地址</td>
+</tr>
+<tr>
+<td style="text-align:center">CmpOut</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">B类指令的比较结果</td>
+</tr>
+<tr>
+<td style="text-align:center">NPCOp[2:0]</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">NPC功能选择：&lt;/br&gt; 000: 顺序+4 &lt;/br&gt; 001: B类跳转 &lt;/br&gt;010: jal/j &lt;/br&gt; 011:jr/jalr</td>
+</tr>
+<tr>
+<td style="text-align:center">NPC[31:0]</td>
+<td style="text-align:center">O</td>
+<td style="text-align:left">下一条指令地址</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 id="EXT"><a href="#EXT" class="headerlink" title="EXT"></a>EXT</h4><p>信号名|IO|描述|备注|<br>|:-:|:-:|:-|:-|<br>|imm16[15:0]|I|16位立即数|<br>|EXTOp|I|EXT功能选择：&lt;/br&gt; 0: 0拓展 &lt;/br&gt; 1: 符号位拓展|lui指令的高位拓展在ALU里执行|<br>|S0imm32|O|拓展后的32位立即数|</p>
+<h4 id="ALU"><a href="#ALU" class="headerlink" title="ALU"></a>ALU</h4><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">信号名</th>
+<th style="text-align:center">IO</th>
+<th style="text-align:left">描述</th>
+<th style="text-align:left">备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">ALUOp[3:0]</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">ALU功能选择</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:center">A[31:0]</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">运算数1</td>
+</tr>
+<tr>
+<td style="text-align:center">B[31:0]</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">运算数2</td>
+</tr>
+<tr>
+<td style="text-align:center">shamt[4:0]</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">位移值</td>
+</tr>
+<tr>
+<td style="text-align:center">ALUout[31:0]</td>
+<td style="text-align:center">O</td>
+<td style="text-align:left">计算结果</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h5 id="DM"><a href="#DM" class="headerlink" title="DM"></a>DM</h5><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">信号名</th>
+<th style="text-align:center">IO</th>
+<th style="text-align:left">描述</th>
+<th style="text-align:left">备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">clk</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">时钟信号</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:center">reset</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">异步复位</td>
+</tr>
+<tr>
+<td style="text-align:center">WE</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">写使能信号</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:center">A[31:0]</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">待操作数据的地址</td>
+</tr>
+<tr>
+<td style="text-align:center">DMOp[2:0]</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">DM功能选择：000: word &lt;/br&gt; 001: halfword &lt;/br&gt; 010: byte &lt;/br&gt; 1xx: 无符号拓展load</td>
+<td style="text-align:left">最高位置一表示无符号位拓展</td>
+</tr>
+<tr>
+<td style="text-align:center">DMout[31:0]</td>
+<td style="text-align:center">输出的32位数据</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/数据通路表.jpg" alt="数据通路表"></p>
+<h3 id="controller"><a href="#controller" class="headerlink" title="controller"></a>controller</h3><ul>
+<li>对于控制器，我采用先用操作码识别出不同的指令，再去记录下每个控制信号所对应的指令，因为这样更加符合电路的直观（或运算），也更符合我对未来的想象（）<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/控制信号表.jpg" alt="控制信号表"></li>
+</ul>
+<h2 id="测试方案"><a href="#测试方案" class="headerlink" title="测试方案"></a>测试方案</h2><ul>
+<li>还是用p3时候的测试数据，但是需要多多注意的是这个东西肉眼debug其实还好一点，但更加适合自动化评测，开始手搓！</li>
+</ul>
+<h2 id="增量开发"><a href="#增量开发" class="headerlink" title="增量开发"></a>增量开发</h2><h3 id="slt"><a href="#slt" class="headerlink" title="slt"></a>slt</h3><ul>
+<li>处理ctrl，ALU，先填表再连线</li>
+</ul>
+<h3 id="sll"><a href="#sll" class="headerlink" title="sll"></a>sll</h3><ul>
+<li>shamt传入ALU，其他就没什么问题了</li>
+</ul>
+<h3 id="lh，sh，lhu"><a href="#lh，sh，lhu" class="headerlink" title="lh，sh，lhu"></a>lh，sh，lhu</h3><ul>
+<li>加上DMOp，在前面有定义</li>
+</ul>
+<h2 id="思考题"><a href="#思考题" class="headerlink" title="思考题"></a>思考题</h2><ul>
+<li>阅读下面给出的 DM 的输入示例中（示例 DM 容量为 4KB，即 32bit × 1024字），根据你的理解回答，这个 addr 信号又是从哪里来的？地址信号 addr 位数为什么是 [11:2] 而不是 [9:0]<ul>
+<li>从ALUout输出过来，是按字节寻址的指令，但我们的IM是按字寻址的，addr应该是4的整数倍，所以左移两位，按字存取。</li>
+</ul>
 </li>
-<li>每列为单位向量且相互正交，且则阵正交<blockquote>
-<p>用矩阵乘法去理解。</p>
-</blockquote>
+<li>思考上述两种控制器设计的译码方式，给出代码示例，并尝试对比各方式的优劣。<ul>
+<li>第二种是最后靠信号输出的，更符合电路的或逻辑，便于后续开发，且更加符合电路</li>
+</ul>
 </li>
+<li>在相应的部件中，复位信号的设计都是同步复位，这与 P3 中的设计要求不同。请对比同步复位与异步复位这两种方式的 reset 信号与 clk 信号优先级的关系。<ul>
+<li>异步复位reset的优先级高于clk，不管clk是否处于上升沿，都会复位（所以需要加入触发条件中）。</li>
+<li>而同步复位的reset优先级低于clk，只有clk到来才会生效。</li>
 </ul>
-<h2 id="矩阵的秩"><a href="#矩阵的秩" class="headerlink" title="矩阵的秩"></a>矩阵的秩</h2><h3 id="秩的xdm"><a href="#秩的xdm" class="headerlink" title="秩的xdm"></a>秩的xdm</h3><ul>
-<li>阶梯阵概念，及其与向量组秩的联系。<blockquote>
-<p>矩阵就是向量组拼起来的，所以矩阵的秩就是向量组的秩。<br>我们在线性方程组的矩阵消元法中见识过，我们把一个矩阵变成阶梯状，我们考虑一下，变成阶梯状以后，后面的向量前缀都是零，所以不可能可以表示前面的向量，所以很简单，阶梯有多少阶，就会有多少秩。<br>那么到底是行向量的秩还是列向量的秩呢，不用纠结我们通过阶梯可以看出，行向量的秩就是列向量的秩。<br>所以三种同解变形，其实就代表着三种初等变换。</p>
-</blockquote>
 </li>
-<li>秩一阵<blockquote>
-<p>我们来看一个矩阵，秩一阵，可分解为两个向量之间的乘积。</p>
-</blockquote>
+<li>C 语言是一种弱类型程序设计语言。C 语言中不对计算结果溢出进行处理，这意味着 C 语言要求程序员必须很清楚计算结果是否会导致溢出。因此，如果仅仅支持 C 语言，MIPS 指令的所有计算指令均可以忽略溢出。 请说明为什么在忽略溢出的前提下，addi 与 addiu 是等价的，add 与 addu 是等价的。提示：阅读《MIPS32® Architecture For Programmers Volume II: The MIPS32® Instruction Set》中相关指令的 Operation 部分。<ul>
+<li>addi和add，在operate中加入了溢出检测</li>
+<li>以add为例</li>
+<li><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/加法检测.jpg" alt="加法检测"></li>
+<li>若R[rs]和R[rt]的30都是1且31相同的话，就分别对应正数和负数的溢出情况，则这么计算后temp32!temp31，不相等，所以溢出。</li>
+<li>检测溢出后就会抛出异常，但没有检测溢出的话，还是正常计算，所以和addiu，addu一样。</li>
+</ul>
 </li>
-<li><p>我们在最后再来谈秩的各种公式的关系</p>
-<blockquote>
-<ul>
-<li>满秩则有唯一解<br>$proof: \because r(A) = n $<br>$\therefore \{\alpha_1,……,\alpha_n\}可作为一组基 $<br>$\therefore \forall \beta \in R^n 都会存在\beta 的坐标(x_1,……,x_n) $<br>$坐标即为唯一解 $</li>
-<li>满秩则可逆<br>$proof: 由上可知：AX_1 = \varepsilon_1, AX_2 = \varepsilon_2,……,AX_n = \varepsilon_n 都有解$<br>$所以AA^{-1} = I可解出A^{-1} = (X_1,X_2,……,X_n) $</li>
-</ul>
-</blockquote>
-</li>
-<li><p>所以说到这就只需要明确一个事情，满秩，行向量组列向量组无关，行列式不等于0，可逆，只有唯一解，非奇异这都是等价的概念</p>
-</li>
-</ul>
-<h3 id="各种各样的秩公式"><a href="#各种各样的秩公式" class="headerlink" title="各种各样的秩公式"></a>各种各样的秩公式</h3><h4 id="分块秩公式"><a href="#分块秩公式" class="headerlink" title="分块秩公式"></a>分块秩公式</h4><p><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/4分块秩公式.jpg" alt="分块秩公式"></p>
-<h4 id="积阵秩公式"><a href="#积阵秩公式" class="headerlink" title="积阵秩公式"></a>积阵秩公式</h4><ul>
-<li>乘积不增秩公式<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/4不增秩公式.jpg" alt="不增秩公式"></li>
-<li>积0公式<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/4不增秩公式.jpg" alt="积0公式"></li>
-<li>转置积秩公式<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/4积0公式.jpg" alt="内积秩公式"></li>
-</ul>
-<h4 id="加减秩公式"><a href="#加减秩公式" class="headerlink" title="加减秩公式"></a>加减秩公式</h4><p><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/4加减秩公式.jpg" alt="加减秩公式"></p>
-<h3 id="奇妙的秩一阵"><a href="#奇妙的秩一阵" class="headerlink" title="奇妙的秩一阵"></a>奇妙的秩一阵</h3><ul>
-<li>用一个例题来说明<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/1秩一阵例题.jpg" alt="秩一阵例题"></li>
-</ul>
-<h4 id="提一嘴先不讲"><a href="#提一嘴先不讲" class="headerlink" title="提一嘴先不讲"></a>提一嘴先不讲</h4><ul>
-<li>秩一阵的特征值</li>
-<li>秩一阵+平移公式+特征值与行列式的关系</li>
-</ul>
-<h2 id="下降公式"><a href="#下降公式" class="headerlink" title="下降公式"></a>下降公式</h2><p><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/3换位公式例题.png" alt="换位公式例题"></p>
-<h3 id="换位公式1-0"><a href="#换位公式1-0" class="headerlink" title="换位公式1.0"></a>换位公式1.0</h3><p><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/3换位公式1.0.jpg" alt="换位公式1"></p>
-<h3 id="换位公式2-0"><a href="#换位公式2-0" class="headerlink" title="换位公式2.0"></a>换位公式2.0</h3><p><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/3换位公式2.0.jpg" alt="换位公式2"></p>
-<h3 id="换位公式3-0及特征值（带拓展，看时间）"><a href="#换位公式3-0及特征值（带拓展，看时间）" class="headerlink" title="换位公式3.0及特征值（带拓展，看时间）"></a>换位公式3.0及特征值（带拓展，看时间）</h3><p><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/3换位公式3.0.jpg" alt="换位公式3"></p>
-<h2 id="奇妙的伴随阵"><a href="#奇妙的伴随阵" class="headerlink" title="奇妙的伴随阵"></a>奇妙的伴随阵</h2><ul>
-<li>伴随阵的定义</li>
-<li>伴随公式的推导<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/2伴随阵定义及相伴公式.jpg" alt="伴随阵及相伴公式"></li>
-</ul>
-<h3 id="相关行列式值的推导"><a href="#相关行列式值的推导" class="headerlink" title="相关行列式值的推导"></a>相关行列式值的推导</h3><ul>
-<li>相关行列式的值的计算<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/2各种行列式值之间的关系.jpg" alt="相关行列式的值"></li>
-</ul>
-<h3 id="相伴秩公式"><a href="#相伴秩公式" class="headerlink" title="相伴秩公式"></a>相伴秩公式</h3><ul>
-<li>古典秩定义<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/2相伴秩公式.jpg" alt="相伴秩公式"></li>
 </ul>
 
     </div>
@@ -417,7 +561,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://volcaxiao.github.io/2022/11/24/%E7%9F%A9%E9%98%B5%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98%E8%AE%B2%E8%AF%BE%E8%B5%84%E6%96%99/" title="【BUAA-高代】矩阵相关问题讲课资料">http://volcaxiao.github.io/2022/11/24/矩阵相关问题讲课资料/</a>
+    <a href="http://volcaxiao.github.io/2022/11/24/BUAA-CO-p4%E5%8D%95%E5%91%A8%E6%9C%9FCPU-verilog%E5%AE%9E%E7%8E%B0/" title="【BUAA-CO】p4单周期CPU-verilog实现">http://volcaxiao.github.io/2022/11/24/BUAA-CO-p4单周期CPU-verilog实现/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -430,9 +574,11 @@
           
           <div class="post-tags">
               <a href="/tags/%E5%8C%97%E8%88%AA/" rel="tag"><i class="fa fa-tag"></i> 北航</a>
-              <a href="/tags/%E5%A4%A7%E4%B8%80/" rel="tag"><i class="fa fa-tag"></i> 大一</a>
-              <a href="/tags/%E9%AB%98%E4%BB%A3/" rel="tag"><i class="fa fa-tag"></i> 高代</a>
-              <a href="/tags/%E8%B5%84%E6%BA%90/" rel="tag"><i class="fa fa-tag"></i> 资源</a>
+              <a href="/tags/CO/" rel="tag"><i class="fa fa-tag"></i> CO</a>
+              <a href="/tags/%E5%A4%A7%E4%BA%8C/" rel="tag"><i class="fa fa-tag"></i> 大二</a>
+              <a href="/tags/%E8%AE%A1%E7%BB%84/" rel="tag"><i class="fa fa-tag"></i> 计组</a>
+              <a href="/tags/MIPS/" rel="tag"><i class="fa fa-tag"></i> MIPS</a>
+              <a href="/tags/P4/" rel="tag"><i class="fa fa-tag"></i> P4</a>
           </div>
 
         
@@ -441,12 +587,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2022/11/24/%E5%90%91%E9%87%8F%E7%A9%BA%E9%97%B4%E4%B8%8E%E5%86%85%E7%A7%AF%E7%A9%BA%E9%97%B4%E8%AE%B2%E8%AF%BE%E8%B5%84%E6%96%99/" rel="prev" title="【BUAA-高代】向量空间与内积空间讲课资料">
-      <i class="fa fa-chevron-left"></i> 【BUAA-高代】向量空间与内积空间讲课资料
+    <a href="/2022/11/24/BUAA-CO-p3-%E5%8D%95%E5%91%A8%E6%9C%9FCPU-logisim%E5%AE%9E%E7%8E%B0/" rel="prev" title="【BUAA-CO】p3-单周期CPU(logisim实现)">
+      <i class="fa fa-chevron-left"></i> 【BUAA-CO】p3-单周期CPU(logisim实现)
     </a></div>
       <div class="post-nav-item">
-    <a href="/2022/11/24/BUAA-CO-p3-%E5%8D%95%E5%91%A8%E6%9C%9FCPU-logisim%E5%AE%9E%E7%8E%B0/" rel="next" title="【BUAA-CO】p3-单周期CPU(logisim实现)">
-      【BUAA-CO】p3-单周期CPU(logisim实现) <i class="fa fa-chevron-right"></i>
+    <a href="/2022/11/24/BUAA-CO-p5%E6%B5%81%E6%B0%B4%E7%BA%BFCPU-lite/" rel="next" title="【BUAA-CO】p5流水线CPU-lite">
+      【BUAA-CO】p5流水线CPU-lite <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -511,7 +657,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%9F%A9%E9%98%B5%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98"><span class="nav-number">1.</span> <span class="nav-text">矩阵相关问题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9F%A9%E9%98%B5%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%9B%98"><span class="nav-number">1.1.</span> <span class="nav-text">矩阵的基本盘</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%AF%E9%80%86%E5%AE%9A%E4%B9%89%E5%AE%9A%E4%B9%89%E5%8F%8A%E7%9B%B8%E5%85%B3%E6%80%A7%E8%B4%A8%E5%8F%8A%E6%B1%82%E9%80%86%E9%98%B5%E7%9A%84%E6%96%B9%E6%B3%95"><span class="nav-number">1.1.1.</span> <span class="nav-text">可逆定义定义及相关性质及求逆阵的方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%A3%E4%BA%A4%E5%8F%8A%E7%9B%B8%E5%85%B3%E6%80%A7%E8%B4%A8"><span class="nav-number">1.1.2.</span> <span class="nav-text">正交及相关性质</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9F%A9%E9%98%B5%E7%9A%84%E7%A7%A9"><span class="nav-number">1.2.</span> <span class="nav-text">矩阵的秩</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A7%A9%E7%9A%84xdm"><span class="nav-number">1.2.1.</span> <span class="nav-text">秩的xdm</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%84%E7%A7%8D%E5%90%84%E6%A0%B7%E7%9A%84%E7%A7%A9%E5%85%AC%E5%BC%8F"><span class="nav-number">1.2.2.</span> <span class="nav-text">各种各样的秩公式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%86%E5%9D%97%E7%A7%A9%E5%85%AC%E5%BC%8F"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">分块秩公式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A7%AF%E9%98%B5%E7%A7%A9%E5%85%AC%E5%BC%8F"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">积阵秩公式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8A%A0%E5%87%8F%E7%A7%A9%E5%85%AC%E5%BC%8F"><span class="nav-number">1.2.2.3.</span> <span class="nav-text">加减秩公式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A5%87%E5%A6%99%E7%9A%84%E7%A7%A9%E4%B8%80%E9%98%B5"><span class="nav-number">1.2.3.</span> <span class="nav-text">奇妙的秩一阵</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8F%90%E4%B8%80%E5%98%B4%E5%85%88%E4%B8%8D%E8%AE%B2"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">提一嘴先不讲</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8B%E9%99%8D%E5%85%AC%E5%BC%8F"><span class="nav-number">1.3.</span> <span class="nav-text">下降公式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8D%A2%E4%BD%8D%E5%85%AC%E5%BC%8F1-0"><span class="nav-number">1.3.1.</span> <span class="nav-text">换位公式1.0</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8D%A2%E4%BD%8D%E5%85%AC%E5%BC%8F2-0"><span class="nav-number">1.3.2.</span> <span class="nav-text">换位公式2.0</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8D%A2%E4%BD%8D%E5%85%AC%E5%BC%8F3-0%E5%8F%8A%E7%89%B9%E5%BE%81%E5%80%BC%EF%BC%88%E5%B8%A6%E6%8B%93%E5%B1%95%EF%BC%8C%E7%9C%8B%E6%97%B6%E9%97%B4%EF%BC%89"><span class="nav-number">1.3.3.</span> <span class="nav-text">换位公式3.0及特征值（带拓展，看时间）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A5%87%E5%A6%99%E7%9A%84%E4%BC%B4%E9%9A%8F%E9%98%B5"><span class="nav-number">1.4.</span> <span class="nav-text">奇妙的伴随阵</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E8%A1%8C%E5%88%97%E5%BC%8F%E5%80%BC%E7%9A%84%E6%8E%A8%E5%AF%BC"><span class="nav-number">1.4.1.</span> <span class="nav-text">相关行列式值的推导</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%B8%E4%BC%B4%E7%A7%A9%E5%85%AC%E5%BC%8F"><span class="nav-number">1.4.2.</span> <span class="nav-text">相伴秩公式</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#p4-log"><span class="nav-number">1.</span> <span class="nav-text">p4_log</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A8%A1%E5%9D%97%E5%8C%96%E5%B1%82%E6%AC%A1%E5%8C%96"><span class="nav-number">1.1.</span> <span class="nav-text">模块化层次化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88"><span class="nav-number">1.2.</span> <span class="nav-text">设计方案</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#datapath"><span class="nav-number">1.2.1.</span> <span class="nav-text">datapath</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#RF"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">RF</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NPC"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">NPC</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#EXT"><span class="nav-number">1.2.1.3.</span> <span class="nav-text">EXT</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ALU"><span class="nav-number">1.2.1.4.</span> <span class="nav-text">ALU</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#DM"><span class="nav-number">1.2.1.4.1.</span> <span class="nav-text">DM</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#controller"><span class="nav-number">1.2.2.</span> <span class="nav-text">controller</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95%E6%96%B9%E6%A1%88"><span class="nav-number">1.3.</span> <span class="nav-text">测试方案</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A2%9E%E9%87%8F%E5%BC%80%E5%8F%91"><span class="nav-number">1.4.</span> <span class="nav-text">增量开发</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#slt"><span class="nav-number">1.4.1.</span> <span class="nav-text">slt</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sll"><span class="nav-number">1.4.2.</span> <span class="nav-text">sll</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#lh%EF%BC%8Csh%EF%BC%8Clhu"><span class="nav-number">1.4.3.</span> <span class="nav-text">lh，sh，lhu</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%9D%E8%80%83%E9%A2%98"><span class="nav-number">1.5.</span> <span class="nav-text">思考题</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -742,61 +888,6 @@ if (document.querySelectorAll('pre.mermaid').length) {
   
 
   
-      
-
-<script>
-  if (typeof MathJax === 'undefined') {
-    window.MathJax = {
-      loader: {
-          load: ['[tex]/mhchem'],
-        source: {
-          '[tex]/amsCd': '[tex]/amscd',
-          '[tex]/AMScd': '[tex]/amscd'
-        }
-      },
-      tex: {
-        inlineMath: {'[+]': [['$', '$']]},
-          packages: {'[+]': ['mhchem']},
-        tags: 'ams'
-      },
-      options: {
-        renderActions: {
-          findScript: [10, doc => {
-            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
-              const display = !!node.type.match(/; *mode=display/);
-              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
-              const text = document.createTextNode('');
-              node.parentNode.replaceChild(text, node);
-              math.start = {node: text, delim: '', n: 0};
-              math.end = {node: text, delim: '', n: 0};
-              doc.math.push(math);
-            });
-          }, '', false],
-          insertedScript: [200, () => {
-            document.querySelectorAll('mjx-container').forEach(node => {
-              let target = node.parentNode;
-              if (target.nodeName.toLowerCase() === 'li') {
-                target.parentNode.classList.add('has-jax');
-              }
-            });
-          }, '', false]
-        }
-      }
-    };
-    (function () {
-      var script = document.createElement('script');
-      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
-      script.defer = true;
-      document.head.appendChild(script);
-    })();
-  } else {
-    MathJax.startup.document.state(0);
-    MathJax.texReset();
-    MathJax.typeset();
-  }
-</script>
-
-    
 
   
 

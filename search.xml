@@ -82,7 +82,1878 @@
       </tags>
   </entry>
   <entry>
-    <title>矩阵相关问题讲课资料</title>
+    <title>BUAA-CO-p6流水线CPU-pro</title>
+    <url>/2022/11/24/BUAA-CO-p6%E6%B5%81%E6%B0%B4%E7%BA%BFCPU-pro/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title>【BUAA-CO】p5流水线CPU-lite</title>
+    <url>/2022/11/24/BUAA-CO-p5%E6%B5%81%E6%B0%B4%E7%BA%BFCPU-lite/</url>
+    <content><![CDATA[<p>BUAA-CO课程p5，用verilog实现五级流水线的CPU，首次操作难度较大</p>
+<span id="more"></span>
+<h1 id="p5-log"><a href="#p5-log" class="headerlink" title="p5_log"></a>p5_log</h1><h2 id="设计思路-纲领"><a href="#设计思路-纲领" class="headerlink" title="设计思路-纲领"></a>设计思路-纲领</h2><h3 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h3><ul>
+<li>我们先通过对于RTL构造出无需转发的数据通路表</li>
+<li>在考虑转发的情况构造出转发的数据通路</li>
+<li><p>搭建电路（图文结合）</p>
+</li>
+<li><p>然后逐条指令分析主控制器控制信号</p>
+</li>
+<li>逐条指令分析$T_{use}, T_{new} $</li>
+<li>构造策略矩阵</li>
+<li><p>写控制表达式</p>
+</li>
+<li><p>这是一个自下而上的过程</p>
+</li>
+<li>可以先实现p5所需的基础指令</li>
+<li><p>然后对于MIPS-C3架构指令集增量开发</p>
+</li>
+<li><p>最后构建自动化测试与样例生成器</p>
+</li>
+</ul>
+<h3 id="实现指令"><a href="#实现指令" class="headerlink" title="实现指令"></a>实现指令</h3><ul>
+<li>对于指令的分类很重要</li>
+<li>下面是所需要是实现的指令类和指令</li>
+<li>寄存器寄存器计算：add, sub, slt, sltu, and, or, xor</li>
+<li>寄存器立即数计算：addi, slti, andi, ori, xori</li>
+<li>位移类： sll, srl, sra, sllv, srlv, srav</li>
+<li>B类：beq, bne</li>
+<li>store：sw, sh, sb</li>
+<li><p>load：lw, lh, lhu, lb, lbu</p>
+</li>
+<li><p>跳转并链接：jal, jalr, j</p>
+</li>
+<li>跳转寄存器：jr, jalr</li>
+<li>加载高位：lui</li>
+<li>空指令：nop</li>
+<li>读乘除法寄存器：mfhi, mflo</li>
+<li><p>写乘除法寄存器：mult, multu, div, divu, mthi, mtlo</p>
+</li>
+<li><p>p5要求实现的基础指令有：add, sub, ori, lw, sw, beq, lui, jal, jr, nop</p>
+</li>
+</ul>
+<h3 id="命名规范"><a href="#命名规范" class="headerlink" title="命名规范"></a>命名规范</h3><ul>
+<li>在控制信号连线名末尾加上_阶段字母，如：NPCOp_D，用以区分所属阶段</li>
+<li>在寄存器输出信号前加上阶段字母_, 如：D_A1,用以区分所属阶段</li>
+<li>功能部件输出信号前加上功能部件.，（实际打码时舍弃）</li>
+<li>MUX命名采取X_输入端口名_选择数</li>
+<li>转发MUX命名采用F_输入端口名_选择数，级数越大优先级越高</li>
+</ul>
+<h2 id="模块设计"><a href="#模块设计" class="headerlink" title="模块设计"></a>模块设计</h2><h3 id="数据通路"><a href="#数据通路" class="headerlink" title="数据通路"></a>数据通路</h3><h4 id="数据通路表"><a href="#数据通路表" class="headerlink" title="数据通路表"></a>数据通路表</h4><p><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/数据通路表.jpg" alt="数据通路表"></p>
+<h4 id="功能模块"><a href="#功能模块" class="headerlink" title="功能模块"></a>功能模块</h4><h5 id="IFU-PC-IM"><a href="#IFU-PC-IM" class="headerlink" title="IFU(PC\IM)"></a>IFU(PC\IM)</h5><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">信号名</th>
+<th style="text-align:center">IO</th>
+<th style="text-align:left">描述</th>
+<th style="text-align:left">备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">clk</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">时钟信号</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:center">reset</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">同步复位</td>
+</tr>
+<tr>
+<td style="text-align:center">en</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">使能</td>
+<td style="text-align:left">暂停时使用</td>
+</tr>
+<tr>
+<td style="text-align:center">NPC[31:0]</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">由NPC返回，下一条指令的PC</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:center">PC[31:0]</td>
+<td style="text-align:center">O</td>
+<td style="text-align:left">当前执行的指令地址</td>
+</tr>
+<tr>
+<td style="text-align:center">instr[31:0]</td>
+<td style="text-align:center">O</td>
+<td style="text-align:left">当前执行的指令</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h5 id="RF"><a href="#RF" class="headerlink" title="RF"></a>RF</h5><ul>
+<li>内部转发</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">信号名</th>
+<th style="text-align:center">IO</th>
+<th style="text-align:left">描述</th>
+<th style="text-align:left">备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">clk</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">时钟信号</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:center">reset</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">同步复位</td>
+</tr>
+<tr>
+<td style="text-align:center">WE</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">写使能信号</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:center">A1[4:0]</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">读出地址1</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:center">A2[4:0]</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">读出地址2</td>
+</tr>
+<tr>
+<td style="text-align:center">A3[4:0]</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">写入地址</td>
+</tr>
+<tr>
+<td style="text-align:center">WD[31:0]</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">写入的数据</td>
+</tr>
+<tr>
+<td style="text-align:center">RD1[31:0]</td>
+<td style="text-align:center">O</td>
+<td style="text-align:left">输出A1地址寄存器中的值</td>
+</tr>
+<tr>
+<td style="text-align:center">RD2[31:0]</td>
+<td style="text-align:center">O</td>
+<td style="text-align:left">输出A2地址寄存器中的值</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h5 id="CMP"><a href="#CMP" class="headerlink" title="CMP"></a>CMP</h5><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">信号名</th>
+<th style="text-align:center">IO</th>
+<th style="text-align:left">描述</th>
+<th style="text-align:left">备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">D1[31:0]</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">待比较数据1</td>
+</tr>
+<tr>
+<td style="text-align:center">D2[31:0]</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">待比较数据2</td>
+</tr>
+<tr>
+<td style="text-align:center">CMPOp[2:0]</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">CMP功能选择：&lt;/br&gt; 000: beq &lt;/br&gt; 001: bne &lt;/br&gt; 010: blez &lt;/br&gt; 011: bgtz</td>
+</tr>
+<tr>
+<td style="text-align:center">out</td>
+<td style="text-align:center">O</td>
+<td style="text-align:left">结果为1则分支跳转，为0不跳转</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h5 id="NPC"><a href="#NPC" class="headerlink" title="NPC"></a>NPC</h5><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">信号名</th>
+<th style="text-align:center">IO</th>
+<th style="text-align:left">描述</th>
+<th style="text-align:left">备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">PC[31:0]</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">当前指令地址</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:center">Simm26[25:0]</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">地址偏移</td>
+</tr>
+<tr>
+<td style="text-align:center">ra[31:0]</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">返回地址</td>
+</tr>
+<tr>
+<td style="text-align:center">CmpOut</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">B类指令的比较结果</td>
+</tr>
+<tr>
+<td style="text-align:center">NPCOp[2:0]</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">NPC功能选择：&lt;/br&gt; 000: 顺序+4 &lt;/br&gt; 001: B类跳转 &lt;/br&gt;010: jal/j &lt;/br&gt; 011:jr/jalr</td>
+</tr>
+<tr>
+<td style="text-align:center">NPC[31:0]</td>
+<td style="text-align:center">O</td>
+<td style="text-align:left">下一条指令地址</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h5 id="EXT"><a href="#EXT" class="headerlink" title="EXT"></a>EXT</h5><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">信号名</th>
+<th style="text-align:center">IO</th>
+<th style="text-align:left">描述</th>
+<th style="text-align:left">备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">imm16[15:0]</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">16位立即数</td>
+</tr>
+<tr>
+<td style="text-align:center">EXTOp</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">EXT功能选择：&lt;/br&gt; 0: 0拓展 &lt;/br&gt; 1: 符号位拓展</td>
+<td style="text-align:left">lui指令的高位拓展在ALU里执行</td>
+</tr>
+<tr>
+<td style="text-align:center">S0imm32</td>
+<td style="text-align:center">O</td>
+<td style="text-align:left">拓展后的32位立即数</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h5 id="ALU"><a href="#ALU" class="headerlink" title="ALU"></a>ALU</h5><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">信号名</th>
+<th style="text-align:center">IO</th>
+<th style="text-align:left">描述</th>
+<th style="text-align:left">备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">ALUOp[3:0]</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">ALU功能选择</td>
+<td style="text-align:left">具体对于功能后有附录</td>
+</tr>
+<tr>
+<td style="text-align:center">A[31:0]</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">运算数1</td>
+</tr>
+<tr>
+<td style="text-align:center">B[31:0]</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">运算数2</td>
+</tr>
+<tr>
+<td style="text-align:center">shamt[4:0]</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">位移值</td>
+</tr>
+<tr>
+<td style="text-align:center">ALUout[31:0]</td>
+<td style="text-align:center">O</td>
+<td style="text-align:left">计算结果</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h5 id="MDU-乘除模块"><a href="#MDU-乘除模块" class="headerlink" title="MDU(乘除模块)"></a>MDU(乘除模块)</h5><h5 id="DM"><a href="#DM" class="headerlink" title="DM"></a>DM</h5><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">信号名</th>
+<th style="text-align:center">IO</th>
+<th style="text-align:left">描述</th>
+<th style="text-align:left">备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">clk</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">时钟信号</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:center">reset</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">同步复位</td>
+</tr>
+<tr>
+<td style="text-align:center">WE</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">写使能信号</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:center">A[31:0]</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">待操作数据的地址</td>
+</tr>
+<tr>
+<td style="text-align:center">WD[31:0]</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">待写入的数据</td>
+</tr>
+<tr>
+<td style="text-align:center">DMOp[2:0]</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">DM功能选择：000: word &lt;/br&gt; 001: halfword &lt;/br&gt; 010: byte &lt;/br&gt; 1xx: 无符号拓展load</td>
+<td style="text-align:left">最高位置一表示无符号位拓展</td>
+</tr>
+<tr>
+<td style="text-align:center">DMout[31:0]</td>
+<td style="text-align:center">O</td>
+<td style="text-align:left">输出的32位数据</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 id="流水线寄存器"><a href="#流水线寄存器" class="headerlink" title="流水线寄存器"></a>流水线寄存器</h4><ul>
+<li>每个流水线寄存器都保存着一条指令完成后续操作所需要的的全部信息。</li>
+<li>对于每一个流水线的产生结果的级次，我需要用一个MUX来确定哪个是当前指令的用于转发的有效数据，PC+8， ALUout，DMout，所以我们增加outSel的选择信号，此选择信号可以代替RFWDSel的功能</li>
+</ul>
+<h5 id="D-IF-ID"><a href="#D-IF-ID" class="headerlink" title="D(IF/ID)"></a>D(IF/ID)</h5><ul>
+<li>可以在D级内置Splitter</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">信号名</th>
+<th style="text-align:center">IO</th>
+<th style="text-align:left">描述</th>
+<th style="text-align:left">备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">clk</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">时钟信号</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:center">reset</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">同步复位</td>
+</tr>
+<tr>
+<td style="text-align:center">en</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">使能信号</td>
+<td style="text-align:left">暂停时置位0</td>
+</tr>
+<tr>
+<td style="text-align:center">F_instr[31:0]</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">F级取出的指令</td>
+</tr>
+<tr>
+<td style="text-align:center">F_PC[31:0]</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">F级输出的指令PC</td>
+</tr>
+<tr>
+<td style="text-align:center">D_opcode[5:0]</td>
+<td style="text-align:center">O</td>
+<td style="text-align:left">当前D级的opcode</td>
+</tr>
+<tr>
+<td style="text-align:center">D_rs[4:0]</td>
+<td style="text-align:center">O</td>
+<td style="text-align:left">rs</td>
+</tr>
+<tr>
+<td style="text-align:center">D_rt[4:0]</td>
+<td style="text-align:center">O</td>
+<td style="text-align:left">rt</td>
+</tr>
+<tr>
+<td style="text-align:center">D_rd[4:0]</td>
+<td style="text-align:center">O</td>
+<td style="text-align:left">rd</td>
+</tr>
+<tr>
+<td style="text-align:center">D_shamt[4:0]</td>
+<td style="text-align:center">O</td>
+<td style="text-align:left">偏移量，位移指令使用</td>
+</tr>
+<tr>
+<td style="text-align:center">D_funct[5:0]</td>
+<td style="text-align:center">O</td>
+<td style="text-align:left">funtion码</td>
+</tr>
+<tr>
+<td style="text-align:center">D_imm16[15:0]</td>
+<td style="text-align:center">O</td>
+<td style="text-align:left">16位立即数</td>
+</tr>
+<tr>
+<td style="text-align:center">D_address[25:0]</td>
+<td style="text-align:center">O</td>
+<td style="text-align:left">26位地址</td>
+</tr>
+<tr>
+<td style="text-align:center">D_PC[31:0]</td>
+<td style="text-align:center">O</td>
+<td style="text-align:left">D级当前指令地址</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h5 id="E-ID-EX"><a href="#E-ID-EX" class="headerlink" title="E(ID/EX)"></a>E(ID/EX)</h5><ul>
+<li>从E级开始流水控制信号</li>
+<li>T_new-1</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">信号名</th>
+<th style="text-align:center">IO</th>
+<th style="text-align:left">描述</th>
+<th style="text-align:left">备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">clk</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">时钟信号</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:center">reset</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">同步复位</td>
+<td style="text-align:left">暂停时置为1</td>
+</tr>
+<tr>
+<td style="text-align:center">en</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">使能信号</td>
+</tr>
+<tr>
+<td style="text-align:center">[31:0] D_V2</td>
+<td style="text-align:center">I</td>
+</tr>
+<tr>
+<td style="text-align:center">[4:0] D_A1</td>
+<td style="text-align:center">I</td>
+</tr>
+<tr>
+<td style="text-align:center">[4:0] D_A2</td>
+<td style="text-align:center">I</td>
+</tr>
+<tr>
+<td style="text-align:center">[4:0] D_A3</td>
+<td style="text-align:center">I</td>
+</tr>
+<tr>
+<td style="text-align:center">[4:0] D_shamt</td>
+<td style="text-align:center">I</td>
+</tr>
+<tr>
+<td style="text-align:center">[31:0] D_S0imm32</td>
+<td style="text-align:center">I</td>
+</tr>
+<tr>
+<td style="text-align:center">[31:0] D_PC</td>
+<td style="text-align:center">I</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">ALUOp_D[3:0]</td>
+<td style="text-align:center">I</td>
+</tr>
+<tr>
+<td style="text-align:center">DMOp_D[2:0]</td>
+<td style="text-align:center">I</td>
+</tr>
+<tr>
+<td style="text-align:center">RFWE_D</td>
+<td style="text-align:center">I</td>
+</tr>
+<tr>
+<td style="text-align:center">DMWE_D</td>
+<td style="text-align:center">I</td>
+</tr>
+<tr>
+<td style="text-align:center">BSel_D</td>
+<td style="text-align:center">I</td>
+</tr>
+<tr>
+<td style="text-align:center">outSel_D[1:0]</td>
+<td style="text-align:center">I</td>
+</tr>
+<tr>
+<td style="text-align:center">T_new_D[1:0]</td>
+<td style="text-align:center">I</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">[31:0] E_V1</td>
+<td style="text-align:center">O</td>
+</tr>
+<tr>
+<td style="text-align:center">[31:0] E_V2</td>
+<td style="text-align:center">O</td>
+</tr>
+<tr>
+<td style="text-align:center">[4:0] E_A1</td>
+<td style="text-align:center">O</td>
+</tr>
+<tr>
+<td style="text-align:center">[4:0] E_A2</td>
+<td style="text-align:center">O</td>
+</tr>
+<tr>
+<td style="text-align:center">[4:0] E_A3</td>
+<td style="text-align:center">O</td>
+</tr>
+<tr>
+<td style="text-align:center">[4:0] E_shamt</td>
+<td style="text-align:center">O</td>
+</tr>
+<tr>
+<td style="text-align:center">[31:0] E_S0imm32</td>
+<td style="text-align:center">O</td>
+</tr>
+<tr>
+<td style="text-align:center">[31:0] E_PC</td>
+<td style="text-align:center">O</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">ALUOp_E[3:0]</td>
+<td style="text-align:center">O</td>
+</tr>
+<tr>
+<td style="text-align:center">DMOp_E[2:0]</td>
+<td style="text-align:center">O</td>
+</tr>
+<tr>
+<td style="text-align:center">RFWE_E</td>
+<td style="text-align:center">O</td>
+</tr>
+<tr>
+<td style="text-align:center">DMWE_E</td>
+<td style="text-align:center">O</td>
+</tr>
+<tr>
+<td style="text-align:center">BSel_E</td>
+<td style="text-align:center">O</td>
+</tr>
+<tr>
+<td style="text-align:center">outSel_E[1:0]</td>
+<td style="text-align:center">O</td>
+</tr>
+<tr>
+<td style="text-align:center">T_new_E[1:0]</td>
+<td style="text-align:center">O</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h5 id="M-EX-MEM"><a href="#M-EX-MEM" class="headerlink" title="M(EX/MEM)"></a>M(EX/MEM)</h5><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">信号名</th>
+<th style="text-align:center">IO</th>
+<th style="text-align:left">描述</th>
+<th style="text-align:left">备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">clk</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">时钟信号</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:center">reset</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">同步复位</td>
+</tr>
+<tr>
+<td style="text-align:center">en</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">使能信号</td>
+</tr>
+<tr>
+<td style="text-align:center">[31:0] E_V2</td>
+<td style="text-align:center">I</td>
+</tr>
+<tr>
+<td style="text-align:center">[4:0] E_A2</td>
+<td style="text-align:center">I</td>
+</tr>
+<tr>
+<td style="text-align:center">[4:0] E_A3</td>
+<td style="text-align:center">I</td>
+</tr>
+<tr>
+<td style="text-align:center">[31:0] ALUout</td>
+<td style="text-align:center">I</td>
+</tr>
+<tr>
+<td style="text-align:center">[31:0] E_PC</td>
+<td style="text-align:center">I</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">DMOp_E[2:0]</td>
+<td style="text-align:center">I</td>
+</tr>
+<tr>
+<td style="text-align:center">RFWE_E</td>
+<td style="text-align:center">I</td>
+</tr>
+<tr>
+<td style="text-align:center">DMWE_E</td>
+<td style="text-align:center">I</td>
+</tr>
+<tr>
+<td style="text-align:center">outSel_E[1:0]</td>
+<td style="text-align:center">I</td>
+</tr>
+<tr>
+<td style="text-align:center">T_new_E[1:0]</td>
+<td style="text-align:center">I</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">[31:0] M_V2</td>
+<td style="text-align:center">O</td>
+</tr>
+<tr>
+<td style="text-align:center">[4:0] M_A2</td>
+<td style="text-align:center">O</td>
+</tr>
+<tr>
+<td style="text-align:center">[4:0] M_A3</td>
+<td style="text-align:center">O</td>
+</tr>
+<tr>
+<td style="text-align:center">[31:0] M_ALUout</td>
+<td style="text-align:center">O</td>
+</tr>
+<tr>
+<td style="text-align:center">[31:0] M_PC</td>
+<td style="text-align:center">O</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">DMOp_M[2:0]</td>
+<td style="text-align:center">O</td>
+</tr>
+<tr>
+<td style="text-align:center">RFWE_M</td>
+<td style="text-align:center">O</td>
+</tr>
+<tr>
+<td style="text-align:center">DMWE_M</td>
+<td style="text-align:center">O</td>
+</tr>
+<tr>
+<td style="text-align:center">outSel_M[1:0]</td>
+<td style="text-align:center">O</td>
+</tr>
+<tr>
+<td style="text-align:center">T_new_M[1:0]</td>
+<td style="text-align:center">O</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h5 id="W-MEM-WB"><a href="#W-MEM-WB" class="headerlink" title="W(MEM/WB)"></a>W(MEM/WB)</h5><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">信号名</th>
+<th style="text-align:center">IO</th>
+<th style="text-align:left">描述</th>
+<th style="text-align:left">备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">clk</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">时钟信号</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:center">reset</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">同步复位</td>
+</tr>
+<tr>
+<td style="text-align:center">en</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">使能信号</td>
+</tr>
+<tr>
+<td style="text-align:center">[4:0] M_A3</td>
+<td style="text-align:center">I</td>
+</tr>
+<tr>
+<td style="text-align:center">[31:0] M_ALUout</td>
+<td style="text-align:center">I</td>
+</tr>
+<tr>
+<td style="text-align:center">[31:0] M_DR</td>
+<td style="text-align:center">I</td>
+</tr>
+<tr>
+<td style="text-align:center">[31:0] M_PC</td>
+<td style="text-align:center">I</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">RFWE_M</td>
+<td style="text-align:center">I</td>
+</tr>
+<tr>
+<td style="text-align:center">outSel_M[1:0]</td>
+<td style="text-align:center">I</td>
+</tr>
+<tr>
+<td style="text-align:center">T_new_M[1:0]</td>
+<td style="text-align:center">I</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">[4:0] W_A3</td>
+<td style="text-align:center">O</td>
+</tr>
+<tr>
+<td style="text-align:center">[31:0] W_ALUout</td>
+<td style="text-align:center">O</td>
+</tr>
+<tr>
+<td style="text-align:center">[31:0] W_DR</td>
+<td style="text-align:center">O</td>
+</tr>
+<tr>
+<td style="text-align:center">[31:0] W_PC</td>
+<td style="text-align:center">O</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">RFWE_W</td>
+<td style="text-align:center">O</td>
+</tr>
+<tr>
+<td style="text-align:center">outSel_W[1:0]</td>
+<td style="text-align:center">O</td>
+</tr>
+<tr>
+<td style="text-align:center">T_new_W[1:0]</td>
+<td style="text-align:center">O</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="控制模块"><a href="#控制模块" class="headerlink" title="控制模块"></a>控制模块</h3><ul>
+<li>此CPU采用集中译码的方式，在D级译码，控制信号进入流水，使用过的就不用进入了</li>
+<li>T_new产生后随着流水线递减</li>
+<li>分为MCU，HCU</li>
+</ul>
+<p><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/控制信号表.jpg" alt="控制信号表"></p>
+<h4 id="主控制器（MCU）"><a href="#主控制器（MCU）" class="headerlink" title="主控制器（MCU）"></a>主控制器（MCU）</h4><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">信号名</th>
+<th style="text-align:center">IO</th>
+<th style="text-align:left">描述</th>
+<th style="text-align:left">备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">opcode[5:0]</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">D_opcode</td>
+</tr>
+<tr>
+<td style="text-align:center">funct[5:0]</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">D_funct</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">NPCOp_D[2:0]</td>
+<td style="text-align:center">O</td>
+</tr>
+<tr>
+<td style="text-align:center">ALUOp_D[3:0]</td>
+<td style="text-align:center">O</td>
+</tr>
+<tr>
+<td style="text-align:center">DEXTOp_D</td>
+<td style="text-align:center">O</td>
+</tr>
+<tr>
+<td style="text-align:center">DMOp_D[2:0]</td>
+<td style="text-align:center">O</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">RFWE_D</td>
+<td style="text-align:center">O</td>
+</tr>
+<tr>
+<td style="text-align:center">DMWE_D</td>
+<td style="text-align:center">O</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">imm26Sel_D</td>
+<td style="text-align:center">O</td>
+</tr>
+<tr>
+<td style="text-align:center">DA3Sel_D[1:0]</td>
+<td style="text-align:center">O</td>
+</tr>
+<tr>
+<td style="text-align:center">BSel_D</td>
+<td style="text-align:center">O</td>
+<td style="text-align:left">E_ALU_B信号选择：{}</td>
+</tr>
+<tr>
+<td style="text-align:center">outSel[1:0]</td>
+<td style="text-align:center">O</td>
+<td style="text-align:left">有效转发数据Sel</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">T_rsUse[1:0]</td>
+<td style="text-align:center">O</td>
+<td style="text-align:left">当前指令用到rs寄存器所剩下的时间</td>
+</tr>
+<tr>
+<td style="text-align:center">T_rtUse[1:0]</td>
+<td style="text-align:center">O</td>
+<td style="text-align:left">rt</td>
+</tr>
+<tr>
+<td style="text-align:center">T_new_D[1:0]</td>
+<td style="text-align:center">O</td>
+<td style="text-align:left">当前指令产生结果所需的时间</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>MUX控制信号的具体含义可以看数据通路表</li>
+</ul>
+<h4 id="冒险控制器（HCU）"><a href="#冒险控制器（HCU）" class="headerlink" title="冒险控制器（HCU）"></a>冒险控制器（HCU）</h4><ul>
+<li>空行表示逻辑与功能上的分割</li>
+<li>我这里只需要D级输出T_use因为我只有stall需要用到T_use，而stall应只在D级就决定，转发只需判断Tnew==0</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">信号名</th>
+<th style="text-align:center">IO</th>
+<th style="text-align:left">描述</th>
+<th style="text-align:left">备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">D_A1[4:0]</td>
+<td style="text-align:center">I</td>
+</tr>
+<tr>
+<td style="text-align:center">D_A2[4：0]</td>
+<td style="text-align:center">I</td>
+</tr>
+<tr>
+<td style="text-align:center">E_A1[4：0]</td>
+<td style="text-align:center">I</td>
+</tr>
+<tr>
+<td style="text-align:center">E_A2[4:0]</td>
+<td style="text-align:center">I</td>
+</tr>
+<tr>
+<td style="text-align:center">M_A2[4:0]</td>
+<td style="text-align:center">I</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">E_A3[4:0]</td>
+<td style="text-align:center">I</td>
+</tr>
+<tr>
+<td style="text-align:center">M_A3[4:0]</td>
+<td style="text-align:center">I</td>
+</tr>
+<tr>
+<td style="text-align:center">W_A3[4:0]</td>
+<td style="text-align:center">I</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">RFWE_E</td>
+<td style="text-align:center">I</td>
+</tr>
+<tr>
+<td style="text-align:center">RFWE_E</td>
+<td style="text-align:center">I</td>
+</tr>
+<tr>
+<td style="text-align:center">RFWE_E</td>
+<td style="text-align:center">I</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">T_rsUse[1:0]</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">D级MCU输出T_use</td>
+</tr>
+<tr>
+<td style="text-align:center">T_rtUse[1:0]</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">D级MCU输出T_use</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">T_new_E[1:0]</td>
+<td style="text-align:center">I</td>
+</tr>
+<tr>
+<td style="text-align:center">T_new_M[1:0]</td>
+<td style="text-align:center">I</td>
+</tr>
+<tr>
+<td style="text-align:center">T_new_W[1:0]</td>
+<td style="text-align:center">I</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">RFRD1Fwd[1:0]</td>
+<td style="text-align:center">O</td>
+<td style="text-align:left">NPC读入RA的转发</td>
+</tr>
+<tr>
+<td style="text-align:center">CMPD1Fwd[1:0]</td>
+<td style="text-align:center">O</td>
+<td style="text-align:left">D_RD1的转发</td>
+</tr>
+<tr>
+<td style="text-align:center">CMPD2Fwd[1:0]</td>
+<td style="text-align:center">O</td>
+<td style="text-align:left">D_RD2的转发</td>
+</tr>
+<tr>
+<td style="text-align:center">ALUV1Fwd[1:0]</td>
+<td style="text-align:center">O</td>
+<td style="text-align:left">ALU_A的转发</td>
+</tr>
+<tr>
+<td style="text-align:center">ALUV2Fwd[1:0]</td>
+<td style="text-align:center">O</td>
+<td style="text-align:left">ALU_B的转发</td>
+</tr>
+<tr>
+<td style="text-align:center">DMV2Fwd[1:0]</td>
+<td style="text-align:center">O</td>
+<td style="text-align:left">DM_WD的转发</td>
+</tr>
+<tr>
+<td style="text-align:center">stall</td>
+<td style="text-align:center">O</td>
+<td style="text-align:left">暂停信号</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>Sel结尾代表常规MUX信号，Fwd结尾代表转发MUX信号</li>
+<li>转发MUX的Sel的含义大致是数字越大优先级越高，优先级是E、M、W</li>
+</ul>
+<h2 id="实现方法"><a href="#实现方法" class="headerlink" title="实现方法"></a>实现方法</h2><h3 id="访存指令"><a href="#访存指令" class="headerlink" title="访存指令"></a>访存指令</h3><ul>
+<li>特别注意在M_V2存入F_ALU_V2</li>
+</ul>
+<h3 id="跳转分支指令"><a href="#跳转分支指令" class="headerlink" title="跳转分支指令"></a>跳转分支指令</h3><ul>
+<li>要特别注意PC+8的转发问题，当检测到jal时转发</li>
+</ul>
+<h3 id="冒险处理"><a href="#冒险处理" class="headerlink" title="冒险处理"></a>冒险处理</h3><ul>
+<li>遵循暴力转发策略，在打好常规的数据通路表后，观察哪些端口需要用到寄存器值（需求者），再把所有的供给者的情况遍历出来</li>
+<li>AT法: 需求者是需要用这个值来运算的，找到所有与V，RD相关的端口；供给者是需要这个值来存入的，考虑它啥时候能够算出来。</li>
+<li>因此对于 $T_{use} $ 我们只需要考虑被需求所以只可能在DEM级</li>
+<li>对于</li>
+<li>$T_{use} = 0$: beq, jr</li>
+<li>$T_{use} = 1$: add, sub, ori, lw, sw</li>
+<li>$T_{use} = 2$: lw, sw</li>
+<li>表出来后，尽量转发</li>
+<li>暂停的机制：暂停IF,暂停D级，清空E级，</li>
+<li>转发机制：结果出来后都转发，只需改变控制信号。</li>
+<li>我们把RFWE放入HCU用以保证写使能信号有效（有效数据）</li>
+<li>判断A3!=0</li>
+<li>注意对于不要用的rt，rs置位2</li>
+</ul>
+<h4 id="冒险控制表"><a href="#冒险控制表" class="headerlink" title="冒险控制表"></a>冒险控制表</h4><ul>
+<li>先根据每一条指令，整理其Tuse，Tnew</li>
+</ul>
+<p><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/指令时间表.jpg" alt="指令时间表"></p>
+<ul>
+<li>再根据每条指令的时间列出转发暂停控制信号表</li>
+</ul>
+<p><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/冲突控制表.jpg" alt="冲突控制表"></p>
+<h2 id="测试数据及自动化测试"><a href="#测试数据及自动化测试" class="headerlink" title="测试数据及自动化测试"></a>测试数据及自动化测试</h2><h3 id="常规测试"><a href="#常规测试" class="headerlink" title="常规测试"></a>常规测试</h3><ul>
+<li>这里同p4的测试</li>
+</ul>
+<h3 id="冒险测试"><a href="#冒险测试" class="headerlink" title="冒险测试"></a>冒险测试</h3><ul>
+<li>对于冲突进行覆盖性分析，需要我们根据冲突表，45种情况每一种都设计相应的冒险测试数据（建立在基础测试通过的情况下）</li>
+</ul>
+<h3 id="自动化"><a href="#自动化" class="headerlink" title="自动化"></a>自动化</h3><ul>
+<li>我实现了一个半自动化的测试程序具体见上交的材料</li>
+</ul>
+<h2 id="思考题"><a href="#思考题" class="headerlink" title="思考题"></a>思考题</h2><ol>
+<li>我们使用提前分支判断的方法尽早产生结果来减少因不确定而带来的开销，但实际上这种方法并非总能提高效率，请从流水线冒险的角度思考其原因并给出一个指令序列的例子。<ul>
+<li>我们使用两个寄存器值的时间最早来到了D级，所以很可能会引发暂停.</li>
+<li>如下面这种情况，若beq的结果在E级产生，则不需要暂停，可以转发，但是现在beq在D级的时候lw还在M级，没有产生结果，需要暂停。</li>
+</ul>
+</li>
+</ol>
+<figure class="highlight mips"><table><tr><td class="code"><pre><span class="line"><span class="keyword">lw </span>   $<span class="built_in">t0</span>, <span class="number">0</span>($<span class="number">0</span>)</span><br><span class="line"><span class="keyword">nop</span></span><br><span class="line"><span class="keyword"></span><span class="keyword">beq </span>  $<span class="built_in">t0</span>, $<span class="built_in">t0</span>, label</span><br></pre></td></tr></table></figure>
+<ol>
+<li>因为延迟槽的存在，对于 jal 等需要将指令地址写入寄存器的指令，要写回 PC + 8，请思考为什么这样设计？<ul>
+<li>因为延迟槽的存在，跳转指令的后一条必然会执行，所以需要把PC+8写入寄存器，不然jr时延迟槽内的指令会再执行一次</li>
+</ul>
+</li>
+<li>我们要求大家所有转发数据都来源于流水寄存器而不能是功能部件（如 DM 、 ALU ），请思考为什么？<ul>
+<li>来自寄存器的值是当前这一级的值，而功能部件输出的值是要写入下一级的，有一定的延迟，不能统一时间，转发的值就不稳定</li>
+</ul>
+</li>
+<li>我们为什么要使用 GPR 内部转发？该如何实现？<ul>
+<li>为了保持W级的写入和此时D级的读出是同一个值，规避数据冒险。实现方法就是在RF模块里加上一个MUX，判断当冲突条件满足时，转发。</li>
+</ul>
+</li>
+</ol>
+<figure class="highlight verilog"><table><tr><td class="code"><pre><span class="line"><span class="keyword">assign</span> RD1 = (A3 == A1) &amp; (A3 != <span class="number">0</span>) &amp; (en == <span class="number">1</span>)? WD : greg[A1];</span><br><span class="line"><span class="keyword">assign</span> RD2 = (A3 == A2) &amp; (A3 != <span class="number">0</span>) &amp; (en == <span class="number">1</span>)? WD : greg[A2];</span><br></pre></td></tr></table></figure>
+<ul>
+<li>当然不使用内部转发的话也不是不行，可以把Wout接入RD出口的转发多路选择器。</li>
+</ul>
+<ol>
+<li>我们转发时数据的需求者和供给者可能来源于哪些位置？共有哪些转发数据通路？<ul>
+<li>需求者有：NPC.RA, CMP.D1|D2, ALU.V1|V2, DM.WD</li>
+<li>供给者：PC+8, ALU, DM</li>
+<li>转发数据通路：每一级上加上一个outMUX，用于选择转发回去的结果，选择信号每条指令不同；在每个需求者端口前加上转发MUX，用于接收来自E, M, W三级的转发。</li>
+</ul>
+</li>
+<li>在课上测试时，我们需要你现场实现新的指令，对于这些新的指令，你可能需要在原有的数据通路上做哪些扩展或修改？提示：你可以对指令进行分类，思考每一类指令可能修改或扩展哪些位置。<ul>
+<li>增加了sll，sb|lb|lbu指令，所以课上的拓展大多数能覆盖到</li>
+<li>高内聚低耦合原理：大多数只需要改变控制信号以及相应的功能模块增加功能，但不排除某些需要修改数据通路</li>
+<li>对于计算类：首先改变MCU，注意每个指令的控制信号的对应，再改ALU的结构，增加输出选择</li>
+<li>对于访存类：改变MCU+修改DM增加相应的功能</li>
+<li>对于跳转类：修改MCU+NPC相应功能修改</li>
+<li>小技巧：寻找已有的指令中与新增的指令相似的指令（可能不止一条），然后顺着这几条指令改。</li>
+</ul>
+</li>
+<li>简要描述你的译码器架构，并思考该架构的优势以及不足。<ul>
+<li>我当前是集中式译码</li>
+<li>优势：不需要编写多个译码器</li>
+<li>不足：流水线寄存器会变得十分的臃肿</li>
+</ul>
+</li>
+</ol>
+<figure class="highlight verilog"><table><tr><td class="code"><pre><span class="line"><span class="keyword">assign</span> NPCOp[<span class="number">0</span>] = _beq | _jal ;</span><br><span class="line"><span class="keyword">assign</span> NPCOp[<span class="number">1</span>] = _j | _jal;</span><br><span class="line"><span class="keyword">assign</span> NPCOp[<span class="number">2</span>] = _jr;</span><br><span class="line"></span><br><span class="line"><span class="keyword">assign</span> DEXTOp = _lw | _sw | _lb | _lbu | _sb ;</span><br><span class="line"></span><br><span class="line"><span class="keyword">assign</span> ALUOp[<span class="number">0</span>] = _sub | _slt | _sll;</span><br><span class="line"><span class="keyword">assign</span> ALUOp[<span class="number">1</span>] = _ori | _slt ;</span><br><span class="line"><span class="keyword">assign</span> ALUOp[<span class="number">2</span>] = _lui | _sll ;</span><br><span class="line"><span class="keyword">assign</span> ALUOp[<span class="number">3</span>] = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">assign</span> CMPOp[<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">assign</span> CMPOp[<span class="number">1</span>] = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">assign</span> CMPOp[<span class="number">2</span>] = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">assign</span> DMOp[<span class="number">0</span>] = _lbu | _lb | _sb;</span><br><span class="line"><span class="keyword">assign</span> DMOp[<span class="number">1</span>] = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">assign</span> DMOp[<span class="number">2</span>] = _lbu;</span><br><span class="line"></span><br><span class="line"><span class="keyword">assign</span> RFWE = _add | _sub | _ori | _slt | _lw | _jal | _lui | _lb | _lbu | _sll;</span><br><span class="line"><span class="keyword">assign</span> DMWE = _sw | _sb;</span><br><span class="line"></span><br><span class="line"><span class="keyword">assign</span> imm26Sel = _j | _jal;</span><br><span class="line"></span><br><span class="line"><span class="keyword">assign</span> DA3Sel[<span class="number">0</span>] = _ori | _lw | _lui | _lb | _lbu;</span><br><span class="line"><span class="keyword">assign</span> DA3Sel[<span class="number">1</span>] = _jal;</span><br><span class="line"></span><br><span class="line"><span class="keyword">assign</span> BSel = _ori | _lw | _sw | _lui | _lb | _lbu | _sb;</span><br><span class="line"></span><br><span class="line"><span class="keyword">assign</span> outSel[<span class="number">0</span>] = _add | _sub | _ori | _slt | _lui | _sll;</span><br><span class="line"><span class="keyword">assign</span> outSel[<span class="number">1</span>] = _lw | _lb | _lbu;</span><br><span class="line"></span><br><span class="line"><span class="keyword">assign</span> T_rsUse[<span class="number">0</span>] = _add | _sub | _ori | _lw | _sw | _lui | _lb | _lbu | _sb;</span><br><span class="line"><span class="keyword">assign</span> T_rsUse[<span class="number">1</span>] = (_jal | _sll);</span><br><span class="line"></span><br><span class="line"><span class="keyword">assign</span> T_rtUse[<span class="number">0</span>] = _add | _sub | _sll;</span><br><span class="line"><span class="keyword">assign</span> T_rtUse[<span class="number">1</span>] = _sw | _sb | (_ori | _lw | _lui | _jal | _jr | _lb | _lbu);</span><br><span class="line"></span><br><span class="line"><span class="keyword">assign</span> T_new_D[<span class="number">0</span>] = _lw | _lb | _lbu;</span><br><span class="line"><span class="keyword">assign</span> T_new_D[<span class="number">1</span>] = _lw | _add | _sub | _ori | _lui | _lb | _lbu | _sll;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>BUAA计算机组成原理</category>
+      </categories>
+      <tags>
+        <tag>北航</tag>
+        <tag>CO</tag>
+        <tag>大二</tag>
+        <tag>计组</tag>
+        <tag>MIPS</tag>
+        <tag>P5</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【BUAA-CO】p4单周期CPU-verilog实现</title>
+    <url>/2022/11/24/BUAA-CO-p4%E5%8D%95%E5%91%A8%E6%9C%9FCPU-verilog%E5%AE%9E%E7%8E%B0/</url>
+    <content><![CDATA[<p>BUAA-CO课程p4，用verilog实现单周期的CPU</p>
+<span id="more"></span>
+<h1 id="p4-log"><a href="#p4-log" class="headerlink" title="p4_log"></a>p4_log</h1><h2 id="模块化层次化"><a href="#模块化层次化" class="headerlink" title="模块化层次化"></a>模块化层次化</h2><ul>
+<li>整体结构与p3中logisim的分层一致，顶层端口定义为mips.v</li>
+<li>不同：<ul>
+<li>需要增加同步复位信号reset</li>
+<li>clk留端口，而不是内置</li>
+</ul>
+</li>
+<li>需要支持的指令集为：add, sub, ori, lw, sw, beq, lui, jal, jr, nop</li>
+<li>后期添加的指令为：slt,sll,lh,sh,lbu</li>
+</ul>
+<h2 id="设计方案"><a href="#设计方案" class="headerlink" title="设计方案"></a>设计方案</h2><ul>
+<li>模块化、端口定义等等大致和p3一致</li>
+<li>连线的时候的命名：推荐使用模块+输出端口命名法，小写字母表示，每一个模块的线放一块，这样输入的时候一目了然<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/连线命名方式.jpg" alt="连线命名"></li>
+<li>注意存储器地址访问的/4细节，思考题中的[11:2]应该就是出于这个考虑</li>
+</ul>
+<h3 id="datapath"><a href="#datapath" class="headerlink" title="datapath"></a>datapath</h3><ul>
+<li>所有的MUX放在同一个MUX.v的文件中，命名为：MUX_SelNum_bit(默认为32位), 如MUX_4,MUX_4_26,MUX_2_5;</li>
+</ul>
+<h4 id="RF"><a href="#RF" class="headerlink" title="RF"></a>RF</h4><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">信号名</th>
+<th style="text-align:center">IO</th>
+<th style="text-align:left">描述</th>
+<th style="text-align:left">备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">clk</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">时钟信号</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:center">reset</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">异步复位</td>
+</tr>
+<tr>
+<td style="text-align:center">WE</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">写使能信号</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:center">A1[4:0]</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">读出地址1</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:center">A2[4:0]</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">读出地址2</td>
+</tr>
+<tr>
+<td style="text-align:center">A3[4:0]</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">写入地址</td>
+</tr>
+<tr>
+<td style="text-align:center">WD[31:0]</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">写入的数据</td>
+</tr>
+<tr>
+<td style="text-align:center">RD1[31:0]</td>
+<td style="text-align:center">O</td>
+<td style="text-align:left">输出A1地址寄存器中的值</td>
+</tr>
+<tr>
+<td style="text-align:center">RD2[31:0]</td>
+<td style="text-align:center">O</td>
+<td style="text-align:left">输出A2地址寄存器中的值</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 id="NPC"><a href="#NPC" class="headerlink" title="NPC"></a>NPC</h4><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">信号名</th>
+<th style="text-align:center">IO</th>
+<th style="text-align:left">描述</th>
+<th style="text-align:left">备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">PC[31:0]</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">当前指令地址</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:center">Simm26[25:0]</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">地址偏移</td>
+</tr>
+<tr>
+<td style="text-align:center">ra[31:0]</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">返回地址</td>
+</tr>
+<tr>
+<td style="text-align:center">CmpOut</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">B类指令的比较结果</td>
+</tr>
+<tr>
+<td style="text-align:center">NPCOp[2:0]</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">NPC功能选择：&lt;/br&gt; 000: 顺序+4 &lt;/br&gt; 001: B类跳转 &lt;/br&gt;010: jal/j &lt;/br&gt; 011:jr/jalr</td>
+</tr>
+<tr>
+<td style="text-align:center">NPC[31:0]</td>
+<td style="text-align:center">O</td>
+<td style="text-align:left">下一条指令地址</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 id="EXT"><a href="#EXT" class="headerlink" title="EXT"></a>EXT</h4><p>信号名|IO|描述|备注|<br>|:-:|:-:|:-|:-|<br>|imm16[15:0]|I|16位立即数|<br>|EXTOp|I|EXT功能选择：&lt;/br&gt; 0: 0拓展 &lt;/br&gt; 1: 符号位拓展|lui指令的高位拓展在ALU里执行|<br>|S0imm32|O|拓展后的32位立即数|</p>
+<h4 id="ALU"><a href="#ALU" class="headerlink" title="ALU"></a>ALU</h4><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">信号名</th>
+<th style="text-align:center">IO</th>
+<th style="text-align:left">描述</th>
+<th style="text-align:left">备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">ALUOp[3:0]</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">ALU功能选择</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:center">A[31:0]</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">运算数1</td>
+</tr>
+<tr>
+<td style="text-align:center">B[31:0]</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">运算数2</td>
+</tr>
+<tr>
+<td style="text-align:center">shamt[4:0]</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">位移值</td>
+</tr>
+<tr>
+<td style="text-align:center">ALUout[31:0]</td>
+<td style="text-align:center">O</td>
+<td style="text-align:left">计算结果</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h5 id="DM"><a href="#DM" class="headerlink" title="DM"></a>DM</h5><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">信号名</th>
+<th style="text-align:center">IO</th>
+<th style="text-align:left">描述</th>
+<th style="text-align:left">备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">clk</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">时钟信号</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:center">reset</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">异步复位</td>
+</tr>
+<tr>
+<td style="text-align:center">WE</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">写使能信号</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:center">A[31:0]</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">待操作数据的地址</td>
+</tr>
+<tr>
+<td style="text-align:center">DMOp[2:0]</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">DM功能选择：000: word &lt;/br&gt; 001: halfword &lt;/br&gt; 010: byte &lt;/br&gt; 1xx: 无符号拓展load</td>
+<td style="text-align:left">最高位置一表示无符号位拓展</td>
+</tr>
+<tr>
+<td style="text-align:center">DMout[31:0]</td>
+<td style="text-align:center">输出的32位数据</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/数据通路表.jpg" alt="数据通路表"></p>
+<h3 id="controller"><a href="#controller" class="headerlink" title="controller"></a>controller</h3><ul>
+<li>对于控制器，我采用先用操作码识别出不同的指令，再去记录下每个控制信号所对应的指令，因为这样更加符合电路的直观（或运算），也更符合我对未来的想象（）<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/控制信号表.jpg" alt="控制信号表"></li>
+</ul>
+<h2 id="测试方案"><a href="#测试方案" class="headerlink" title="测试方案"></a>测试方案</h2><ul>
+<li>还是用p3时候的测试数据，但是需要多多注意的是这个东西肉眼debug其实还好一点，但更加适合自动化评测，开始手搓！</li>
+</ul>
+<h2 id="增量开发"><a href="#增量开发" class="headerlink" title="增量开发"></a>增量开发</h2><h3 id="slt"><a href="#slt" class="headerlink" title="slt"></a>slt</h3><ul>
+<li>处理ctrl，ALU，先填表再连线</li>
+</ul>
+<h3 id="sll"><a href="#sll" class="headerlink" title="sll"></a>sll</h3><ul>
+<li>shamt传入ALU，其他就没什么问题了</li>
+</ul>
+<h3 id="lh，sh，lhu"><a href="#lh，sh，lhu" class="headerlink" title="lh，sh，lhu"></a>lh，sh，lhu</h3><ul>
+<li>加上DMOp，在前面有定义</li>
+</ul>
+<h2 id="思考题"><a href="#思考题" class="headerlink" title="思考题"></a>思考题</h2><ul>
+<li>阅读下面给出的 DM 的输入示例中（示例 DM 容量为 4KB，即 32bit × 1024字），根据你的理解回答，这个 addr 信号又是从哪里来的？地址信号 addr 位数为什么是 [11:2] 而不是 [9:0]<ul>
+<li>从ALUout输出过来，是按字节寻址的指令，但我们的IM是按字寻址的，addr应该是4的整数倍，所以左移两位，按字存取。</li>
+</ul>
+</li>
+<li>思考上述两种控制器设计的译码方式，给出代码示例，并尝试对比各方式的优劣。<ul>
+<li>第二种是最后靠信号输出的，更符合电路的或逻辑，便于后续开发，且更加符合电路</li>
+</ul>
+</li>
+<li>在相应的部件中，复位信号的设计都是同步复位，这与 P3 中的设计要求不同。请对比同步复位与异步复位这两种方式的 reset 信号与 clk 信号优先级的关系。<ul>
+<li>异步复位reset的优先级高于clk，不管clk是否处于上升沿，都会复位（所以需要加入触发条件中）。</li>
+<li>而同步复位的reset优先级低于clk，只有clk到来才会生效。</li>
+</ul>
+</li>
+<li>C 语言是一种弱类型程序设计语言。C 语言中不对计算结果溢出进行处理，这意味着 C 语言要求程序员必须很清楚计算结果是否会导致溢出。因此，如果仅仅支持 C 语言，MIPS 指令的所有计算指令均可以忽略溢出。 请说明为什么在忽略溢出的前提下，addi 与 addiu 是等价的，add 与 addu 是等价的。提示：阅读《MIPS32® Architecture For Programmers Volume II: The MIPS32® Instruction Set》中相关指令的 Operation 部分。<ul>
+<li>addi和add，在operate中加入了溢出检测</li>
+<li>以add为例</li>
+<li><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/加法检测.jpg" alt="加法检测"></li>
+<li>若R[rs]和R[rt]的30都是1且31相同的话，就分别对应正数和负数的溢出情况，则这么计算后temp32!temp31，不相等，所以溢出。</li>
+<li>检测溢出后就会抛出异常，但没有检测溢出的话，还是正常计算，所以和addiu，addu一样。</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>BUAA计算机组成原理</category>
+      </categories>
+      <tags>
+        <tag>北航</tag>
+        <tag>CO</tag>
+        <tag>大二</tag>
+        <tag>计组</tag>
+        <tag>MIPS</tag>
+        <tag>P4</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【BUAA-CO】p3-单周期CPU(logisim实现)</title>
+    <url>/2022/11/24/BUAA-CO-p3-%E5%8D%95%E5%91%A8%E6%9C%9FCPU-logisim%E5%AE%9E%E7%8E%B0/</url>
+    <content><![CDATA[<p>BUAA-CO课程project3，用logisim实现单周期的CPU</p>
+<span id="more"></span>
+<h1 id="p3-log"><a href="#p3-log" class="headerlink" title="p3_log"></a>p3_log</h1><p>[toc]</p>
+<h2 id="整体结构"><a href="#整体结构" class="headerlink" title="整体结构"></a>整体结构</h2><ul>
+<li>两个mealy机 -&gt; 单周期CPU</li>
+<li>控制器生成真值表</li>
+<li>抽象和模块化</li>
+<li>控制器打表</li>
+<li>MIPS测试，设计数据</li>
+<li>RAM与ROM的区别</li>
+</ul>
+<h2 id="设计过程"><a href="#设计过程" class="headerlink" title="设计过程"></a>设计过程</h2><ul>
+<li>CPU分为两个部分，数据通路(Datapath)+控制器(control)</li>
+</ul>
+<h3 id="数据通路"><a href="#数据通路" class="headerlink" title="数据通路"></a>数据通路</h3><ul>
+<li>一个MIPS数据通路又可以抽象为五步：取指令(IF)，译码(ID)，执行(EX)，访存(MEM)，回写(WB)</li>
+<li>相应的应该有PC、NPC、IM、RF、ALU、DM、Controller这几个大的模块，以及在实现的过程中会存在的MUX、EXT、Splitter这些小的模块（系统与子系统的模块）</li>
+<li>数据通路是连接方式的组合，介于我们需要实现指令条数，我们通过这些指令的RTL描述，倒推出这条指令所需要的功能部件，从而建立起部件之间的连接关系，以及控制信号的取值。然后把这些连接关系填入数据通路的表中，填入每一个端口所需要的输入。</li>
+<li>把所有的指令分析完后，归并每个端口的输入信号，信号来源唯一的端口可以直接连接，但多输入的情况我们需要MUX+Controller的实现。</li>
+<li>得到最后的数据通路图后，我们很容易能构造出数据通路。</li>
+</ul>
+<h3 id="控制器设计"><a href="#控制器设计" class="headerlink" title="控制器设计"></a>控制器设计</h3><ul>
+<li>控制器的设计过程，我们理解为通过opcode和function识别指令+输出相应的控制信号，这两步可以进一步抽象为和逻辑和或逻辑。</li>
+<li>我们把表给列出来（其实这也是一种真值表）。</li>
+<li>创建好以后，连线就行</li>
+</ul>
+<h2 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现"></a>具体实现</h2><ul>
+<li>确定所需实现的指令：addu，subu，ori，lw，sw，beq，jal，jr（MIPS-C0），add，sub，xor，jalr，nop，sll/sllv，lui，slt。</li>
+<li>尽量每一种指令都来一下：<ul>
+<li>R型：<ul>
+<li>计算指令：add,sub,and, or</li>
+<li>移位指令：sll,sra,sllv</li>
+<li>置位指令：slt,sltu</li>
+<li>跳转指令：jr,jalr</li>
+<li>系统调用：syscall</li>
+</ul>
+</li>
+<li>I型：<ul>
+<li>计算指令：addi,ori,lui</li>
+<li>置位指令：slti,sltiu</li>
+<li>分支指令：beq,bne,bgtz</li>
+<li>访存指令：lw,sw,lh,sh,lhu,lb,sb,lbu</li>
+</ul>
+</li>
+<li>J型：<ul>
+<li>跳转指令：j,jal</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>把每个模块组装好，设计好端口</li>
+<li><p>打表连接</p>
+</li>
+<li><p>在端口的命名中我们采取的一些命名缩写，它的意义是</p>
+</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">命名</th>
+<th style="text-align:center">意义</th>
+<th style="text-align:center">备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">WD</td>
+<td style="text-align:center">write data</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">RD</td>
+<td style="text-align:center">read data</td>
+</tr>
+<tr>
+<td style="text-align:center">A</td>
+<td style="text-align:center">address</td>
+</tr>
+<tr>
+<td style="text-align:center">WR</td>
+<td style="text-align:center">write reg</td>
+</tr>
+<tr>
+<td style="text-align:center">WE</td>
+<td style="text-align:center">write enable</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="PC-NPC实现"><a href="#PC-NPC实现" class="headerlink" title="PC/NPC实现"></a>PC/NPC实现</h3><ul>
+<li>PC用寄存器实现</li>
+<li>NPC先实现一个简单的+4功能</li>
+<li><p>后续跳转指令加入时再看</p>
+</li>
+<li><p>beq：在ALU的地方返回一个rs=rt的结果到NPC，把imm16传到NPC，再传个控制器信号，是beq就跳</p>
+</li>
+<li>jal：在这里我们的控制信号就要多增加，而且不仅要计算PC+4+imm26的值，我们还需要计算PC+4的值，写入31号$sp寄存器</li>
+<li>j：与jal的区别仅在于，不用回写</li>
+<li>jr：PC &lt;- GPR[rs],需要读入rs寄存器的值</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">信号名</th>
+<th style="text-align:center">方向</th>
+<th style="text-align:left">描述</th>
+<th style="text-align:center">备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">PC[31:0]</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">当前位置</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">imm[26]</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">26位立即数</td>
+<td style="text-align:center">beq是imm16,jal是add26,可以覆盖</td>
+</tr>
+<tr>
+<td style="text-align:center">ra[31:0]</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">jr需要的32位返回地址</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">BeqYes?</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">rs,rt相等的标志</td>
+<td style="text-align:center">NPCOp=001起作用</td>
+</tr>
+<tr>
+<td style="text-align:center">NPCOp[2:0]</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">NPC功能选择：<br> 000: 顺序地址 <br> 001: beq <br> 010: j <br> 011: jal <br> 100: jr</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">NPC[31:0]</td>
+<td style="text-align:center">O</td>
+<td style="text-align:left">输出接下来的PC</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">PC4[31:0]</td>
+<td style="text-align:center">O</td>
+<td style="text-align:left">PC+4</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="IM实现"><a href="#IM实现" class="headerlink" title="IM实现"></a>IM实现</h3><ul>
+<li>IM没有写入的要求，用ROM即可，指令为32位，地址位宽可以选取8（即256条指令）</li>
+</ul>
+<h3 id="InstructionSplitter"><a href="#InstructionSplitter" class="headerlink" title="InstructionSplitter"></a>InstructionSplitter</h3><ul>
+<li>在32位的机器码中根据MIPS指令的类型我们需要得到opcode、rs、rt、rd、shamt、funt、imm16、address，在RIJ型的指令中分别会用到，但是我们并不需要判断指令类型给出相应的输出。我们把这些都给输出，需要什么是后续元件与Controller的事。</li>
+</ul>
+<h3 id="RF实现"><a href="#RF实现" class="headerlink" title="RF实现"></a>RF实现</h3><ul>
+<li>这里在p0已经写过了，就直接CV了，但是注意端口的命名可以改一下。</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">信号名</th>
+<th style="text-align:center">方向</th>
+<th style="text-align:center">描述</th>
+<th style="text-align:center">备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">clk</td>
+<td style="text-align:center">I</td>
+<td style="text-align:center">时钟信号</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">clr</td>
+<td style="text-align:center">I</td>
+<td style="text-align:center">异步复位</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">WE</td>
+<td style="text-align:center">I</td>
+<td style="text-align:center">写使能，为1时可以写入</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">A1[4:0]</td>
+<td style="text-align:center">I</td>
+<td style="text-align:center">指定32各寄存器中的一个，将值读入RD1</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">A2[4:0]</td>
+<td style="text-align:center">I</td>
+<td style="text-align:center">指定32各寄存器中的一个，将值读入RD2</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">A3[4:0]</td>
+<td style="text-align:center">I</td>
+<td style="text-align:center">指定32各寄存器中的一个，作为WD值的写入对象</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">WD[31:0]</td>
+<td style="text-align:center">I</td>
+<td style="text-align:center">在WE为1，将内容写入A3指定的寄存器</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">RD1[31:0]</td>
+<td style="text-align:center">O</td>
+<td style="text-align:center">输出A1指定的寄存器的值</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">RD2[31:0]</td>
+<td style="text-align:center">O</td>
+<td style="text-align:center">输出A2指定的寄存器的值</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="ALU（重点！）"><a href="#ALU（重点！）" class="headerlink" title="ALU（重点！）"></a>ALU（重点！）</h3><ul>
+<li><p>在最后加一个MUX输出</p>
+</li>
+<li><p>addu：直接用加法器</p>
+</li>
+<li>subu：直接用减法器</li>
+<li>slt：比较器</li>
+<li>ori：有i的都可以按照这个思路来，在RD2与imm16（Zero_ext32）之间加一个MUX，剩下交给控制器</li>
+<li>lw：这里我们需要EXT来实现立即数的符号位拓展，而在ori指令中有非符号位拓展，把他们集成起来做一个EXT模块，剩下交给控制器去决定，R[rt] &lt;- MEM[R[rs]+sign_ext(imm16)]，所以rt与rd到A3加一个MUX</li>
+<li>sw：MEM[R[rs]+sign_ext(imm16)] &lt;- R[rt]，RD2接到DMWD</li>
+<li>考虑到跳转指令需要对NPC模块进行改装，beq、j、jal、jr指令的实现就放到<a href="#pcnpc实现">PC/NPC实现</a>里了</li>
+<li>下面是不同的ALUOp代表的功能</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">ALUOp</th>
+<th style="text-align:center">功能</th>
+<th style="text-align:center">备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">0000</td>
+<td style="text-align:center">addu</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">0001</td>
+<td style="text-align:center">subu</td>
+</tr>
+<tr>
+<td style="text-align:center">0010</td>
+<td style="text-align:center">ori</td>
+</tr>
+<tr>
+<td style="text-align:center">0011</td>
+<td style="text-align:center">slt</td>
+</tr>
+<tr>
+<td style="text-align:center">0100</td>
+<td style="text-align:center">lw</td>
+</tr>
+<tr>
+<td style="text-align:center">0101</td>
+<td style="text-align:center">sw</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="EXT"><a href="#EXT" class="headerlink" title="EXT"></a>EXT</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">信号名</th>
+<th style="text-align:center">方向</th>
+<th style="text-align:center">描述</th>
+<th style="text-align:center">备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">ExtOp</td>
+<td style="text-align:center">I</td>
+<td style="text-align:center">选择拓展方式：<br> 0: 0拓展<br>1: 符号位拓展</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">imm16</td>
+<td style="text-align:center">I</td>
+<td style="text-align:center">输入的16位立即数</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">imm32</td>
+<td style="text-align:center">O</td>
+<td style="text-align:center">输出的32位立即数</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="DM的实现"><a href="#DM的实现" class="headerlink" title="DM的实现"></a>DM的实现</h3><ul>
+<li>用一个可写入的RAM来实现</li>
+<li>用位拓展器把传入的32位值变为8位</li>
+</ul>
+<h3 id="Controller"><a href="#Controller" class="headerlink" title="Controller"></a>Controller</h3><ul>
+<li>可以分为两个部分，一个是识别器，一个是信号器</li>
+<li>根据后面的信号表与和或逻辑来搭建</li>
+<li>注意合理CV，不然会很难受</li>
+<li>注意测试</li>
+<li>问题：nop不需要控制为啥，因为nop的时候NPCOp=000，几个WE都是0，写不进东西，所以不需要控制</li>
+</ul>
+<blockquote>
+<p>自此，框架已经搭好，现在开始做打表连接</p>
+</blockquote>
+<h3 id="数据通路表及控制信号表"><a href="#数据通路表及控制信号表" class="headerlink" title="数据通路表及控制信号表"></a>数据通路表及控制信号表</h3><p><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/指令RTL描述.jpg" alt="指令的RTL描述"></p>
+<ul>
+<li>下面根据RTL描述写出数据通路表</li>
+<li>每一个指令需要将什么端口连接，指令级数据通路与控制器建模，先忽略控制信号的端口<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/数据通路表.jpg" alt="数据通路表"></li>
+<li>相应的在分析每条指令的通路的时候可以把控制信号的取值记下来，暂时不包含MUX的控制<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/控制信号表.jpg" alt="控制信号表"></li>
+<li>所以数据通路连接的总合计为<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/连接总合计.jpg" alt="连接总合计"></li>
+<li>在根据数据通路表中的多输入端口，把MUX的Sel信号写入控制信号表<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/MUX控制信号表.jpg" alt="MUX控制信号表"></li>
+</ul>
+<h2 id="debug"><a href="#debug" class="headerlink" title="debug"></a>debug</h2><ul>
+<li>ROM的寻址方式</li>
+<li>加入指令lui<ul>
+<li>在数据通路连接表与信号控制表里加入它，然后把该连的线连起来</li>
+<li>按照控制表打控制器</li>
+</ul>
+</li>
+<li>发现一个ori在mars里调用了ori、lui、or</li>
+<li>但是or除了ALUOp不同以外其余都相同</li>
+<li>add,sub</li>
+<li>DM写入地址输出</li>
+<li>imm32,address移位但ra不移，所以对应到p3的处理办法，ra应该移位</li>
+<li>beq的imm16要符号位拓展(p4的时候才发现这个bug，可见测试数据还是很弱的，需要自己造数据)</li>
+</ul>
+<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><ul>
+<li>每条指令功能都测试一下</li>
+<li>每条指令考虑正负等等</li>
+<li>用disassembler的工具进行机械码转汇编语言<ul>
+<li>转换注意：b -&gt; j</li>
+<li>neg -&gt; sub</li>
+</ul>
+</li>
+<li>CPU的每一步对应着MARS调试的每一步</li>
+<li>jr指令可以跳到所有寄存器的储存值，注意！</li>
+</ul>
+<h2 id="后续增量开发"><a href="#后续增量开发" class="headerlink" title="后续增量开发"></a>后续增量开发</h2><ul>
+<li>思考是RIJ哪种指令，思考需不需要跳转<ul>
+<li>R型I型对应不同的WRSel</li>
+<li>跳转要改变NPCOp和NPC接口</li>
+<li>写对应的控制信号</li>
+</ul>
+</li>
+<li>下面由于特殊性，加上lh,lb,sh,sb, sll指令</li>
+<li>对于lh,sh,lb,sb,lbu,lhu指令,下面以lb,sb,lbu为例<ul>
+<li>改版DM，增加DMOp<a href="第三位表示是否无符号拓展">2:0</a></li>
+<li>store操作：通过out与WD的7:0拼起来读入，根据A决定</li>
+<li>load操作：只输出out的8位（根据A来决定），注意拓展</li>
+<li>其余模块都与sw，lw一致</li>
+</ul>
+</li>
+<li>sll指令比较的特殊，需要加上ASel（为1时选择shamt）</li>
+<li>Controller指令的顺序改进</li>
+</ul>
+<h2 id="思考题"><a href="#思考题" class="headerlink" title="思考题"></a>思考题</h2><ul>
+<li>上面我们介绍了通过 FSM 理解单周期 CPU 的基本方法。请大家指出单周期 CPU 所用到的模块中，哪些发挥状态存储功能，哪些发挥状态转移功能。<ul>
+<li>状态存储：IM，RF，DM</li>
+<li>状态转移：NPC，ALU</li>
+</ul>
+</li>
+<li>现在我们的模块中 IM 使用 ROM， DM 使用 RAM， GRF 使用 Register，这种做法合理吗？ 请给出分析，若有改进意见也请一并给出。<ul>
+<li>正确的，合理的，无可挑剔的</li>
+</ul>
+</li>
+<li>在上述提示的模块之外，你是否在实际实现时设计了其他的模块？如果是的话，请给出介绍和设计的思路。<ul>
+<li>我把Controller分为了两个部分，一个是识别器，一个是信号发送器，主要考虑是可以在main电路中调试的时候看到当前执行的指令。</li>
+</ul>
+</li>
+<li>事实上，实现 nop 空指令，我们并不需要将它加入控制信号真值表，为什么？<ul>
+<li>因为nop的时候NPCOp=000，没有跳转，而且几个WE使能是0，写不进东西，所以不需要控制</li>
+<li>而且我写了sll，所以nop就对应着移0位的sll，等同于没有修改。</li>
+</ul>
+</li>
+<li>上文提到，MARS 不能导出 PC 与 DM 起始地址均为 0 的机器码。实际上，可以避免手工修改的麻烦。请查阅相关资料进行了解，并阐释为了解决这个问题，你最终采用的方法。<ul>
+<li>可以把其中一个起始地址先设为0，然后另一个可以通过写程序实现判断与修改。</li>
+</ul>
+</li>
+<li>阅读 Pre 的 “MIPS 指令集及汇编语言” 一节中给出的测试样例，评价其强度（可从各个指令的覆盖情况，单一指令各种行为的覆盖情况等方面分析），并指出具体的不足之处。<ul>
+<li>有些寄存器没有用到，有些负数的特殊情况没有涉及（比如beq的负数情况），跳转的指令没有设计</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>BUAA计算机组成原理</category>
+      </categories>
+      <tags>
+        <tag>北航</tag>
+        <tag>CO</tag>
+        <tag>大二</tag>
+        <tag>计组</tag>
+        <tag>MIPS</tag>
+        <tag>P3</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【BUAA-高代】矩阵相关问题讲课资料</title>
     <url>/2022/11/24/%E7%9F%A9%E9%98%B5%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98%E8%AE%B2%E8%AF%BE%E8%B5%84%E6%96%99/</url>
     <content><![CDATA[<p>朋辈辅导师第十二周直播课-矩阵相关典型问题的备课资料，大家有需要自取，备课本有点乱，建议配合视频一起食用。</p>
 <span id="more"></span>
@@ -195,7 +2066,7 @@
       </tags>
   </entry>
   <entry>
-    <title>向量空间与内积空间讲课资料</title>
+    <title>【BUAA-高代】向量空间与内积空间讲课资料</title>
     <url>/2022/11/24/%E5%90%91%E9%87%8F%E7%A9%BA%E9%97%B4%E4%B8%8E%E5%86%85%E7%A7%AF%E7%A9%BA%E9%97%B4%E8%AE%B2%E8%AF%BE%E8%B5%84%E6%96%99/</url>
     <content><![CDATA[<p>朋辈辅导师第九周直播课-向量空间和内积空间的备课资料，大家有需要自取。</p>
 <span id="more"></span>
@@ -297,7 +2168,7 @@
       </tags>
   </entry>
   <entry>
-    <title>oo_pre学习笔记</title>
+    <title>【BUAA-OO】pre学习笔记</title>
     <url>/2022/10/21/oo-pre%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
     <content><![CDATA[<p>上ly老师的OOPre课所做的一些笔记，用cpp为载体比较系统的讲解了面向对象的三大特征（封装、继承、多态），可以作为了解这方面知识的开始，但记录较为繁杂，我后续会持续做整理补充。</p>
 <span id="more"></span>
@@ -441,7 +2312,7 @@
       </tags>
   </entry>
   <entry>
-    <title>BUAA-CO-p2mips常用宏定义</title>
+    <title>【BUAA-CO】p2mips常用宏定义</title>
     <url>/2022/10/12/BUAA-CO-p2mips%E5%B8%B8%E7%94%A8%E5%AE%8F%E5%AE%9A%E4%B9%89/</url>
     <content><![CDATA[<p>我们知道mips的灵活性高，但是可读性差，所以要改变可读性差的问题，我们可以使用宏定义，像写c一样写汇编（）。</p>
 <span id="more"></span>
@@ -482,7 +2353,7 @@
       </tags>
   </entry>
   <entry>
-    <title>BUAA-CO-p2mips汇编翻译C代码典例</title>
+    <title>【BUAA-CO】p2mips汇编翻译C代码典例</title>
     <url>/2022/10/12/BUAA-CO-p2mips%E6%B1%87%E7%BC%96%E7%BF%BB%E8%AF%91C%E4%BB%A3%E7%A0%81%E5%85%B8%E4%BE%8B/</url>
     <content><![CDATA[<p>汇编语言是一种比机械码稍高级一点的语言，而MIPS的汇编语言是一种专用于MIPS架构的CPU的汇编语言，相较于ARM，X86等现在主流的架构的汇编语言，MIPS较为简单，适合入门。<br>MIPS汇编语言是可以一对一翻译成机械码的，每条指令的翻译规则不同，这里需要查手册来解决。<br>至于我们学的C/C++等高级语言，也可以翻译成汇编语言，这个过程叫编译，一般来说编译器可以办成这件事，但对于我们需要学习MIPS的人来说，这需要咱们自己来。</p>
 <span id="more"></span>
@@ -568,7 +2439,7 @@
       </tags>
   </entry>
   <entry>
-    <title>从线性方程组到矩阵讲课材料</title>
+    <title>【BUAA-高代】从线性方程组到矩阵讲课材料</title>
     <url>/2022/10/08/%E4%BB%8E%E7%BA%BF%E6%80%A7%E6%96%B9%E7%A8%8B%E7%BB%84%E5%88%B0%E7%9F%A9%E9%98%B5%E8%AE%B2%E8%AF%BE%E6%9D%90%E6%96%99/</url>
     <content><![CDATA[<p>朋辈辅导师第三周直播课-空间解析几何基础的备课资料，大家有需要自取。</p>
 <span id="more"></span>
@@ -818,7 +2689,7 @@ AB =AC =I
       </tags>
   </entry>
   <entry>
-    <title>空间解析几何讲课材料-ppt、视频、备课本等</title>
+    <title>【BUAA-高代】空间解析几何讲课材料-ppt、视频、备课本等</title>
     <url>/2022/10/08/%E7%A9%BA%E9%97%B4%E8%A7%A3%E6%9E%90%E5%87%A0%E4%BD%95%E8%AE%B2%E8%AF%BE%E6%9D%90%E6%96%99-ppt%E3%80%81%E8%A7%86%E9%A2%91%E3%80%81%E5%A4%87%E8%AF%BE%E6%9C%AC%E7%AD%89/</url>
     <content><![CDATA[<p>朋辈辅导师第三周直播课-空间解析几何基础的备课资料，大家有需要自取。</p>
 <span id="more"></span>
@@ -876,7 +2747,7 @@ AB =AC =I
       </tags>
   </entry>
   <entry>
-    <title>BUAA-CO-p0状态编码分享</title>
+    <title>【BUAA-CO】p0状态编码分享</title>
     <url>/2022/10/04/BUAA-CO-p0%E7%8A%B6%E6%80%81%E7%BC%96%E7%A0%81%E5%88%86%E4%BA%AB/</url>
     <content><![CDATA[<p>时隔半个月，终于有了更新，主要是一些P0的经验分享——状态编码，当然有一些零零散散的芝士点，会在后面补足的，记得催催。。。</p>
 <span id="more"></span>
@@ -1063,7 +2934,7 @@ AB =AC =I
       </tags>
   </entry>
   <entry>
-    <title>OO_pre_Summary</title>
+    <title>【BUAA-OO】pre_Summary</title>
     <url>/2022/09/10/OO-pre-Summary/</url>
     <content><![CDATA[<p>常见styleCheck报错改进合集，git相关知识，在题解过程中了解java语法以及面向对象知识</p>
 <span id="more"></span>]]></content>
@@ -1079,7 +2950,7 @@ AB =AC =I
       </tags>
   </entry>
   <entry>
-    <title>北航信息类数分一资料</title>
+    <title>【BUAA-数分1】北航信息类数分一资料</title>
     <url>/2022/09/06/%E5%8C%97%E8%88%AA%E4%BF%A1%E6%81%AF%E7%B1%BB%E6%95%B0%E5%88%86%EF%BC%88%E4%B8%80%EF%BC%89%E8%B5%84%E6%96%99/</url>
     <content><![CDATA[<p>北航大一的数分（一）资料，有<strong>数分讲座的ppt</strong>以及<strong>2010-2022的期中考题</strong>、<strong>2010-2021的期末考题</strong>，其中期末的考题以及处理好了，题目和答案分开在两个文件夹内。但期中的考题答案和题目还合在一起，这里并不是俺懒（确信.jpg，而是学长觉得授人以鱼不如授人以渔，所以内有<strong>wps处理教程</strong>，赶紧学起来叭！！！</p>
 <span id="more"></span>
@@ -1147,7 +3018,7 @@ AB =AC =I
       </tags>
   </entry>
   <entry>
-    <title>北航信息类高代资料</title>
+    <title>【BUAA-高代】北航信息类高代资料</title>
     <url>/2022/09/06/%E5%8C%97%E8%88%AA%E4%BF%A1%E6%81%AF%E7%B1%BB%E9%AB%98%E4%BB%A3%E8%B5%84%E6%96%99/</url>
     <content><![CDATA[<p>北航大一高代的资料，高代的题可能就不像数分的题整理的那么的整齐，可能<strong>有点零散</strong>，特别是期中的题，俺可能还一不小心删掉一部分（秃头），而且很多<strong>试题都没有答案</strong>。不过乐观点想，期中大家真的不用太担心，试题没有答案的话可以多<strong>和同学讨论</strong>，<strong>对答案</strong>，<strong>问老师</strong>；这也是个主动学习的过程。另外文档里，有俺滴<strong>手写笔记</strong>，大一上跟着<strong>赵迪老师</strong>上课，受益匪浅，学会了很多 <strong><em>学术语言</em></strong>()，<strong>大大滴推荐</strong>。另外这一篇也有<strong>加餐</strong>，给大家讲一下可以从哪里<strong>找试卷资源</strong>，这样大家也能自己去找资源！</p>
 <span id="more"></span>
