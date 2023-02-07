@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"volcaxiao.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"livere","storage":true,"lazyload":false,"nav":null,"activeClass":"livere"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":5,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="BUAA-CO课程project3，用logisim实现单周期的CPU">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【BUAA-CO】p3-单周期CPU(logisim实现)">
+<meta property="og:url" content="http://volcaxiao.github.io/2022/11/24/BUAA-CO-p3-%E5%8D%95%E5%91%A8%E6%9C%9FCPU-logisim%E5%AE%9E%E7%8E%B0/index.html">
+<meta property="og:site_name" content="volca&#39;s blog">
+<meta property="og:description" content="BUAA-CO课程project3，用logisim实现单周期的CPU">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/指令RTL描述.jpg">
+<meta property="og:image" content="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/数据通路表.jpg">
+<meta property="og:image" content="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/控制信号表.jpg">
+<meta property="og:image" content="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/连接总合计.jpg">
+<meta property="og:image" content="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/MUX控制信号表.jpg">
+<meta property="article:published_time" content="2022-11-24T07:21:03.000Z">
+<meta property="article:modified_time" content="2022-11-24T08:12:12.505Z">
+<meta property="article:author" content="volcaxiao">
+<meta property="article:tag" content="北航">
+<meta property="article:tag" content="大二">
+<meta property="article:tag" content="CO">
+<meta property="article:tag" content="计组">
+<meta property="article:tag" content="MIPS">
+<meta property="article:tag" content="P3">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/指令RTL描述.jpg">
+
+<link rel="canonical" href="http://volcaxiao.github.io/2022/11/24/BUAA-CO-p3-%E5%8D%95%E5%91%A8%E6%9C%9FCPU-logisim%E5%AE%9E%E7%8E%B0/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>【BUAA-CO】p3-单周期CPU(logisim实现) | volca's blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">volca's blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-aa-column">
+
+    <a href="/AA-column/" rel="section"><i class="fa fa-columns fa-fw"></i>工科高等代数专栏</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>日程表</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <a href="https://github.com/volcaxiao" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://volcaxiao.github.io/2022/11/24/BUAA-CO-p3-%E5%8D%95%E5%91%A8%E6%9C%9FCPU-logisim%E5%AE%9E%E7%8E%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/head.jpg">
+      <meta itemprop="name" content="volcaxiao">
+      <meta itemprop="description" content="北航CS，学习分享，记得看welcome">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="volca's blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【BUAA-CO】p3-单周期CPU(logisim实现)
+        </h1>
+
+        <div class="post-meta">
+
+        
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-11-24 15:21:03 / 修改时间：16:12:12" itemprop="dateCreated datePublished" datetime="2022-11-24T15:21:03+08:00">2022-11-24</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/BUAA%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" itemprop="url" rel="index"><span itemprop="name">BUAA计算机组成原理</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3.8k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>3 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>BUAA-CO课程project3，用logisim实现单周期的CPU</p>
+<span id="more"></span>
+<h1 id="p3-log"><a href="#p3-log" class="headerlink" title="p3_log"></a>p3_log</h1><p>[toc]</p>
+<h2 id="整体结构"><a href="#整体结构" class="headerlink" title="整体结构"></a>整体结构</h2><ul>
+<li>两个mealy机 -&gt; 单周期CPU</li>
+<li>控制器生成真值表</li>
+<li>抽象和模块化</li>
+<li>控制器打表</li>
+<li>MIPS测试，设计数据</li>
+<li>RAM与ROM的区别</li>
+</ul>
+<h2 id="设计过程"><a href="#设计过程" class="headerlink" title="设计过程"></a>设计过程</h2><ul>
+<li>CPU分为两个部分，数据通路(Datapath)+控制器(control)</li>
+</ul>
+<h3 id="数据通路"><a href="#数据通路" class="headerlink" title="数据通路"></a>数据通路</h3><ul>
+<li>一个MIPS数据通路又可以抽象为五步：取指令(IF)，译码(ID)，执行(EX)，访存(MEM)，回写(WB)</li>
+<li>相应的应该有PC、NPC、IM、RF、ALU、DM、Controller这几个大的模块，以及在实现的过程中会存在的MUX、EXT、Splitter这些小的模块（系统与子系统的模块）</li>
+<li>数据通路是连接方式的组合，介于我们需要实现指令条数，我们通过这些指令的RTL描述，倒推出这条指令所需要的功能部件，从而建立起部件之间的连接关系，以及控制信号的取值。然后把这些连接关系填入数据通路的表中，填入每一个端口所需要的输入。</li>
+<li>把所有的指令分析完后，归并每个端口的输入信号，信号来源唯一的端口可以直接连接，但多输入的情况我们需要MUX+Controller的实现。</li>
+<li>得到最后的数据通路图后，我们很容易能构造出数据通路。</li>
+</ul>
+<h3 id="控制器设计"><a href="#控制器设计" class="headerlink" title="控制器设计"></a>控制器设计</h3><ul>
+<li>控制器的设计过程，我们理解为通过opcode和function识别指令+输出相应的控制信号，这两步可以进一步抽象为和逻辑和或逻辑。</li>
+<li>我们把表给列出来（其实这也是一种真值表）。</li>
+<li>创建好以后，连线就行</li>
+</ul>
+<h2 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现"></a>具体实现</h2><ul>
+<li>确定所需实现的指令：addu，subu，ori，lw，sw，beq，jal，jr（MIPS-C0），add，sub，xor，jalr，nop，sll/sllv，lui，slt。</li>
+<li>尽量每一种指令都来一下：<ul>
+<li>R型：<ul>
+<li>计算指令：add,sub,and, or</li>
+<li>移位指令：sll,sra,sllv</li>
+<li>置位指令：slt,sltu</li>
+<li>跳转指令：jr,jalr</li>
+<li>系统调用：syscall</li>
+</ul>
+</li>
+<li>I型：<ul>
+<li>计算指令：addi,ori,lui</li>
+<li>置位指令：slti,sltiu</li>
+<li>分支指令：beq,bne,bgtz</li>
+<li>访存指令：lw,sw,lh,sh,lhu,lb,sb,lbu</li>
+</ul>
+</li>
+<li>J型：<ul>
+<li>跳转指令：j,jal</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>把每个模块组装好，设计好端口</li>
+<li><p>打表连接</p>
+</li>
+<li><p>在端口的命名中我们采取的一些命名缩写，它的意义是</p>
+</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">命名</th>
+<th style="text-align:center">意义</th>
+<th style="text-align:center">备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">WD</td>
+<td style="text-align:center">write data</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">RD</td>
+<td style="text-align:center">read data</td>
+</tr>
+<tr>
+<td style="text-align:center">A</td>
+<td style="text-align:center">address</td>
+</tr>
+<tr>
+<td style="text-align:center">WR</td>
+<td style="text-align:center">write reg</td>
+</tr>
+<tr>
+<td style="text-align:center">WE</td>
+<td style="text-align:center">write enable</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="PC-NPC实现"><a href="#PC-NPC实现" class="headerlink" title="PC/NPC实现"></a>PC/NPC实现</h3><ul>
+<li>PC用寄存器实现</li>
+<li>NPC先实现一个简单的+4功能</li>
+<li><p>后续跳转指令加入时再看</p>
+</li>
+<li><p>beq：在ALU的地方返回一个rs=rt的结果到NPC，把imm16传到NPC，再传个控制器信号，是beq就跳</p>
+</li>
+<li>jal：在这里我们的控制信号就要多增加，而且不仅要计算PC+4+imm26的值，我们还需要计算PC+4的值，写入31号$sp寄存器</li>
+<li>j：与jal的区别仅在于，不用回写</li>
+<li>jr：PC &lt;- GPR[rs],需要读入rs寄存器的值</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">信号名</th>
+<th style="text-align:center">方向</th>
+<th style="text-align:left">描述</th>
+<th style="text-align:center">备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">PC[31:0]</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">当前位置</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">imm[26]</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">26位立即数</td>
+<td style="text-align:center">beq是imm16,jal是add26,可以覆盖</td>
+</tr>
+<tr>
+<td style="text-align:center">ra[31:0]</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">jr需要的32位返回地址</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">BeqYes?</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">rs,rt相等的标志</td>
+<td style="text-align:center">NPCOp=001起作用</td>
+</tr>
+<tr>
+<td style="text-align:center">NPCOp[2:0]</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">NPC功能选择：<br> 000: 顺序地址 <br> 001: beq <br> 010: j <br> 011: jal <br> 100: jr</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">NPC[31:0]</td>
+<td style="text-align:center">O</td>
+<td style="text-align:left">输出接下来的PC</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">PC4[31:0]</td>
+<td style="text-align:center">O</td>
+<td style="text-align:left">PC+4</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="IM实现"><a href="#IM实现" class="headerlink" title="IM实现"></a>IM实现</h3><ul>
+<li>IM没有写入的要求，用ROM即可，指令为32位，地址位宽可以选取8（即256条指令）</li>
+</ul>
+<h3 id="InstructionSplitter"><a href="#InstructionSplitter" class="headerlink" title="InstructionSplitter"></a>InstructionSplitter</h3><ul>
+<li>在32位的机器码中根据MIPS指令的类型我们需要得到opcode、rs、rt、rd、shamt、funt、imm16、address，在RIJ型的指令中分别会用到，但是我们并不需要判断指令类型给出相应的输出。我们把这些都给输出，需要什么是后续元件与Controller的事。</li>
+</ul>
+<h3 id="RF实现"><a href="#RF实现" class="headerlink" title="RF实现"></a>RF实现</h3><ul>
+<li>这里在p0已经写过了，就直接CV了，但是注意端口的命名可以改一下。</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">信号名</th>
+<th style="text-align:center">方向</th>
+<th style="text-align:center">描述</th>
+<th style="text-align:center">备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">clk</td>
+<td style="text-align:center">I</td>
+<td style="text-align:center">时钟信号</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">clr</td>
+<td style="text-align:center">I</td>
+<td style="text-align:center">异步复位</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">WE</td>
+<td style="text-align:center">I</td>
+<td style="text-align:center">写使能，为1时可以写入</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">A1[4:0]</td>
+<td style="text-align:center">I</td>
+<td style="text-align:center">指定32各寄存器中的一个，将值读入RD1</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">A2[4:0]</td>
+<td style="text-align:center">I</td>
+<td style="text-align:center">指定32各寄存器中的一个，将值读入RD2</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">A3[4:0]</td>
+<td style="text-align:center">I</td>
+<td style="text-align:center">指定32各寄存器中的一个，作为WD值的写入对象</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">WD[31:0]</td>
+<td style="text-align:center">I</td>
+<td style="text-align:center">在WE为1，将内容写入A3指定的寄存器</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">RD1[31:0]</td>
+<td style="text-align:center">O</td>
+<td style="text-align:center">输出A1指定的寄存器的值</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">RD2[31:0]</td>
+<td style="text-align:center">O</td>
+<td style="text-align:center">输出A2指定的寄存器的值</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="ALU（重点！）"><a href="#ALU（重点！）" class="headerlink" title="ALU（重点！）"></a>ALU（重点！）</h3><ul>
+<li><p>在最后加一个MUX输出</p>
+</li>
+<li><p>addu：直接用加法器</p>
+</li>
+<li>subu：直接用减法器</li>
+<li>slt：比较器</li>
+<li>ori：有i的都可以按照这个思路来，在RD2与imm16（Zero_ext32）之间加一个MUX，剩下交给控制器</li>
+<li>lw：这里我们需要EXT来实现立即数的符号位拓展，而在ori指令中有非符号位拓展，把他们集成起来做一个EXT模块，剩下交给控制器去决定，R[rt] &lt;- MEM[R[rs]+sign_ext(imm16)]，所以rt与rd到A3加一个MUX</li>
+<li>sw：MEM[R[rs]+sign_ext(imm16)] &lt;- R[rt]，RD2接到DMWD</li>
+<li>考虑到跳转指令需要对NPC模块进行改装，beq、j、jal、jr指令的实现就放到<a href="#pcnpc实现">PC/NPC实现</a>里了</li>
+<li>下面是不同的ALUOp代表的功能</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">ALUOp</th>
+<th style="text-align:center">功能</th>
+<th style="text-align:center">备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">0000</td>
+<td style="text-align:center">addu</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">0001</td>
+<td style="text-align:center">subu</td>
+</tr>
+<tr>
+<td style="text-align:center">0010</td>
+<td style="text-align:center">ori</td>
+</tr>
+<tr>
+<td style="text-align:center">0011</td>
+<td style="text-align:center">slt</td>
+</tr>
+<tr>
+<td style="text-align:center">0100</td>
+<td style="text-align:center">lw</td>
+</tr>
+<tr>
+<td style="text-align:center">0101</td>
+<td style="text-align:center">sw</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="EXT"><a href="#EXT" class="headerlink" title="EXT"></a>EXT</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">信号名</th>
+<th style="text-align:center">方向</th>
+<th style="text-align:center">描述</th>
+<th style="text-align:center">备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">ExtOp</td>
+<td style="text-align:center">I</td>
+<td style="text-align:center">选择拓展方式：<br> 0: 0拓展<br>1: 符号位拓展</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">imm16</td>
+<td style="text-align:center">I</td>
+<td style="text-align:center">输入的16位立即数</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">imm32</td>
+<td style="text-align:center">O</td>
+<td style="text-align:center">输出的32位立即数</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="DM的实现"><a href="#DM的实现" class="headerlink" title="DM的实现"></a>DM的实现</h3><ul>
+<li>用一个可写入的RAM来实现</li>
+<li>用位拓展器把传入的32位值变为8位</li>
+</ul>
+<h3 id="Controller"><a href="#Controller" class="headerlink" title="Controller"></a>Controller</h3><ul>
+<li>可以分为两个部分，一个是识别器，一个是信号器</li>
+<li>根据后面的信号表与和或逻辑来搭建</li>
+<li>注意合理CV，不然会很难受</li>
+<li>注意测试</li>
+<li>问题：nop不需要控制为啥，因为nop的时候NPCOp=000，几个WE都是0，写不进东西，所以不需要控制</li>
+</ul>
+<blockquote>
+<p>自此，框架已经搭好，现在开始做打表连接</p>
+</blockquote>
+<h3 id="数据通路表及控制信号表"><a href="#数据通路表及控制信号表" class="headerlink" title="数据通路表及控制信号表"></a>数据通路表及控制信号表</h3><p><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/指令RTL描述.jpg" alt="指令的RTL描述"></p>
+<ul>
+<li>下面根据RTL描述写出数据通路表</li>
+<li>每一个指令需要将什么端口连接，指令级数据通路与控制器建模，先忽略控制信号的端口<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/数据通路表.jpg" alt="数据通路表"></li>
+<li>相应的在分析每条指令的通路的时候可以把控制信号的取值记下来，暂时不包含MUX的控制<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/控制信号表.jpg" alt="控制信号表"></li>
+<li>所以数据通路连接的总合计为<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/连接总合计.jpg" alt="连接总合计"></li>
+<li>在根据数据通路表中的多输入端口，把MUX的Sel信号写入控制信号表<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/MUX控制信号表.jpg" alt="MUX控制信号表"></li>
+</ul>
+<h2 id="debug"><a href="#debug" class="headerlink" title="debug"></a>debug</h2><ul>
+<li>ROM的寻址方式</li>
+<li>加入指令lui<ul>
+<li>在数据通路连接表与信号控制表里加入它，然后把该连的线连起来</li>
+<li>按照控制表打控制器</li>
+</ul>
+</li>
+<li>发现一个ori在mars里调用了ori、lui、or</li>
+<li>但是or除了ALUOp不同以外其余都相同</li>
+<li>add,sub</li>
+<li>DM写入地址输出</li>
+<li>imm32,address移位但ra不移，所以对应到p3的处理办法，ra应该移位</li>
+<li>beq的imm16要符号位拓展(p4的时候才发现这个bug，可见测试数据还是很弱的，需要自己造数据)</li>
+</ul>
+<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><ul>
+<li>每条指令功能都测试一下</li>
+<li>每条指令考虑正负等等</li>
+<li>用disassembler的工具进行机械码转汇编语言<ul>
+<li>转换注意：b -&gt; j</li>
+<li>neg -&gt; sub</li>
+</ul>
+</li>
+<li>CPU的每一步对应着MARS调试的每一步</li>
+<li>jr指令可以跳到所有寄存器的储存值，注意！</li>
+</ul>
+<h2 id="后续增量开发"><a href="#后续增量开发" class="headerlink" title="后续增量开发"></a>后续增量开发</h2><ul>
+<li>思考是RIJ哪种指令，思考需不需要跳转<ul>
+<li>R型I型对应不同的WRSel</li>
+<li>跳转要改变NPCOp和NPC接口</li>
+<li>写对应的控制信号</li>
+</ul>
+</li>
+<li>下面由于特殊性，加上lh,lb,sh,sb, sll指令</li>
+<li>对于lh,sh,lb,sb,lbu,lhu指令,下面以lb,sb,lbu为例<ul>
+<li>改版DM，增加DMOp<a href="第三位表示是否无符号拓展">2:0</a></li>
+<li>store操作：通过out与WD的7:0拼起来读入，根据A决定</li>
+<li>load操作：只输出out的8位（根据A来决定），注意拓展</li>
+<li>其余模块都与sw，lw一致</li>
+</ul>
+</li>
+<li>sll指令比较的特殊，需要加上ASel（为1时选择shamt）</li>
+<li>Controller指令的顺序改进</li>
+</ul>
+<h2 id="思考题"><a href="#思考题" class="headerlink" title="思考题"></a>思考题</h2><ul>
+<li>上面我们介绍了通过 FSM 理解单周期 CPU 的基本方法。请大家指出单周期 CPU 所用到的模块中，哪些发挥状态存储功能，哪些发挥状态转移功能。<ul>
+<li>状态存储：IM，RF，DM</li>
+<li>状态转移：NPC，ALU</li>
+</ul>
+</li>
+<li>现在我们的模块中 IM 使用 ROM， DM 使用 RAM， GRF 使用 Register，这种做法合理吗？ 请给出分析，若有改进意见也请一并给出。<ul>
+<li>正确的，合理的，无可挑剔的</li>
+</ul>
+</li>
+<li>在上述提示的模块之外，你是否在实际实现时设计了其他的模块？如果是的话，请给出介绍和设计的思路。<ul>
+<li>我把Controller分为了两个部分，一个是识别器，一个是信号发送器，主要考虑是可以在main电路中调试的时候看到当前执行的指令。</li>
+</ul>
+</li>
+<li>事实上，实现 nop 空指令，我们并不需要将它加入控制信号真值表，为什么？<ul>
+<li>因为nop的时候NPCOp=000，没有跳转，而且几个WE使能是0，写不进东西，所以不需要控制</li>
+<li>而且我写了sll，所以nop就对应着移0位的sll，等同于没有修改。</li>
+</ul>
+</li>
+<li>上文提到，MARS 不能导出 PC 与 DM 起始地址均为 0 的机器码。实际上，可以避免手工修改的麻烦。请查阅相关资料进行了解，并阐释为了解决这个问题，你最终采用的方法。<ul>
+<li>可以把其中一个起始地址先设为0，然后另一个可以通过写程序实现判断与修改。</li>
+</ul>
+</li>
+<li>阅读 Pre 的 “MIPS 指令集及汇编语言” 一节中给出的测试样例，评价其强度（可从各个指令的覆盖情况，单一指令各种行为的覆盖情况等方面分析），并指出具体的不足之处。<ul>
+<li>有些寄存器没有用到，有些负数的特殊情况没有涉及（比如beq的负数情况），跳转的指令没有设计</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>volcaxiao
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://volcaxiao.github.io/2022/11/24/BUAA-CO-p3-%E5%8D%95%E5%91%A8%E6%9C%9FCPU-logisim%E5%AE%9E%E7%8E%B0/" title="【BUAA-CO】p3-单周期CPU(logisim实现)">http://volcaxiao.github.io/2022/11/24/BUAA-CO-p3-单周期CPU-logisim实现/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/%E5%8C%97%E8%88%AA/" rel="tag"><i class="fa fa-tag"></i> 北航</a>
+              <a href="/tags/%E5%A4%A7%E4%BA%8C/" rel="tag"><i class="fa fa-tag"></i> 大二</a>
+              <a href="/tags/CO/" rel="tag"><i class="fa fa-tag"></i> CO</a>
+              <a href="/tags/%E8%AE%A1%E7%BB%84/" rel="tag"><i class="fa fa-tag"></i> 计组</a>
+              <a href="/tags/MIPS/" rel="tag"><i class="fa fa-tag"></i> MIPS</a>
+              <a href="/tags/P3/" rel="tag"><i class="fa fa-tag"></i> P3</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/11/24/%E7%9F%A9%E9%98%B5%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98%E8%AE%B2%E8%AF%BE%E8%B5%84%E6%96%99/" rel="prev" title="【BUAA-高代】矩阵相关问题讲课资料">
+      <i class="fa fa-chevron-left"></i> 【BUAA-高代】矩阵相关问题讲课资料
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/11/24/BUAA-CO-p4%E5%8D%95%E5%91%A8%E6%9C%9FCPU-verilog%E5%AE%9E%E7%8E%B0/" rel="next" title="【BUAA-CO】p4单周期CPU-verilog实现">
+      【BUAA-CO】p4单周期CPU-verilog实现 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="lv-container" data-id="city" data-uid="MTAyMC81NzIwMC8zMzY2NA=="></div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#p3-log"><span class="nav-number">1.</span> <span class="nav-text">p3_log</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B4%E4%BD%93%E7%BB%93%E6%9E%84"><span class="nav-number">1.1.</span> <span class="nav-text">整体结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BE%E8%AE%A1%E8%BF%87%E7%A8%8B"><span class="nav-number">1.2.</span> <span class="nav-text">设计过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E9%80%9A%E8%B7%AF"><span class="nav-number">1.2.1.</span> <span class="nav-text">数据通路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8E%A7%E5%88%B6%E5%99%A8%E8%AE%BE%E8%AE%A1"><span class="nav-number">1.2.2.</span> <span class="nav-text">控制器设计</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B7%E4%BD%93%E5%AE%9E%E7%8E%B0"><span class="nav-number">1.3.</span> <span class="nav-text">具体实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#PC-NPC%E5%AE%9E%E7%8E%B0"><span class="nav-number">1.3.1.</span> <span class="nav-text">PC&#x2F;NPC实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IM%E5%AE%9E%E7%8E%B0"><span class="nav-number">1.3.2.</span> <span class="nav-text">IM实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#InstructionSplitter"><span class="nav-number">1.3.3.</span> <span class="nav-text">InstructionSplitter</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RF%E5%AE%9E%E7%8E%B0"><span class="nav-number">1.3.4.</span> <span class="nav-text">RF实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ALU%EF%BC%88%E9%87%8D%E7%82%B9%EF%BC%81%EF%BC%89"><span class="nav-number">1.3.5.</span> <span class="nav-text">ALU（重点！）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#EXT"><span class="nav-number">1.3.6.</span> <span class="nav-text">EXT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DM%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="nav-number">1.3.7.</span> <span class="nav-text">DM的实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Controller"><span class="nav-number">1.3.8.</span> <span class="nav-text">Controller</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E9%80%9A%E8%B7%AF%E8%A1%A8%E5%8F%8A%E6%8E%A7%E5%88%B6%E4%BF%A1%E5%8F%B7%E8%A1%A8"><span class="nav-number">1.3.9.</span> <span class="nav-text">数据通路表及控制信号表</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#debug"><span class="nav-number">1.4.</span> <span class="nav-text">debug</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95"><span class="nav-number">1.5.</span> <span class="nav-text">测试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%8E%E7%BB%AD%E5%A2%9E%E9%87%8F%E5%BC%80%E5%8F%91"><span class="nav-number">1.6.</span> <span class="nav-text">后续增量开发</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%9D%E8%80%83%E9%A2%98"><span class="nav-number">1.7.</span> <span class="nav-text">思考题</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="volcaxiao"
+      src="/images/head.jpg">
+  <p class="site-author-name" itemprop="name">volcaxiao</p>
+  <div class="site-description" itemprop="description">北航CS，学习分享，记得看welcome</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">22</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">30</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/volcaxiao" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;volcaxiao" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:volcaxiaoc@buaa.edu.cn" title="E-Mail → mailto:volcaxiaoc@buaa.edu.cn" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://bluebean-cloud.github.io/" title="https:&#x2F;&#x2F;bluebean-cloud.github.io&#x2F;" rel="noopener" target="_blank">-> Bluebean's Blog</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://augetyvolta.github.io/" title="https:&#x2F;&#x2F;augetyvolta.github.io&#x2F;" rel="noopener" target="_blank">-> AugetyVolta's Blog</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://zouyuyang.github.io/" title="https:&#x2F;&#x2F;zouyuyang.github.io&#x2F;" rel="noopener" target="_blank">-> plitmuss's blog(进来膜)</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.runoob.com/" title="https:&#x2F;&#x2F;www.runoob.com" rel="noopener" target="_blank">菜鸟教程</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.csdn.net/" title="https:&#x2F;&#x2F;www.csdn.net" rel="noopener" target="_blank">CSDN</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.luogu.com.cn/" title="https:&#x2F;&#x2F;www.luogu.com.cn" rel="noopener" target="_blank">洛谷</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://e.buaa.edu.cn/" title="https:&#x2F;&#x2F;e.buaa.edu.cn" rel="noopener" target="_blank">BUAA_VPN</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://hexo.io/" title="https:&#x2F;&#x2F;hexo.io" rel="noopener" target="_blank">Hexo</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://theme-next.js.org/" title="https:&#x2F;&#x2F;theme-next.js.org&#x2F;" rel="noopener" target="_blank">NexT</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2022-02 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">volcaxiao</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">56k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">51 分钟</span>
+</div>
+
+
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <span id="busuanzi_container_site_pv">总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+    <span class="post-meta-divider">|</span>
+    <span id="busuanzi_container_site_uv">总访客数<span id="busuanzi_value_site_uv"></span>人</span>
+    <span class="post-meta-divider">|</span>
+<!-- 不蒜子计数初始值纠正 -->
+<script>
+$(document).ready(function() {
+
+    var int = setInterval(fixCount, 50);  // 50ms周期检测函数
+    var countOffset = 20000;  // 初始化首次数据
+
+    function fixCount() {            
+       if (document.getElementById("busuanzi_container_site_pv").style.display != "none")
+        {
+            $("#busuanzi_value_site_pv").html(parseInt($("#busuanzi_value_site_pv").html()) + countOffset); 
+            clearInterval(int);
+        }                  
+        if ($("#busuanzi_container_site_pv").css("display") != "none")
+        {
+            $("#busuanzi_value_site_uv").html(parseInt($("#busuanzi_value_site_uv").html()) + countOffset); // 加上初始数据 
+            clearInterval(int); // 停止检测
+        }  
+    }
+       	
+});
+</script> 
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/canvas_lines.min.js"></script>
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'forest',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+
+  
+
+<script>
+NexT.utils.loadComments(document.querySelector('#lv-container'), () => {
+  window.livereOptions = {
+    refer: location.pathname.replace(CONFIG.root, '').replace('index.html', '')
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+});
+</script>
+
+</body>
+</html>
