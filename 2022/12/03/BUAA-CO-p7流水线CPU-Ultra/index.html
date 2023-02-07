@@ -21,23 +21,25 @@
     var CONFIG = {"hostname":"volcaxiao.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"livere","storage":true,"lazyload":false,"nav":null,"activeClass":"livere"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":5,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="北航CS，学习分享，记得看welcome">
+  <meta name="description" content="p7_log p7需要我们把p6设计的流水线CPU封装，并连接上一系列的外设，完成一个MIPS的微系统，能够实现异常和中断所以我们要实现以下工作：p6流水线的设计见p6文档，在这我们，把CPU留下接口后可以忽略他的内部的实现细节。实现CP0协寄存器，异常和中断实现系统桥，连接DM，Timer等外设  设计思路-纲领摘要 实现计时器 实现系统桥 实现CP0 改进CPU的内部结构，使其拥有检测内部异常">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【BUAA-CO】p7流水线CPU-Ultra">
 <meta property="og:url" content="http://volcaxiao.github.io/2022/12/03/BUAA-CO-p7%E6%B5%81%E6%B0%B4%E7%BA%BFCPU-Ultra/index.html">
 <meta property="og:site_name" content="volca&#39;s blog">
-<meta property="og:description" content="北航CS，学习分享，记得看welcome">
+<meta property="og:description" content="p7_log p7需要我们把p6设计的流水线CPU封装，并连接上一系列的外设，完成一个MIPS的微系统，能够实现异常和中断所以我们要实现以下工作：p6流水线的设计见p6文档，在这我们，把CPU留下接口后可以忽略他的内部的实现细节。实现CP0协寄存器，异常和中断实现系统桥，连接DM，Timer等外设  设计思路-纲领摘要 实现计时器 实现系统桥 实现CP0 改进CPU的内部结构，使其拥有检测内部异常">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-CO/p7/%E8%AE%A1%E6%97%B6%E5%99%A8%E7%8A%B6%E6%80%81%E8%BD%AC%E7%A7%BB.jpg">
 <meta property="article:published_time" content="2022-12-03T06:45:59.000Z">
-<meta property="article:modified_time" content="2022-12-03T06:46:54.439Z">
+<meta property="article:modified_time" content="2023-02-07T06:41:29.758Z">
 <meta property="article:author" content="volcaxiao">
 <meta property="article:tag" content="北航">
-<meta property="article:tag" content="大二">
 <meta property="article:tag" content="CO">
+<meta property="article:tag" content="大二">
 <meta property="article:tag" content="计组">
 <meta property="article:tag" content="MIPS">
 <meta property="article:tag" content="P7">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-CO/p7/%E8%AE%A1%E6%97%B6%E5%99%A8%E7%8A%B6%E6%80%81%E8%BD%AC%E7%A7%BB.jpg">
 
 <link rel="canonical" href="http://volcaxiao.github.io/2022/12/03/BUAA-CO-p7%E6%B5%81%E6%B0%B4%E7%BA%BFCPU-Ultra/">
 
@@ -242,10 +244,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-12-03 14:45:59 / 修改时间：14:46:54" itemprop="dateCreated datePublished" datetime="2022-12-03T14:45:59+08:00">2022-12-03</time>
+              <time title="创建时间：2022-12-03 14:45:59" itemprop="dateCreated datePublished" datetime="2022-12-03T14:45:59+08:00">2022-12-03</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-02-07 14:41:29" itemprop="dateModified" datetime="2023-02-07T14:41:29+08:00">2023-02-07</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -269,14 +277,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>0</span>
+              <span>3.6k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
+              <span>3 分钟</span>
             </span>
 
         </div>
@@ -288,7 +296,451 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        
+        <h1 id="p7-log"><a href="#p7-log" class="headerlink" title="p7_log"></a>p7_log</h1><blockquote>
+<p>p7需要我们把p6设计的流水线CPU封装，并连接上一系列的外设，完成一个MIPS的微系统，能够实现异常和中断<br>所以我们要实现以下工作：<br>p6流水线的设计见p6文档，在这我们，把CPU留下接口后可以忽略他的内部的实现细节。<br>实现CP0协寄存器，异常和中断<br>实现系统桥，连接DM，Timer等外设</p>
+</blockquote>
+<h2 id="设计思路-纲领"><a href="#设计思路-纲领" class="headerlink" title="设计思路-纲领"></a>设计思路-纲领</h2><h3 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h3><ul>
+<li>实现计时器</li>
+<li>实现系统桥</li>
+<li>实现CP0</li>
+<li>改进CPU的内部结构，使其拥有检测内部异常，响应外部中断，实现异常指令</li>
+<li>通过Mars编写异常处理程序</li>
+<li>测试</li>
+</ul>
+<h3 id="实现指令"><a href="#实现指令" class="headerlink" title="实现指令"></a>实现指令</h3><ul>
+<li>对于指令的分类很重要</li>
+<li>下面是所需要是实现的指令类和指令</li>
+<li>寄存器寄存器计算：add, sub, and, or, slt, sltu,  xor</li>
+<li>寄存器立即数计算：addi, andi, ori, slti, xori</li>
+<li>位移类： sll, srl, sra, sllv, srlv, srav</li>
+<li>B类：beq, bne</li>
+<li>store：sw, sh, sb</li>
+<li><p>load：lw, lh, lhu, lb, lbu</p>
+</li>
+<li><p>跳转并链接：jal, jalr, j</p>
+</li>
+<li>跳转寄存器：jr, jalr</li>
+<li>加载高位：lui</li>
+<li>空指令：nop</li>
+<li>读乘除法寄存器：mfhi, mflo</li>
+<li><p>写乘除法寄存器：mult, multu, div, divu, mthi, mtlo</p>
+</li>
+<li><p>p5要求实现的基础指令有：add, sub, ori, lw, sw, beq, lui, jal, jr, nop</p>
+</li>
+<li>p7在p6的基础上新增的指令：mfc0, mtc0, eret, syscall</li>
+</ul>
+<h3 id="命名规范"><a href="#命名规范" class="headerlink" title="命名规范"></a>命名规范</h3><ul>
+<li>在控制信号连线名末尾加上_阶段字母，如：NPCOp_D，用以区分所属阶段</li>
+<li>在寄存器输出信号前加上阶段字母_, 如：D_A1,用以区分所属阶段</li>
+<li>功能部件输出信号前加上功能部件.，（实际打码时舍弃）</li>
+<li>MUX命名采取X_输入端口名_选择数</li>
+<li>转发MUX命名采用F_输入端口名_选择数，级数越大优先级越高</li>
+<li>内部异常信号，用EXC_异常类型_阶段</li>
+<li>接口名清晰易懂</li>
+</ul>
+<h2 id="模块设计"><a href="#模块设计" class="headerlink" title="模块设计"></a>模块设计</h2><h3 id="Timer1-Timer2"><a href="#Timer1-Timer2" class="headerlink" title="Timer1/Timer2"></a>Timer1/Timer2</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">信号</th>
+<th style="text-align:center">IO</th>
+<th style="text-align:left">描述</th>
+<th style="text-align:left">备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">clk</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">时钟信号</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:center">reset</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">同步复位信号</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:center">addr[31:2]</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">Timer写入地址</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:center">WE</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">Timer写使能</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:center">Din[31:0]</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">Timer写入数据</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:center">Dout[31:0]</td>
+<td style="text-align:center">O</td>
+<td style="text-align:left">Timer读取的数据</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:center">IRQ</td>
+<td style="text-align:center">O</td>
+<td style="text-align:left">interupte require</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="Bridge"><a href="#Bridge" class="headerlink" title="Bridge"></a>Bridge</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">信号</th>
+<th style="text-align:center">IO</th>
+<th style="text-align:left">描述</th>
+<th style="text-align:left">备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">A_cpu[31:0]</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">读取or写入外设的地址</td>
+<td style="text-align:left">cpu输出</td>
+</tr>
+<tr>
+<td style="text-align:center">WD_cpu[31:0]</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">写入外设的数据</td>
+<td style="text-align:left">cpu输出</td>
+</tr>
+<tr>
+<td style="text-align:center">ByteEn[3:0]</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">写外设的字节使能</td>
+<td style="text-align:left">cpu输出</td>
+</tr>
+<tr>
+<td style="text-align:center">DM_RD_in[31:0]</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">DM读取值</td>
+<td style="text-align:left">外设读入</td>
+</tr>
+<tr>
+<td style="text-align:center">T0_RD_in[31:0]</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">T0读取值</td>
+<td style="text-align:left">外设读入</td>
+</tr>
+<tr>
+<td style="text-align:center">T1_RD_in[31:0]</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">T1读取值</td>
+<td style="text-align:left">外设读入</td>
+</tr>
+<tr>
+<td style="text-align:center">A_out[31:0]</td>
+<td style="text-align:center">O</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">cpu输出</td>
+</tr>
+<tr>
+<td style="text-align:center">WD_out[31:0]</td>
+<td style="text-align:center">O</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">cpu输出</td>
+</tr>
+<tr>
+<td style="text-align:center">RD_in[31:0]</td>
+<td style="text-align:center">O</td>
+<td style="text-align:left">外设读入至CPU</td>
+<td style="text-align:left">外设读入</td>
+</tr>
+<tr>
+<td style="text-align:center">DMWE[3:0]</td>
+<td style="text-align:center">O</td>
+<td style="text-align:left">DM写使能</td>
+<td style="text-align:left">由byteen与地址决定</td>
+</tr>
+<tr>
+<td style="text-align:center">T0WE</td>
+<td style="text-align:center">O</td>
+<td style="text-align:left">T0写使能</td>
+<td style="text-align:left">同上</td>
+</tr>
+<tr>
+<td style="text-align:center">T1WE</td>
+<td style="text-align:center">O</td>
+<td style="text-align:left">T1写使能</td>
+<td style="text-align:left">同上</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="CP0协寄存器"><a href="#CP0协寄存器" class="headerlink" title="CP0协寄存器"></a>CP0协寄存器</h3><ul>
+<li>内置在CPU M级中，用于获取外部中断和内部异常的信息，并发送异常/中断请求。</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">信号</th>
+<th style="text-align:center">IO</th>
+<th style="text-align:left">描述</th>
+<th style="text-align:left">备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">clk</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">时钟信号</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:center">reset</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">同步复位信号</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:center">addr_R[4:0]</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">mfc0读CP0的编号</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:center">CPWE</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">mtc0写使能</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:center">addr_W[4:0]</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">mtc0写CP0的编号</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:center">WD[31:0]</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">mtc0写CP0的数据</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:center">M_PC[31:0]</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">中断异常产生时的M_PC</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:center">ExcCode[4:0]</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">产生中断异常的类型</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:center">BD_M</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">branch delay分支延迟槽</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:center">HWInt[7:2]</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">六个设备的中断标志</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:center">EXL_clr</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">Eret_M用于将SR的EXL置零</td>
+<td style="text-align:left">表示退出中断异常</td>
+</tr>
+<tr>
+<td style="text-align:center">EIrequire</td>
+<td style="text-align:center">O</td>
+<td style="text-align:left">异常/中断请求</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:center">EPC[31:0]</td>
+<td style="text-align:center">O</td>
+<td style="text-align:left">输出EPC</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:center">RD[31:0]</td>
+<td style="text-align:center">O</td>
+<td style="text-align:left">mfc0读CP0的数据</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="CPU"><a href="#CPU" class="headerlink" title="CPU"></a>CPU</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">信号</th>
+<th style="text-align:center">IO</th>
+<th style="text-align:left">描述</th>
+<th style="text-align:left">备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">clk</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">时钟信号</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:center">reset</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">同步复位信号</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:center">i_inst_rdata[31:0]</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">从IM读取的指令</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:center">m_data_rdata[31:0]</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">从DM读取的数据</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:center">Int_put</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">外部中断的信号</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:center">Int_T0</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">Timer0输入的中断信号</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:center">Int_T1</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">Timer1输入的中断信号</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:center">i_inst_addr[31:0]</td>
+<td style="text-align:center">O</td>
+<td style="text-align:left">F_PC</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:center">m_inst_addr[31:0]</td>
+<td style="text-align:center">O</td>
+<td style="text-align:left">M_PC</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:center">m_data_addr[31:0]</td>
+<td style="text-align:center">O</td>
+<td style="text-align:left">DM的读取or写入地址</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:center">m_data_wdata[31:0]</td>
+<td style="text-align:center">O</td>
+<td style="text-align:left">DMWD</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:center">m_data_byteen[3:0]</td>
+<td style="text-align:center">O</td>
+<td style="text-align:left">DM的字节使能信号</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:center">w_inst_addr[31:0]</td>
+<td style="text-align:center">O</td>
+<td style="text-align:left">W_PC</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:center">w_grf_we</td>
+<td style="text-align:center">O</td>
+<td style="text-align:left">RFWE_W</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:center">w_grf_addr[4:0]</td>
+<td style="text-align:center">O</td>
+<td style="text-align:left">W_A3</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:center">w_grf_wdata[4:0]</td>
+<td style="text-align:center">O</td>
+<td style="text-align:left">RFWD/Wout</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="实现方法"><a href="#实现方法" class="headerlink" title="实现方法"></a>实现方法</h2><h3 id="内部异常"><a href="#内部异常" class="headerlink" title="内部异常"></a>内部异常</h3><ul>
+<li>每一级的异常进流水，已有异常的话按原异常流水（优先级）</li>
+<li>在ExcCode_fixE的时候给overflow+上RFWE的判别</li>
+<li>响应异常时需要做下面几件事：<ul>
+<li>清空：EMW寄存器响应Req，清空寄存器(注意处理PC，同stall情况)</li>
+</ul>
+</li>
+</ul>
+<h3 id="外部中断"><a href="#外部中断" class="headerlink" title="外部中断"></a>外部中断</h3><ul>
+<li>外部中断的优先级大于内部异常</li>
+</ul>
+<h3 id="Mars异常程序"><a href="#Mars异常程序" class="headerlink" title="Mars异常程序"></a>Mars异常程序</h3><ul>
+<li><code>.ktext 4180</code>将异常处理程序写在4180处</li>
+<li>注意处理中断时需要<code>sb $27,0x7f20($0)</code>响应异常</li>
+</ul>
+<h2 id="测试数据及自动化测试"><a href="#测试数据及自动化测试" class="headerlink" title="测试数据及自动化测试"></a>测试数据及自动化测试</h2><ul>
+<li>测试要将各种异常覆盖到</li>
+<li>同时注意尽可能多的中断情况</li>
+</ul>
+<h3 id="自动化"><a href="#自动化" class="headerlink" title="自动化"></a>自动化</h3><ul>
+<li>自动化测试上我实现了机器码的生成（不足1120行补零）</li>
+<li>实现了格式的统一，去掉时间输出</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">command = <span class="string">&quot;java -jar Mars.jar db nc mc CompactDataAtZero a dump .text HexText testcode/testcode.txt testcode/test.asm&quot;</span></span><br><span class="line">os.system(command=command)</span><br><span class="line">command = <span class="string">&quot;java -jar Mars.jar db nc mc CompactDataAtZero a dump 0x4180-0x6ffc HexText testcode/handlerCode.txt testcode/test.asm&quot;</span></span><br><span class="line">os.system(command=command)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(file=<span class="string">&quot;testcode/testcode.txt&quot;</span>) <span class="keyword">as</span> testcode:</span><br><span class="line">    test = testcode.read()</span><br><span class="line">    line = test.count(<span class="string">&quot;\n&quot;</span>)</span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(file=<span class="string">&quot;testcode/handlerCode.txt&quot;</span>) <span class="keyword">as</span> handlerCode:</span><br><span class="line">    handler = handlerCode.read()</span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(file=<span class="string">&quot;testcode/code.txt&quot;</span>, mode=<span class="string">&quot;w&quot;</span>) <span class="keyword">as</span> code:</span><br><span class="line">    code.write(test)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1120</span>-line):</span><br><span class="line">        code.write(<span class="string">&quot;00000000\n&quot;</span>)</span><br><span class="line">    code.write(handler)</span><br></pre></td></tr></table></figure>
+<h2 id="思考题"><a href="#思考题" class="headerlink" title="思考题"></a>思考题</h2><p>1、请查阅相关资料，说明鼠标和键盘的输入信号是如何被 CPU 知晓的？</p>
+<ul>
+<li>鼠标和键盘产生中断信号，进入中断处理程序，在中断处理程序中，鼠标和键盘输入信号</li>
+</ul>
+<p>2、请思考为什么我们的 CPU 处理中断异常必须是已经指定好的地址？如果你的 CPU 支持用户自定义入口地址，即处理中断异常的程序由用户提供，其还能提供我们所希望的功能吗？如果可以，请说明这样可能会出现什么问题？否则举例说明。（假设用户提供的中断处理程序合法）</p>
+<ul>
+<li>若自定义入口地址，则很多软件将会不兼容，在程序员视角设计软件的时候，中断处理的入口地址是不重要的，也就是说这是软件和硬件之间的协议。</li>
+</ul>
+<p>3、为何与外设通信需要 Bridge？</p>
+<ul>
+<li>外设的种类是繁多，我们通过bridge并且约定某段内存地址对应于某个外设，这样我们就只需要通过访存去实现与外设的联系，指令集会比较的简洁。添加外设时，外设也只需要体现在入口地址的不同而不需要改变CPU的内部结构，让CPU访问外设只需通过地址，这样也是体现了”高内聚，低耦合”的原则。</li>
+</ul>
+<p>4、请阅读官方提供的定时器源代码，阐述两种中断模式的异同，并分别针对每一种模式绘制状态移图。</p>
+<ul>
+<li>两种中断，模式0为定时中断，模式1为周期性中断。区别在于倒计时达到0之后的状态。</li>
+<li><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-CO/p7/%E8%AE%A1%E6%97%B6%E5%99%A8%E7%8A%B6%E6%80%81%E8%BD%AC%E7%A7%BB.jpg" alt="状态转移"></li>
+</ul>
+<p>5、倘若中断信号流入的时候，在检测宏观 PC 的一级如果是一条空泡（你的 CPU 该级所有信息均为空）指令，此时会发生什么问题？在此例基础上请思考：在 P7 中，清空流水线产生的空泡指令应该保留原指令的哪些信息？</p>
+<ul>
+<li>写入EPC会出错，延迟槽标记信号也会出错。</li>
+<li>如果是中断或者异常而清空流水线，应该保持原有的PC值，以保证宏观PC的正确。</li>
+<li>如果是阻塞而清空流水线，应该要保持原有的PC并且保持原有的BD标志信号。</li>
+</ul>
+<p>6、为什么 jalr 指令为什么不能写成 jalr $31, $31？</p>
+<ul>
+<li>这种操作具有二义性，不知道先跳转还是先链接</li>
+<li>指令集要求。寄存器说明符 rs 和 rd 不得相等，因为此类指令在重新执行时不具有相同的效果。执行此类指令的结果是不可预测的。此限制允许异常处理程序在分支延迟槽中发生异常时通过重新执行分支来恢复执行。</li>
+</ul>
+
     </div>
 
     
@@ -316,8 +768,8 @@
           
           <div class="post-tags">
               <a href="/tags/%E5%8C%97%E8%88%AA/" rel="tag"><i class="fa fa-tag"></i> 北航</a>
-              <a href="/tags/%E5%A4%A7%E4%BA%8C/" rel="tag"><i class="fa fa-tag"></i> 大二</a>
               <a href="/tags/CO/" rel="tag"><i class="fa fa-tag"></i> CO</a>
+              <a href="/tags/%E5%A4%A7%E4%BA%8C/" rel="tag"><i class="fa fa-tag"></i> 大二</a>
               <a href="/tags/%E8%AE%A1%E7%BB%84/" rel="tag"><i class="fa fa-tag"></i> 计组</a>
               <a href="/tags/MIPS/" rel="tag"><i class="fa fa-tag"></i> MIPS</a>
               <a href="/tags/P7/" rel="tag"><i class="fa fa-tag"></i> P7</a>
@@ -332,7 +784,10 @@
     <a href="/2022/11/24/BUAA-CO-p6%E6%B5%81%E6%B0%B4%E7%BA%BFCPU-pro/" rel="prev" title="【BUAA-CO】p6流水线CPU-pro">
       <i class="fa fa-chevron-left"></i> 【BUAA-CO】p6流水线CPU-pro
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2023/02/07/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%EF%BC%88%E4%BA%8C%EF%BC%89%E5%85%B3%E7%B3%BB%E6%80%BB%E7%BB%93/" rel="next" title="离散数学（二）关系总结">
+      离散数学（二）关系总结 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -396,6 +851,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#p7-log"><span class="nav-number">1.</span> <span class="nav-text">p7_log</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF-%E7%BA%B2%E9%A2%86"><span class="nav-number">1.1.</span> <span class="nav-text">设计思路-纲领</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%91%98%E8%A6%81"><span class="nav-number">1.1.1.</span> <span class="nav-text">摘要</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0%E6%8C%87%E4%BB%A4"><span class="nav-number">1.1.2.</span> <span class="nav-text">实现指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%91%BD%E5%90%8D%E8%A7%84%E8%8C%83"><span class="nav-number">1.1.3.</span> <span class="nav-text">命名规范</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A8%A1%E5%9D%97%E8%AE%BE%E8%AE%A1"><span class="nav-number">1.2.</span> <span class="nav-text">模块设计</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Timer1-Timer2"><span class="nav-number">1.2.1.</span> <span class="nav-text">Timer1&#x2F;Timer2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bridge"><span class="nav-number">1.2.2.</span> <span class="nav-text">Bridge</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CP0%E5%8D%8F%E5%AF%84%E5%AD%98%E5%99%A8"><span class="nav-number">1.2.3.</span> <span class="nav-text">CP0协寄存器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CPU"><span class="nav-number">1.2.4.</span> <span class="nav-text">CPU</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%B3%95"><span class="nav-number">1.3.</span> <span class="nav-text">实现方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%85%E9%83%A8%E5%BC%82%E5%B8%B8"><span class="nav-number">1.3.1.</span> <span class="nav-text">内部异常</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%96%E9%83%A8%E4%B8%AD%E6%96%AD"><span class="nav-number">1.3.2.</span> <span class="nav-text">外部中断</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Mars%E5%BC%82%E5%B8%B8%E7%A8%8B%E5%BA%8F"><span class="nav-number">1.3.3.</span> <span class="nav-text">Mars异常程序</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95%E6%95%B0%E6%8D%AE%E5%8F%8A%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95"><span class="nav-number">1.4.</span> <span class="nav-text">测试数据及自动化测试</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E5%8A%A8%E5%8C%96"><span class="nav-number">1.4.1.</span> <span class="nav-text">自动化</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%9D%E8%80%83%E9%A2%98"><span class="nav-number">1.5.</span> <span class="nav-text">思考题</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -411,7 +867,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-count">22</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -484,7 +940,7 @@
 <div class="copyright">
   
   &copy; 2022-02 – 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -493,12 +949,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">51k</span>
+    <span title="站点总字数">56k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">46 分钟</span>
+    <span title="站点阅读时长">51 分钟</span>
 </div>
 
 

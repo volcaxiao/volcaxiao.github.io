@@ -35,11 +35,11 @@
 <meta property="og:image" content="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-CO/p6/MCU%E6%8C%87%E4%BB%A4%E5%88%86%E7%B1%BB.png">
 <meta property="og:image" content="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-CO/p6/%E6%B3%A8%E9%87%8A%E5%88%86%E5%89%B2.png">
 <meta property="article:published_time" content="2022-11-24T08:35:20.000Z">
-<meta property="article:modified_time" content="2022-12-03T06:56:30.053Z">
+<meta property="article:modified_time" content="2023-02-07T06:38:48.287Z">
 <meta property="article:author" content="volcaxiao">
 <meta property="article:tag" content="北航">
-<meta property="article:tag" content="大二">
 <meta property="article:tag" content="CO">
+<meta property="article:tag" content="大二">
 <meta property="article:tag" content="计组">
 <meta property="article:tag" content="MIPS">
 <meta property="article:tag" content="P6">
@@ -257,7 +257,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-12-03 14:56:30" itemprop="dateModified" datetime="2022-12-03T14:56:30+08:00">2022-12-03</time>
+                <time title="修改时间：2023-02-07 14:38:48" itemprop="dateModified" datetime="2023-02-07T14:38:48+08:00">2023-02-07</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -282,14 +282,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>7.3k</span>
+              <span>8.7k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>7 分钟</span>
+              <span>8 分钟</span>
             </span>
 
         </div>
@@ -1757,10 +1757,22 @@
 </ul>
 <p>2、真实的流水线 CPU 是如何使用实现乘除法的？请查阅相关资料进行简单说明。</p>
 <ul>
-<li><p>3、请结合自己的实现分析，你是如何处理 Busy 信号带来的周期阻塞的？</p>
+<li>真实的流水线CPU采用的乘法是有加法器和移位器循环，具体实现过程为：<blockquote>
+<p>首先CPU会初始化三个通用寄存器用来存放被乘数，乘数，部分积。<br>部分积寄存器初始化为0。<br>判断乘数寄存器的低位是0|1，如果为0则将乘数寄存器右移一位，同时将部分积寄存器也右移一位。<br>在位移时遵循计算机位移规则，乘数寄存器低位溢出的一位丢弃，部分积寄存器低位溢出的一位填充到乘数寄存器的高位。<br>同时部分积寄存器高位补0。如果为1则将部分积寄存器加上被乘数寄存器，再进行移位操作。<br>当所有乘数位处理完成后部分积寄存器做高位，乘数寄存器做低位就是最终乘法结果。</p>
+</blockquote>
 </li>
-<li><p>除cnt—，和BusyReg置位以外全是组合逻辑的操作（不然可能会多出来一个空周期）</p>
+<li>还有另一种乘法的方式：<blockquote>
+<p>只需两个寄存器，A[31:0],B[63:0]，A初始化为被乘数，B初始化为乘数。<br>每一次取B的最低位，为1则将A[31:0]+B[63:32] -&gt; B[63:32]，为0则不操作。<br>每次将B &gt;&gt; 1，然后高位补0。</p>
+</blockquote>
 </li>
+<li>除法实现：<blockquote>
+<p>与乘法的操作基本相反，首先CPU会初始化三个寄存器,用来存放被除数，除数，部分商。余数(被除数与除数比较的结果)放到被除数的有效高位上。CPU做除法时和做除法时是相反的，乘法是右移，除法是左移，乘法做的是加法，除法做的是减法。首先CPU会把被除数bit位与除数bit位对齐，然后再让对齐的被除数与除数比较(双符号位判断)。比如01-10=11(前面的1是符号位) 1-2=-1 计算机通过符号位和后一位的bit位来判断大于和小于，那么01-10=11 就说明01小于10，如果得数为01就代表大于，如果得数为00代表等于。如果得数大于或等于则将比较的结果放到被除数的有效高位上然后再商寄存器上商：1 并向后多看一位(上商就是将商的最低位左移1位腾出商寄存器最低位上新的商)如果得数小于则上商：0 并向后多看一位然后循环做以上操作当所有的被除数都处理完后，商做结果被除数里面的值就是余数。</p>
+</blockquote>
+</li>
+</ul>
+<p>3、请结合自己的实现分析，你是如何处理 Busy 信号带来的周期阻塞的？</p>
+<ul>
+<li>除cnt—，和BusyReg置位以外全是组合逻辑的操作（不然可能会多出来一个空周期）</li>
 <li>对于乘除指令：<ul>
 <li>将Busy，start_E，MDUOp_D传入HCU</li>
 <li>然后md暂停信号为<code>(Busy | start_E) &amp; (MDUOp_D != 0)</code></li>
@@ -1769,20 +1781,42 @@
 </ul>
 <p>4、请问采用字节使能信号的方式处理写指令有什么好处？（提示：从清晰性、统一性等角度考虑）</p>
 <ul>
-<li>对于需要写入的位置更加的直观</li>
+<li>对于需要写入的位置更加的直观，相当于将DMWE、DMOP写入的A[1:0]用四位字节使能信号表示，十分的统一。</li>
 </ul>
 <p>5、请思考，我们在按字节读和按字节写时，实际从 DM 获得的数据和向 DM 写入的数据是否是一字节？在什么情况下我们按字节读和按字节写的效率会高于按字读和按字写呢？</p>
+<ul>
+<li>按字节读写的时候，我们获得的是一字节，但是我们如果要lw或lh的话我们就需要拼接。如果是sw或sh的话我们需要多次存入。</li>
+<li>若用lb，sb，lh，sh这种非取字的读写时，按字节读可以省去，取位，拼接的步骤，效率要优于按字读写。</li>
+</ul>
 <p>6、为了对抗复杂性你采取了哪些抽象和规范手段？这些手段在译码和处理数据冲突的时候有什么样的特点与帮助？</p>
 <ul>
 <li>NPC统一，NPC统一模块，具体可见<a href="#跳转分支指令">跳转分支指令实现</a></li>
-<li><p>指令分类，MCU指令括号分类防止译码指令过长<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-CO/p6/MCU%E6%8C%87%E4%BB%A4%E5%88%86%E7%B1%BB.png" alt="MCU指令分类"></p>
-</li>
-<li><p>每一级设置outMUX，只需在MCU中控制outSel即可决定转发值及写入寄存器的值</p>
-</li>
+<li>指令分类，MCU指令括号分类防止译码指令过长<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-CO/p6/MCU%E6%8C%87%E4%BB%A4%E5%88%86%E7%B1%BB.png" alt="MCU指令分类"></li>
+<li>每一级设置outMUX，只需在MCU中控制outSel即可决定转发值及写入寄存器的值</li>
 <li>多用注释来对代码段进行分割，代码对齐（保持好的代码风格）<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-CO/p6/%E6%B3%A8%E9%87%8A%E5%88%86%E5%89%B2.png" alt="注释分割"></li>
 </ul>
 <p>7、在本实验中你遇到了哪些不同指令类型组合产生的冲突？你又是如何解决的？相应的测试样例是什么样的？</p>
+<ul>
+<li>实现过程见<a href="#冒险处理">实现方法-冒险处理</a></li>
+<li>在常规测试通过后，我们可以将T_rsUse和T_rtUse相同的指令归类为同一需求指令，把T_new相同的指令归类为同一供给指令。<ul>
+<li>所以可以在new方面有下列指令：add，lw，jal，mfhi</li>
+<li>在rsUse方面有下面情况：add，sll，lw，beq，jr，mult，mthi</li>
+</ul>
+</li>
+<li>然后对着转发的时间表，设计测试数据：</li>
+</ul>
+<figure class="highlight mips"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># rs0_E1</span></span><br><span class="line"><span class="keyword">add </span>  $<span class="built_in">t0</span>, $<span class="built_in">t1</span>, $<span class="built_in">t2</span></span><br><span class="line"><span class="keyword">beq </span>  $<span class="built_in">t0</span>, $<span class="built_in">t3</span>, label1</span><br><span class="line"><span class="keyword">nop</span></span><br><span class="line"><span class="keyword"></span></span><br><span class="line"><span class="comment"># rs0_E2</span></span><br><span class="line"><span class="keyword">lw </span>   $<span class="built_in">t0</span>, <span class="number">0</span>($<span class="built_in">t1</span>)</span><br><span class="line"><span class="keyword">beq </span>  $<span class="built_in">t0</span>, $<span class="built_in">t3</span>, label1</span><br><span class="line"><span class="keyword">nop</span></span><br><span class="line"><span class="keyword"></span></span><br><span class="line"><span class="comment">#rs0_E0</span></span><br><span class="line"><span class="keyword">jal </span>  label1</span><br><span class="line"><span class="keyword">nop</span></span><br><span class="line"><span class="keyword"></span><span class="keyword">ori </span>  $<span class="built_in">t0</span>, $<span class="number">0</span>, <span class="number">0x1234</span></span><br><span class="line"><span class="symbol">label1:</span> <span class="keyword">jr </span>$<span class="built_in">ra</span></span><br><span class="line"><span class="keyword">nop</span></span><br><span class="line"><span class="keyword"></span>....</span><br></pre></td></tr></table></figure>
 <p>8、如果你是手动构造的样例，请说明构造策略，说明你的测试程序如何保证覆盖了所有需要测试的情况；如果你是完全随机生成的测试样例，请思考完全随机的测试程序有何不足之处；如果你在生成测试样例时采用了特殊的策略，比如构造连续数据冒险序列，请你描述一下你使用的策略如何结合了随机性达到强测的效果。</p>
+<ul>
+<li>手动构造策略见上</li>
+<li>完全随机生成有几大不足之处，如无法保证内存对齐，无法保证延迟槽中没有跳转分支，无法避免一定几率的死循环等等</li>
+<li>但可以加入策略：<ul>
+<li>比如只用t0-t6寄存器以保证产生足够多的冲突</li>
+<li>在检测到生成跳转后禁用跳转指令</li>
+<li>检测到内存不对齐可以不生成等等</li>
+</ul>
+</li>
+</ul>
 
     </div>
 
@@ -1811,8 +1845,8 @@
           
           <div class="post-tags">
               <a href="/tags/%E5%8C%97%E8%88%AA/" rel="tag"><i class="fa fa-tag"></i> 北航</a>
-              <a href="/tags/%E5%A4%A7%E4%BA%8C/" rel="tag"><i class="fa fa-tag"></i> 大二</a>
               <a href="/tags/CO/" rel="tag"><i class="fa fa-tag"></i> CO</a>
+              <a href="/tags/%E5%A4%A7%E4%BA%8C/" rel="tag"><i class="fa fa-tag"></i> 大二</a>
               <a href="/tags/%E8%AE%A1%E7%BB%84/" rel="tag"><i class="fa fa-tag"></i> 计组</a>
               <a href="/tags/MIPS/" rel="tag"><i class="fa fa-tag"></i> MIPS</a>
               <a href="/tags/P6/" rel="tag"><i class="fa fa-tag"></i> P6</a>
@@ -1910,7 +1944,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-count">22</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1983,7 +2017,7 @@
 <div class="copyright">
   
   &copy; 2022-02 – 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -1992,12 +2026,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">51k</span>
+    <span title="站点总字数">56k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">46 分钟</span>
+    <span title="站点阅读时长">51 分钟</span>
 </div>
 
 
