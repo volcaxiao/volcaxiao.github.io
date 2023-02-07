@@ -21,20 +21,20 @@
     var CONFIG = {"hostname":"volcaxiao.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"livere","storage":true,"lazyload":false,"nav":null,"activeClass":"livere"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":5,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="p7_log p7需要我们把p6设计的流水线CPU封装，并连接上一系列的外设，完成一个MIPS的微系统，能够实现异常和中断所以我们要实现以下工作：p6流水线的设计见p6文档，在这我们，把CPU留下接口后可以忽略他的内部的实现细节。实现CP0协寄存器，异常和中断实现系统桥，连接DM，Timer等外设  设计思路-纲领摘要 实现计时器 实现系统桥 实现CP0 改进CPU的内部结构，使其拥有检测内部异常">
+  <meta name="description" content="BUAA-CO课程p7，将之前完成的CPU封装，完成一个MIPS的微系统，能够实现异常与中断。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【BUAA-CO】p7流水线CPU-Ultra">
 <meta property="og:url" content="http://volcaxiao.github.io/2022/12/03/BUAA-CO-p7%E6%B5%81%E6%B0%B4%E7%BA%BFCPU-Ultra/index.html">
 <meta property="og:site_name" content="volca&#39;s blog">
-<meta property="og:description" content="p7_log p7需要我们把p6设计的流水线CPU封装，并连接上一系列的外设，完成一个MIPS的微系统，能够实现异常和中断所以我们要实现以下工作：p6流水线的设计见p6文档，在这我们，把CPU留下接口后可以忽略他的内部的实现细节。实现CP0协寄存器，异常和中断实现系统桥，连接DM，Timer等外设  设计思路-纲领摘要 实现计时器 实现系统桥 实现CP0 改进CPU的内部结构，使其拥有检测内部异常">
+<meta property="og:description" content="BUAA-CO课程p7，将之前完成的CPU封装，完成一个MIPS的微系统，能够实现异常与中断。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-CO/p7/%E8%AE%A1%E6%97%B6%E5%99%A8%E7%8A%B6%E6%80%81%E8%BD%AC%E7%A7%BB.jpg">
 <meta property="article:published_time" content="2022-12-03T06:45:59.000Z">
-<meta property="article:modified_time" content="2023-02-07T06:41:29.758Z">
+<meta property="article:modified_time" content="2023-02-07T06:59:09.474Z">
 <meta property="article:author" content="volcaxiao">
 <meta property="article:tag" content="北航">
-<meta property="article:tag" content="大二">
 <meta property="article:tag" content="CO">
+<meta property="article:tag" content="大二">
 <meta property="article:tag" content="计组">
 <meta property="article:tag" content="MIPS">
 <meta property="article:tag" content="P7">
@@ -252,7 +252,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-02-07 14:41:29" itemprop="dateModified" datetime="2023-02-07T14:41:29+08:00">2023-02-07</time>
+                <time title="修改时间：2023-02-07 14:59:09" itemprop="dateModified" datetime="2023-02-07T14:59:09+08:00">2023-02-07</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -277,7 +277,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>3.6k</span>
+              <span>3.7k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -296,7 +296,9 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="p7-log"><a href="#p7-log" class="headerlink" title="p7_log"></a>p7_log</h1><blockquote>
+        <p>BUAA-CO课程p7，将之前完成的CPU封装，完成一个MIPS的微系统，能够实现异常与中断。</p>
+<span id="more"></span>
+<h1 id="p7-log"><a href="#p7-log" class="headerlink" title="p7_log"></a>p7_log</h1><blockquote>
 <p>p7需要我们把p6设计的流水线CPU封装，并连接上一系列的外设，完成一个MIPS的微系统，能够实现异常和中断<br>所以我们要实现以下工作：<br>p6流水线的设计见p6文档，在这我们，把CPU留下接口后可以忽略他的内部的实现细节。<br>实现CP0协寄存器，异常和中断<br>实现系统桥，连接DM，Timer等外设</p>
 </blockquote>
 <h2 id="设计思路-纲领"><a href="#设计思路-纲领" class="headerlink" title="设计思路-纲领"></a>设计思路-纲领</h2><h3 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h3><ul>
@@ -768,8 +770,8 @@
           
           <div class="post-tags">
               <a href="/tags/%E5%8C%97%E8%88%AA/" rel="tag"><i class="fa fa-tag"></i> 北航</a>
-              <a href="/tags/%E5%A4%A7%E4%BA%8C/" rel="tag"><i class="fa fa-tag"></i> 大二</a>
               <a href="/tags/CO/" rel="tag"><i class="fa fa-tag"></i> CO</a>
+              <a href="/tags/%E5%A4%A7%E4%BA%8C/" rel="tag"><i class="fa fa-tag"></i> 大二</a>
               <a href="/tags/%E8%AE%A1%E7%BB%84/" rel="tag"><i class="fa fa-tag"></i> 计组</a>
               <a href="/tags/MIPS/" rel="tag"><i class="fa fa-tag"></i> MIPS</a>
               <a href="/tags/P7/" rel="tag"><i class="fa fa-tag"></i> P7</a>

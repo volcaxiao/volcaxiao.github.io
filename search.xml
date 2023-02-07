@@ -89,7 +89,9 @@
   <entry>
     <title>【BUAA-CO】p7流水线CPU-Ultra</title>
     <url>/2022/12/03/BUAA-CO-p7%E6%B5%81%E6%B0%B4%E7%BA%BFCPU-Ultra/</url>
-    <content><![CDATA[<h1 id="p7-log"><a href="#p7-log" class="headerlink" title="p7_log"></a>p7_log</h1><blockquote>
+    <content><![CDATA[<p>BUAA-CO课程p7，将之前完成的CPU封装，完成一个MIPS的微系统，能够实现异常与中断。</p>
+<span id="more"></span>
+<h1 id="p7-log"><a href="#p7-log" class="headerlink" title="p7_log"></a>p7_log</h1><blockquote>
 <p>p7需要我们把p6设计的流水线CPU封装，并连接上一系列的外设，完成一个MIPS的微系统，能够实现异常和中断<br>所以我们要实现以下工作：<br>p6流水线的设计见p6文档，在这我们，把CPU留下接口后可以忽略他的内部的实现细节。<br>实现CP0协寄存器，异常和中断<br>实现系统桥，连接DM，Timer等外设</p>
 </blockquote>
 <h2 id="设计思路-纲领"><a href="#设计思路-纲领" class="headerlink" title="设计思路-纲领"></a>设计思路-纲领</h2><h3 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h3><ul>
@@ -539,8 +541,8 @@
       </categories>
       <tags>
         <tag>北航</tag>
-        <tag>大二</tag>
         <tag>CO</tag>
+        <tag>大二</tag>
         <tag>计组</tag>
         <tag>MIPS</tag>
         <tag>P7</tag>
@@ -2071,8 +2073,8 @@
       </categories>
       <tags>
         <tag>北航</tag>
-        <tag>大二</tag>
         <tag>CO</tag>
+        <tag>大二</tag>
         <tag>计组</tag>
         <tag>MIPS</tag>
         <tag>P6</tag>
@@ -3245,8 +3247,8 @@
       </categories>
       <tags>
         <tag>北航</tag>
-        <tag>大二</tag>
         <tag>CO</tag>
+        <tag>大二</tag>
         <tag>计组</tag>
         <tag>MIPS</tag>
         <tag>P5</tag>
@@ -3514,8 +3516,8 @@
       </categories>
       <tags>
         <tag>北航</tag>
-        <tag>大二</tag>
         <tag>CO</tag>
+        <tag>大二</tag>
         <tag>计组</tag>
         <tag>MIPS</tag>
         <tag>P4</tag>
@@ -3937,8 +3939,8 @@
       </categories>
       <tags>
         <tag>北航</tag>
-        <tag>大二</tag>
         <tag>CO</tag>
+        <tag>大二</tag>
         <tag>计组</tag>
         <tag>MIPS</tag>
         <tag>P3</tag>
@@ -4337,8 +4339,8 @@
       </categories>
       <tags>
         <tag>北航</tag>
-        <tag>大二</tag>
         <tag>CO</tag>
+        <tag>大二</tag>
         <tag>计组</tag>
         <tag>MIPS</tag>
         <tag>P2</tag>
@@ -4423,8 +4425,8 @@
       </categories>
       <tags>
         <tag>北航</tag>
-        <tag>大二</tag>
         <tag>CO</tag>
+        <tag>大二</tag>
         <tag>计组</tag>
         <tag>MIPS</tag>
         <tag>P2</tag>
