@@ -21,17 +21,19 @@
     var CONFIG = {"hostname":"volcaxiao.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"livere","storage":true,"lazyload":false,"nav":null,"activeClass":"livere"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":5,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="北航CS，学习分享，记得看welcome">
+  <meta name="description" content="蒟蒻博主缓考了离散，于是开始芝士总结与复习，进度（2&#x2F;5）">
 <meta property="og:type" content="article">
-<meta property="og:title" content="离散数学（二）关系总结">
+<meta property="og:title" content="离散数学关系">
 <meta property="og:url" content="http://volcaxiao.github.io/2023/02/07/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%EF%BC%88%E4%BA%8C%EF%BC%89%E5%85%B3%E7%B3%BB%E6%80%BB%E7%BB%93/index.html">
 <meta property="og:site_name" content="volca&#39;s blog">
-<meta property="og:description" content="北航CS，学习分享，记得看welcome">
+<meta property="og:description" content="蒟蒻博主缓考了离散，于是开始芝士总结与复习，进度（2&#x2F;5）">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-02-07T06:47:07.000Z">
-<meta property="article:modified_time" content="2023-02-07T06:47:07.651Z">
+<meta property="article:modified_time" content="2023-02-08T04:58:38.783Z">
 <meta property="article:author" content="volcaxiao">
-<meta property="article:tag" content="CS,北航,学习,数理,分享">
+<meta property="article:tag" content="大二">
+<meta property="article:tag" content="离散数学2">
+<meta property="article:tag" content="集合">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://volcaxiao.github.io/2023/02/07/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%EF%BC%88%E4%BA%8C%EF%BC%89%E5%85%B3%E7%B3%BB%E6%80%BB%E7%BB%93/">
@@ -47,7 +49,7 @@
   };
 </script>
 
-  <title>离散数学（二）关系总结 | volca's blog</title>
+  <title>离散数学关系 | volca's blog</title>
   
 
 
@@ -226,7 +228,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          离散数学（二）关系总结
+          离散数学关系
         </h1>
 
         <div class="post-meta">
@@ -239,6 +241,22 @@
               <span class="post-meta-item-text">发表于</span>
 
               <time title="创建时间：2023-02-07 14:47:07" itemprop="dateCreated datePublished" datetime="2023-02-07T14:47:07+08:00">2023-02-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-02-08 12:58:38" itemprop="dateModified" datetime="2023-02-08T12:58:38+08:00">2023-02-08</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%EF%BC%88%E4%BA%8C%EF%BC%89/" itemprop="url" rel="index"><span itemprop="name">离散数学（二）</span></a>
+                </span>
             </span>
 
           
@@ -254,14 +272,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>0</span>
+              <span>3.9k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
+              <span>4 分钟</span>
             </span>
 
         </div>
@@ -273,7 +291,207 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        
+        <p>蒟蒻博主缓考了离散，于是开始芝士总结与复习，进度（2/5）</p>
+<span id="more"></span>
+<h1 id="关系"><a href="#关系" class="headerlink" title="关系"></a>关系</h1><h2 id="定义与性质"><a href="#定义与性质" class="headerlink" title="定义与性质"></a>定义与性质</h2><h3 id="关系定义"><a href="#关系定义" class="headerlink" title="关系定义"></a>关系定义</h3><ul>
+<li>关系：我们知道关系就是两个事物之间的联系，抽象一下，具体是啥关系不重要，哪两个东西在一起很重要。所以我们定义如下<ul>
+<li>$若集合R \subseteq X\times Y ，则称R是X到Y的二元关系，简称关系。$</li>
+<li>若R是X到X的关系，也称R是X上的二元关系。</li>
+<li>$我们可以把<x,y>\in R 记作xRy$</x,y></li>
+<li>$<x,y>\notin R记作x\bar Ry $</x,y></li>
+</ul>
+</li>
+<li>特殊情况：<ul>
+<li>$R = \phi，称为空关系 $</li>
+<li>$R = U_X(U_X = X\times X)，称为全域关系 $</li>
+<li>$R = I_X(I_X = \{<x,x>| x \in X \})，称为恒等关系 $</x,x></li>
+</ul>
+</li>
+<li>定义域(domain)/值域(range)：<ul>
+<li>$dom(R) = \{x \in X | \exists y \in Y : <x,y> \in R \}, dom(R) \subseteq X $</x,y></li>
+<li>$ran(R) = \{y \in Y | \exists x \in X : <x,y> \in R \}, ran(R) \subseteq Y $</x,y></li>
+<li>后面这种类似的东西我都只写一个，另一个类比</li>
+</ul>
+</li>
+<li>矩阵/关系图表示：<ul>
+<li>用矩阵和图的方式来表示一个关系（DS课学过图和矩阵表示方法，很像）<blockquote>
+<p>…</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="关系性质"><a href="#关系性质" class="headerlink" title="关系性质"></a>关系性质</h3><ul>
+<li>五个性质：记住他们的定义、矩阵的特征、图的特征</li>
+<li>这些性质的前提是R为非空集合X上的关系</li>
+<li>定义<ul>
+<li>自反：$R满足 \forall x (x \in X \rightarrow <x,x> \in R) $</x,x></li>
+<li>反自反：$R满足 \forall x (x \in X \rightarrow <x,x> \notin R) $</x,x></li>
+<li>对称：$R满足 \forall x \forall y (x \in X \wedge y \in X \wedge xRy \rightarrow yRx) $</li>
+<li>反对称：$R满足 \forall x \forall y (x \in X \wedge y \in X \wedge xRy \wedge x \neq y \rightarrow y \bar Rx)  $</li>
+<li>传递：$R满足 \forall x \forall y \forall z(x \in X \wedge y \in X \wedge z \in X \wedge xRy \wedge yRz \rightarrow xRz) $</li>
+<li>例：恒等关系是自反、对称、传递的；“&lt;”关系是反自反、反对称、传递的。</li>
+</ul>
+</li>
+<li>矩阵与图的特征<ul>
+<li>见图：<blockquote>
+<p>…</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="运算"><a href="#运算" class="headerlink" title="运算"></a>运算</h2><ul>
+<li>关于$\cup、\cap、-、\sim、\oplus $等运算，关系就是二元序偶集的一种，可以照搬运算。</li>
+<li>有三大新运算：复合、逆（注意与取反区分）、闭包</li>
+</ul>
+<h3 id="复合"><a href="#复合" class="headerlink" title="复合"></a>复合</h3><ul>
+<li>定义：R为X到Y的关系，S是Y到Z的关系<ul>
+<li>$则R\cdot S = \{<x,z> | \exists y \in Y: xRy \wedge ySz \} $</x,z></li>
+<li>运算不满足交换律，但满足结合律。</li>
+</ul>
+</li>
+<li>复合的矩阵表示就是俩矩阵相乘（），细想一下逻辑完全符合</li>
+<li>性质：<ul>
+<li><script type="math/tex; mode=display">
+> ...</script></li>
+</ul>
+</li>
+<li>复合运算的定义域与值域讨论：<ul>
+<li>我们把关系作用于集合，定义为：<ul>
+<li>$R是X到Y的集合，R[A] = \{y \in Y | \exists x \in A: <x,y> \in R \}, R^{-1}同理 $</x,y></li>
+</ul>
+</li>
+<li>所以我们易证：<ul>
+<li>$dom(R \cdot S) = R^{-1}[domS], ran(R \cdot S) = R[ranR] $</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="逆关系"><a href="#逆关系" class="headerlink" title="逆关系"></a>逆关系</h3><ul>
+<li>定义：记作$R^{-1} $<ul>
+<li>关系中的每个有序偶的第一元与第二元对换</li>
+<li>在矩阵上表现为原矩阵的转置$M_R^T $</li>
+<li>关系图上表示为每一条边反向</li>
+</ul>
+</li>
+<li>注意与$\sim R $区分</li>
+</ul>
+<h3 id="关系五大性质对应的判断条件"><a href="#关系五大性质对应的判断条件" class="headerlink" title="关系五大性质对应的判断条件"></a>关系五大性质对应的判断条件</h3><ul>
+<li>R是A上的二元关系<ul>
+<li>$R是自反的 \iff I_A \subseteq R $</li>
+<li>$R是反自反的 \iff I_A \nsubseteq R (I_A \cap R = \phi) $</li>
+<li>$R是对称的 \iff R^{-1} = R $</li>
+<li>$R是反对称的 \iff R^{-1} \cap R \subseteq I_A $</li>
+<li>$R是传递的 \iff R \cdot R \subseteq R $</li>
+</ul>
+</li>
+</ul>
+<h3 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h3><ul>
+<li>自反，对称，传递关系都是极大的条件，也就是说，任何一个关系，我都可以通过增加元素，使得其满足这三个性质。而反自反与反对称不行，所以诞生了闭包的运算，也就是通过添加元素，使得关系满足这三个性质形成的最小关系。</li>
+<li>定义：关系R’为R的自反（对称、传递）闭包(它们都为A上的关系)，当且仅当满足：<ul>
+<li>$R’是自反的 $</li>
+<li>$R \subseteq R’ $</li>
+<li>$对于A上的任何一个自反（对称、传递）的关系R’’，R \subseteq R’’ \rightarrow R’ \subseteq R’’(可以看作是一种极小化,这一条称为闭包的最小性) $</li>
+<li>R的自反、对称、传递闭包分别记作：r(R),s(R),t(R)</li>
+</ul>
+</li>
+<li>由定义可知：<ul>
+<li>R是自反（对称、传递）的，当且仅当R = r/s/t(R)</li>
+</ul>
+</li>
+<li>R的三大闭包的存在性与唯一性证明：<ul>
+<li>$r(R) = R \cup I_A $</li>
+<li>$s(R) = R \cup R^{-1} $</li>
+<li>$t(R) = \cup_{n=1}^\infty R^n $</li>
+<li>证明都非常的有意思，s(R)的证明直接通过定义，r/t的证明可以证明等式两边相互包含。</li>
+</ul>
+</li>
+<li>传递闭包缩小定理：对于有限集A，A中有n个元素，则 $t(R) = \cup_{i=0}^n R^i $<ul>
+<li>可证：$对于任意k &gt; 0 都有R^{n+k} \subseteq \cup_{i=0}^n R^i $</li>
+</ul>
+</li>
+<li>性质：<ul>
+<li>闭包运算不破坏包含序关系，即：$若R_1 \subseteq R_2 ，则r/s/t(R_1) \subseteq r/s/t(R_2) $</li>
+<li>闭包运算也基本不破坏R本身的三大性质，除s(R)会破坏R的传递性（即R传递，s(R)不一定传递，这是一大不对称因素）</li>
+<li>所以性质2导致s与t运算不可逆 $（st(R) 不一定= ts(R) 但 st(R) \subseteq ts(R) ） $</li>
+<li>尝试证明<blockquote>
+<p>…</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="序关系"><a href="#序关系" class="headerlink" title="序关系"></a>序关系</h2><ul>
+<li>序关系有偏序关系，严格偏序关系（拟序关系），全序关系，良序关系</li>
+</ul>
+<h3 id="序关系定义"><a href="#序关系定义" class="headerlink" title="序关系定义"></a>序关系定义</h3><ul>
+<li>偏序：R满足自反，反对称，传递三个性质，则R是A上的偏序关系，用&lt; A , &lt;= &gt;表示偏序结构</li>
+<li>严格偏序：是自反改为反自反的偏序，就是说一定要比出个高低。<ul>
+<li>但我们发现由反自反与传递可以推出反对称（可以使用反证法，假设关系不是反对称，则一定能推出&lt; x , x &gt;的元素），所以我们定义只需反自反、传递就行。</li>
+<li>严格偏序和偏序有如下关系：$&lt; = \leq - I_A $</li>
+</ul>
+</li>
+<li>全序：若&lt; A , &lt;= &gt;是偏序结构，$\forall x,y \in A \rightarrow x &lt;= y \vee y &lt;= x ,则称&lt; A , &lt;= &gt;全序结构或者链$（也就是说任意两元素都是可比的）</li>
+</ul>
+<h3 id="覆盖与哈斯图"><a href="#覆盖与哈斯图" class="headerlink" title="覆盖与哈斯图"></a>覆盖与哈斯图</h3><ul>
+<li>由于序关系是传递的，所以我们能够简化关系图，即若x &lt; y, y &lt; z, 则我再图中只画出这两条线，因为x，z之间的关系显而易见，然后偏序关系中的自反关系在图中省略，即不画自圈，就得到了哈斯图。而我们要描述两个元素之间的关系，就需要看它们之间是否夹着不上不下的元素，没有的话这两个元素看上去在我们的序关系中是相邻的，我们称之为覆盖。</li>
+<li>覆盖：$y覆盖x \Leftrightarrow x &lt; y \wedge \neg \exists z(z \in A \wedge x &lt; z \wedge z &lt; y) $</li>
+</ul>
+<h3 id="偏序结构中的特殊元素"><a href="#偏序结构中的特殊元素" class="headerlink" title="偏序结构中的特殊元素"></a>偏序结构中的特殊元素</h3><ul>
+<li>前提：$<A, \leq>是偏序结构，B \subseteq A $<ul>
+<li>极大元：$b是B的极大元 \Leftrightarrow b \in B \wedge \forall x(x \in B \rightarrow x \leq b) $</li>
+<li>最大元：$b是B的最大元 \Leftrightarrow b \in B \wedge \neg \exists x(x \in B \wedge x \leq b) $</li>
+</ul>
+</A,></li>
+<li>极大与最大的区别：极大是没比我大，最大是比啥都大，根源在于不是所有的元素之间都可比。</li>
+<li>极小与最小同理。</li>
+</ul>
+<hr>
+<ul>
+<li>上界：$b是B的上界 \Leftrightarrow b \in A \wedge \forall x(x \in B \rightarrow x \leq b) $</li>
+<li>最小上界：$b是B的最小上界 \Leftrightarrow b是B的上界 \wedge \forall x(x是B的上界 \rightarrow b \leq x) $</li>
+<li>下界与最大下界同理。</li>
+<li>一定要注意并不是所有元素之间都可以比较，所以可能上下界和最大最小元不存在</li>
+</ul>
+<h3 id="良序结构"><a href="#良序结构" class="headerlink" title="良序结构"></a>良序结构</h3><ul>
+<li>定义：若一个偏序结构的每个非空子集都有<strong>最小元</strong>，则该结构为良序结构。</li>
+<li>所以良序一定是全序，因为对于任意两个元素，我们都可以当作非空子集拎出来，然后它们俩必有一个最小元。<ul>
+<li>但是全序并不一定是良序，因为可能存在一个无穷递降的序列，使得没有最小元。</li>
+<li>所以我们可证：良序 $\Leftrightarrow $ 没有无穷递降序列的全序。</li>
+</ul>
+</li>
+<li>又：全序关系中，任何非空子集的极小元与最小元等价，所以也可以表述上互换。</li>
+</ul>
+<h2 id="等价关系"><a href="#等价关系" class="headerlink" title="等价关系"></a>等价关系</h2><ul>
+<li>等价关系满足：自反，对称，传递（模m同余的关系就是典型的等价关系）</li>
+<li>由于传递性，我能用等价关系确定一个集合，叫等价类。<ul>
+<li>A中与x有等价关系R的元素的集合，为x关于R的等价类，记作：$[x]_R $</li>
+<li>$[x]_R = \{y | y \in A \wedge xRy \}$</li>
+</ul>
+</li>
+<li>性质：等价关系与等价类满足下列性质<ul>
+<li>$[x]_R = [y]_R \Leftrightarrow xRy $(传递性证)</li>
+<li>$x,y \in A\wedge x\bar Ry \rightarrow [x]_R \cap [y]_R = \phi $（反证法）</li>
+<li>$\cup_{x \in A}[x]_R = A $(全覆盖定理，$x \in [x]_R $可证)</li>
+</ul>
+</li>
+<li>商集：A上关于R的所有等价类的集合，记作A/R</li>
+<li>划分: $对于A，若有\pi \subseteq \rho(A), 且\pi 满足三个条件，则称\pi 为A的划分 $<ul>
+<li>$\forall S \in \pi, S \neq \phi $</li>
+<li>$\forall B,C \in \pi, 若B \neq C 则B \cap C = \phi $</li>
+<li>$\cup \pi = A $</li>
+<li>$\pi 中元素为划分块， \sharp \pi 称作$ <strong>秩</strong></li>
+</ul>
+</li>
+<li>由上我们可以知道A上的每个等价关系唯一确定的商集就是一个划分</li>
+<li>$由A上的划分\pi 我们令R_\pi = \{<x,y> | \exists S \in \pi (x,y \in S) \},我们可以唯一确定一个等价关系R_\pi，且A/R_\pi = \pi $</x,y></li>
+</ul>
+<blockquote>
+<p>待完善。。。</p>
+</blockquote>
+
     </div>
 
     
@@ -288,7 +506,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://volcaxiao.github.io/2023/02/07/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%EF%BC%88%E4%BA%8C%EF%BC%89%E5%85%B3%E7%B3%BB%E6%80%BB%E7%BB%93/" title="离散数学（二）关系总结">http://volcaxiao.github.io/2023/02/07/离散数学（二）关系总结/</a>
+    <a href="http://volcaxiao.github.io/2023/02/07/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%EF%BC%88%E4%BA%8C%EF%BC%89%E5%85%B3%E7%B3%BB%E6%80%BB%E7%BB%93/" title="离散数学关系">http://volcaxiao.github.io/2023/02/07/离散数学（二）关系总结/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -298,6 +516,12 @@
 
 
       <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/%E5%A4%A7%E4%BA%8C/" rel="tag"><i class="fa fa-tag"></i> 大二</a>
+              <a href="/tags/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A62/" rel="tag"><i class="fa fa-tag"></i> 离散数学2</a>
+              <a href="/tags/%E9%9B%86%E5%90%88/" rel="tag"><i class="fa fa-tag"></i> 集合</a>
+          </div>
 
         
 
@@ -308,7 +532,10 @@
     <a href="/2022/12/03/BUAA-CO-p7%E6%B5%81%E6%B0%B4%E7%BA%BFCPU-Ultra/" rel="prev" title="【BUAA-CO】p7流水线CPU-Ultra">
       <i class="fa fa-chevron-left"></i> 【BUAA-CO】p7流水线CPU-Ultra
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2023/02/08/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%EF%BC%88%E4%BA%8C%EF%BC%89%E5%87%BD%E6%95%B0%E6%80%BB%E7%BB%93/" rel="next" title="离散数学（二）函数总结">
+      离散数学（二）函数总结 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -372,6 +599,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%B3%E7%B3%BB"><span class="nav-number">1.</span> <span class="nav-text">关系</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89%E4%B8%8E%E6%80%A7%E8%B4%A8"><span class="nav-number">1.1.</span> <span class="nav-text">定义与性质</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E7%B3%BB%E5%AE%9A%E4%B9%89"><span class="nav-number">1.1.1.</span> <span class="nav-text">关系定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E7%B3%BB%E6%80%A7%E8%B4%A8"><span class="nav-number">1.1.2.</span> <span class="nav-text">关系性质</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%90%E7%AE%97"><span class="nav-number">1.2.</span> <span class="nav-text">运算</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%8D%E5%90%88"><span class="nav-number">1.2.1.</span> <span class="nav-text">复合</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%86%E5%85%B3%E7%B3%BB"><span class="nav-number">1.2.2.</span> <span class="nav-text">逆关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E7%B3%BB%E4%BA%94%E5%A4%A7%E6%80%A7%E8%B4%A8%E5%AF%B9%E5%BA%94%E7%9A%84%E5%88%A4%E6%96%AD%E6%9D%A1%E4%BB%B6"><span class="nav-number">1.2.3.</span> <span class="nav-text">关系五大性质对应的判断条件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%97%AD%E5%8C%85"><span class="nav-number">1.2.4.</span> <span class="nav-text">闭包</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BA%8F%E5%85%B3%E7%B3%BB"><span class="nav-number">1.3.</span> <span class="nav-text">序关系</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BA%8F%E5%85%B3%E7%B3%BB%E5%AE%9A%E4%B9%89"><span class="nav-number">1.3.1.</span> <span class="nav-text">序关系定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A6%86%E7%9B%96%E4%B8%8E%E5%93%88%E6%96%AF%E5%9B%BE"><span class="nav-number">1.3.2.</span> <span class="nav-text">覆盖与哈斯图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%81%8F%E5%BA%8F%E7%BB%93%E6%9E%84%E4%B8%AD%E7%9A%84%E7%89%B9%E6%AE%8A%E5%85%83%E7%B4%A0"><span class="nav-number">1.3.3.</span> <span class="nav-text">偏序结构中的特殊元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%89%AF%E5%BA%8F%E7%BB%93%E6%9E%84"><span class="nav-number">1.3.4.</span> <span class="nav-text">良序结构</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AD%89%E4%BB%B7%E5%85%B3%E7%B3%BB"><span class="nav-number">1.4.</span> <span class="nav-text">等价关系</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -387,7 +615,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">22</span>
+          <span class="site-state-item-count">25</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -478,12 +706,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">56k</span>
+    <span title="站点总字数">60k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">51 分钟</span>
+    <span title="站点阅读时长">54 分钟</span>
 </div>
 
 
@@ -611,6 +839,61 @@ if (document.querySelectorAll('pre.mermaid').length) {
   
 
   
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 
