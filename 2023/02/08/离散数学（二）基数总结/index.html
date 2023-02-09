@@ -21,17 +21,21 @@
     var CONFIG = {"hostname":"volcaxiao.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"livere","storage":true,"lazyload":false,"nav":null,"activeClass":"livere"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":5,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="北航CS，学习分享，记得看welcome">
+  <meta name="description" content="蒟蒻博主缓考了离散，于是开始芝士总结与复习，进度（4&#x2F;5）">
 <meta property="og:type" content="article">
-<meta property="og:title" content="离散数学（二）基数总结">
+<meta property="og:title" content="离散数学自然数归纳法与基数">
 <meta property="og:url" content="http://volcaxiao.github.io/2023/02/08/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%EF%BC%88%E4%BA%8C%EF%BC%89%E5%9F%BA%E6%95%B0%E6%80%BB%E7%BB%93/index.html">
 <meta property="og:site_name" content="volca&#39;s blog">
-<meta property="og:description" content="北航CS，学习分享，记得看welcome">
+<meta property="og:description" content="蒟蒻博主缓考了离散，于是开始芝士总结与复习，进度（4&#x2F;5）">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-02-08T05:03:52.000Z">
-<meta property="article:modified_time" content="2023-02-08T05:03:52.964Z">
+<meta property="article:modified_time" content="2023-02-09T06:05:46.383Z">
 <meta property="article:author" content="volcaxiao">
-<meta property="article:tag" content="CS,北航,学习,数理,分享">
+<meta property="article:tag" content="大二">
+<meta property="article:tag" content="离散数学2">
+<meta property="article:tag" content="自然数">
+<meta property="article:tag" content="数学归纳法">
+<meta property="article:tag" content="基数">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://volcaxiao.github.io/2023/02/08/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%EF%BC%88%E4%BA%8C%EF%BC%89%E5%9F%BA%E6%95%B0%E6%80%BB%E7%BB%93/">
@@ -47,7 +51,7 @@
   };
 </script>
 
-  <title>离散数学（二）基数总结 | volca's blog</title>
+  <title>离散数学自然数归纳法与基数 | volca's blog</title>
   
 
 
@@ -226,7 +230,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          离散数学（二）基数总结
+          离散数学自然数归纳法与基数
         </h1>
 
         <div class="post-meta">
@@ -239,6 +243,22 @@
               <span class="post-meta-item-text">发表于</span>
 
               <time title="创建时间：2023-02-08 13:03:52" itemprop="dateCreated datePublished" datetime="2023-02-08T13:03:52+08:00">2023-02-08</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-02-09 14:05:46" itemprop="dateModified" datetime="2023-02-09T14:05:46+08:00">2023-02-09</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%EF%BC%88%E4%BA%8C%EF%BC%89/" itemprop="url" rel="index"><span itemprop="name">离散数学（二）</span></a>
+                </span>
             </span>
 
           
@@ -254,14 +274,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>0</span>
+              <span>3.8k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
+              <span>3 分钟</span>
             </span>
 
         </div>
@@ -273,7 +293,214 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        
+        <p>蒟蒻博主缓考了离散，于是开始芝士总结与复习，进度（4/5）</p>
+<span id="more"></span>
+<h1 id="自然数归纳法与基数"><a href="#自然数归纳法与基数" class="headerlink" title="自然数归纳法与基数"></a>自然数归纳法与基数</h1><h2 id="自然数"><a href="#自然数" class="headerlink" title="自然数"></a>自然数</h2><h3 id="自然数构造"><a href="#自然数构造" class="headerlink" title="自然数构造"></a>自然数构造</h3><ul>
+<li><p>自然数依托于用集合论构造，各种性质用Peano公理推导，所以构造出的自然数需要满足Peano公理</p>
+</li>
+<li><p>集合的后继：$对于集合A，其后继集合定义为A^+ = A \cup \{A\}(所以每个集合的后继是唯一的) $</p>
+<ul>
+<li>所以我们知道后继集合的几点性质：<ul>
+<li>$A \subseteq A^+(A的元素在A^+里)；A \in A^+ (A本身也在A^+里) $</li>
+<li>$A^+ \neq \phi $</li>
+</ul>
+</li>
+<li>例：<ul>
+<li>$\phi^+ = \{\phi \} $</li>
+<li>$\{\phi\}^+ = \{\phi, \{ \phi \} \} $</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>所以由上述性质：冯·诺依曼(Von Neumann)给出了他构造自然数系统&lt; N,+,·&gt;的方案</p>
+<ul>
+<li><script type="math/tex; mode=display">
+    \begin{align*}
+        &0 = \phi    \\
+        &1 = 0^+ = \phi^+ = \{ 0 \}     \\
+        &2 = 1^+ = \{\phi \}^+ = \{0,1\}     \\
+        &3 = 2^+ = 2 \cup \{2\} = \{0,1,2 \}     \\
+        &...     \\
+        &n+1 = n^+ = \{0,1,2,...,n \}
+    \end{align*}</script></li>
+<li>我们可以采用集合论中学到的归纳定义法来定义自然数：<ul>
+<li>$0 \in N (基础项) $</li>
+<li>$若 n \in N , 则 n^+ \in N (归纳项) $</li>
+<li>$只有有限次应用1与2得到的元素才是自然数 $</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>引理：$若n \in N, 则\cup n^+ = n $</p>
+</li>
+</ul>
+<h3 id="Peano公理及运算性质"><a href="#Peano公理及运算性质" class="headerlink" title="Peano公理及运算性质"></a>Peano公理及运算性质</h3><ul>
+<li>我们前面说构造的自然数需要满足Peano公理，Peano公理的内容如下：<ul>
+<li>P1: $0 \in N $(归纳基础项)</li>
+<li>P2: $若n \in N, 则n^+ \in N $(归纳项)</li>
+<li>P3: $若n \in N, 则 n^+ \neq 0 $(没有以0为后继的项，0是初始项)</li>
+<li>P4: $若n,m \in N \wedge n^+ = m^+, 则n = m $(后继的唯一性,可由上述引理得到)</li>
+<li>P5: $满足P1与P2的极小化 $</li>
+</ul>
+</li>
+<li><p>由Peano公理以及后继的性质我们可以知道作为集合的自然数的几点性质：</p>
+<ul>
+<li>传递性: $若n_1 \in n_2, n_2 \in n_3, 则 n_1 \in n_3 $</li>
+<li>三岐性: $对于任意两个n_1, n_2 \in N, 满足(n_1 \in n_2) \vee (n_1 = n_2) \vee (n_2 \in n_1) $</li>
+<li>良基性: $不存在一个自然数的无穷递降序列n_{1\sim}，使得n_{i+1} \in n_i $</li>
+</ul>
+</li>
+<li><p>所以我们由Peano公理的三大性质可以知道，我们可以定义出自然数元素之间的关系，以及自然数的运算，我们称之为大/小于，加法，乘法。</p>
+<ul>
+<li>小于: $若m,n \in N 且 m \in n, 则我们称m小于n，记作m&lt;n $(很明显，小于关系是一个逆序关系)</li>
+<li>由此我们也可以类推出小于等于关系，它是一个（全）偏序关系，由于良基性，它也会是一个良序关系。</li>
+<li>加法: $m+0 = 0; m + n^+ = (m + n)^+ $</li>
+<li>乘法: $m \cdot 0 = 0; m \cdot n^+ = m \cdot n + m $   (自己拿两个数加一加乘一乘就能理会其中的归纳意味)</li>
+</ul>
+</li>
+</ul>
+<h2 id="数学归纳法"><a href="#数学归纳法" class="headerlink" title="数学归纳法"></a>数学归纳法</h2><ul>
+<li>上文中Peano公理的极小化有几种表述的方法，详细见集合论一章的描述，其中有一种极小化方法如下：<ul>
+<li>$若S \subseteq N 满足0 \in S且n \in S \rightarrow n^+ \in S(1/2条)，则S = N $</li>
+</ul>
+</li>
+<li>这个极小化方法是数学归纳法的基础，下面是数学归纳法的叙述（第一归纳法）<ul>
+<li>$设P(n)是自然数论域上的性质(或谓词)，若能证明1与2，则对所有n\in N,P(n)为真 $<ol>
+<li>$P(0)为真 $</li>
+<li>$对任何n \in N, P(n) \Rightarrow P(n^+) $</li>
+</ol>
+</li>
+<li>可表述为：$P(0) \wedge (\forall n)(P(n) \rightarrow P(n+1)) \Rightarrow \forall n P(n) $</li>
+<li>基础项也可从非0数k开始：<ul>
+<li>$P(k) \wedge (\forall n)(n \geq k \wedge P(n) \rightarrow P(n+1)) \Rightarrow \forall n(n \geq k \rightarrow P(n)) $</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>我们可以从第一归纳法推出第二归纳法：<ul>
+<li>$\forall n(\forall k(k&lt;n \rightarrow P(k)) \rightarrow P(n)) \Rightarrow \forall nP(n) $</li>
+<li>上述归纳不需要单独列出P(0)条件，因为任取到n=0时，条件等价于P(0)<blockquote>
+<p>…证明过程</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li>二维归纳原理：暂略</li>
+</ul>
+<h2 id="基数"><a href="#基数" class="headerlink" title="基数"></a>基数</h2><h3 id="集合大小的度量与比较"><a href="#集合大小的度量与比较" class="headerlink" title="集合大小的度量与比较"></a>集合大小的度量与比较</h3><ul>
+<li>比较两个集合的大小有两个方法：<ul>
+<li>计数法：数出元素的个数，谁大谁多。</li>
+<li>愚人比宝：每次各取其一，看谁先取完。</li>
+<li>对于一个无限集，计数法失效，但我们怎么用第二个方法？可以在该集合与某个自然数之间建立一个双射。</li>
+</ul>
+</li>
+<li>等势：若在两个集合之间存在一个双射，则称集合对等（或等势），记作 $A \sim B $<ul>
+<li>我们易知等势关系具有自反对称传递性，是等价关系</li>
+</ul>
+</li>
+<li>集合是有穷集 当且仅当 它与一个自然数等势，且唯一（由三岐性反证法证明），这个自然数被称为有穷集合的<span id="jishu"><strong>基数</strong></span>，记作 $\sharp A $<ul>
+<li>而若集合是无穷极，就不能与一个自然数等势</li>
+</ul>
+</li>
+<li>定义了有穷集合的基数，我们就可以定义出对应关系与基数大小了<ul>
+<li>$显然，A \sim B \Rightarrow \sharp A = \sharp B $</li>
+<li>$若存在A到B的单射，则也就是A等势的自然数与B的自然数之间存在单射，所以\sharp A \leq \sharp B $</li>
+<li>$若\sharp A \leq \sharp B且\sharp A \neq \sharp B，则记为\sharp A &lt; \sharp B $</li>
+<li>由自然数的三岐性可知，任何两个基数之间可以比较大小</li>
+<li>基数相等是等价关系，小于等于是偏序关系</li>
+</ul>
+</li>
+<li>小技巧：我们可以通过tan函数建立任何一个连续的开区间与实数R的双射等势关系<ul>
+<li>正是如此，我们发现无穷集合可以与它本身的真子集等势（这是无穷集合的一固有性质）</li>
+</ul>
+</li>
+</ul>
+<h3 id="抽屉原理"><a href="#抽屉原理" class="headerlink" title="抽屉原理"></a>抽屉原理</h3><ul>
+<li>由上述表述，我们可发现无穷集合与有限集合的一点根本差别：<ul>
+<li>任何与自身真子集等势的集合都是无穷集合</li>
+<li>所以任何有限集都不能与自身的真子集对等</li>
+</ul>
+</li>
+<li>上述对于有限集的叙述叫做抽屉原理（鸽笼原理），通俗的说：<ul>
+<li>你有n+1本书，但是只有个抽屉，你就建立不了一个n+1与n的双射，一定会有一个抽屉放了不止一本书。</li>
+<li>形式抽象化的表示为：<ul>
+<li>$把s(s\geq 1)个元素分成t组，必有一个组至少有\lceil s/t \rceil 个元素(\lceil \rceil 为向上取整的记号) $</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="无穷集"><a href="#无穷集" class="headerlink" title="无穷集"></a>无穷集</h3><ul>
+<li>上文中提到了<a href="#jishu">有穷集合的基数</a>的概念，我们拓展它，让它不再局限在元素个数这一个概念，对于无限集，我们也定义它的基数，只是规定特殊的记号。<ul>
+<li>$我们令\sharp N = \aleph_0 $</li>
+<li>对于上文中关于有穷集合基数的大小的性质，都可以推广到基数上</li>
+</ul>
+</li>
+<li>基数的定义：$F是集合组，\sim 是F上的等势关系，关系\sim在F上的等价类称为基数 $<ul>
+<li>$对于A \in F 我们本应将基数记为[A]_\sim ，但我们沿用上面的记号以达到统一概念的目的，记为\sharp A$</li>
+</ul>
+</li>
+<li>可数无穷集合：与自然数等势的集合我们称为可数无穷集合，基数为  $\aleph _0 $<ul>
+<li>可数集合 = 有穷集合 + 无穷可数集合，其余均是不可数集合</li>
+</ul>
+</li>
+<li>定理：无穷集的三个等价条件<ul>
+<li>A是无穷集</li>
+<li>A有可数无穷的子集（证明：可以从出去已选元素的A中选择元素，因为A是无穷的，所以取之不尽，这样就构造出了一个可数无穷的子集）</li>
+<li>A有真子集与它等势</li>
+</ul>
+</li>
+<li>上文中我们提到了<a href="#jishu">单射</a>可以确定两个集合基数的大小，满射也同样可以<ul>
+<li>$存在A到B的满射 \iff \sharp B \leq \sharp A $</li>
+<li>证明：</li>
+<li><script type="math/tex; mode=display">
+    \begin{align*}
+        \Rightarrow \\
+        &若从A \rightarrow B有满射f，则f右可逆\\
+        &存在g:B \rightarrow A，使得f \cdot g = I_B\\
+        &I_B是双射，所以g是单射\\
+        &\therefore \sharp B \leq \sharp A \\
+        \Leftarrow \\
+        &若\sharp B \leq \sharp A,则有单射g:B \rightarrow A\\
+        &g左可逆，存在f:A \rightarrow B使得f \cdot g = I_B\\
+        &I_B是双射,所以f是满射
+    \end{align*}</script></li>
+</ul>
+</li>
+<li>还有几个有趣的问题：<ul>
+<li>$N\times N \sim N $</li>
+<li>$N \sim Q $</li>
+<li>$N \sim Z $<blockquote>
+<p>…</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li>实数集合不可数(证明：在(0,1)上构造一个无穷序列，然后利用规则，找出一个数不属于这个序列，推出矛盾，实数集合不可数)，下面我们讨论它的基数<ul>
+<li>引理：对于每个集合A，皆有 $\sharp A &lt; \sharp \rho(A) $<ul>
+<li>$首先，我们可以定义g(a) = \{a\}使得A\rightarrow \rho(A),显然g是单射，所以\sharp A \leq \sharp \rho(A) $</li>
+<li>$然后通过反证法来证明\sharp A \neq \sharp \rho (A) $</li>
+</ul>
+</li>
+<li>因为不可数，所以 $\sharp N \neq \sharp R $，我们定义 $\sharp R = \aleph $</li>
+<li>我们可以证明：$\sharp \rho(N) = \sharp R $<ul>
+<li>证明非常的精彩，利用集合的特征函数，与实数的二进制编码</li>
+<li>任意给定一个实数，写出实数的二进制编码，对于编码上的每一位，为1则表示在对应的集合中</li>
+<li>这样我们就得到了一个实数到一个自然数集合的双射</li>
+</ul>
+</li>
+<li>所以 $\sharp R = \sharp \rho(N) &gt; \sharp N $，即 $\aleph &gt; \aleph_0 $</li>
+</ul>
+</li>
+<li>有意思的问题：<ul>
+<li>$\sharp (R \times R) = \aleph $  (思路：找一个特定的值域为R的二元连续函数)</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>待完善。。。</p>
+</blockquote>
+
     </div>
 
     
@@ -288,7 +515,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://volcaxiao.github.io/2023/02/08/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%EF%BC%88%E4%BA%8C%EF%BC%89%E5%9F%BA%E6%95%B0%E6%80%BB%E7%BB%93/" title="离散数学（二）基数总结">http://volcaxiao.github.io/2023/02/08/离散数学（二）基数总结/</a>
+    <a href="http://volcaxiao.github.io/2023/02/08/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%EF%BC%88%E4%BA%8C%EF%BC%89%E5%9F%BA%E6%95%B0%E6%80%BB%E7%BB%93/" title="离散数学自然数归纳法与基数">http://volcaxiao.github.io/2023/02/08/离散数学（二）基数总结/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -298,6 +525,14 @@
 
 
       <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/%E5%A4%A7%E4%BA%8C/" rel="tag"><i class="fa fa-tag"></i> 大二</a>
+              <a href="/tags/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A62/" rel="tag"><i class="fa fa-tag"></i> 离散数学2</a>
+              <a href="/tags/%E8%87%AA%E7%84%B6%E6%95%B0/" rel="tag"><i class="fa fa-tag"></i> 自然数</a>
+              <a href="/tags/%E6%95%B0%E5%AD%A6%E5%BD%92%E7%BA%B3%E6%B3%95/" rel="tag"><i class="fa fa-tag"></i> 数学归纳法</a>
+              <a href="/tags/%E5%9F%BA%E6%95%B0/" rel="tag"><i class="fa fa-tag"></i> 基数</a>
+          </div>
 
         
 
@@ -375,6 +610,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%87%AA%E7%84%B6%E6%95%B0%E5%BD%92%E7%BA%B3%E6%B3%95%E4%B8%8E%E5%9F%BA%E6%95%B0"><span class="nav-number">1.</span> <span class="nav-text">自然数归纳法与基数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%87%AA%E7%84%B6%E6%95%B0"><span class="nav-number">1.1.</span> <span class="nav-text">自然数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E7%84%B6%E6%95%B0%E6%9E%84%E9%80%A0"><span class="nav-number">1.1.1.</span> <span class="nav-text">自然数构造</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Peano%E5%85%AC%E7%90%86%E5%8F%8A%E8%BF%90%E7%AE%97%E6%80%A7%E8%B4%A8"><span class="nav-number">1.1.2.</span> <span class="nav-text">Peano公理及运算性质</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E5%AD%A6%E5%BD%92%E7%BA%B3%E6%B3%95"><span class="nav-number">1.2.</span> <span class="nav-text">数学归纳法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E6%95%B0"><span class="nav-number">1.3.</span> <span class="nav-text">基数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9B%86%E5%90%88%E5%A4%A7%E5%B0%8F%E7%9A%84%E5%BA%A6%E9%87%8F%E4%B8%8E%E6%AF%94%E8%BE%83"><span class="nav-number">1.3.1.</span> <span class="nav-text">集合大小的度量与比较</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8A%BD%E5%B1%89%E5%8E%9F%E7%90%86"><span class="nav-number">1.3.2.</span> <span class="nav-text">抽屉原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%A0%E7%A9%B7%E9%9B%86"><span class="nav-number">1.3.3.</span> <span class="nav-text">无穷集</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -403,7 +639,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">32</span>
+        <span class="site-state-item-count">35</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -481,12 +717,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">63k</span>
+    <span title="站点总字数">67k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">57 分钟</span>
+    <span title="站点阅读时长">1:01</span>
 </div>
 
 
@@ -614,6 +850,61 @@ if (document.querySelectorAll('pre.mermaid').length) {
   
 
   
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 
