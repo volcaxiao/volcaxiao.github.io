@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"volcaxiao.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"livere","storage":true,"lazyload":false,"nav":null,"activeClass":"livere"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":5,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="北航面向对象与程序设计课程作业，表达式展开Expr-expansion 1.0，主要设计面向对象的程序设计思想以及递归下降法文法分析的实现。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【BUAA-OO】第一单元Expr_expansion_1.0">
+<meta property="og:url" content="http://volcaxiao.github.io/2023/02/28/BUAA-OO-Expr-expansion-1-0/index.html">
+<meta property="og:site_name" content="volca&#39;s blog">
+<meta property="og:description" content="北航面向对象与程序设计课程作业，表达式展开Expr-expansion 1.0，主要设计面向对象的程序设计思想以及递归下降法文法分析的实现。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OO/%E7%AC%AC%E4%B8%80%E5%8D%95%E5%85%83Expr-expansion1.0/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F.png">
+<meta property="og:image" content="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OO/%E7%AC%AC%E4%B8%80%E5%8D%95%E5%85%83Expr-expansion1.0/hw1_uml.png">
+<meta property="og:image" content="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OO/%E7%AC%AC%E4%B8%80%E5%8D%95%E5%85%83Expr-expansion1.0/hack-test.png">
+<meta property="article:published_time" content="2023-02-28T13:36:30.000Z">
+<meta property="article:modified_time" content="2023-02-28T13:48:31.906Z">
+<meta property="article:author" content="volcaxiao">
+<meta property="article:tag" content="北航">
+<meta property="article:tag" content="大二">
+<meta property="article:tag" content="OO">
+<meta property="article:tag" content="面向对象">
+<meta property="article:tag" content="表达式">
+<meta property="article:tag" content="第一单元">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OO/%E7%AC%AC%E4%B8%80%E5%8D%95%E5%85%83Expr-expansion1.0/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F.png">
+
+<link rel="canonical" href="http://volcaxiao.github.io/2023/02/28/BUAA-OO-Expr-expansion-1-0/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/theme-next/theme-next-needmoreshare2@1/needsharebutton.min.css"><style>
+#needsharebutton-postbottom {
+  cursor: pointer;
+  height: 26px;
+  margin-top: 10px;
+  position: relative;
+}
+#needsharebutton-postbottom .btn {
+  border: 1px solid $btn-default-border-color;
+  border-radius: 3px;
+  display: initial;
+  padding: 1px 4px;
+}
+</style>
+  <title>【BUAA-OO】第一单元Expr_expansion_1.0 | volca's blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">volca's blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-aa-column">
+
+    <a href="/AA-column/" rel="section"><i class="fa fa-columns fa-fw"></i>工科高等代数专栏</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>日程表</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <a href="https://github.com/volcaxiao" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://volcaxiao.github.io/2023/02/28/BUAA-OO-Expr-expansion-1-0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/head.jpg">
+      <meta itemprop="name" content="volcaxiao">
+      <meta itemprop="description" content="北航CS，学习分享，记得看welcome">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="volca's blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【BUAA-OO】第一单元Expr_expansion_1.0
+        </h1>
+
+        <div class="post-meta">
+
+        
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2023-02-28 21:36:30 / 修改时间：21:48:31" itemprop="dateCreated datePublished" datetime="2023-02-28T21:36:30+08:00">2023-02-28</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/BUAA%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/" itemprop="url" rel="index"><span itemprop="name">BUAA面向对象</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>8k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>13 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>北航面向对象与程序设计课程作业，表达式展开Expr-expansion 1.0，主要设计面向对象的程序设计思想以及递归下降法文法分析的实现。</p>
+<span id="more"></span>
+<h1 id="BUAA-OO-第一单元"><a href="#BUAA-OO-第一单元" class="headerlink" title="BUAA-OO 第一单元"></a>BUAA-OO 第一单元</h1><ul>
+<li>包含主要知识点整理、练习题略解、作业题详解</li>
+</ul>
+<h2 id="主要知识点-从BNF看面向对象"><a href="#主要知识点-从BNF看面向对象" class="headerlink" title="主要知识点-从BNF看面向对象"></a>主要知识点-从BNF看面向对象</h2><ul>
+<li>BNF(Backus Naur Form Notation)表示文法，用于解析字符串，详细内容涉及到编译的知识（俺暂时不是很懂</li>
+<li>但是这个文法的规范化表示里，符号可以表示为类，是<strong>数据</strong>，而文法规则定义了<strong>结构</strong>的关系，由非终结符到终结符的结构蕴含着<strong>树的数据结构</strong>以及类的行为结构。</li>
+<li>因此我们可以以面向对象的思想去设计结构，用递归来实现这种树状结构。</li>
+</ul>
+<h2 id="练习题略解"><a href="#练习题略解" class="headerlink" title="练习题略解"></a>练习题略解</h2><h3 id="training-1"><a href="#training-1" class="headerlink" title="training-1"></a>training-1</h3><ul>
+<li><p>正则表达式：除了什么命名捕获组，逆过程之外，我们记住几点基础且重要的<strong>限定符</strong>（详细请移步<a href="#reference">菜鸟教程</a>）：</p>
+<ul>
+<li>*表示匹配前子表达式 $0 \sim + \infty $ 次</li>
+<li>+表示 $1 \sim + \infty $ 次</li>
+<li>?表示0或1次</li>
+<li>{n, m}表示n~m次</li>
+</ul>
+</li>
+<li><p>IDEA有匹配正则表达式的工具，可以实时编辑调试，但好像有很多同学不知道。</p>
+<ul>
+<li>鼠标移动到正则表达式处，右键点击后，点击第一个“<strong>显示上下文操作</strong>”</li>
+<li>然后点击“<strong>检查正则表达式</strong>”，效果如图：<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OO/%E7%AC%AC%E4%B8%80%E5%8D%95%E5%85%83Expr-expansion1.0/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F.png" alt="正则表达式检查"></li>
+</ul>
+</li>
+<li><p>java在正则表达式中匹配*，注意<strong>转义</strong>“\*“</p>
+</li>
+<li><p>training-1向我们展示了用正则表达式做这题的思路，但实现起来同学会发现比较的麻烦。而且考虑到后续迭代，所以推荐<strong>递归下降法</strong>。</p>
+</li>
+</ul>
+<h3 id="training-2"><a href="#training-2" class="headerlink" title="training-2"></a>training-2</h3><ul>
+<li>用到递归下降了</li>
+<li>注意文法表述的优先级，比如，Expr-&gt;Term | Expr ‘+’ Term， 先调用Term（结束符的方向），在考虑循环加Term，更符合我们<strong>实现的结构</strong>，自己看着也会舒服点。</li>
+<li>博主接下来的作业就是以training-2作为基本架构的。</li>
+</ul>
+<h2 id="作业题"><a href="#作业题" class="headerlink" title="作业题"></a>作业题</h2><h3 id="形式化表述"><a href="#形式化表述" class="headerlink" title="形式化表述"></a>形式化表述</h3><ul>
+<li>表达式 → 空白项 [加减 空白项] 项 空白项 | 表达式 加减 空白项 项 空白项</li>
+<li>项 → [加减 空白项] 因子 | 项 空白项 \’*’ 空白项 因子</li>
+<li>因子 → 变量因子 | 常数因子 | 表达式因子</li>
+<li>变量因子 → 幂函数</li>
+<li>常数因子 → 带符号的整数</li>
+<li>表达式因子 → ‘(‘ 表达式 ‘)’ [空白项 指数]</li>
+<li>幂函数 → (‘x’ | ‘y’ | ‘z’) [空白项 指数]</li>
+<li>指数 → ‘**’ 空白项 [‘+’] 允许前导零的整数 (注：指数一定不是负数)</li>
+<li>带符号的整数 → [加减] 允许前导零的整数</li>
+<li>允许前导零的整数 → (‘0’|’1’|’2’|…|’9’){‘0’|’1’|’2’|…|’9’}</li>
+<li>空白项 → {空白字符}</li>
+<li>空白字符 → （空格） | \t</li>
+<li>加减 → ‘+’ | ‘-‘</li>
+</ul>
+<blockquote>
+<p>看着挺复杂的，咱们<strong>化简</strong>一下叭</p>
+</blockquote>
+<ul>
+<li>其实主体很简单：有三个最重要，<strong>表达式、项、因子</strong></li>
+<li>空白项很好处理，我们简化里就不写出了</li>
+<li>下面就基本上是我们<strong>要设置的类</strong>和其中的<strong>元素的关系</strong>了，但是Num显然不需要设立一个类（这里只是为了简化表示）</li>
+<li>Expr    -&gt; [±] Term    | Expr ‘±’ Term</li>
+<li>Term    -&gt; [±] Factor  | Term ‘*‘ Factor</li>
+<li>Factor  -&gt; PowFunc | ConNum | ExprFactor</li>
+<li>PowFunc -&gt; (‘x’ | ‘y’ | ‘z’) [‘**‘ [‘+’] Num]</li>
+<li>ConNum  -&gt; [±] Num</li>
+<li>ExpFa   -&gt; ‘(‘ Expr ‘)’ [‘**‘ [‘+’] Num]</li>
+<li>Num     -&gt; ( 0 ~ 9 ) { 0 ~ 9 }</li>
+</ul>
+<h3 id="题目需求解析-amp-坑点汇总"><a href="#题目需求解析-amp-坑点汇总" class="headerlink" title="题目需求解析&amp;坑点汇总"></a>题目需求解析&amp;坑点汇总</h3><ul>
+<li><p>保证正确性：</p>
+<ul>
+<li>表达式因子要<strong>展开</strong></li>
+<li>展开后和项中的其他因子<strong>相乘，拆括号</strong></li>
+<li>用<strong>new BigInteger(String)</strong>，不要用BigInteger.valueof(long)（会爆</li>
+<li>可能会有的情况<ul>
+<li>—-ConNum</li>
+<li>(-ConNum)**index</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>卷性能：</p>
+<ul>
+<li>注意<strong>指数为1或0时</strong>，可以化简</li>
+<li>注意<strong>系数为1、0、-1时</strong>，可以化简</li>
+<li>只有<strong>整数、项、常数因子</strong>前可以有表示符号的加减，所以注意两减也可以合成为一个加，然后按照规则会出现—-、-+-、… 的情况。</li>
+<li>前导零，要化简</li>
+<li>三项以上的相乘可以化简为乘方，但是<strong>x**2 -&gt; x*x</strong></li>
+<li>常数相乘算出来，注意10*10*10*10*10*10<strong>不能写成10**6</strong>，10**6不符合形式化表示，还是算出来1000000</li>
+<li>表达式<strong>合并同类项</strong><ul>
+<li>最简的情况应该是 $\Sigma ConNum \ast x^a \ast y^b \ast z^c $</li>
+</ul>
+</li>
+<li><strong>把正的放在最前面，比负的放在最前面可以少一个符号（这个博主没有想到orz）</strong></li>
+</ul>
+</li>
+<li>注意表达式和表达式因子不是同一个东西：我们可以在表达式因子中设置<strong>表达式的引用</strong>，这样实现可以保证后续迭代时<strong>多层括号的需求</strong>容易满足</li>
+<li>注意我们需要统一标准，调用函数返回时，Lexer指向的是<strong>刚被操作过的位置</strong>或是<strong>还没操作过的位置</strong>，要不然会被Lexer需不需要.next()弄得晕头转向</li>
+</ul>
+<blockquote>
+<p>我们提前思考一下<strong>哪些坑点需要在哪一步填</strong></p>
+</blockquote>
+<h3 id="uml图"><a href="#uml图" class="headerlink" title="uml图"></a>uml图</h3><ul>
+<li>先简单介绍一下Unified Modeling Language，是面向对象设计的建模语言，其中最为常见的就是<strong>类图</strong>，十分的可视化。</li>
+<li>类图中的不同符号表示的含义：<ul>
+<li>类</li>
+<li>抽象类</li>
+<li>接口</li>
+<li>包</li>
+<li>关系<ul>
+<li>实现关系(Realization)：类实现了接口</li>
+<li>泛化关系(Generalization)：SubClass “is a” SuperClass.</li>
+<li>关联关系(Association)：A知道B的public（包含B的引用），一般为单项关联，关联又能具象化成三类<ul>
+<li>依赖关系(Dependency)：A “use a” B.<ul>
+<li>是一种弱关联关系，表现为四种形式。</li>
+<li>B为A的局部变量</li>
+<li>A调用了B的static方法</li>
+<li>B是A的方法的参数</li>
+<li>B是A的方法的返回值</li>
+</ul>
+</li>
+<li>聚合关系(Aggregation)：A “has a” B. eg: school has a student</li>
+<li>组合关系(Composition)：A “contains a” B. eg: student contains a brain</li>
+<li>聚合和组合在逻辑关系上往往体现不出差别，但是可以在实际意义上区分，聚合是可以分开的，而组合关系的A与B同时存在同时消亡。这一点差别会体现代码实现上。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>“免费”的uml软件</p>
+<ul>
+<li>wps</li>
+<li>亿图图示</li>
+<li>staruml（俺用的这个，可以通过一些小手段让他免费，见<a href="#reference">Reference</a>，注意仅供学习</li>
+<li>IDEA插件</li>
+</ul>
+</li>
+<li><p>我实现的类图如下（由于课程要求，类图中并<strong>没有给出</strong>的详细方法和属性，但<strong>关系大致明了</strong>）：<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OO/%E7%AC%AC%E4%B8%80%E5%8D%95%E5%85%83Expr-expansion1.0/hw1_uml.png" alt="uml"></p>
+</li>
+<li><p>我的架构大致分为三个横向的组织：<strong>文法分析</strong>(Parser, Lexer)，<strong>表达式结构</strong>(Expr, Term, Factor)，<strong>多项式运算</strong>(Poly, Mono)</p>
+</li>
+<li>还记得我们上文中提到的这么多坑吗，我们需要思考在哪填这个坑是最合适的，这样你的需要的<strong>方法和属性</strong>就出现了</li>
+<li>我们的大致步骤就是先用parser<strong>解析表达式</strong>，然后再在每一个元素中都加上<strong>转化成Poly类</strong>的方法。在Poly类中实现<strong>多项式相乘相加</strong>的方法。在Expr.toPloy()中，实现所包含的Term.Poly()的相加；在Term.toPoly()中实现所包含的Factor.toPloy()的相乘(也是一个递归的过程)。</li>
+<li>详细实现<strong>请看下文</strong>：</li>
+</ul>
+<h3 id="递归下降分析"><a href="#递归下降分析" class="headerlink" title="递归下降分析"></a>递归下降分析</h3><blockquote>
+<p><strong>面向需求</strong>，我们想想要在哪一步干什么事，每一个类里需要包含哪些方法，实现哪些属性。（本文均是博主的个人实现，<strong>不代表最优方法</strong>，仅供参考，<strong>有优化的建议欢迎在评论区指出</strong>。</p>
+</blockquote>
+<ul>
+<li>Lexer需要完成的操作：<ul>
+<li>在Lexer就把烦人的空白字符和叠加’±’给扬咯<ul>
+<li>可以在<strong>初始化Lexer</strong>时就 <code>replaceAll(&quot;[ |\\t]&quot;, &quot;&quot;)</code>直接<strong>去掉所有的空白字符</strong></li>
+<li>然后Lexer.next()方法里遇到’±’就把循环看看<strong>后一个字符</strong>是不是’±’，若是就<strong>合并输出</strong></li>
+</ul>
+</li>
+<li>然后我们的做法是对于不同的因子，我没必要让Parser一个一个字符的去接收然后识别，我把这个工作交给Lexer<ul>
+<li>Lexer返回的curToken字符串中，若识别到isLetter或isDigit，就<strong>把这个因子全输出</strong>了</li>
+<li>但是对于表达式因子需要特殊处理，需要<strong>交给Parser去调用parseExpr</strong>的方法</li>
+<li>另外包括检测<strong>是否有指数</strong>以及将’**‘<strong>与index合并输出</strong>了，这也可以让Lexer来做</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>所以Lexer.next()可以这么实现(<strong>伪代码</strong>)：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">c = input.charAt(++pos);</span><br><span class="line"><span class="comment">//加减法压缩</span></span><br><span class="line"><span class="keyword">if</span> (c == <span class="string">&#x27;+&#x27;</span> | c == <span class="string">&#x27;-&#x27;</span>)</span><br><span class="line">    getPOM();</span><br><span class="line">curToken = String.valueOf(c);</span><br><span class="line"><span class="comment">//按不同情况返回一整串因子</span></span><br><span class="line"><span class="keyword">if</span> (Character.isLetter(c)) </span><br><span class="line">    getPowerFunction();</span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span> (Character.isDigit(c))</span><br><span class="line">    getConstNum();</span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span> (c == <span class="string">&#x27;(&#x27;</span>)</span><br><span class="line">    curToken = <span class="string">&#x27;(&#x27;</span>;</span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span> (c == <span class="string">&#x27;)&#x27;</span>)</span><br><span class="line">    getIndex();</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>注意虽然博主借鉴training-2中的做法，将因子的识别放在Lexer里面，但是识别的终究只是字符串，<strong>Lexer和Factor之间没有关系</strong>（我的类图中Lexer与Factor之间没有连线）。Parser与Lexer本身就是强聚合（组合）关系，这一点<strong>对main是隐藏的</strong>。所以放在Lexer中还是Parser中取决于自己的实现。我这里避免Paser太过于臃肿，放在Lexer中，这样Lexer每次都能直接<strong>返回一个最小化的元</strong>。Parser中需要做的仅仅是<strong>构造</strong>。</p>
+</li>
+<li><p>Parser类的结构也比较明了了，只需要<strong>判断Lexer返回</strong>的不同的curToken，<strong>调用不同的函数递归下降</strong>即可：</p>
+<ul>
+<li>想想我们的表达式里的每一个元素<strong>需要什么样的属性</strong>，我们的parser需要给到一些什么属性<strong>用来构造</strong>，至于化简的事，交给后续的<strong>运算类</strong>即可。</li>
+<li>但是这里有一个比较有趣的正负号的处理的问题，我们要<strong>把正负号归为谁的属性比较好</strong>呢。<ul>
+<li>我的实现是<strong>把正负号作为因子的属性</strong>，因为我们在Lexer中压缩了连在一起的正负号，所以一个<strong>Term的前面只会有一个正负号</strong>。但是这个正负号只能<strong>给Term的第一个因子</strong>，后续因子，若是常数，则有可能自己就带正负号。考虑这个<strong>栗子：1—x<em>-1</em>-2*+1</strong>。三种因子的类中都定义一个<strong>pom(plusOrMinus)的boolean值</strong>，在后续<strong>Term.toPloy()时规范输出</strong>即可。</li>
+</ul>
+</li>
+<li>所以parserExpr(),parseTerm()在解析的时候需要给后一项<strong>传入正负号的参数</strong>。</li>
+</ul>
+</li>
+<li>Parser类的实现大致如下（<strong>伪代码</strong>）：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Parser</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Lexer lexer;</span><br><span class="line">    Parser(lexer);</span><br><span class="line">    <span class="keyword">public</span> Expression <span class="title function_">parserExpression</span><span class="params">()</span> &#123;</span><br><span class="line">        expression.addTerm(parserTerm(pom));</span><br><span class="line">        <span class="keyword">while</span> (...)</span><br><span class="line">            expression.addTerm(parserTerm(pom));</span><br><span class="line">        <span class="keyword">return</span> expression;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> Term <span class="title function_">parserTerm</span><span class="params">(pom)</span> &#123;</span><br><span class="line">        term.addFactor(parserFactor(pom));</span><br><span class="line">        <span class="comment">//后面的因子都不受传入的POM的影响了</span></span><br><span class="line">        <span class="keyword">while</span> (...)</span><br><span class="line">            term.addFactor(parserFactor(signChar));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> Factor <span class="title function_">parserFactor</span><span class="params">(pom)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (...)</span><br><span class="line">            tmpE = parserExpression();</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">ExprFactor</span>(...);</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (...)</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">PowerFunction</span>(...);</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">ConstNum</span>(...);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>到这我们的表达式解析就可以了，我们在MainClass里也以及得到了一个<strong>包含着所有信息</strong>的Expression的对象了。</li>
+<li>接下来就是<strong>运算，化简</strong>（卷性能分）<strong>，字符串输出</strong>的活了。</li>
+</ul>
+<h3 id="表达式展开运算"><a href="#表达式展开运算" class="headerlink" title="表达式展开运算"></a>表达式展开运算</h3><ul>
+<li>本来博主为了说不弄折磨多类，简洁我的结构，把<strong>运算和化简、toString</strong>都在各个元素的类里面实现，但是后来发现不同类的属性差异巨大，我得转化成String，再运算，再转回String输出，我的<strong>类变得又臭又长</strong>（</li>
+</ul>
+<blockquote>
+<p>我原本想一类多用，是不是很大胆，我一直在做一类多用简洁结构的准备，我刚开始coding的时候，我对他们说，我要一类多用，你们只需要给我20天，或者是25天，我就把程序给码完了，什么同学啊助教啊老师都很兴奋（emo歪头.jpg</p>
+</blockquote>
+<ul>
+<li>最后我在网上搜寻一些资料，找到了往年学长的博客，看到它们的实现，感觉<strong>茅塞顿开</strong>，<strong>学长博客</strong>见<a href="#reference">Reference</a></li>
+<li>我们设置两个类当作<strong>运算类</strong>，<strong>Poly</strong>(多项式)&amp;<strong>Mono</strong>(单个的项，作为Poly的<strong>组成元素</strong>)，我们把所有的<strong>表达式元素都转化成Poly类</strong>（单个的<strong>因子可以作为只有一个Mono的Poly</strong>，表达式因子我们可以在toPoly()中运算展开成一个大的Poly）。<ul>
+<li>我们上文说最后<strong>最简的结构</strong>都会是 $\Sigma ConNum \ast x^a \ast y^b \ast z^c $，所以我们的<strong>Mono的属性</strong>就一目了然了。</li>
+</ul>
+</li>
+<li><strong>方法的设置</strong>上：<ul>
+<li>我们在Poly类中设置运算的方法，这个方法可以是<strong>static的并且返回一个Poly类的</strong>，也可以是<strong>只传入一个参数然后与调用方法的对象做运算但是无返回值void的</strong>。</li>
+<li>设置一个<strong>addPoly()</strong>（可以做合并同类项啦），一个<strong>multiPoly()</strong>（乘方可以循环调用乘法来做），然后设置一个<strong>negPoly()</strong>（来给Poly取反）。然后每个元素的<strong>toPoly()来调用这些方法</strong>即可.</li>
+</ul>
+</li>
+<li>伪代码如下：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Poly</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> ArrayList&lt;Mono&gt; monoArrayList = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">addMono</span><span class="params">(Mono mono)</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> ArrayList&lt;Mono&gt; <span class="title function_">getMonoArrayList</span><span class="params">()</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Poly <span class="title function_">addPoly</span><span class="params">(Poly poly1, Poly poly2)</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Poly <span class="title function_">multiPoly</span><span class="params">(Poly poly1, Poly poly2)</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Poly <span class="title function_">negPoly</span><span class="params">(Poly poly)</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>值得一提的两个问题：</p>
+<ul>
+<li><strong>mono的属性设置</strong>，虽说这一次作业只有三个变量xyz，但是我们要做好下一次作业就不一定了的迭代的空间。所以我们想到，一个项可以由<strong>系数，变量及其对应的指数</strong>来表示，所以系数可以作为<strong>一个单独的属性</strong>，变量和对应的指数我们可以通过<strong>HashMap</strong>&lt; String, Integer &gt;来管理。</li>
+<li>另一个关于<strong>Poly运算方法的克隆问题</strong>，如果像我一样采取static方法来实现运算的话，我们需要保证<strong>尽量不改变</strong>传入的两个对象参数，所以我们若要采取新建一个对象，则一定需要对<strong>传入的参数进行深克隆</strong>，<strong>不然不是很安全，容易出问题</strong>。</li>
+</ul>
+</li>
+<li><p>最后，我们只需要在Poly和Mono类中<strong>实现toString()</strong>的方法，然后<strong>Poly.toString()中递归的调用Mono.toString()</strong>就行了，然后注意要<strong>卷性能分</strong>的话就得好好在这里输出了，比如<strong>特判系数或者指数为1时</strong>，隐藏，不输出。</p>
+</li>
+</ul>
+<h3 id="testing-数据制造（军备竞赛）-amp-自动化测试"><a href="#testing-数据制造（军备竞赛）-amp-自动化测试" class="headerlink" title="testing 数据制造（军备竞赛）&amp; 自动化测试"></a>testing 数据制造（军备竞赛）&amp; 自动化测试</h3><blockquote>
+<p>wj老师：人脑是有极限的，不可能在写代码的时候就把所有的情况都考虑到，所以测试很有必要<br>我：自动化测试对于无论是<strong>自己测试</strong>，还是<strong>刀人</strong>，都及其有意义（doge保命</p>
+</blockquote>
+<ul>
+<li>一部分数据可以手搓，对于上文中整理的<strong>坑点</strong>，一个一个的<strong>对应着造出数据</strong>来，看看自己有没有问题，还可以对<strong>一些边界情况造出来</strong>，这是能够填补自动化测试的空白的。<ul>
+<li>比如：0，9999999e50（这个数据就刀中了人，虽然不是我刀的（泪）），—-0，。。。。</li>
+</ul>
+</li>
+<li>自动化测试的数据生成策略也可以按照文法通过<strong>递归下降来构造</strong>，<strong>概率生成不同的元素</strong>。</li>
+<li>python有可以<strong>检测表达式是否相等</strong>的库可以调用，命令行输入 <code>pip install sympy</code><ul>
+<li>我们检测结果的正确性只需要检查<strong>是否有括号</strong>&amp;<strong>表达式相等</strong>即可。</li>
+<li>至于性能分析，<strong>没有参照，暂时没办法做</strong>。</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>自动化测试由zbygg（佬！）和我一起完成，<strong>zbygg完成了data，simplify，getTest框架的搭建。（zbygg应该也会出博客，大家可以到移步友链，后续我会把它加入到Reference</strong><br>我的贡献主要是<strong>递归去除了嵌套的括号</strong>，加上了不断的<strong>循环测试</strong>，<strong>脚本化</strong>，以及后期刀人阶段的<strong>数据增强</strong>。</p>
+</blockquote>
+<ul>
+<li>生成<strong>数据的大致架构</strong>如下（至于导出jar包测试，python表达式包的使用，循环测试，脚本化，请问度娘或者chatgpt）：</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 用这个全局标志来消除嵌套括号的影响</span></span><br><span class="line">hasBrackets = <span class="literal">False</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 生成指数（0~8）可修改概率分布，可以想想怎么调整概率分布会更难，我的选择是，两头多，中间少</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">rand_index</span>():</span><br><span class="line"></span><br><span class="line"><span class="comment"># 生成随机整数，可以包含前导零，这个也得加一定的概率分布，不然数据太过随机，我这里也是两头多，中间少</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">rand_int</span>():</span><br><span class="line"></span><br><span class="line"><span class="comment"># 生成带符号整数</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">rand_signed_int</span>():</span><br><span class="line">    sign + rand_int()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 生成幂函数</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">rand_power</span>():</span><br><span class="line">    base + space + index</span><br><span class="line"></span><br><span class="line"><span class="comment"># 生成表达式因子</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">rand_expr_factor</span>():</span><br><span class="line">    <span class="keyword">global</span> hasBrackets</span><br><span class="line">    hasBrackets = <span class="literal">True</span></span><br><span class="line">    expr = rand_expr()</span><br><span class="line">    hasBrackets = <span class="literal">False</span> <span class="comment"># 这里能够消除嵌套括号，想想为啥</span></span><br><span class="line">    <span class="keyword">if</span> random.random() &lt; <span class="number">0.4</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;(&#x27;</span> + expr + <span class="string">&#x27;)&#x27;</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;(&#x27;</span> + expr + <span class="string">&#x27;) &#x27;</span> + index</span><br><span class="line"></span><br><span class="line"><span class="comment"># 生成常数因子或变量因子</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">rand_const_or_var</span>():</span><br><span class="line">    <span class="keyword">if</span> random...:</span><br><span class="line">        <span class="keyword">return</span> rand_signed_int()</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> rand_power()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 生成因子，这里的...的取值可以调整数据的难度</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">rand_factor</span>():</span><br><span class="line">    <span class="keyword">if</span> ran_num &lt; ... <span class="keyword">and</span> <span class="keyword">not</span> hasBrackets: <span class="comment"># 消括号操作</span></span><br><span class="line">        <span class="keyword">return</span> rand_expr_factor()</span><br><span class="line">    <span class="keyword">elif</span> ran_num &lt; ...:</span><br><span class="line">        <span class="keyword">return</span> rand_signed_int()</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> rand_power()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 生成项</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">rand_term</span>():</span><br><span class="line">    final_term = rand_factor()</span><br><span class="line">    <span class="keyword">for</span>:</span><br><span class="line">        final_term = final_term + <span class="string">&quot;*&quot;</span> + space + rand_factor()</span><br><span class="line">    <span class="keyword">return</span> op + final_term</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义函数，生成表达式</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">rand_expr</span>():</span><br><span class="line">    term = rand_term()</span><br><span class="line">    <span class="keyword">return</span> term + <span class="string">&#x27; &#x27;</span> + op + space + rand_term()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">generate_expr</span>(<span class="params">num</span>):</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(num):</span><br><span class="line">        expr = rand_expr()</span><br><span class="line">        <span class="keyword">while</span> <span class="built_in">len</span>(expr) &lt; ...: <span class="comment"># 填上你想要的最短数据长度</span></span><br><span class="line">            expr += <span class="string">&#x27; &#x27;</span> + rand_term()</span><br><span class="line">        f.write(expr + <span class="string">&#x27;\n&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>自动化造军火效果如下（有种<strong>挖矿的美</strong><br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OO/%E7%AC%AC%E4%B8%80%E5%8D%95%E5%85%83Expr-expansion1.0/hack-test.png" alt="auto-hacker 1.0"></li>
+</ul>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://www.runoob.com/regexp/regexp-tutorial.html">菜鸟教程：正则表达式</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/songtianlun/article/details/115496022">CSDM：三步激活 StarUML V4.0.1 (WIN10) | 仅供学习</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/109655171">知乎：30分钟学会UML类图</a></li>
+<li><a target="_blank" rel="noopener" href="https://hyggge.github.io/2022/03/24/oo/oo-di-yi-dan-yuan-zong-jie/">学长的博客：Poly运算类的灵感来源，推荐一看</a></li>
+<li>zbygg的博客：（害没有</li>
+</ul>
+
+    </div>
+
+    
+    
+    <div class="post-widgets">
+      <div id="needsharebutton-postbottom">
+        <span class="btn">
+          <i class="fa fa-share-alt" aria-hidden="true"></i>
+        </span>
+      </div>
+    </div>
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>volcaxiao
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://volcaxiao.github.io/2023/02/28/BUAA-OO-Expr-expansion-1-0/" title="【BUAA-OO】第一单元Expr_expansion_1.0">http://volcaxiao.github.io/2023/02/28/BUAA-OO-Expr-expansion-1-0/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/%E5%8C%97%E8%88%AA/" rel="tag"><i class="fa fa-tag"></i> 北航</a>
+              <a href="/tags/%E5%A4%A7%E4%BA%8C/" rel="tag"><i class="fa fa-tag"></i> 大二</a>
+              <a href="/tags/OO/" rel="tag"><i class="fa fa-tag"></i> OO</a>
+              <a href="/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/" rel="tag"><i class="fa fa-tag"></i> 面向对象</a>
+              <a href="/tags/%E8%A1%A8%E8%BE%BE%E5%BC%8F/" rel="tag"><i class="fa fa-tag"></i> 表达式</a>
+              <a href="/tags/%E7%AC%AC%E4%B8%80%E5%8D%95%E5%85%83/" rel="tag"><i class="fa fa-tag"></i> 第一单元</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/02/08/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%EF%BC%88%E4%BA%8C%EF%BC%89%E5%9B%BE%E8%AE%BA%E6%80%BB%E7%BB%93/" rel="prev" title="离散数学图论">
+      <i class="fa fa-chevron-left"></i> 离散数学图论
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="lv-container" data-id="city" data-uid="MTAyMC81NzIwMC8zMzY2NA=="></div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#BUAA-OO-%E7%AC%AC%E4%B8%80%E5%8D%95%E5%85%83"><span class="nav-number">1.</span> <span class="nav-text">BUAA-OO 第一单元</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BB%E8%A6%81%E7%9F%A5%E8%AF%86%E7%82%B9-%E4%BB%8EBNF%E7%9C%8B%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1"><span class="nav-number">1.1.</span> <span class="nav-text">主要知识点-从BNF看面向对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%83%E4%B9%A0%E9%A2%98%E7%95%A5%E8%A7%A3"><span class="nav-number">1.2.</span> <span class="nav-text">练习题略解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#training-1"><span class="nav-number">1.2.1.</span> <span class="nav-text">training-1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#training-2"><span class="nav-number">1.2.2.</span> <span class="nav-text">training-2</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%9C%E4%B8%9A%E9%A2%98"><span class="nav-number">1.3.</span> <span class="nav-text">作业题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BD%A2%E5%BC%8F%E5%8C%96%E8%A1%A8%E8%BF%B0"><span class="nav-number">1.3.1.</span> <span class="nav-text">形式化表述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E9%9C%80%E6%B1%82%E8%A7%A3%E6%9E%90-amp-%E5%9D%91%E7%82%B9%E6%B1%87%E6%80%BB"><span class="nav-number">1.3.2.</span> <span class="nav-text">题目需求解析&amp;坑点汇总</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#uml%E5%9B%BE"><span class="nav-number">1.3.3.</span> <span class="nav-text">uml图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%92%E5%BD%92%E4%B8%8B%E9%99%8D%E5%88%86%E6%9E%90"><span class="nav-number">1.3.4.</span> <span class="nav-text">递归下降分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%B1%95%E5%BC%80%E8%BF%90%E7%AE%97"><span class="nav-number">1.3.5.</span> <span class="nav-text">表达式展开运算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#testing-%E6%95%B0%E6%8D%AE%E5%88%B6%E9%80%A0%EF%BC%88%E5%86%9B%E5%A4%87%E7%AB%9E%E8%B5%9B%EF%BC%89-amp-%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95"><span class="nav-number">1.3.6.</span> <span class="nav-text">testing 数据制造（军备竞赛）&amp; 自动化测试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Reference"><span class="nav-number">1.3.7.</span> <span class="nav-text">Reference</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="volcaxiao"
+      src="/images/head.jpg">
+  <p class="site-author-name" itemprop="name">volcaxiao</p>
+  <div class="site-description" itemprop="description">北航CS，学习分享，记得看welcome</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">26</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">39</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/volcaxiao" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;volcaxiao" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:volcaxiaoc@buaa.edu.cn" title="E-Mail → mailto:volcaxiaoc@buaa.edu.cn" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://bluebean-cloud.github.io/" title="https:&#x2F;&#x2F;bluebean-cloud.github.io&#x2F;" rel="noopener" target="_blank">-> Bluebean's Blog</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://augetyvolta.github.io/" title="https:&#x2F;&#x2F;augetyvolta.github.io&#x2F;" rel="noopener" target="_blank">-> AugetyVolta's Blog</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://zouyuyang.github.io/" title="https:&#x2F;&#x2F;zouyuyang.github.io&#x2F;" rel="noopener" target="_blank">-> 介事神魔，张雨洋！膜一膜</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://strivinglee.github.io/" title="https:&#x2F;&#x2F;strivinglee.github.io&#x2F;" rel="noopener" target="_blank">-> strivinglee's Blog</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.runoob.com/" title="https:&#x2F;&#x2F;www.runoob.com" rel="noopener" target="_blank">菜鸟教程</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.csdn.net/" title="https:&#x2F;&#x2F;www.csdn.net" rel="noopener" target="_blank">CSDN</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.luogu.com.cn/" title="https:&#x2F;&#x2F;www.luogu.com.cn" rel="noopener" target="_blank">洛谷</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://e.buaa.edu.cn/" title="https:&#x2F;&#x2F;e.buaa.edu.cn" rel="noopener" target="_blank">BUAA_VPN</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://hexo.io/" title="https:&#x2F;&#x2F;hexo.io" rel="noopener" target="_blank">Hexo</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://theme-next.js.org/" title="https:&#x2F;&#x2F;theme-next.js.org&#x2F;" rel="noopener" target="_blank">NexT</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2022-02 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">volcaxiao</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">75k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">2:05</span>
+</div>
+
+
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <span id="busuanzi_container_site_pv">总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+    <span class="post-meta-divider">|</span>
+    <span id="busuanzi_container_site_uv">总访客数<span id="busuanzi_value_site_uv"></span>人</span>
+    <span class="post-meta-divider">|</span>
+<!-- 不蒜子计数初始值纠正 -->
+<script>
+$(document).ready(function() {
+
+    var int = setInterval(fixCount, 50);  // 50ms周期检测函数
+    var countOffset = 20000;  // 初始化首次数据
+
+    function fixCount() {            
+       if (document.getElementById("busuanzi_container_site_pv").style.display != "none")
+        {
+            $("#busuanzi_value_site_pv").html(parseInt($("#busuanzi_value_site_pv").html()) + countOffset); 
+            clearInterval(int);
+        }                  
+        if ($("#busuanzi_container_site_pv").css("display") != "none")
+        {
+            $("#busuanzi_value_site_uv").html(parseInt($("#busuanzi_value_site_uv").html()) + countOffset); // 加上初始数据 
+            clearInterval(int); // 停止检测
+        }  
+    }
+       	
+});
+</script> 
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/canvas_lines.min.js"></script>
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'forest',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+  <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-needmoreshare2@1/needsharebutton.min.js"></script>
+  <script>
+      pbOptions = {};
+        pbOptions.iconStyle = "box";
+        pbOptions.boxForm = "horizontal";
+        pbOptions.position = "bottomCenter";
+        pbOptions.networks = "Wechat,QQZone,Weibo,Douban,Twitter,Facebook";
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+  </script>
+<script>
+NexT.utils.loadComments(document.querySelector('#lv-container'), () => {
+  window.livereOptions = {
+    refer: location.pathname.replace(CONFIG.root, '').replace('index.html', '')
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+});
+</script>
+
+</body>
+</html>
