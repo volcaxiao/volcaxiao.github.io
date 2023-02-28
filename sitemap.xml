@@ -371,6 +371,13 @@
   </url>
   
   <url>
+    <loc>http://volcaxiao.github.io/tags/P3/</loc>
+    <lastmod>2023-02-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>http://volcaxiao.github.io/tags/P4/</loc>
     <lastmod>2023-02-28</lastmod>
     <changefreq>weekly</changefreq>
@@ -378,7 +385,7 @@
   </url>
   
   <url>
-    <loc>http://volcaxiao.github.io/tags/P3/</loc>
+    <loc>http://volcaxiao.github.io/tags/P5/</loc>
     <lastmod>2023-02-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -392,7 +399,7 @@
   </url>
   
   <url>
-    <loc>http://volcaxiao.github.io/tags/P5/</loc>
+    <loc>http://volcaxiao.github.io/tags/P7/</loc>
     <lastmod>2023-02-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -421,13 +428,6 @@
   
   <url>
     <loc>http://volcaxiao.github.io/tags/%E7%AC%AC%E4%B8%80%E5%8D%95%E5%85%83/</loc>
-    <lastmod>2023-02-28</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://volcaxiao.github.io/tags/P7/</loc>
     <lastmod>2023-02-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
