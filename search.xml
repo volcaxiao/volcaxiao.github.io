@@ -82,6 +82,171 @@
       </tags>
   </entry>
   <entry>
+    <title>【BUAA-OO】Expr_expansion3.0_and_2.1</title>
+    <url>/2023/03/10/BUAA-OO-Expr-expansion3-0-and-2-1/</url>
+    <content><![CDATA[<p>北航面向对象与程序设计课程作业，表达式展开Expr-expansion 3.0，对2.1的迭代开发。<br>插曲：对2.0的代码风格进行美化及debug。形成Expr-expansion 2.1。<br>新增需求：自定义函数嵌套，求导。</p>
+<span id="more"></span>]]></content>
+      <categories>
+        <category>BUAA面向对象</category>
+      </categories>
+      <tags>
+        <tag>北航</tag>
+        <tag>大二</tag>
+        <tag>OO</tag>
+        <tag>面向对象</tag>
+        <tag>表达式</tag>
+        <tag>第一单元</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【BUAA-OO】Expr_expansion2.0</title>
+    <url>/2023/03/10/BUAA-OO-Expr-expansion2-0/</url>
+    <content><![CDATA[<p>北航面向对象与程序设计课程作业，表达式展开Expr-expansion 2.0，对1.0的迭代开发。<br>新增需求：嵌套括号，三角函数，自定义函数</p>
+<span id="more"></span>]]></content>
+      <categories>
+        <category>BUAA面向对象</category>
+      </categories>
+      <tags>
+        <tag>北航</tag>
+        <tag>大二</tag>
+        <tag>OO</tag>
+        <tag>面向对象</tag>
+        <tag>表达式</tag>
+        <tag>第一单元</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【BUAA-OS】lab0_linux基础</title>
+    <url>/2023/03/10/BUAA-OS-lab0-linux%E5%9F%BA%E7%A1%80/</url>
+    <content><![CDATA[<p>BUAA-OS lab0实验报告，关于Linux的基础，shell脚本编程，git的知识，Makefile项目管理</p>
+<span id="more"></span>
+<h1 id="lab0实验报告"><a href="#lab0实验报告" class="headerlink" title="lab0实验报告"></a>lab0实验报告</h1><h2 id="实验思考题"><a href="#实验思考题" class="headerlink" title="实验思考题"></a>实验思考题</h2><h3 id="Thinking-0-1"><a href="#Thinking-0-1" class="headerlink" title="Thinking 0.1"></a>Thinking 0.1</h3><blockquote>
+<p>Thinking 0.1 思考下列有关 Git 的问题：<br>• 在前述已初始化的 ~/learnGit 目录下，创建一个名为 README.txt 的文件。执行命令 git status &gt; Untracked.txt。<br>• 在 README.txt 文件中添加任意文件内容，然后使用 add 命令，再执行命令git status &gt; Stage.txt。<br>• 提交 README.txt，并在提交说明里写入自己的学号。<br>• 执行命令 cat Untracked.txt 和 cat Stage.txt，对比两次运行的结果，体会 README.txt 两次所处位置的不同。<br>• 修改 README.txt 文件，再执行命令 git status &gt; Modified.txt。<br>• 执行命令 cat Modified.txt，观察其结果和第一次执行 add 命令之前的 status 是否一样，并思考原因。</p>
+</blockquote>
+<ul>
+<li>在刚开始第一个<code>git status</code>时，效果如下，但是因为我已经将README.txt文件提交过了，所以并不在未跟踪的文件里<br><img src="/.io//1Untracked.png" alt="Untracked"></li>
+<li>添加内容进readme中然后<code>git add README.txt</code>，此时文件在状态为Staged，位置在暂存区（而若已修改未提交则应该在工作区），下一步是commit<br><img src="/.io//1Stage.png" alt="Stage"></li>
+<li>已修改未提交的文件则应该在工作区，状态为Modified，我们仍需要用<code>git add README.txt</code>将其更新。<br><img src="/.io//1Modified.png" alt="Modified"></li>
+</ul>
+<h3 id="Thinking-0-2"><a href="#Thinking-0-2" class="headerlink" title="Thinking 0.2"></a>Thinking 0.2</h3><blockquote>
+<p>Thinking 0.2 仔细看看0.10，思考一下箭头中的 add the file 、stage the file 和 commit 分别对应的是 Git 里的哪些命令呢？</p>
+</blockquote>
+<ul>
+<li>add the file: 用<code>git add</code>将未跟踪的文件添加进暂存区，状态Staged</li>
+<li>stage the file: 用<code>git add</code>将已修改的文件加入缓存区，状态也是Staged</li>
+<li>commit: 用<code>git commit</code>将暂存区内容提交储存区，文件不在暂存区，回到了Unmodified状态。</li>
+</ul>
+<h3 id="Thinking-0-3"><a href="#Thinking-0-3" class="headerlink" title="Thinking 0.3"></a>Thinking 0.3</h3><blockquote>
+<p>Thinking 0.3 思考下列问题：<br>1.代码文件 print.c 被错误删除时，应当使用什么命令将其恢复？<br>2.代码文件 print.c 被错误删除后，执行了 git rm print.c 命令，此时应当使用什么命令将其恢复？<br>3.无关文件 hello.txt 已经被添加到暂存区时，如何在不删除此文件的前提下<br>将其移出暂存区？</p>
+</blockquote>
+<ul>
+<li>只是删除了工作区的print.c文件，可以使用<code>git checkout -- print.c</code>将其从暂存区拉回。</li>
+<li>而删除后再执行<code>git rm print.c</code>指令会将其从暂存区中也删除，但是我们能将其从版本库中再次找回<ul>
+<li>使用<code>git reset HEAD</code>将暂存区重置到与上一次commit一致，然后与上面操作一致。</li>
+<li>也可以使用<code>git checkout HEAD print.c</code>使得分支中的文件直接替换工作区以及暂存区的文件。</li>
+</ul>
+</li>
+<li>无关文件hello.txt在暂存区中，我们可以通过<code>git rm --cached hello.txt</code>将其在暂存区删除，而不改变本地文件。<ul>
+<li>也可以使用<code>git rm -f hello.txt</code>将其强制都删除（暂存区and工作区</li>
+</ul>
+</li>
+</ul>
+<h3 id="Thinking-0-4"><a href="#Thinking-0-4" class="headerlink" title="Thinking 0.4"></a>Thinking 0.4</h3><blockquote>
+<p>Thinking 0.4 思考下列有关 Git 的问题：<br>• 找到在/home/21xxxxxx/learnGit 下刚刚创建的 README.txt 文件，若不存<br>在则新建该文件。<br>• 在文件里加入 Testing 1，git add，git commit，提交说明记为 1。<br>• 模仿上述做法，把 1 分别改为 2 和 3，再提交两次。<br>• 使用 git log 命令查看提交日志，看是否已经有三次提交，记下提交说明为<br>3 的哈希值a。<br>• 进行版本回退。执行命令 git reset —hard HEAD^后，再执行 git log，观<br>察其变化。<br>• 找到提交说明为 1 的哈希值，执行命令 git reset —hard &lt; hash&gt; 后，再执<br>行 git log，观察其变化。<br>• 现在已经回到了旧版本，为了再次回到新版本，执行 git reset —hard &lt; hash&gt;<br>，再执行 git log，观察其变化。</p>
+</blockquote>
+<ul>
+<li>我们可以在下面的图看到过程，收获就是版本回退的时候，版本库中的新版本并没有消失，因为我们还能够再通过hashCode回到新版本。</li>
+<li>HEAD代表当前版本，HEAD\^代表上一个版本，HEAD\^\^代表上两个版本，以此类推。<br><img src="/.io//4.0.png" alt="q4"></li>
+</ul>
+<h3 id="Thinking-0-5"><a href="#Thinking-0-5" class="headerlink" title="Thinking 0.5"></a>Thinking 0.5</h3><blockquote>
+<p>Thinking 0.5 执行如下命令, 并查看结果<br>• echo first<br>• echo second &gt; output.txt<br>• echo third &gt; output.txt<br>• echo forth &gt;&gt; output.txt</p>
+</blockquote>
+<p><img src="/.io//5.1.png" alt="5.1演示"></p>
+<h3 id="Thinking-0-6"><a href="#Thinking-0-6" class="headerlink" title="Thinking 0.6"></a>Thinking 0.6</h3><blockquote>
+<p>Thinking 0.6 使用你知道的方法（包括重定向）创建下图内容的文件（文件命名为 test），将创建该文件的命令序列保存在 command 文件中，并将 test 文件作为批处理文件运行，将运行结果输出至 result 文件中。给出 command 文件和 result 文件的内容，并对最后的结果进行解释说明（可以从 test 文件的内容入手）. 具体实现的过程中思考下列问题:<br>echo echo Shell Start 与 echo ‘echo Shell Start’效果是否有区别; echo echo<br>$ c &gt; file1 与 echo ‘echo $c&gt;file1’效果是否有区别.</p>
+</blockquote>
+<ul>
+<li>要创造test文件里的这些命令，需要将每一条命令都使用echo指令，输出到test文件中<ul>
+<li>大致的指令如下：<code>echo &quot;echo Shell Start...&quot;</code>用双引号引起来。然后运行command脚本，即可得到一个test文件</li>
+<li>然后我们运行test文件，通过命令内容我们可以知道脚本的功能是将a，b赋值为1，2让c=a+b然后将cba的值依次存到file123中，然后将file123的值输入到file4中，然后将file4的值输入到result中，所以result的结果会是1，2，3</li>
+</ul>
+</li>
+<li>关于加引号与不加引号的区别，在第一对命令之间没有区别。</li>
+<li>而第二对命令中，不加引号的会按照语法执行这个命令，将echo $c输入到file1文件里。带单引号的将会将引号内的内容当作字符串原封不动的输出在标准输出中。若要想让$c变量发挥作用，则应该使用双引号””</li>
+</ul>
+<h2 id="难点分析"><a href="#难点分析" class="headerlink" title="难点分析"></a>难点分析</h2><h3 id="Exercise-0-1"><a href="#Exercise-0-1" class="headerlink" title="Exercise 0.1"></a>Exercise 0.1</h3><ul>
+<li>第一问就不难了，大一C语言基础题</li>
+<li>第二问：<code>target</code>是<code>palindrome</code>，<code>demand</code>是<code>palindrome.c</code>我们需要写的就只有一个指令<code>gcc palindrome.c -o palindrome</code></li>
+<li>第三问：因为是输出指定行的操作，我们可以使用sed，输出指定内容的选项是’-n’，然后输出第k行，输入为AAA文件，重定向到BBB，我们可以使用<code>sed -n &#39;kp&#39; AAA &gt; BBB</code>指令。<ul>
+<li>但注意AAA BBB是脚本的传入参数，所以在文件中用<code>$1 $2</code>表示</li>
+<li>再另外因为是覆盖，所以我们使用<code>&gt;</code>而不是<code>&gt;&gt;</code></li>
+</ul>
+</li>
+<li>复制操作就不多说</li>
+</ul>
+<h3 id="Exercise-0-2"><a href="#Exercise-0-2" class="headerlink" title="Exercise 0.2"></a>Exercise 0.2</h3><ul>
+<li>涉及到脚本编程的循环结构</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">i=start_num</span><br><span class="line"><span class="keyword">while</span> (( <span class="variable">$i</span> &lt;= end_num ))</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">        <span class="comment"># do something</span></span><br><span class="line">        i = $((i+<span class="number">1</span>)) | <span class="built_in">let</span> i=i+1</span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>两个操作都可以这么去做</li>
+</ul>
+<h3 id="Exercise-0-3"><a href="#Exercise-0-3" class="headerlink" title="Exercise 0.3"></a>Exercise 0.3</h3><ul>
+<li>根据题目的提示，我们可以使用<code>grep -n</code>指令进行查找并显示行号，用<code>awk</code>实现分离行号输出</li>
+<li>也要注意文件名查找词作为参数输入。</li>
+<li>因为<code>grep</code>的输出作为<code>awk</code>的输入，我们可以使用管道指令。</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">grep -n <span class="variable">$2</span> <span class="variable">$1</span> | awk -F: <span class="string">&#x27;&#123;print $1&#125;&#x27;</span> &gt; <span class="variable">$3</span></span><br></pre></td></tr></table></figure>
+<h3 id="Exercise-0-4"><a href="#Exercise-0-4" class="headerlink" title="Exercise 0.4"></a>Exercise 0.4</h3><ul>
+<li>第一问是字符串替换，我没很容易能够想到使用<code>sed</code>指令，但有许多需要注意的地方<ul>
+<li>比如我们能够想到<code>&#39;s\reg\str&#39;</code>的命令实现替换，但是我们需要用到<code>&#39;s\reg\str\g&#39;</code>，如果不加g则只会替换每行第一个匹配。</li>
+<li>输入<code>sed &#39;s\char\int\g $1&#39;</code>到脚本，运行，然后发现根本没换，这里有个问题，就是在脚本文件中，单引号’’代表纯字符串，所以没有功能性，我们在这里需要用双引号””<ul>
+<li>可以试试在脚本中<code>echo &#39;$1&#39;</code>和<code>echo &quot;$1&quot;</code>的输出来对比。</li>
+</ul>
+</li>
+<li>最后输入<code>sed &quot;s\$2\$3\g $1&quot;</code>发现文件没有变化，原因是忘了<code>sed -i</code></li>
+</ul>
+</li>
+<li>第二问有几个难点，一点是Make的循环调用<ul>
+<li>主要用到<code>make -C</code>的方法，以及我们也可以使用<code>make clean -C</code></li>
+<li>但是我打好码之后发现了报错，fibo.h的头文件没有找到，因为他在<code>../include</code>里所以我们需要gcc链接的指令<code>gcc -I 路径</code></li>
+<li>最后，关于清除所有的.o文件，我们可以采用路径的通配符<code>*.o</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="实验体会"><a href="#实验体会" class="headerlink" title="实验体会"></a>实验体会</h2><ul>
+<li>lab0主要考察了关于git、Makefile、gcc、shell常用命令及脚本编程的基础，我认为考察还是十分全面的，收获满满。<ul>
+<li>暂时不太可能记住很多的命令，所以需要学会自己查资料，要善于man指令或者—help的帮助。<ul>
+<li>另一点我觉得一定要细心且规范，遵照着规矩来，计算机没有二义性。</li>
+</ul>
+</li>
+<li>明白了c语言转化为可执行文件的底层原理<ul>
+<li>学会了使用gcc的命令编译c语言文件</li>
+</ul>
+</li>
+<li>更加了解了git的使用，对其中的操作的原理也有了更多的理解</li>
+<li>学会了一个项目的Makefile的写法，相当于是掌握了一门新的工具了</li>
+<li>最后就是觉得对于操作系统文件系统运行的原理有了一定的接触和感受（作为用户及程序员的角度）。Linux里Everything is files。</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>BUAA操作系统</category>
+      </categories>
+      <tags>
+        <tag>北航</tag>
+        <tag>大二</tag>
+        <tag>OS</tag>
+        <tag>Linux</tag>
+        <tag>git</tag>
+        <tag>C语言</tag>
+        <tag>Makefile</tag>
+        <tag>shell</tag>
+        <tag>bash</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>【BUAA-OO】第一单元Expr_expansion_1.0</title>
     <url>/2023/02/28/BUAA-OO-Expr-expansion-1-0/</url>
     <content><![CDATA[<p>北航面向对象与程序设计课程作业，表达式展开Expr-expansion 1.0，主要设计面向对象的程序设计思想以及递归下降法文法分析的实现。</p>
