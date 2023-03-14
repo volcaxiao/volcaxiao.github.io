@@ -86,7 +86,7 @@
     <url>/2023/03/14/%E5%8C%97%E8%88%AA%E4%BF%A1%E6%81%AF%E7%B1%BB%E6%95%B0%E5%88%86%EF%BC%88%E4%BA%8C%EF%BC%89%E8%B5%84%E6%96%99/</url>
     <content><![CDATA[<p>北航大一的数分（二）的资料，期中期末的往年题，其中21级的题没有答案，不过欢迎讨论。</p>
 <span id="more"></span>
-<h1 id="上链接"><a href="#上链接" class="headerlink" title="上链接"></a>上链接</h1><p><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/%E5%8C%97%E8%88%AA%E4%BF%A1%E6%81%AF%E7%B1%BB%E6%95%B0%E5%88%86%EF%BC%88%E4%B8%80%EF%BC%89%E8%B5%84%E6%96%99/emmmm.jpg" alt="emmmm"></p>
+<h1 id="上链接"><a href="#上链接" class="headerlink" title="上链接"></a>上链接</h1><p><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/%E5%8C%97%E8%88%AA%E4%BF%A1%E6%81%AF%E7%B1%BB%E6%95%B0%E5%88%86%EF%BC%88%E4%B8%80%EF%BC%89%E8%B5%84%E6%96%99/emmmm.jpg" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/%E5%8C%97%E8%88%AA%E4%BF%A1%E6%81%AF%E7%B1%BB%E6%95%B0%E5%88%86%EF%BC%88%E4%B8%80%EF%BC%89%E8%B5%84%E6%96%99/emmmm.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="emmmm"></p>
 <ul>
 <li><a href="https://bhpan.buaa.edu.cn:443/link/B1A3FF121AA0459A1E4E6FE7A77595C6">北航云盘-淑芬（二）资料</a><br>有效期限：2026-10-01 23:59</li>
 <li>有效期快到了的话提醒我续费（</li>
@@ -200,7 +200,7 @@
 </ul>
 </li>
 </ul>
-<h2 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现"></a>具体实现</h2><h3 id="uml类图及简述"><a href="#uml类图及简述" class="headerlink" title="uml类图及简述"></a>uml类图及简述</h3><p><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OO/ExprExpansion2.0/uml.png" alt="uml"></p>
+<h2 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现"></a>具体实现</h2><h3 id="uml类图及简述"><a href="#uml类图及简述" class="headerlink" title="uml类图及简述"></a>uml类图及简述</h3><p><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OO/ExprExpansion2.0/uml.png" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OO/ExprExpansion2.0/uml.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="uml"></p>
 <ul>
 <li>以上是我本次作业的类图（只放出了核心的方法与关系</li>
 <li>我继承自第一次作业的架构，其中分为了三个纵向的层次结构，parse层次，Expr层次，Poly层次</li>
@@ -296,9 +296,9 @@
 <p>Thinking 0.1 思考下列有关 Git 的问题：<br>• 在前述已初始化的 ~/learnGit 目录下，创建一个名为 README.txt 的文件。执行命令 git status &gt; Untracked.txt。<br>• 在 README.txt 文件中添加任意文件内容，然后使用 add 命令，再执行命令git status &gt; Stage.txt。<br>• 提交 README.txt，并在提交说明里写入自己的学号。<br>• 执行命令 cat Untracked.txt 和 cat Stage.txt，对比两次运行的结果，体会 README.txt 两次所处位置的不同。<br>• 修改 README.txt 文件，再执行命令 git status &gt; Modified.txt。<br>• 执行命令 cat Modified.txt，观察其结果和第一次执行 add 命令之前的 status 是否一样，并思考原因。</p>
 </blockquote>
 <ul>
-<li>在刚开始第一个<code>git status</code>时，效果如下，但是因为我已经将README.txt文件提交过了，所以并不在未跟踪的文件里<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OS/lab0/1Untracked.png" alt="Untracked"></li>
-<li>添加内容进readme中然后<code>git add README.txt</code>，此时文件在状态为Staged，位置在暂存区（而若已修改未提交则应该在工作区），下一步是commit<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OS/lab0/1Stage.png" alt="Stage"></li>
-<li>已修改未提交的文件则应该在工作区，状态为Modified，我们仍需要用<code>git add README.txt</code>将其更新。<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OS/lab0/1Modified.png" alt="Modified"></li>
+<li>在刚开始第一个<code>git status</code>时，效果如下，但是因为我已经将README.txt文件提交过了，所以并不在未跟踪的文件里<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OS/lab0/1Untracked.png" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OS/lab0/1Untracked.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="Untracked"></li>
+<li>添加内容进readme中然后<code>git add README.txt</code>，此时文件在状态为Staged，位置在暂存区（而若已修改未提交则应该在工作区），下一步是commit<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OS/lab0/1Stage.png" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OS/lab0/1Stage.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="Stage"></li>
+<li>已修改未提交的文件则应该在工作区，状态为Modified，我们仍需要用<code>git add README.txt</code>将其更新。<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OS/lab0/1Modified.png" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OS/lab0/1Modified.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="Modified"></li>
 </ul>
 <h3 id="Thinking-0-2"><a href="#Thinking-0-2" class="headerlink" title="Thinking 0.2"></a>Thinking 0.2</h3><blockquote>
 <p>Thinking 0.2 仔细看看0.10，思考一下箭头中的 add the file 、stage the file 和 commit 分别对应的是 Git 里的哪些命令呢？</p>
@@ -328,12 +328,12 @@
 </blockquote>
 <ul>
 <li>我们可以在下面的图看到过程，收获就是版本回退的时候，版本库中的新版本并没有消失，因为我们还能够再通过hashCode回到新版本。</li>
-<li>HEAD代表当前版本，HEAD\^代表上一个版本，HEAD\^\^代表上两个版本，以此类推。<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OS/lab0/4.0.png" alt="q4"></li>
+<li>HEAD代表当前版本，HEAD\^代表上一个版本，HEAD\^\^代表上两个版本，以此类推。<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OS/lab0/4.0.png" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OS/lab0/4.0.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="q4"></li>
 </ul>
 <h3 id="Thinking-0-5"><a href="#Thinking-0-5" class="headerlink" title="Thinking 0.5"></a>Thinking 0.5</h3><blockquote>
 <p>Thinking 0.5 执行如下命令, 并查看结果<br>• echo first<br>• echo second &gt; output.txt<br>• echo third &gt; output.txt<br>• echo forth &gt;&gt; output.txt</p>
 </blockquote>
-<p><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OS/lab0/5.1.png" alt="5.1演示"></p>
+<p><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OS/lab0/5.1.png" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OS/lab0/5.1.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="5.1演示"></p>
 <h3 id="Thinking-0-6"><a href="#Thinking-0-6" class="headerlink" title="Thinking 0.6"></a>Thinking 0.6</h3><blockquote>
 <p>Thinking 0.6 使用你知道的方法（包括重定向）创建下图内容的文件（文件命名为 test），将创建该文件的命令序列保存在 command 文件中，并将 test 文件作为批处理文件运行，将运行结果输出至 result 文件中。给出 command 文件和 result 文件的内容，并对最后的结果进行解释说明（可以从 test 文件的内容入手）. 具体实现的过程中思考下列问题:<br>echo echo Shell Start 与 echo ‘echo Shell Start’效果是否有区别; echo echo<br>$ c &gt; file1 与 echo ‘echo $c&gt;file1’效果是否有区别.</p>
 </blockquote>
@@ -443,7 +443,7 @@
 <li><p>IDEA有匹配正则表达式的工具，可以实时编辑调试，但好像有很多同学不知道。</p>
 <ul>
 <li>鼠标移动到正则表达式处，右键点击后，点击第一个“<strong>显示上下文操作</strong>”</li>
-<li>然后点击“<strong>检查正则表达式</strong>”，效果如图：<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OO/%E7%AC%AC%E4%B8%80%E5%8D%95%E5%85%83Expr-expansion1.0/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F.png" alt="正则表达式检查"></li>
+<li>然后点击“<strong>检查正则表达式</strong>”，效果如图：<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OO/%E7%AC%AC%E4%B8%80%E5%8D%95%E5%85%83Expr-expansion1.0/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F.png" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OO/%E7%AC%AC%E4%B8%80%E5%8D%95%E5%85%83Expr-expansion1.0/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="正则表达式检查"></li>
 </ul>
 </li>
 <li><p>java在正则表达式中匹配*，注意<strong>转义</strong>“\*“</p>
@@ -556,7 +556,7 @@
 <li>IDEA插件</li>
 </ul>
 </li>
-<li><p>我实现的类图如下（由于课程要求，类图中并<strong>没有给出</strong>的详细方法和属性，但<strong>关系大致明了</strong>）：<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OO/%E7%AC%AC%E4%B8%80%E5%8D%95%E5%85%83Expr-expansion1.0/hw1_uml.png" alt="uml"></p>
+<li><p>我实现的类图如下（由于课程要求，类图中并<strong>没有给出</strong>的详细方法和属性，但<strong>关系大致明了</strong>）：<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OO/%E7%AC%AC%E4%B8%80%E5%8D%95%E5%85%83Expr-expansion1.0/hw1_uml.png" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OO/%E7%AC%AC%E4%B8%80%E5%8D%95%E5%85%83Expr-expansion1.0/hw1_uml.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="uml"></p>
 </li>
 <li><p>我的架构大致分为三个横向的组织：<strong>文法分析</strong>(Parser, Lexer)，<strong>表达式结构</strong>(Expr, Term, Factor)，<strong>多项式运算</strong>(Poly, Mono)</p>
 </li>
@@ -658,7 +658,7 @@
 </ul>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 用这个全局标志来消除嵌套括号的影响</span></span><br><span class="line">hasBrackets = <span class="literal">False</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 生成指数（0~8）可修改概率分布，可以想想怎么调整概率分布会更难，我的选择是，两头多，中间少</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">rand_index</span>():</span><br><span class="line"></span><br><span class="line"><span class="comment"># 生成随机整数，可以包含前导零，这个也得加一定的概率分布，不然数据太过随机，我这里也是两头多，中间少</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">rand_int</span>():</span><br><span class="line"></span><br><span class="line"><span class="comment"># 生成带符号整数</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">rand_signed_int</span>():</span><br><span class="line">    sign + rand_int()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 生成幂函数</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">rand_power</span>():</span><br><span class="line">    base + space + index</span><br><span class="line"></span><br><span class="line"><span class="comment"># 生成表达式因子</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">rand_expr_factor</span>():</span><br><span class="line">    <span class="keyword">global</span> hasBrackets</span><br><span class="line">    hasBrackets = <span class="literal">True</span></span><br><span class="line">    expr = rand_expr()</span><br><span class="line">    hasBrackets = <span class="literal">False</span> <span class="comment"># 这里能够消除嵌套括号，想想为啥</span></span><br><span class="line">    <span class="keyword">if</span> random.random() &lt; <span class="number">0.4</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;(&#x27;</span> + expr + <span class="string">&#x27;)&#x27;</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;(&#x27;</span> + expr + <span class="string">&#x27;) &#x27;</span> + index</span><br><span class="line"></span><br><span class="line"><span class="comment"># 生成常数因子或变量因子</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">rand_const_or_var</span>():</span><br><span class="line">    <span class="keyword">if</span> random...:</span><br><span class="line">        <span class="keyword">return</span> rand_signed_int()</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> rand_power()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 生成因子，这里的...的取值可以调整数据的难度</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">rand_factor</span>():</span><br><span class="line">    <span class="keyword">if</span> ran_num &lt; ... <span class="keyword">and</span> <span class="keyword">not</span> hasBrackets: <span class="comment"># 消括号操作</span></span><br><span class="line">        <span class="keyword">return</span> rand_expr_factor()</span><br><span class="line">    <span class="keyword">elif</span> ran_num &lt; ...:</span><br><span class="line">        <span class="keyword">return</span> rand_signed_int()</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> rand_power()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 生成项</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">rand_term</span>():</span><br><span class="line">    final_term = rand_factor()</span><br><span class="line">    <span class="keyword">for</span>:</span><br><span class="line">        final_term = final_term + <span class="string">&quot;*&quot;</span> + space + rand_factor()</span><br><span class="line">    <span class="keyword">return</span> op + final_term</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义函数，生成表达式</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">rand_expr</span>():</span><br><span class="line">    term = rand_term()</span><br><span class="line">    <span class="keyword">return</span> term + <span class="string">&#x27; &#x27;</span> + op + space + rand_term()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">generate_expr</span>(<span class="params">num</span>):</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(num):</span><br><span class="line">        expr = rand_expr()</span><br><span class="line">        <span class="keyword">while</span> <span class="built_in">len</span>(expr) &lt; ...: <span class="comment"># 填上你想要的最短数据长度</span></span><br><span class="line">            expr += <span class="string">&#x27; &#x27;</span> + rand_term()</span><br><span class="line">        f.write(expr + <span class="string">&#x27;\n&#x27;</span>)</span><br></pre></td></tr></table></figure>
 <ul>
-<li>自动化造军火效果如下（有种<strong>挖矿的美</strong><br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OO/%E7%AC%AC%E4%B8%80%E5%8D%95%E5%85%83Expr-expansion1.0/hack-test.png" alt="auto-hacker 1.0"></li>
+<li>自动化造军火效果如下（有种<strong>挖矿的美</strong><br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OO/%E7%AC%AC%E4%B8%80%E5%8D%95%E5%85%83Expr-expansion1.0/hack-test.png" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OO/%E7%AC%AC%E4%B8%80%E5%8D%95%E5%85%83Expr-expansion1.0/hack-test.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="auto-hacker 1.0"></li>
 </ul>
 <p><a name="reference"></a></p>
 <h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><ul>
@@ -1737,7 +1737,7 @@
 <p>4、请阅读官方提供的定时器源代码，阐述两种中断模式的异同，并分别针对每一种模式绘制状态移图。</p>
 <ul>
 <li>两种中断，模式0为定时中断，模式1为周期性中断。区别在于倒计时达到0之后的状态。</li>
-<li><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-CO/p7/%E8%AE%A1%E6%97%B6%E5%99%A8%E7%8A%B6%E6%80%81%E8%BD%AC%E7%A7%BB.jpg" alt="状态转移"></li>
+<li><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-CO/p7/%E8%AE%A1%E6%97%B6%E5%99%A8%E7%8A%B6%E6%80%81%E8%BD%AC%E7%A7%BB.jpg" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-CO/p7/%E8%AE%A1%E6%97%B6%E5%99%A8%E7%8A%B6%E6%80%81%E8%BD%AC%E7%A7%BB.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="状态转移"></li>
 </ul>
 <p>5、倘若中断信号流入的时候，在检测宏观 PC 的一级如果是一条空泡（你的 CPU 该级所有信息均为空）指令，此时会发生什么问题？在此例基础上请思考：在 P7 中，清空流水线产生的空泡指令应该保留原指令的哪些信息？</p>
 <ul>
@@ -1818,7 +1818,7 @@
 <li>MUX命名采取X_输入端口名_选择数</li>
 <li>转发MUX命名采用F_输入端口名_选择数，级数越大优先级越高</li>
 </ul>
-<h2 id="模块设计"><a href="#模块设计" class="headerlink" title="模块设计"></a>模块设计</h2><h3 id="数据通路"><a href="#数据通路" class="headerlink" title="数据通路"></a>数据通路</h3><h4 id="数据通路表"><a href="#数据通路表" class="headerlink" title="数据通路表"></a>数据通路表</h4><p><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-CO/p6/%E6%95%B0%E6%8D%AE%E9%80%9A%E8%B7%AF%E8%A1%A8.jpg" alt="数据通路表"></p>
+<h2 id="模块设计"><a href="#模块设计" class="headerlink" title="模块设计"></a>模块设计</h2><h3 id="数据通路"><a href="#数据通路" class="headerlink" title="数据通路"></a>数据通路</h3><h4 id="数据通路表"><a href="#数据通路表" class="headerlink" title="数据通路表"></a>数据通路表</h4><p><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-CO/p6/%E6%95%B0%E6%8D%AE%E9%80%9A%E8%B7%AF%E8%A1%A8.jpg" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-CO/p6/%E6%95%B0%E6%8D%AE%E9%80%9A%E8%B7%AF%E8%A1%A8.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="数据通路表"></p>
 <h4 id="功能模块"><a href="#功能模块" class="headerlink" title="功能模块"></a>功能模块</h4><h5 id="IFU-PC-IM"><a href="#IFU-PC-IM" class="headerlink" title="IFU(PC\IM)"></a>IFU(PC\IM)</h5><div class="table-container">
 <table>
 <thead>
@@ -2864,7 +2864,7 @@
 <li>T_new产生后随着流水线递减</li>
 <li>分为MCU，HCU</li>
 </ul>
-<p><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-CO/p6/%E6%8E%A7%E5%88%B6%E4%BF%A1%E5%8F%B7%E8%A1%A8.jpg" alt="控制信号表"></p>
+<p><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-CO/p6/%E6%8E%A7%E5%88%B6%E4%BF%A1%E5%8F%B7%E8%A1%A8.jpg" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-CO/p6/%E6%8E%A7%E5%88%B6%E4%BF%A1%E5%8F%B7%E8%A1%A8.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="控制信号表"></p>
 <h4 id="主控制器（MCU）"><a href="#主控制器（MCU）" class="headerlink" title="主控制器（MCU）"></a>主控制器（MCU）</h4><div class="table-container">
 <table>
 <thead>
@@ -3167,9 +3167,9 @@
 </ul>
 <h3 id="冒险处理"><a href="#冒险处理" class="headerlink" title="冒险处理"></a>冒险处理</h3><ul>
 <li>先根据每一条指令，整理其Tuse，Tnew</li>
-<li><p>整理出指令的时间表<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-CO/p6/%E6%8C%87%E4%BB%A4%E6%97%B6%E9%97%B4%E8%A1%A8.jpg" alt="指令时间表"></p>
+<li><p>整理出指令的时间表<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-CO/p6/%E6%8C%87%E4%BB%A4%E6%97%B6%E9%97%B4%E8%A1%A8.jpg" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-CO/p6/%E6%8C%87%E4%BB%A4%E6%97%B6%E9%97%B4%E8%A1%A8.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="指令时间表"></p>
 </li>
-<li><p>再根据每条指令的时间列出转发暂停控制信号表<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-CO/p6/%E5%86%B2%E7%AA%81%E6%8E%A7%E5%88%B6%E8%A1%A8.jpg" alt="冲突控制表"></p>
+<li><p>再根据每条指令的时间列出转发暂停控制信号表<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-CO/p6/%E5%86%B2%E7%AA%81%E6%8E%A7%E5%88%B6%E8%A1%A8.jpg" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-CO/p6/%E5%86%B2%E7%AA%81%E6%8E%A7%E5%88%B6%E8%A1%A8.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="冲突控制表"></p>
 </li>
 </ul>
 <h4 id="转发策略"><a href="#转发策略" class="headerlink" title="转发策略"></a>转发策略</h4><ul>
@@ -3256,9 +3256,9 @@
 <p>6、为了对抗复杂性你采取了哪些抽象和规范手段？这些手段在译码和处理数据冲突的时候有什么样的特点与帮助？</p>
 <ul>
 <li>NPC统一，NPC统一模块，具体可见<a href="#跳转分支指令">跳转分支指令实现</a></li>
-<li>指令分类，MCU指令括号分类防止译码指令过长<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-CO/p6/MCU%E6%8C%87%E4%BB%A4%E5%88%86%E7%B1%BB.png" alt="MCU指令分类"></li>
+<li>指令分类，MCU指令括号分类防止译码指令过长<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-CO/p6/MCU%E6%8C%87%E4%BB%A4%E5%88%86%E7%B1%BB.png" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-CO/p6/MCU%E6%8C%87%E4%BB%A4%E5%88%86%E7%B1%BB.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="MCU指令分类"></li>
 <li>每一级设置outMUX，只需在MCU中控制outSel即可决定转发值及写入寄存器的值</li>
-<li>多用注释来对代码段进行分割，代码对齐（保持好的代码风格）<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-CO/p6/%E6%B3%A8%E9%87%8A%E5%88%86%E5%89%B2.png" alt="注释分割"></li>
+<li>多用注释来对代码段进行分割，代码对齐（保持好的代码风格）<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-CO/p6/%E6%B3%A8%E9%87%8A%E5%88%86%E5%89%B2.png" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-CO/p6/%E6%B3%A8%E9%87%8A%E5%88%86%E5%89%B2.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="注释分割"></li>
 </ul>
 <p>7、在本实验中你遇到了哪些不同指令类型组合产生的冲突？你又是如何解决的？相应的测试样例是什么样的？</p>
 <ul>
@@ -3347,7 +3347,7 @@
 <li>MUX命名采取X_输入端口名_选择数</li>
 <li>转发MUX命名采用F_输入端口名_选择数，级数越大优先级越高</li>
 </ul>
-<h2 id="模块设计"><a href="#模块设计" class="headerlink" title="模块设计"></a>模块设计</h2><h3 id="数据通路"><a href="#数据通路" class="headerlink" title="数据通路"></a>数据通路</h3><h4 id="数据通路表"><a href="#数据通路表" class="headerlink" title="数据通路表"></a>数据通路表</h4><p><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/数据通路表.jpg" alt="数据通路表"></p>
+<h2 id="模块设计"><a href="#模块设计" class="headerlink" title="模块设计"></a>模块设计</h2><h3 id="数据通路"><a href="#数据通路" class="headerlink" title="数据通路"></a>数据通路</h3><h4 id="数据通路表"><a href="#数据通路表" class="headerlink" title="数据通路表"></a>数据通路表</h4><p><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/数据通路表.jpg" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/数据通路表.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="数据通路表"></p>
 <h4 id="功能模块"><a href="#功能模块" class="headerlink" title="功能模块"></a>功能模块</h4><h5 id="IFU-PC-IM"><a href="#IFU-PC-IM" class="headerlink" title="IFU(PC\IM)"></a>IFU(PC\IM)</h5><div class="table-container">
 <table>
 <thead>
@@ -4133,7 +4133,7 @@
 <li>T_new产生后随着流水线递减</li>
 <li>分为MCU，HCU</li>
 </ul>
-<p><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/控制信号表.jpg" alt="控制信号表"></p>
+<p><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/控制信号表.jpg" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/控制信号表.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="控制信号表"></p>
 <h4 id="主控制器（MCU）"><a href="#主控制器（MCU）" class="headerlink" title="主控制器（MCU）"></a>主控制器（MCU）</h4><div class="table-container">
 <table>
 <thead>
@@ -4392,11 +4392,11 @@
 <h4 id="冒险控制表"><a href="#冒险控制表" class="headerlink" title="冒险控制表"></a>冒险控制表</h4><ul>
 <li>先根据每一条指令，整理其Tuse，Tnew</li>
 </ul>
-<p><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/指令时间表.jpg" alt="指令时间表"></p>
+<p><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/指令时间表.jpg" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/指令时间表.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="指令时间表"></p>
 <ul>
 <li>再根据每条指令的时间列出转发暂停控制信号表</li>
 </ul>
-<p><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/冲突控制表.jpg" alt="冲突控制表"></p>
+<p><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/冲突控制表.jpg" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/冲突控制表.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="冲突控制表"></p>
 <h2 id="测试数据及自动化测试"><a href="#测试数据及自动化测试" class="headerlink" title="测试数据及自动化测试"></a>测试数据及自动化测试</h2><h3 id="常规测试"><a href="#常规测试" class="headerlink" title="常规测试"></a>常规测试</h3><ul>
 <li>这里同p4的测试</li>
 </ul>
@@ -4486,7 +4486,7 @@
 </ul>
 <h2 id="设计方案"><a href="#设计方案" class="headerlink" title="设计方案"></a>设计方案</h2><ul>
 <li>模块化、端口定义等等大致和p3一致</li>
-<li>连线的时候的命名：推荐使用模块+输出端口命名法，小写字母表示，每一个模块的线放一块，这样输入的时候一目了然<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/连线命名方式.jpg" alt="连线命名"></li>
+<li>连线的时候的命名：推荐使用模块+输出端口命名法，小写字母表示，每一个模块的线放一块，这样输入的时候一目了然<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/连线命名方式.jpg" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/连线命名方式.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="连线命名"></li>
 <li>注意存储器地址访问的/4细节，思考题中的[11:2]应该就是出于这个考虑</li>
 </ul>
 <h3 id="datapath"><a href="#datapath" class="headerlink" title="datapath"></a>datapath</h3><ul>
@@ -4686,9 +4686,9 @@
 </tbody>
 </table>
 </div>
-<p><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/数据通路表.jpg" alt="数据通路表"></p>
+<p><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/数据通路表.jpg" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/数据通路表.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="数据通路表"></p>
 <h3 id="controller"><a href="#controller" class="headerlink" title="controller"></a>controller</h3><ul>
-<li>对于控制器，我采用先用操作码识别出不同的指令，再去记录下每个控制信号所对应的指令，因为这样更加符合电路的直观（或运算），也更符合我对未来的想象（）<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/控制信号表.jpg" alt="控制信号表"></li>
+<li>对于控制器，我采用先用操作码识别出不同的指令，再去记录下每个控制信号所对应的指令，因为这样更加符合电路的直观（或运算），也更符合我对未来的想象（）<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/控制信号表.jpg" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/控制信号表.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="控制信号表"></li>
 </ul>
 <h2 id="测试方案"><a href="#测试方案" class="headerlink" title="测试方案"></a>测试方案</h2><ul>
 <li>还是用p3时候的测试数据，但是需要多多注意的是这个东西肉眼debug其实还好一点，但更加适合自动化评测，开始手搓！</li>
@@ -4719,7 +4719,7 @@
 <li>C 语言是一种弱类型程序设计语言。C 语言中不对计算结果溢出进行处理，这意味着 C 语言要求程序员必须很清楚计算结果是否会导致溢出。因此，如果仅仅支持 C 语言，MIPS 指令的所有计算指令均可以忽略溢出。 请说明为什么在忽略溢出的前提下，addi 与 addiu 是等价的，add 与 addu 是等价的。提示：阅读《MIPS32® Architecture For Programmers Volume II: The MIPS32® Instruction Set》中相关指令的 Operation 部分。<ul>
 <li>addi和add，在operate中加入了溢出检测</li>
 <li>以add为例</li>
-<li><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/加法检测.jpg" alt="加法检测"></li>
+<li><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/加法检测.jpg" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/加法检测.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="加法检测"></li>
 <li>若R[rs]和R[rt]的30都是1且31相同的话，就分别对应正数和负数的溢出情况，则这么计算后temp32!temp31，不相等，所以溢出。</li>
 <li>检测溢出后就会抛出异常，但没有检测溢出的话，还是正常计算，所以和addiu，addu一样。</li>
 </ul>
@@ -5069,13 +5069,13 @@
 <blockquote>
 <p>自此，框架已经搭好，现在开始做打表连接</p>
 </blockquote>
-<h3 id="数据通路表及控制信号表"><a href="#数据通路表及控制信号表" class="headerlink" title="数据通路表及控制信号表"></a>数据通路表及控制信号表</h3><p><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/指令RTL描述.jpg" alt="指令的RTL描述"></p>
+<h3 id="数据通路表及控制信号表"><a href="#数据通路表及控制信号表" class="headerlink" title="数据通路表及控制信号表"></a>数据通路表及控制信号表</h3><p><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/指令RTL描述.jpg" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/指令RTL描述.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="指令的RTL描述"></p>
 <ul>
 <li>下面根据RTL描述写出数据通路表</li>
-<li>每一个指令需要将什么端口连接，指令级数据通路与控制器建模，先忽略控制信号的端口<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/数据通路表.jpg" alt="数据通路表"></li>
-<li>相应的在分析每条指令的通路的时候可以把控制信号的取值记下来，暂时不包含MUX的控制<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/控制信号表.jpg" alt="控制信号表"></li>
-<li>所以数据通路连接的总合计为<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/连接总合计.jpg" alt="连接总合计"></li>
-<li>在根据数据通路表中的多输入端口，把MUX的Sel信号写入控制信号表<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/MUX控制信号表.jpg" alt="MUX控制信号表"></li>
+<li>每一个指令需要将什么端口连接，指令级数据通路与控制器建模，先忽略控制信号的端口<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/数据通路表.jpg" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/数据通路表.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="数据通路表"></li>
+<li>相应的在分析每条指令的通路的时候可以把控制信号的取值记下来，暂时不包含MUX的控制<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/控制信号表.jpg" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/控制信号表.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="控制信号表"></li>
+<li>所以数据通路连接的总合计为<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/连接总合计.jpg" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/连接总合计.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="连接总合计"></li>
+<li>在根据数据通路表中的多输入端口，把MUX的Sel信号写入控制信号表<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/MUX控制信号表.jpg" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/MUX控制信号表.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="MUX控制信号表"></li>
 </ul>
 <h2 id="debug"><a href="#debug" class="headerlink" title="debug"></a>debug</h2><ul>
 <li>ROM的寻址方式</li>
@@ -5186,7 +5186,7 @@
   AB =AC =I  
   则B = BI = B(AC) = (BA)C = C</script></blockquote>
 </li>
-<li><p>拓展唯一性例题的解法<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/0唯一性表示例题1.jpg" alt="唯一性例题"><br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/0唯一性表示例题2.jpg" alt="解法2"></p>
+<li><p>拓展唯一性例题的解法<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/0唯一性表示例题1.jpg" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/0唯一性表示例题1.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="唯一性例题"><br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/0唯一性表示例题2.jpg" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/0唯一性表示例题2.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="解法2"></p>
 </li>
 <li><p>保可逆，反序可逆</p>
 <blockquote>
@@ -5194,7 +5194,7 @@
 </blockquote>
 </li>
 <li>求逆方法有三：增广，伴随，0化式（看见多项式赢麻啦）<blockquote>
-<p>增广矩阵的机理<br>伴随公式的引申<br>0化式，关于矩阵的多项式，例题，关于特征多项式（Caley定理）<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/0化式.jpg" alt="0化式"></p>
+<p>增广矩阵的机理<br>伴随公式的引申<br>0化式，关于矩阵的多项式，例题，关于特征多项式（Caley定理）<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/0化式.jpg" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/0化式.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="0化式"></p>
 </blockquote>
 </li>
 </ul>
@@ -5235,33 +5235,33 @@
 <li><p>所以说到这就只需要明确一个事情，满秩，行向量组列向量组无关，行列式不等于0，可逆，只有唯一解，非奇异这都是等价的概念</p>
 </li>
 </ul>
-<h3 id="各种各样的秩公式"><a href="#各种各样的秩公式" class="headerlink" title="各种各样的秩公式"></a>各种各样的秩公式</h3><h4 id="分块秩公式"><a href="#分块秩公式" class="headerlink" title="分块秩公式"></a>分块秩公式</h4><p><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/4分块秩公式.jpg" alt="分块秩公式"></p>
+<h3 id="各种各样的秩公式"><a href="#各种各样的秩公式" class="headerlink" title="各种各样的秩公式"></a>各种各样的秩公式</h3><h4 id="分块秩公式"><a href="#分块秩公式" class="headerlink" title="分块秩公式"></a>分块秩公式</h4><p><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/4分块秩公式.jpg" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/4分块秩公式.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="分块秩公式"></p>
 <h4 id="积阵秩公式"><a href="#积阵秩公式" class="headerlink" title="积阵秩公式"></a>积阵秩公式</h4><ul>
-<li>乘积不增秩公式<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/4不增秩公式.jpg" alt="不增秩公式"></li>
-<li>积0公式<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/4不增秩公式.jpg" alt="积0公式"></li>
-<li>转置积秩公式<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/4积0公式.jpg" alt="内积秩公式"></li>
+<li>乘积不增秩公式<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/4不增秩公式.jpg" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/4不增秩公式.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="不增秩公式"></li>
+<li>积0公式<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/4不增秩公式.jpg" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/4不增秩公式.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="积0公式"></li>
+<li>转置积秩公式<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/4积0公式.jpg" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/4积0公式.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="内积秩公式"></li>
 </ul>
-<h4 id="加减秩公式"><a href="#加减秩公式" class="headerlink" title="加减秩公式"></a>加减秩公式</h4><p><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/4加减秩公式.jpg" alt="加减秩公式"></p>
+<h4 id="加减秩公式"><a href="#加减秩公式" class="headerlink" title="加减秩公式"></a>加减秩公式</h4><p><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/4加减秩公式.jpg" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/4加减秩公式.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="加减秩公式"></p>
 <h3 id="奇妙的秩一阵"><a href="#奇妙的秩一阵" class="headerlink" title="奇妙的秩一阵"></a>奇妙的秩一阵</h3><ul>
-<li>用一个例题来说明<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/1秩一阵例题.jpg" alt="秩一阵例题"></li>
+<li>用一个例题来说明<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/1秩一阵例题.jpg" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/1秩一阵例题.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="秩一阵例题"></li>
 </ul>
 <h4 id="提一嘴先不讲"><a href="#提一嘴先不讲" class="headerlink" title="提一嘴先不讲"></a>提一嘴先不讲</h4><ul>
 <li>秩一阵的特征值</li>
 <li>秩一阵+平移公式+特征值与行列式的关系</li>
 </ul>
-<h2 id="下降公式"><a href="#下降公式" class="headerlink" title="下降公式"></a>下降公式</h2><p><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/3换位公式例题.png" alt="换位公式例题"></p>
-<h3 id="换位公式1-0"><a href="#换位公式1-0" class="headerlink" title="换位公式1.0"></a>换位公式1.0</h3><p><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/3换位公式1.0.jpg" alt="换位公式1"></p>
-<h3 id="换位公式2-0"><a href="#换位公式2-0" class="headerlink" title="换位公式2.0"></a>换位公式2.0</h3><p><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/3换位公式2.0.jpg" alt="换位公式2"></p>
-<h3 id="换位公式3-0及特征值（带拓展，看时间）"><a href="#换位公式3-0及特征值（带拓展，看时间）" class="headerlink" title="换位公式3.0及特征值（带拓展，看时间）"></a>换位公式3.0及特征值（带拓展，看时间）</h3><p><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/3换位公式3.0.jpg" alt="换位公式3"></p>
+<h2 id="下降公式"><a href="#下降公式" class="headerlink" title="下降公式"></a>下降公式</h2><p><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/3换位公式例题.png" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/3换位公式例题.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="换位公式例题"></p>
+<h3 id="换位公式1-0"><a href="#换位公式1-0" class="headerlink" title="换位公式1.0"></a>换位公式1.0</h3><p><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/3换位公式1.0.jpg" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/3换位公式1.0.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="换位公式1"></p>
+<h3 id="换位公式2-0"><a href="#换位公式2-0" class="headerlink" title="换位公式2.0"></a>换位公式2.0</h3><p><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/3换位公式2.0.jpg" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/3换位公式2.0.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="换位公式2"></p>
+<h3 id="换位公式3-0及特征值（带拓展，看时间）"><a href="#换位公式3-0及特征值（带拓展，看时间）" class="headerlink" title="换位公式3.0及特征值（带拓展，看时间）"></a>换位公式3.0及特征值（带拓展，看时间）</h3><p><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/3换位公式3.0.jpg" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/3换位公式3.0.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="换位公式3"></p>
 <h2 id="奇妙的伴随阵"><a href="#奇妙的伴随阵" class="headerlink" title="奇妙的伴随阵"></a>奇妙的伴随阵</h2><ul>
 <li>伴随阵的定义</li>
-<li>伴随公式的推导<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/2伴随阵定义及相伴公式.jpg" alt="伴随阵及相伴公式"></li>
+<li>伴随公式的推导<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/2伴随阵定义及相伴公式.jpg" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/2伴随阵定义及相伴公式.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="伴随阵及相伴公式"></li>
 </ul>
 <h3 id="相关行列式值的推导"><a href="#相关行列式值的推导" class="headerlink" title="相关行列式值的推导"></a>相关行列式值的推导</h3><ul>
-<li>相关行列式的值的计算<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/2各种行列式值之间的关系.jpg" alt="相关行列式的值"></li>
+<li>相关行列式的值的计算<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/2各种行列式值之间的关系.jpg" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/2各种行列式值之间的关系.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="相关行列式的值"></li>
 </ul>
 <h3 id="相伴秩公式"><a href="#相伴秩公式" class="headerlink" title="相伴秩公式"></a>相伴秩公式</h3><ul>
-<li>古典秩定义<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/2相伴秩公式.jpg" alt="相伴秩公式"></li>
+<li>古典秩定义<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/2相伴秩公式.jpg" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/2相伴秩公式.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="相伴秩公式"></li>
 </ul>
 ]]></content>
       <categories>
@@ -5293,7 +5293,7 @@
 <li>拓展：矩阵空间，矩阵掰直就是向量</li>
 <li>那我们来看，联系来了，AX=0的解集就构成空间</li>
 <li>何以见得：证明对加倍法封闭</li>
-<li>该怎么意象化的理解封闭：你们可以用三维空间来理解，空间是一定过原点的，所以在三维空间中一个过原点的平面是空间，这样的话，在平面上的向量怎么组合都跳不出这个平面，这就叫封闭，没过原点的平面上的向量（注意这里的向量顶点分别在原点和平面上）稍微*2就出去了。<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/1空间的定义.jpg" alt="空间的定义"></li>
+<li>该怎么意象化的理解封闭：你们可以用三维空间来理解，空间是一定过原点的，所以在三维空间中一个过原点的平面是空间，这样的话，在平面上的向量怎么组合都跳不出这个平面，这就叫封闭，没过原点的平面上的向量（注意这里的向量顶点分别在原点和平面上）稍微*2就出去了。<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/1空间的定义.jpg" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/1空间的定义.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="空间的定义"></li>
 </ul>
 <h2 id="从生成空间看到解空间"><a href="#从生成空间看到解空间" class="headerlink" title="从生成空间看到解空间"></a>从生成空间看到解空间</h2><h3 id="再次讨论齐次解与非齐次解"><a href="#再次讨论齐次解与非齐次解" class="headerlink" title="再次讨论齐次解与非齐次解"></a>再次讨论齐次解与非齐次解</h3><ul>
 <li><p>写出齐次方程的通解，基和广义坐标的关系，所以我们能看到解空间的影子</p>
@@ -5301,7 +5301,7 @@
 <li><p>所以关于非齐次方程的解是否构成空间？</p>
 </li>
 <li>常见的问题：判断一个解是否为齐次方程或非齐次方程的解？</li>
-<li><p>补充：齐次方程解与非齐次方程解之间的关系<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/3齐次解与非齐次解讨论.jpg" alt="齐次解与非齐次解的讨论"></p>
+<li><p>补充：齐次方程解与非齐次方程解之间的关系<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/3齐次解与非齐次解讨论.jpg" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/3齐次解与非齐次解讨论.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="齐次解与非齐次解的讨论"></p>
 </li>
 <li><p>补充：高三定理：一个非齐次线性方程组有解，且所有解组成的解集的一个极大线性无关组含有n个解（秩为n），那么对应的齐次线性方程组基础解系含有n-1个解向量（解空间的维度为n-1），这个命题对吗？</p>
 <blockquote>
@@ -5316,12 +5316,12 @@
 <li>我们给定任意的一组向量，他们的线性组合，满足双封闭？事空间！</li>
 <li>但是还不够简洁，我们远不需要这些向量的全部，因为我们可以由其中的某些来表示全部，这个大家是知道的，叫极大线性无关组，</li>
 <li>所以我们有了另一个理解向量空间的视角：就好像是一个极大线性无关组的任意组合，它们生成了空间。我们把这个极大线性无关组叫做基，基的秩就是空间的维数。</li>
-<li>空间相同，就是基等价！<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/4生成空间的定义.jpg" alt="生成空间"></li>
+<li>空间相同，就是基等价！<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/4生成空间的定义.jpg" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/4生成空间的定义.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="生成空间"></li>
 </ul>
 <h3 id="解空间"><a href="#解空间" class="headerlink" title="解空间"></a>解空间</h3><ul>
 <li>所以我们回过头来看看解空间是个什么回事。</li>
 <li>解空间就是由通解的基生成的。</li>
-<li>解空间的维度：两种理解，一种理解是解线性方程组得到，另一种理解更高级和优雅，是定义完内积空间之后得到。<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/2解空间的由来.jpg" alt="解空间的秩"></li>
+<li>解空间的维度：两种理解，一种理解是解线性方程组得到，另一种理解更高级和优雅，是定义完内积空间之后得到。<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/2解空间的由来.jpg" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/2解空间的由来.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="解空间的秩"></li>
 <li>然后大家很迫切的想要弄清楚空间的交和空间的和之间的关系，定义我就不多说了</li>
 <li>求空间的和：根据定义两边各取一个向量来表示，就把通解写到一块，所以为啥要理解了生成空间再来看这个，就是两个解空间的生成元放在一块，然后再生成一个空间嘛，所以对于维度公式我们也好理解了。</li>
 <li>求两个解空间的交有两种办法，一种是定义，把他们的线性方程组联立到一起，这样解出来的空间就既满足A，又满足B。但是一般如果你刚开始知道基，你就很难去反解出他的线性方程组(得求正交，有点麻烦)，但是你可以直接输出两个解空间集合重合的部分，方法就像上面说的，把两个通解的一般形式放一块，划个等号，然后解出来系数之间的关系。把关系再代回去，就得到了他们交空间的通解的形式(这个通解既能通过A的基生成，又能通过B的基生成)</li>
@@ -5338,7 +5338,7 @@
 <li>正交向量的内积</li>
 <li>若一个向量与一个向量组都正交，那么他与这个生成空间正交</li>
 <li>所以我们可以来以另一个视角理解一下解齐次方程组：<ul>
-<li>我们把系数矩阵分行来看，我们把需要解的X乘过去的过程不就是在算他与每一行的内积嘛，它们的内积等于零，所以我们的解与系数矩阵的每一行都正交，所以我们的解空间是怎样的一个空间，是一个与A行向量生成的空间正交的空间，所以这也就不难解释，当A的秩为r，A行向量生成的空间的维数就是r，如果这是在一个总共为n的空间里，那我们的解空间与A空间正交，就有了dim = n-r的公式。这么去理解。<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/6内积与Gram.jpg" alt="内积与Gram"></li>
+<li>我们把系数矩阵分行来看，我们把需要解的X乘过去的过程不就是在算他与每一行的内积嘛，它们的内积等于零，所以我们的解与系数矩阵的每一行都正交，所以我们的解空间是怎样的一个空间，是一个与A行向量生成的空间正交的空间，所以这也就不难解释，当A的秩为r，A行向量生成的空间的维数就是r，如果这是在一个总共为n的空间里，那我们的解空间与A空间正交，就有了dim = n-r的公式。这么去理解。<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/6内积与Gram.jpg" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/6内积与Gram.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="内积与Gram"></li>
 </ul>
 </li>
 </ul>
@@ -5355,16 +5355,16 @@
 </ul>
 <h2 id="线性映射-amp-线性变换（看时间，待定）"><a href="#线性映射-amp-线性变换（看时间，待定）" class="headerlink" title="线性映射&amp;线性变换（看时间，待定）"></a>线性映射&amp;线性变换（看时间，待定）</h2><ul>
 <li>二维矩阵中的两个特殊的变换，旋转与反射。X向量乘上一个矩阵=另一个向量。</li>
-<li>所以我们可以把乘矩阵理解成一种变换，这个很重要，前面大家可能接触过乘上可逆矩阵就是初等变换（行变列变），还有可能接触过过渡矩阵给空间的基做变换。<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/6内积与Gram.jpg" alt="线性映射初步"></li>
+<li>所以我们可以把乘矩阵理解成一种变换，这个很重要，前面大家可能接触过乘上可逆矩阵就是初等变换（行变列变），还有可能接触过过渡矩阵给空间的基做变换。<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/6内积与Gram.jpg" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/6内积与Gram.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="线性映射初步"></li>
 </ul>
 <h3 id="线性映射定义"><a href="#线性映射定义" class="headerlink" title="线性映射定义"></a>线性映射定义</h3><ul>
 <li>所以我们可以粗浅的定义线性映射为乘矩阵，这种映射可以是$R^m \rightarrow R^n $的，特别的，我们把$R^n \rightarrow R^n $叫做线性变换</li>
 </ul>
 <h3 id="特殊-正交变换"><a href="#特殊-正交变换" class="headerlink" title="特殊-正交变换"></a>特殊-正交变换</h3><ul>
 <li>更加特别的，我们把A矩阵是正交阵的这种叫做，正交变换</li>
-<li>正交变换性质：保长保正交，所以体现出来就是单纯的旋转。<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/9内积与正交变换.jpg" alt="正交变换"></li>
+<li>正交变换性质：保长保正交，所以体现出来就是单纯的旋转。<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/9内积与正交变换.jpg" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/9内积与正交变换.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="正交变换"></li>
 </ul>
-<h2 id="由Gram初见合同与二次型"><a href="#由Gram初见合同与二次型" class="headerlink" title="由Gram初见合同与二次型"></a>由Gram初见合同与二次型</h2><p><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/10Gram与二次型.jpg" alt="Gram和二次型"></p>
+<h2 id="由Gram初见合同与二次型"><a href="#由Gram初见合同与二次型" class="headerlink" title="由Gram初见合同与二次型"></a>由Gram初见合同与二次型</h2><p><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/10Gram与二次型.jpg" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/10Gram与二次型.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="Gram和二次型"></p>
 ]]></content>
       <categories>
         <category>北航信息类大一资料</category>
@@ -5968,23 +5968,23 @@ AB =AC =I
 <p>所以我们来重点看看选择状态编码的门道。<br>这里我们以logisim导航这一题为例，看看不同的状态编码的选择之间的差别。</p>
 <h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><p><a href="#状态转移图">状态转移图</a><br><a href="#自己乱编的码">自己乱编的码</a><br><a href="#8421顺序编码">8421顺序编码</a><br><a href="#格雷码">格雷码</a><br><a href="#独热码">独热码</a><br><a href="#瞻仰qshr机">瞻仰qshr机</a></p>
 <h2 id="状态转移图"><a href="#状态转移图" class="headerlink" title="状态转移图"></a>状态转移图</h2><ul>
-<li>这道题的状态转移图，其实不太好用常见的圈箭头的表示，倒是路径图已经有了，直接在这上面看着打表会方便一点<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/1自己的编码图.jpg" alt="自己乱编码的图"></li>
+<li>这道题的状态转移图，其实不太好用常见的圈箭头的表示，倒是路径图已经有了，直接在这上面看着打表会方便一点<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/1自己的编码图.jpg" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/1自己的编码图.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="自己乱编码的图"></li>
 </ul>
 <h2 id="自己乱编的码"><a href="#自己乱编的码" class="headerlink" title="自己乱编的码"></a>自己乱编的码</h2><blockquote>
 <p>编码中还需要注意一个问题，就是我们输入的三位数从高位到地位应该是(l2,l1,l0),所以在我们打表的时候的命名请按照(l2,l1,l0,d1,d0)的顺序(分别表示location,direction),同样输出我们使用(L2,L1,L0,hit)的顺序。这样符合逻辑！</p>
 <p>在打完表以后，也要注意，分离器(splitter)分离出来的位次依次是(l0,l1,l2)，所以为了好看，打完表以后，把输入输出的顺序调一下！调成(l0,l1,l2,hit)</p>
 </blockquote>
 <ul>
-<li>上图是我自己的胡乱编码，其实也不胡乱，中间三个状态是独热码表示。他的效果如下：<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/1自己码.png" alt="自己码"></li>
+<li>上图是我自己的胡乱编码，其实也不胡乱，中间三个状态是独热码表示。他的效果如下：<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/1自己码.png" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/1自己码.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="自己码"></li>
 </ul>
 <h2 id="8421顺序编码"><a href="#8421顺序编码" class="headerlink" title="8421顺序编码"></a>8421顺序编码</h2><ul>
 <li>顺序编码是我们最好理解的一种编码，最符合我们人类的直觉往往最不符合计算机的直觉，因为虽然顺序编码的最为紧密（紧密也有紧密的好处），但是由于相邻两个状态之间的变化太大，实际的硬件的寄存器很难做到同时发生变化，所以出错的概率很高（我们叫做毛刺现象）。</li>
-<li>所以在我们平常的作业中使使可能没太大问题，但是实际应用中用的很少。<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/2_8421码.png" alt="8421码"></li>
+<li>所以在我们平常的作业中使使可能没太大问题，但是实际应用中用的很少。<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/2_8421码.png" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/2_8421码.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="8421码"></li>
 </ul>
 <h2 id="格雷码"><a href="#格雷码" class="headerlink" title="格雷码"></a>格雷码</h2><ul>
 <li>格雷码的特点就是解决了顺序码的缺点，相邻的两状态之间编码之变一位，就不会出现毛刺的现象。</li>
 <li>但是格雷码最大的问题在于设计的难度</li>
-<li>其实格雷码最好是初态和末态也只差一位，但我实在有点找不到，有能够找到的dl可以在评论区指出。<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/3_格雷码.png" alt="格雷码"></li>
+<li>其实格雷码最好是初态和末态也只差一位，但我实在有点找不到，有能够找到的dl可以在评论区指出。<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/3_格雷码.png" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/3_格雷码.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="格雷码"></li>
 </ul>
 <h2 id="独热码"><a href="#独热码" class="headerlink" title="独热码"></a>独热码</h2><ul>
 <li>独热码的编码可能是唯一一个计算机好理解，人也好理解的编码，再加上他一下只需要变动两次（置一+置零），所以毛刺的概率低。</li>
@@ -5993,9 +5993,9 @@ AB =AC =I
 <p>独热码适合写条件复杂但是状态少的状态机；<br>  格雷码适合写条件不复杂但是状态多的状态机。</p>
 </blockquote>
 </li>
-<li>这里分享一个小妙招，格雷码一个一个的在Analysis里打表不方便（位数太多了），而其实独热码大多数位数都是零，所以可以先构造出这样的电路<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/独热码构造捷径.png" alt="独热码构造捷径"></li>
+<li>这里分享一个小妙招，格雷码一个一个的在Analysis里打表不方便（位数太多了），而其实独热码大多数位数都是零，所以可以先构造出这样的电路<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/独热码构造捷径.png" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/独热码构造捷径.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="独热码构造捷径"></li>
 <li>然后再Project -&gt; Analyze circuit,出来的初始真值表就是全置零的啦。</li>
-<li>如下图（独热码的真值表太长了我就不晒出来了）<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/4_独热码.png" alt="独热码"></li>
+<li>如下图（独热码的真值表太长了我就不晒出来了）<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/4_独热码.png" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/4_独热码.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="独热码"></li>
 <li>当然这肯定不是最简化的电路，你可以根据要求自己搭更加简单的电路，包括说用复用器来实现更简化，在这里就不赘述了。</li>
 </ul>
 <h2 id="瞻仰qshr机"><a href="#瞻仰qshr机" class="headerlink" title="瞻仰qshr机"></a>瞻仰qshr机</h2><ul>
@@ -6011,7 +6011,7 @@ AB =AC =I
 <p>介于qshr机在计算机仿真史上做出的贡献，我们看到了，对于这个题navigation来说，有很直观的状态转移图，还记得我在最开始说的嘛，”这道题的状态转移图，其实不太好用常见的圈箭头的表示，倒是路径图已经有了，直接在这上面看着打表会方便一点”，不用打表，题图即是状态转移图！！！</p>
 </blockquote>
 <ul>
-<li><p>所以我们把原基础的qshr机封装一下，让他看起来更具有仿真的意味！<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/qshr机改良版.png" alt="qshr机封装版"></p>
+<li><p>所以我们把原基础的qshr机封装一下，让他看起来更具有仿真的意味！<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/qshr机改良版.png" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/qshr机改良版.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="qshr机封装版"></p>
 </li>
 <li><p>虽然只是对qshr机的拙略模仿，但是你们不觉得很酷嘛，这很符合我对未来的想象（）。</p>
 </li>
@@ -6097,7 +6097,7 @@ AB =AC =I
 <p>$ 特点：dQ = 0 , C_{Q,m} = 0 $<br>$ dQ = 0 \Rightarrow dA + dE = 0 $<br>$ 我们利用等容关系能得到：-PdV = \nu C_{V,m} dT $<br>$ 但是我们在绝热过程中P,V都会变$<br>$ \therefore 对克拉伯龙方程微分 $<br>$ PdV+ VdP = \nu R dT $<br>$ 把上式代入得：(C_{V,m}+ R)PdV = - C_{V,m} V dP $<br>$\therefore \frac{dP}{P} = - \gamma \frac{dV}{V} $<br>$ 两边求导：PV^{\gamma} = const (过程/泊松方程) $</p>
 </blockquote>
 </li>
-<li><p>绝热曲线：<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/pict_1.jpg" alt="pict1"></p>
+<li><p>绝热曲线：<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/pict_1.jpg" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/pict_1.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="pict1"></p>
 <ul>
 <li>我们来仔细辨析一下其中的原理，从宏观和微观的角度。</li>
 </ul>
@@ -6121,7 +6121,7 @@ AB =AC =I
 </li>
 </ul>
 <h2 id="循环过程"><a href="#循环过程" class="headerlink" title="循环过程"></a>循环过程</h2><ul>
-<li>循环过程：从初始状态出发，一系列变化回到初始状态<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/pict_2.jpg" alt="pict2"></li>
+<li>循环过程：从初始状态出发，一系列变化回到初始状态<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/pict_2.jpg" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/pict_2.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="pict2"></li>
 <li>$特点：\Delta E = 0 \therefore A = Q $<blockquote>
 <p>$A = \int_LPdV = \pm S_{abcda} $<br>$ A的\pm 取决于L路径的正负$</p>
 </blockquote>
@@ -6164,7 +6164,7 @@ AB =AC =I
     <content><![CDATA[<p>北航大一的数分（一）资料，有<strong>数分讲座的ppt</strong>以及<strong>2010-2022的期中考题</strong>、<strong>2010-2021的期末考题</strong>，其中期末的考题以及处理好了，题目和答案分开在两个文件夹内。但期中的考题答案和题目还合在一起，这里并不是俺懒（确信.jpg，而是学长觉得授人以鱼不如授人以渔，所以内有<strong>wps处理教程</strong>，赶紧学起来叭！！！</p>
 <span id="more"></span>
 <h1 id="数分（一）资料"><a href="#数分（一）资料" class="headerlink" title="数分（一）资料"></a>数分（一）资料</h1><h2 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h2><blockquote>
-<p>快点端上来罢 我已经等不及了<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/%E5%8C%97%E8%88%AA%E4%BF%A1%E6%81%AF%E7%B1%BB%E6%95%B0%E5%88%86%EF%BC%88%E4%B8%80%EF%BC%89%E8%B5%84%E6%96%99/%E5%9B%BE%E4%B8%80.jpg" alt="图1"></p>
+<p>快点端上来罢 我已经等不及了<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/%E5%8C%97%E8%88%AA%E4%BF%A1%E6%81%AF%E7%B1%BB%E6%95%B0%E5%88%86%EF%BC%88%E4%B8%80%EF%BC%89%E8%B5%84%E6%96%99/%E5%9B%BE%E4%B8%80.jpg" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/%E5%8C%97%E8%88%AA%E4%BF%A1%E6%81%AF%E7%B1%BB%E6%95%B0%E5%88%86%EF%BC%88%E4%B8%80%EF%BC%89%E8%B5%84%E6%96%99/%E5%9B%BE%E4%B8%80.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="图1"></p>
 </blockquote>
 <ul>
 <li><a href="https://bhpan.buaa.edu.cn:443/link/D8A4739E259BFEBEE88FD61C2F75F331">北航云盘-淑芬（一）资料</a><br>有效期限：2025-10-01 23:59</li>
@@ -6188,10 +6188,10 @@ AB =AC =I
 <li>ms office全家桶是非常强大的办公软件，用的好ms office当然能够解决好许多问题。而wps这一类金山的东西一直给人一种广告多不好用的印象，但其实金山软件公司在1988年创立，和ms争夺办公软件的市场许多年，wps在功能性上完全不输ms office，所以大家可以放心食用，另外广告这件事也不用担心，马上就没了（手动滑稽</li>
 </ul>
 <h3 id="具体教程"><a href="#具体教程" class="headerlink" title="具体教程"></a>具体教程</h3><ul>
-<li>我们打开2020-2021的期中试卷，看到里面还有答案。我们点击 <strong>编辑-&gt;编辑内容</strong> 可以发现页面变成了这样<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/%E5%8C%97%E8%88%AA%E4%BF%A1%E6%81%AF%E7%B1%BB%E6%95%B0%E5%88%86%EF%BC%88%E4%B8%80%EF%BC%89%E8%B5%84%E6%96%99/%E5%9B%BE%E4%BA%8C.png" alt="图二"></li>
+<li>我们打开2020-2021的期中试卷，看到里面还有答案。我们点击 <strong>编辑-&gt;编辑内容</strong> 可以发现页面变成了这样<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/%E5%8C%97%E8%88%AA%E4%BF%A1%E6%81%AF%E7%B1%BB%E6%95%B0%E5%88%86%EF%BC%88%E4%B8%80%EF%BC%89%E8%B5%84%E6%96%99/%E5%9B%BE%E4%BA%8C.png" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/%E5%8C%97%E8%88%AA%E4%BF%A1%E6%81%AF%E7%B1%BB%E6%95%B0%E5%88%86%EF%BC%88%E4%B8%80%EF%BC%89%E8%B5%84%E6%96%99/%E5%9B%BE%E4%BA%8C.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="图二"></li>
 <li><p>问题是这样不好处理选项啊，删错了怎么办？（可以ctrl+z）</p>
 <ul>
-<li>这样可以来<strong>处理大题</strong>，像这样，直接<strong>全部选中，delete</strong>，就okk了<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/%E5%8C%97%E8%88%AA%E4%BF%A1%E6%81%AF%E7%B1%BB%E6%95%B0%E5%88%86%EF%BC%88%E4%B8%80%EF%BC%89%E8%B5%84%E6%96%99/%E5%9B%BE%E4%B8%89.jpg" alt="图三"><br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/%E5%8C%97%E8%88%AA%E4%BF%A1%E6%81%AF%E7%B1%BB%E6%95%B0%E5%88%86%EF%BC%88%E4%B8%80%EF%BC%89%E8%B5%84%E6%96%99/%E5%9B%BE%E5%9B%9B.jpg" alt="图四"><br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/%E5%8C%97%E8%88%AA%E4%BF%A1%E6%81%AF%E7%B1%BB%E6%95%B0%E5%88%86%EF%BC%88%E4%B8%80%EF%BC%89%E8%B5%84%E6%96%99/%E5%9B%BE%E4%BA%94.jpg" alt="图五"></li>
+<li>这样可以来<strong>处理大题</strong>，像这样，直接<strong>全部选中，delete</strong>，就okk了<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/%E5%8C%97%E8%88%AA%E4%BF%A1%E6%81%AF%E7%B1%BB%E6%95%B0%E5%88%86%EF%BC%88%E4%B8%80%EF%BC%89%E8%B5%84%E6%96%99/%E5%9B%BE%E4%B8%89.jpg" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/%E5%8C%97%E8%88%AA%E4%BF%A1%E6%81%AF%E7%B1%BB%E6%95%B0%E5%88%86%EF%BC%88%E4%B8%80%EF%BC%89%E8%B5%84%E6%96%99/%E5%9B%BE%E4%B8%89.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="图三"><br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/%E5%8C%97%E8%88%AA%E4%BF%A1%E6%81%AF%E7%B1%BB%E6%95%B0%E5%88%86%EF%BC%88%E4%B8%80%EF%BC%89%E8%B5%84%E6%96%99/%E5%9B%BE%E5%9B%9B.jpg" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/%E5%8C%97%E8%88%AA%E4%BF%A1%E6%81%AF%E7%B1%BB%E6%95%B0%E5%88%86%EF%BC%88%E4%B8%80%EF%BC%89%E8%B5%84%E6%96%99/%E5%9B%BE%E5%9B%9B.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="图四"><br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/%E5%8C%97%E8%88%AA%E4%BF%A1%E6%81%AF%E7%B1%BB%E6%95%B0%E5%88%86%EF%BC%88%E4%B8%80%EF%BC%89%E8%B5%84%E6%96%99/%E5%9B%BE%E4%BA%94.jpg" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/%E5%8C%97%E8%88%AA%E4%BF%A1%E6%81%AF%E7%B1%BB%E6%95%B0%E5%88%86%EF%BC%88%E4%B8%80%EF%BC%89%E8%B5%84%E6%96%99/%E5%9B%BE%E4%BA%94.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="图五"></li>
 </ul>
 </li>
 <li><p>那选择题怎么搞？ 可以点击 <strong>编辑-&gt;擦除</strong> ，去试一下很好搞的，绝对不是俺懒（确信.jpg。</p>
@@ -6232,7 +6232,7 @@ AB =AC =I
     <content><![CDATA[<p>北航大一高代的资料，高代的题可能就不像数分的题整理的那么的整齐，可能<strong>有点零散</strong>，特别是期中的题，俺可能还一不小心删掉一部分（秃头），而且很多<strong>试题都没有答案</strong>。不过乐观点想，期中大家真的不用太担心，试题没有答案的话可以多<strong>和同学讨论</strong>，<strong>对答案</strong>，<strong>问老师</strong>；这也是个主动学习的过程。另外文档里，有俺滴<strong>手写笔记</strong>，大一上跟着<strong>赵迪老师</strong>上课，受益匪浅，学会了很多 <strong><em>学术语言</em></strong>()，<strong>大大滴推荐</strong>。另外这一篇也有<strong>加餐</strong>，给大家讲一下可以从哪里<strong>找试卷资源</strong>，这样大家也能自己去找资源！</p>
 <span id="more"></span>
 <h1 id="高代资料"><a href="#高代资料" class="headerlink" title="高代资料"></a>高代资料</h1><h2 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h2><blockquote>
-<p>话不多说，上链接！<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/%E5%8C%97%E8%88%AA%E4%BF%A1%E6%81%AF%E7%B1%BB%E9%AB%98%E4%BB%A3%E8%B5%84%E6%96%99/%E5%9B%BE%E4%B8%80.jpg" alt="图一"></p>
+<p>话不多说，上链接！<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/%E5%8C%97%E8%88%AA%E4%BF%A1%E6%81%AF%E7%B1%BB%E9%AB%98%E4%BB%A3%E8%B5%84%E6%96%99/%E5%9B%BE%E4%B8%80.jpg" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/%E5%8C%97%E8%88%AA%E4%BF%A1%E6%81%AF%E7%B1%BB%E9%AB%98%E4%BB%A3%E8%B5%84%E6%96%99/%E5%9B%BE%E4%B8%80.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="图一"></p>
 </blockquote>
 <ul>
 <li><a href="https://bhpan.buaa.edu.cn:443/link/197EDC5E339248FC004CD796F84C3EB8">北航云盘-高代资料</a><br>有效期限：2025-10-01 23:59</li>
@@ -6470,7 +6470,7 @@ AB =AC =I
 <li>下面开始推导</li>
 </ul>
 <blockquote>
-<p>在一个边长分别为$l_1,l_2,l_3$的全反射壁容器内<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/%E5%B7%A5%E7%A7%91%E5%A4%A7%E7%89%A9-%E6%B0%94%E4%BD%93%E5%8A%A8%E7%90%86%E8%AE%BA%E6%80%BB%E7%BB%93/%E5%9B%BE2.1.jpg" alt="容器"></p>
+<p>在一个边长分别为$l_1,l_2,l_3$的全反射壁容器内<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/%E5%B7%A5%E7%A7%91%E5%A4%A7%E7%89%A9-%E6%B0%94%E4%BD%93%E5%8A%A8%E7%90%86%E8%AE%BA%E6%80%BB%E7%BB%93/%E5%9B%BE2.1.jpg" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/%E5%B7%A5%E7%A7%91%E5%A4%A7%E7%89%A9-%E6%B0%94%E4%BD%93%E5%8A%A8%E7%90%86%E8%AE%BA%E6%80%BB%E7%BB%93/%E5%9B%BE2.1.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="容器"></p>
 </blockquote>
 <h2 id="分子碰撞基本理论——平均自由程"><a href="#分子碰撞基本理论——平均自由程" class="headerlink" title="分子碰撞基本理论——平均自由程"></a>分子碰撞基本理论——平均自由程</h2><p>Maxwell速率分布</p>
 <h2 id="温度公式"><a href="#温度公式" class="headerlink" title="温度公式"></a>温度公式</h2><p>温度与平动动能有关，相同温度不同气体，平动动能一定相等，但总动能和内能不一定相等</p>
