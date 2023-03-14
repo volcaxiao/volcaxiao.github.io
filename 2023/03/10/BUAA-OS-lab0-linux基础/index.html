@@ -28,14 +28,14 @@
 <meta property="og:site_name" content="volca&#39;s blog">
 <meta property="og:description" content="BUAA-OS lab0实验报告，关于Linux的基础，shell脚本编程，git的知识，Makefile项目管理">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://volcaxiao.github.io/.io//1Untracked.png">
-<meta property="og:image" content="http://volcaxiao.github.io/.io//1Stage.png">
-<meta property="og:image" content="http://volcaxiao.github.io/.io//1Modified.png">
-<meta property="og:image" content="http://volcaxiao.github.io/.io//4.0.png">
-<meta property="og:image" content="http://volcaxiao.github.io/.io//5.1.png">
+<meta property="og:image" content="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OS/lab0/1Untracked.png">
+<meta property="og:image" content="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OS/lab0/1Stage.png">
+<meta property="og:image" content="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OS/lab0/1Modified.png">
+<meta property="og:image" content="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OS/lab0/4.0.png">
+<meta property="og:image" content="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OS/lab0/5.1.png">
 <meta property="article:published_time" content="2023-03-10T02:52:10.000Z">
-<meta property="article:modified_time" content="2023-03-10T02:57:20.579Z">
-<meta property="article:author" content="volcaxiao">
+<meta property="article:modified_time" content="2023-03-14T02:12:43.379Z">
+<meta property="article:author" content="Volca Xiao">
 <meta property="article:tag" content="北航">
 <meta property="article:tag" content="大二">
 <meta property="article:tag" content="OS">
@@ -46,7 +46,7 @@
 <meta property="article:tag" content="shell">
 <meta property="article:tag" content="bash">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://volcaxiao.github.io/.io//1Untracked.png">
+<meta name="twitter:image" content="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OS/lab0/1Untracked.png">
 
 <link rel="canonical" href="http://volcaxiao.github.io/2023/03/10/BUAA-OS-lab0-linux%E5%9F%BA%E7%A1%80/">
 
@@ -244,8 +244,8 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/head.jpg">
-      <meta itemprop="name" content="volcaxiao">
-      <meta itemprop="description" content="北航CS，学习分享，记得看welcome">
+      <meta itemprop="name" content="Volca Xiao">
+      <meta itemprop="description" content="Welcome to Volca's Blog World">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -264,10 +264,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2023-03-10 10:52:10 / 修改时间：10:57:20" itemprop="dateCreated datePublished" datetime="2023-03-10T10:52:10+08:00">2023-03-10</time>
+              <time title="创建时间：2023-03-10 10:52:10" itemprop="dateCreated datePublished" datetime="2023-03-10T10:52:10+08:00">2023-03-10</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-03-14 10:12:43" itemprop="dateModified" datetime="2023-03-14T10:12:43+08:00">2023-03-14</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -316,9 +322,9 @@
 <p>Thinking 0.1 思考下列有关 Git 的问题：<br>• 在前述已初始化的 ~/learnGit 目录下，创建一个名为 README.txt 的文件。执行命令 git status &gt; Untracked.txt。<br>• 在 README.txt 文件中添加任意文件内容，然后使用 add 命令，再执行命令git status &gt; Stage.txt。<br>• 提交 README.txt，并在提交说明里写入自己的学号。<br>• 执行命令 cat Untracked.txt 和 cat Stage.txt，对比两次运行的结果，体会 README.txt 两次所处位置的不同。<br>• 修改 README.txt 文件，再执行命令 git status &gt; Modified.txt。<br>• 执行命令 cat Modified.txt，观察其结果和第一次执行 add 命令之前的 status 是否一样，并思考原因。</p>
 </blockquote>
 <ul>
-<li>在刚开始第一个<code>git status</code>时，效果如下，但是因为我已经将README.txt文件提交过了，所以并不在未跟踪的文件里<br><img src="/.io//1Untracked.png" alt="Untracked"></li>
-<li>添加内容进readme中然后<code>git add README.txt</code>，此时文件在状态为Staged，位置在暂存区（而若已修改未提交则应该在工作区），下一步是commit<br><img src="/.io//1Stage.png" alt="Stage"></li>
-<li>已修改未提交的文件则应该在工作区，状态为Modified，我们仍需要用<code>git add README.txt</code>将其更新。<br><img src="/.io//1Modified.png" alt="Modified"></li>
+<li>在刚开始第一个<code>git status</code>时，效果如下，但是因为我已经将README.txt文件提交过了，所以并不在未跟踪的文件里<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OS/lab0/1Untracked.png" alt="Untracked"></li>
+<li>添加内容进readme中然后<code>git add README.txt</code>，此时文件在状态为Staged，位置在暂存区（而若已修改未提交则应该在工作区），下一步是commit<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OS/lab0/1Stage.png" alt="Stage"></li>
+<li>已修改未提交的文件则应该在工作区，状态为Modified，我们仍需要用<code>git add README.txt</code>将其更新。<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OS/lab0/1Modified.png" alt="Modified"></li>
 </ul>
 <h3 id="Thinking-0-2"><a href="#Thinking-0-2" class="headerlink" title="Thinking 0.2"></a>Thinking 0.2</h3><blockquote>
 <p>Thinking 0.2 仔细看看0.10，思考一下箭头中的 add the file 、stage the file 和 commit 分别对应的是 Git 里的哪些命令呢？</p>
@@ -348,12 +354,12 @@
 </blockquote>
 <ul>
 <li>我们可以在下面的图看到过程，收获就是版本回退的时候，版本库中的新版本并没有消失，因为我们还能够再通过hashCode回到新版本。</li>
-<li>HEAD代表当前版本，HEAD\^代表上一个版本，HEAD\^\^代表上两个版本，以此类推。<br><img src="/.io//4.0.png" alt="q4"></li>
+<li>HEAD代表当前版本，HEAD\^代表上一个版本，HEAD\^\^代表上两个版本，以此类推。<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OS/lab0/4.0.png" alt="q4"></li>
 </ul>
 <h3 id="Thinking-0-5"><a href="#Thinking-0-5" class="headerlink" title="Thinking 0.5"></a>Thinking 0.5</h3><blockquote>
 <p>Thinking 0.5 执行如下命令, 并查看结果<br>• echo first<br>• echo second &gt; output.txt<br>• echo third &gt; output.txt<br>• echo forth &gt;&gt; output.txt</p>
 </blockquote>
-<p><img src="/.io//5.1.png" alt="5.1演示"></p>
+<p><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OS/lab0/5.1.png" alt="5.1演示"></p>
 <h3 id="Thinking-0-6"><a href="#Thinking-0-6" class="headerlink" title="Thinking 0.6"></a>Thinking 0.6</h3><blockquote>
 <p>Thinking 0.6 使用你知道的方法（包括重定向）创建下图内容的文件（文件命名为 test），将创建该文件的命令序列保存在 command 文件中，并将 test 文件作为批处理文件运行，将运行结果输出至 result 文件中。给出 command 文件和 result 文件的内容，并对最后的结果进行解释说明（可以从 test 文件的内容入手）. 具体实现的过程中思考下列问题:<br>echo echo Shell Start 与 echo ‘echo Shell Start’效果是否有区别; echo echo<br>$ c &gt; file1 与 echo ‘echo $c&gt;file1’效果是否有区别.</p>
 </blockquote>
@@ -439,7 +445,7 @@
 <div>
 <ul class="post-copyright">
   <li class="post-copyright-author">
-    <strong>本文作者： </strong>volcaxiao
+    <strong>本文作者： </strong>Volca Xiao
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
@@ -548,17 +554,17 @@
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="volcaxiao"
+    <img class="site-author-image" itemprop="image" alt="Volca Xiao"
       src="/images/head.jpg">
-  <p class="site-author-name" itemprop="name">volcaxiao</p>
-  <div class="site-description" itemprop="description">北航CS，学习分享，记得看welcome</div>
+  <p class="site-author-name" itemprop="name">Volca Xiao</p>
+  <div class="site-description" itemprop="description">Welcome to Volca's Blog World</div>
 </div>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">29</span>
+          <span class="site-state-item-count">30</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -607,6 +613,9 @@
           <a href="https://steve-strange.github.io/" title="https:&#x2F;&#x2F;steve-strange.github.io&#x2F;" rel="noopener" target="_blank">-> ztgg's Blog</a>
         </li>
         <li class="links-of-blogroll-item">
+          <a href="https://toby-shi-cloud.github.io/" title="https:&#x2F;&#x2F;toby-shi-cloud.github.io&#x2F;" rel="noopener" target="_blank">-> TobyShi's Blog</a>
+        </li>
+        <li class="links-of-blogroll-item">
           <a href="https://www.runoob.com/" title="https:&#x2F;&#x2F;www.runoob.com" rel="noopener" target="_blank">菜鸟教程</a>
         </li>
         <li class="links-of-blogroll-item">
@@ -650,17 +659,17 @@
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">volcaxiao</span>
+  <span class="author" itemprop="copyrightHolder">Volca Xiao</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">79k</span>
+    <span title="站点总字数">84k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">2:12</span>
+    <span title="站点阅读时长">2:20</span>
 </div>
 
 

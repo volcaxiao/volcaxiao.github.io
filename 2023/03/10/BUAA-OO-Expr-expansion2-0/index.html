@@ -28,9 +28,10 @@
 <meta property="og:site_name" content="volca&#39;s blog">
 <meta property="og:description" content="北航面向对象与程序设计课程作业，表达式展开Expr-expansion 2.0，对1.0的迭代开发。新增需求：嵌套括号，三角函数，自定义函数">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OO/ExprExpansion2.0/uml.png">
 <meta property="article:published_time" content="2023-03-10T02:57:51.000Z">
-<meta property="article:modified_time" content="2023-03-10T03:01:35.206Z">
-<meta property="article:author" content="volcaxiao">
+<meta property="article:modified_time" content="2023-03-14T04:11:43.835Z">
+<meta property="article:author" content="Volca Xiao">
 <meta property="article:tag" content="北航">
 <meta property="article:tag" content="大二">
 <meta property="article:tag" content="OO">
@@ -38,6 +39,7 @@
 <meta property="article:tag" content="表达式">
 <meta property="article:tag" content="第一单元">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OO/ExprExpansion2.0/uml.png">
 
 <link rel="canonical" href="http://volcaxiao.github.io/2023/03/10/BUAA-OO-Expr-expansion2-0/">
 
@@ -235,8 +237,8 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/head.jpg">
-      <meta itemprop="name" content="volcaxiao">
-      <meta itemprop="description" content="北航CS，学习分享，记得看welcome">
+      <meta itemprop="name" content="Volca Xiao">
+      <meta itemprop="description" content="Welcome to Volca's Blog World">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -255,10 +257,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2023-03-10 10:57:51 / 修改时间：11:01:35" itemprop="dateCreated datePublished" datetime="2023-03-10T10:57:51+08:00">2023-03-10</time>
+              <time title="创建时间：2023-03-10 10:57:51" itemprop="dateCreated datePublished" datetime="2023-03-10T10:57:51+08:00">2023-03-10</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-03-14 12:11:43" itemprop="dateModified" datetime="2023-03-14T12:11:43+08:00">2023-03-14</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -282,14 +290,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>69</span>
+              <span>4.9k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
+              <span>8 分钟</span>
             </span>
 
         </div>
@@ -303,6 +311,158 @@
       
         <p>北航面向对象与程序设计课程作业，表达式展开Expr-expansion 2.0，对1.0的迭代开发。<br>新增需求：嵌套括号，三角函数，自定义函数</p>
 <span id="more"></span>
+<h1 id="BUAA-OO-hw2"><a href="#BUAA-OO-hw2" class="headerlink" title="BUAA-OO hw2"></a>BUAA-OO hw2</h1><h2 id="新增需求"><a href="#新增需求" class="headerlink" title="新增需求"></a>新增需求</h2><ul>
+<li>多层括号（已完成</li>
+<li>三角函数因子</li>
+<li>自定义函数因子，自定义函数不会复合（但是要做好迭代的准备</li>
+</ul>
+<h2 id="形式化表述"><a href="#形式化表述" class="headerlink" title="形式化表述"></a>形式化表述</h2><p>表达式 → 空白项 [加减 空白项] 项 空白项 | 表达式 加减 空白项 项 空白项<br>项 → [加减 空白项] 因子 | 项 空白项 ‘*‘ 空白项 因子<br>因子 → 变量因子 | 常数因子 | 表达式因子<br>变量因子 → 幂函数 | 三角函数 | 自定义函数调用<br>常数因子 → 带符号的整数<br>表达式因子 → ‘(‘ 表达式 ‘)’ [空白项 指数]<br>幂函数 → 自变量 [空白项 指数]<br>自变量 → ‘x’ | ‘y’ | ‘z’<br>三角函数 → ‘sin’ 空白项 ‘(‘ 空白项 因子 空白项 ‘)’ [空白项 指数] | ‘cos’ 空白项 ‘(‘ 空白项 因子 空白项 ‘)’ [空白项 指数]<br>指数 → ‘**‘ 空白项 [‘+’] 允许前导零的整数 (注：指数一定不是负数)<br>带符号的整数 → [加减] 允许前导零的整数<br>允许前导零的整数 → (‘0’|’1’|’2’|…|’9’){‘0’|’1’|’2’|…|’9’}<br>空白项 → {空白字符}<br>空白字符 → （空格） | \t<br>加减 → ‘+’ | ‘-‘</p>
+<p>自定义函数定义 → 自定义函数名 空白项 ‘(‘ 空白项 自变量 空白项 [‘,’ 空白项 自变量 空白项 [‘,’ 空白项 自变量 空白项]] ‘)’ 空白项 ‘=’ 空白项 函数表达式<br>自定义函数调用 → 自定义函数名 空白项 ‘(‘ 空白项 因子 空白项 [‘,’ 空白项 因子 空白项 [‘,’ 空白项 因子 空白项]] ‘)’<br>自定义函数名 → ‘f’ | ‘g’ | ‘h’<br>函数表达式 → 表达式 (注：本次作业中函数表达式保证不会调用自己或其他自定义函数)</p>
+<blockquote>
+<p>老规矩，空白字符对我们已经构不成威胁，所以我们去除空白字符，然后去除基元，简单表示。</p>
+</blockquote>
+<ul>
+<li><p>下面是省流版的形式化表示(与上次的不同已加粗)</p>
+</li>
+<li><p>Expr    -&gt; [±] Term    | Expr ‘±’ Term</p>
+</li>
+<li>Term    -&gt; [±] Factor  | Term ‘*‘ Factor</li>
+<li>Factor  -&gt; <strong>Variable</strong> | ConNum | ExprFactor</li>
+<li><strong>Variable-&gt; PowFunc | TriFunc | DefFunc</strong></li>
+<li>PowFunc -&gt; indepVar index</li>
+<li>ConNum  -&gt; [±] Num</li>
+<li>ExpFac  -&gt; ‘(‘ Expr ‘)’ index</li>
+<li><strong>TriFunc -&gt; ‘sin’ ‘(‘ Factor ‘)’ index | ‘cos’ ‘(‘ Factor ‘)’ index</strong></li>
+<li><p><strong>DefFunc -&gt; (‘f’|’g’|’h’) ‘(‘ Factor[<em>\times</em> 3] ‘)’</strong></p>
+<ul>
+<li><strong>(‘f’|’g’|’h’) ‘(‘ indepVar[<em>\times</em> 3] ‘)’ = Expr</strong></li>
+</ul>
+</li>
+<li><p>Num     -&gt; ( 0 ~ 9 ) { 0 ~ 9 }</p>
+</li>
+<li>indepVar-&gt; (‘x’ | ‘y’ | ‘z’)</li>
+<li>index   -&gt; [‘**‘ [‘+’] Num]</li>
+</ul>
+<h2 id="分析需求-amp-坑点汇总"><a href="#分析需求-amp-坑点汇总" class="headerlink" title="分析需求&amp;坑点汇总"></a>分析需求&amp;坑点汇总</h2><ul>
+<li>展开括号以及自定义函数</li>
+<li>尽可能短</li>
+</ul>
+<h3 id="关于三角函数"><a href="#关于三角函数" class="headerlink" title="关于三角函数"></a>关于三角函数</h3><ul>
+<li>三角函数里的x**2一定要注意，如果直接修改为x*x要加括号，但是显然不好。但如果在多项的表达式里面，反正要加括号还是得弄成后者<ul>
+<li>就是说要注意TriFunc里面是Factor</li>
+</ul>
+</li>
+<li>三角函数除了展开内部的因子外，如何化简？</li>
+<li>三角函数：<ul>
+<li>判断相等：<ul>
+<li>重载hashcode比较。</li>
+<li>判断因子的poly相等。</li>
+<li>字符串排序对比。</li>
+</ul>
+</li>
+<li>化简：<ul>
+<li>cos(0),sin(0)</li>
+<li>同类项合并。</li>
+<li>平方项合并。(博主实在没时间了，只实现了最简单的合并)</li>
+<li>倍角合并</li>
+<li>先都把倍角展开成一倍角，再进行合并，最后进行化简</li>
+<li>cos里有个负号可以省去，注意cos(-1), cos((-1))的不同</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="关于函数定义与调用"><a href="#关于函数定义与调用" class="headerlink" title="关于函数定义与调用"></a>关于函数定义与调用</h3><ul>
+<li>怎么储存函数的定义？存字符串还是存表达式？</li>
+<li>怎么解决函数的调用问题，可能需要一个新的函数类，在构造的时候解决函数调用的问题？或者说在toPoly的时候解决掉调用的问题？</li>
+<li>函数：<ul>
+<li>定义：正则表达式分成两份。一份字符串处理，另一份表达式打表储存。<ul>
+<li>在处理函数定义的时候，只记录形式参数的位置，就用uvw替换掉乱序的xyz。（可以这么去考虑，也可以建立起形参实参彼此之间的关系</li>
+</ul>
+</li>
+<li>调用：<ul>
+<li>方法一：字符串替换，但是得加上括号作为表达式，兼顾x**2中用y**2替换x的问题（我不是这么实现的，不丁真，而且不推荐</li>
+<li>方法二：扫到形参调用实参的Factor，每个类都加上substitute的方法，递归调用，最后都把自变量替换为表达式因子（也不一定是表达式因子，可以有其他的调用）。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现"></a>具体实现</h2><h3 id="uml类图及简述"><a href="#uml类图及简述" class="headerlink" title="uml类图及简述"></a>uml类图及简述</h3><p><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OO/ExprExpansion2.0/uml.png" alt="uml"></p>
+<ul>
+<li>以上是我本次作业的类图（只放出了核心的方法与关系</li>
+<li>我继承自第一次作业的架构，其中分为了三个纵向的层次结构，parse层次，Expr层次，Poly层次</li>
+<li>其中比较亮点的地方在于toPoly，toString，substitute，deepClone等方法，我均通过上层调用下一层的递归实现，体现了层次化的思想。</li>
+<li>具体细节请看下文。</li>
+</ul>
+<h3 id="需求实现"><a href="#需求实现" class="headerlink" title="需求实现"></a>需求实现</h3><ul>
+<li>首先要强调的一点仍然是parser的实现，我们需要规定调用时，lexer指在要处理位置；退出调用时，lexer停在处理完的位置（Term调因子的时候）。这样在能过统一上层调用的实现。</li>
+<li>然后就是在Expr类的设置上，我新增DefFunc类与TriFunc类实现Factor的接口（注意虽然在形式化的表述上Factor是他俩的爷爷辈，但是Variable符号并没有被整体引用过，所以让他俩直接实现Factor也是一样的）</li>
+<li>然后就是关于Poly类的兼容问题，第二次作业中新增了三角函数类，所以Poly的最终形式中会多出来三角函数的item所以我将Mono改名Item，并将其一分为二，下设MonoItem与TriItem，但是他们内部的权限开到最高，只是为了方便输出与合并而已（做出了一个违背祖宗的决定。</li>
+<li>化简的最终形式应该是 $\Sigma ConNum<em>x^a</em>y^b<em>z^c</em>\Pi \sin(Factor)^{d_i} * \Pi \cos(Factor)^{e_j} $ 所以Item的属性如下：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//item的属性</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Item</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> MonoItem monoItem;</span><br><span class="line">    <span class="keyword">private</span> ArrayList&lt;TriItem&gt; triItems;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>下面具体实现三件事：<ul>
+<li>函数定义与调用，深克隆，三角函数化简</li>
+</ul>
+</li>
+</ul>
+<h4 id="函数定义与调用的实现"><a href="#函数定义与调用的实现" class="headerlink" title="函数定义与调用的实现"></a>函数定义与调用的实现</h4><ul>
+<li>函数定义，新建静态类FuncDefinition<ul>
+<li>睿睿说：在函数定义的时候把第一二三个位置的形参都换成u，v，w，这样我就不需要考虑实参和xyz的对应关系了<ul>
+<li>俺觉得很有道理。</li>
+</ul>
+</li>
+<li>但是要直接字符串替换要考虑后续迭代中的冲突问题，如果后续添加的函数中包含xyz，uvw等字符，那就需要换或者另找办法了<ul>
+<li>所以为了可拓展性，我还是修改了策略，传入实参后，弄一个hashmap形成形参实参的映射。</li>
+</ul>
+</li>
+<li>而关于存字符串还是存表达式的问题，由于我的函数调用的实现是substitute()方法的递归调用替换，另外为了性能效率(每一次用表达式还得重新Parse一遍)，构造Def对象时就展开成表达式。后续直接调用即可（但是得注意深克隆，毕竟静态函数表中的表达式我不可以去改变他）。</li>
+</ul>
+</li>
+<li>关于函数调用：<ul>
+<li>要代入的话，Expr这些类就需要对外提供查询修改的接口，要尽量对外隐藏细节，我只能把形参传入，然后递归的调用下去了。我在每个类都设置了substitute的方法，递归调用，直到Factor层面（Term与Expr的substitute的方法与Factor的不同，Factor有返回值Factor），遇到在实参形参映射表中的变量就替换（所以我们知道调用的叶节点就是PowFunc和ConNum）</li>
+</ul>
+</li>
+<li>关于调用的返回值，可以一劳永逸的套个带指数的ExprFactor（但是这样会增加递归调用层数，增大代价以及debug的难度），也可以分情况返回不同的Factor</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//可以分情况写成：</span></span><br><span class="line"><span class="type">Factor</span> <span class="variable">defFactor</span> <span class="operator">=</span> varMap.get(varName).deepClone();</span><br><span class="line"><span class="keyword">if</span> (defFactor <span class="keyword">instanceof</span> ConstNum)&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">ConstNum</span>();</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (defFactor <span class="keyword">instanceof</span> PowFunc) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">PowFunc</span>();</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (defFactor <span class="keyword">instanceof</span> ExprFactor) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">ExprFactor</span>();</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (defFactor <span class="keyword">instanceof</span> DefFunc) &#123;</span><br><span class="line">    <span class="comment">//DefFunc可以转化为ExprFactor</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">ExprFactor</span>();</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (defFactor <span class="keyword">instanceof</span> TriFunc) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">TriFunc</span>();</span><br><span class="line">&#125;       </span><br><span class="line"><span class="comment">//也可以一劳永逸的写成</span></span><br><span class="line"><span class="type">Expr</span> <span class="variable">expr</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Expr</span>();</span><br><span class="line"><span class="type">Term</span> <span class="variable">term</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Term</span>();</span><br><span class="line">term.addFactor(varMap.get(varName).deepClone());</span><br><span class="line">expr.addTerm(term);</span><br><span class="line"><span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">ExprFactor</span>(expr, index);</span><br></pre></td></tr></table></figure>
+<h4 id="关于深克隆的实现"><a href="#关于深克隆的实现" class="headerlink" title="关于深克隆的实现"></a>关于深克隆的实现</h4><ul>
+<li>深克隆很重要，函数调用一定要使用深克隆，所以我们需要在类中提前实现深克隆的方法</li>
+<li>不过深克隆也可以采取递归的方法来克隆类中的每一个属性。</li>
+<li>最后的叶节点也会是PowFunc与ConNum。</li>
+<li>相信不会很难，按部就班写好即可。</li>
+</ul>
+<h4 id="三角函数的存放与化简"><a href="#三角函数的存放与化简" class="headerlink" title="三角函数的存放与化简"></a>三角函数的存放与化简</h4><ul>
+<li>先写出toPloy的方法。</li>
+<li>然后需要写一个判断Poly相等的方法，来实现三角函数合并。<ul>
+<li>判断因子相等，有两个方法，一个是调用factor.equals，另一个是调用Poly.equals</li>
+<li>equals的方法也是递归的实现。</li>
+</ul>
+</li>
+<li>若加入三角函数化简公式，在addpoly与multipoly中改即可（item中处理维度不高）。可以添加item中的方法使poly获取到mono|tri的信息然后判断是否可以合并。</li>
+<li>判定三角函数里是否需要括号的准则是不出现不在poly.toString首的正负号，可以用字符串匹配<ul>
+<li>但是有误，具体请看ExprExpansion3.0的前言2.1</li>
+</ul>
+</li>
+</ul>
+<h2 id="自动化测试"><a href="#自动化测试" class="headerlink" title="自动化测试"></a>自动化测试</h2><ul>
+<li>第二次作业这一周太忙了，本来不打算弄自动化测试的，但是得到了睿睿的帮助（大家可以移步友链<a target="_blank" rel="noopener" href="https://toby-shi-cloud.github.io">toby’s Bolg</a>），睿睿负责了评测的部分，我设计了数据生成器。</li>
+<li>第二次的数据生成器并不能像第一次那样无脑的随机递归下降，如果这样，生成的数据的复杂度直接起飞，但是又不能卡定生成概率，让数据变得很弱。</li>
+<li>所以我有一点核心设计是增加了一个全局的难度指标，随着难度的增加去影响不同分支的生成概率。设计示意如下：</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">ran_num = random.random()</span><br><span class="line"><span class="keyword">if</span> ran_num &lt; <span class="number">0.25</span> - <span class="number">0.03</span>*difficulty:</span><br><span class="line">    difficulty += <span class="number">1</span></span><br><span class="line">    rand_expr_factor()</span><br><span class="line"><span class="keyword">elif</span> ran_num &lt; <span class="number">0.40</span> + <span class="number">0.03</span>*difficulty:</span><br><span class="line">    rand_signed_int()</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    rand_var_factor()</span><br></pre></td></tr></table></figure>
+<ul>
+<li>另外还有用全局标记来影响下一个生成分支中的生成概率的设计，这主要解决的是，函数定义的复杂度与表达式的复杂度之间有差异，函数调用的实参因子的复杂度不宜过高的这些问题。设计的大致示意如下：</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">expr_used = <span class="literal">True</span></span><br><span class="line">expr = rand_expr()</span><br><span class="line">expr_used = <span class="literal">False</span></span><br></pre></td></tr></table></figure>
+<h2 id="第二次作业的问题总结"><a href="#第二次作业的问题总结" class="headerlink" title="第二次作业的问题总结"></a>第二次作业的问题总结</h2><ul>
+<li>在第二次作业的这一周里，博主忙东忙西，每天睡眠时间平均4小时不到，其中OO的代码我熬了一晚上优化，但是优化坏了，而且代码风格遭到了严重的破坏（这告诉我们一定要规律作息，不要熬夜打代码！！！</li>
+<li>不过我也感谢我急急忙忙的第二次作业的经历，在第二次的跨越式迭代之后，我对于层次化的理解又更近了一步。并且我在第二次作业过后再来审视我的石山代码，得到了不少的教训。</li>
+<li>优化了许多，最后形成了ExprExpansion2.1，具体请看下一次博客。</li>
+</ul>
+
     </div>
 
     
@@ -319,7 +479,7 @@
 <div>
 <ul class="post-copyright">
   <li class="post-copyright-author">
-    <strong>本文作者： </strong>volcaxiao
+    <strong>本文作者： </strong>Volca Xiao
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
@@ -419,22 +579,23 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#BUAA-OO-hw2"><span class="nav-number">1.</span> <span class="nav-text">BUAA-OO hw2</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%B0%E5%A2%9E%E9%9C%80%E6%B1%82"><span class="nav-number">1.1.</span> <span class="nav-text">新增需求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BD%A2%E5%BC%8F%E5%8C%96%E8%A1%A8%E8%BF%B0"><span class="nav-number">1.2.</span> <span class="nav-text">形式化表述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E6%9E%90%E9%9C%80%E6%B1%82-amp-%E5%9D%91%E7%82%B9%E6%B1%87%E6%80%BB"><span class="nav-number">1.3.</span> <span class="nav-text">分析需求&amp;坑点汇总</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E4%BA%8E%E4%B8%89%E8%A7%92%E5%87%BD%E6%95%B0"><span class="nav-number">1.3.1.</span> <span class="nav-text">关于三角函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E4%BA%8E%E5%87%BD%E6%95%B0%E5%AE%9A%E4%B9%89%E4%B8%8E%E8%B0%83%E7%94%A8"><span class="nav-number">1.3.2.</span> <span class="nav-text">关于函数定义与调用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B7%E4%BD%93%E5%AE%9E%E7%8E%B0"><span class="nav-number">1.4.</span> <span class="nav-text">具体实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#uml%E7%B1%BB%E5%9B%BE%E5%8F%8A%E7%AE%80%E8%BF%B0"><span class="nav-number">1.4.1.</span> <span class="nav-text">uml类图及简述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9C%80%E6%B1%82%E5%AE%9E%E7%8E%B0"><span class="nav-number">1.4.2.</span> <span class="nav-text">需求实现</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E5%AE%9A%E4%B9%89%E4%B8%8E%E8%B0%83%E7%94%A8%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="nav-number">1.4.2.1.</span> <span class="nav-text">函数定义与调用的实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B3%E4%BA%8E%E6%B7%B1%E5%85%8B%E9%9A%86%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="nav-number">1.4.2.2.</span> <span class="nav-text">关于深克隆的实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%89%E8%A7%92%E5%87%BD%E6%95%B0%E7%9A%84%E5%AD%98%E6%94%BE%E4%B8%8E%E5%8C%96%E7%AE%80"><span class="nav-number">1.4.2.3.</span> <span class="nav-text">三角函数的存放与化简</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95"><span class="nav-number">1.5.</span> <span class="nav-text">自动化测试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E6%AC%A1%E4%BD%9C%E4%B8%9A%E7%9A%84%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93"><span class="nav-number">1.6.</span> <span class="nav-text">第二次作业的问题总结</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="volcaxiao"
+    <img class="site-author-image" itemprop="image" alt="Volca Xiao"
       src="/images/head.jpg">
-  <p class="site-author-name" itemprop="name">volcaxiao</p>
-  <div class="site-description" itemprop="description">北航CS，学习分享，记得看welcome</div>
+  <p class="site-author-name" itemprop="name">Volca Xiao</p>
+  <div class="site-description" itemprop="description">Welcome to Volca's Blog World</div>
 </div>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">29</span>
+          <span class="site-state-item-count">30</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -483,6 +644,9 @@
           <a href="https://steve-strange.github.io/" title="https:&#x2F;&#x2F;steve-strange.github.io&#x2F;" rel="noopener" target="_blank">-> ztgg's Blog</a>
         </li>
         <li class="links-of-blogroll-item">
+          <a href="https://toby-shi-cloud.github.io/" title="https:&#x2F;&#x2F;toby-shi-cloud.github.io&#x2F;" rel="noopener" target="_blank">-> TobyShi's Blog</a>
+        </li>
+        <li class="links-of-blogroll-item">
           <a href="https://www.runoob.com/" title="https:&#x2F;&#x2F;www.runoob.com" rel="noopener" target="_blank">菜鸟教程</a>
         </li>
         <li class="links-of-blogroll-item">
@@ -526,17 +690,17 @@
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">volcaxiao</span>
+  <span class="author" itemprop="copyrightHolder">Volca Xiao</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">79k</span>
+    <span title="站点总字数">84k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">2:12</span>
+    <span title="站点阅读时长">2:20</span>
 </div>
 
 

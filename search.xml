@@ -82,6 +82,26 @@
       </tags>
   </entry>
   <entry>
+    <title>【BUAA-数分2】北航信息类数分二资料</title>
+    <url>/2023/03/14/%E5%8C%97%E8%88%AA%E4%BF%A1%E6%81%AF%E7%B1%BB%E6%95%B0%E5%88%86%EF%BC%88%E4%BA%8C%EF%BC%89%E8%B5%84%E6%96%99/</url>
+    <content><![CDATA[<p>北航大一的数分（二）的资料，期中期末的往年题，其中21级的题没有答案，不过欢迎讨论。</p>
+<span id="more"></span>
+<h1 id="上链接"><a href="#上链接" class="headerlink" title="上链接"></a>上链接</h1><p><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/%E5%8C%97%E8%88%AA%E4%BF%A1%E6%81%AF%E7%B1%BB%E6%95%B0%E5%88%86%EF%BC%88%E4%B8%80%EF%BC%89%E8%B5%84%E6%96%99/emmmm.jpg" alt="emmmm"></p>
+<ul>
+<li><a href="https://bhpan.buaa.edu.cn:443/link/B1A3FF121AA0459A1E4E6FE7A77595C6">北航云盘-淑芬（二）资料</a><br>有效期限：2026-10-01 23:59</li>
+<li>有效期快到了的话提醒我续费（</li>
+</ul>
+]]></content>
+      <categories>
+        <category>北航信息类大一资料</category>
+      </categories>
+      <tags>
+        <tag>北航</tag>
+        <tag>大一</tag>
+        <tag>数分</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>【BUAA-OO】Expr_expansion3.0_and_2.1</title>
     <url>/2023/03/10/BUAA-OO-Expr-expansion3-0-and-2-1/</url>
     <content><![CDATA[<p>北航面向对象与程序设计课程作业，表达式展开Expr-expansion 3.0，对2.1的迭代开发。<br>插曲：对2.0的代码风格进行美化及debug。形成Expr-expansion 2.1。<br>新增需求：自定义函数嵌套，求导。</p>
@@ -102,7 +122,159 @@
     <title>【BUAA-OO】Expr_expansion2.0</title>
     <url>/2023/03/10/BUAA-OO-Expr-expansion2-0/</url>
     <content><![CDATA[<p>北航面向对象与程序设计课程作业，表达式展开Expr-expansion 2.0，对1.0的迭代开发。<br>新增需求：嵌套括号，三角函数，自定义函数</p>
-<span id="more"></span>]]></content>
+<span id="more"></span>
+<h1 id="BUAA-OO-hw2"><a href="#BUAA-OO-hw2" class="headerlink" title="BUAA-OO hw2"></a>BUAA-OO hw2</h1><h2 id="新增需求"><a href="#新增需求" class="headerlink" title="新增需求"></a>新增需求</h2><ul>
+<li>多层括号（已完成</li>
+<li>三角函数因子</li>
+<li>自定义函数因子，自定义函数不会复合（但是要做好迭代的准备</li>
+</ul>
+<h2 id="形式化表述"><a href="#形式化表述" class="headerlink" title="形式化表述"></a>形式化表述</h2><p>表达式 → 空白项 [加减 空白项] 项 空白项 | 表达式 加减 空白项 项 空白项<br>项 → [加减 空白项] 因子 | 项 空白项 ‘*‘ 空白项 因子<br>因子 → 变量因子 | 常数因子 | 表达式因子<br>变量因子 → 幂函数 | 三角函数 | 自定义函数调用<br>常数因子 → 带符号的整数<br>表达式因子 → ‘(‘ 表达式 ‘)’ [空白项 指数]<br>幂函数 → 自变量 [空白项 指数]<br>自变量 → ‘x’ | ‘y’ | ‘z’<br>三角函数 → ‘sin’ 空白项 ‘(‘ 空白项 因子 空白项 ‘)’ [空白项 指数] | ‘cos’ 空白项 ‘(‘ 空白项 因子 空白项 ‘)’ [空白项 指数]<br>指数 → ‘**‘ 空白项 [‘+’] 允许前导零的整数 (注：指数一定不是负数)<br>带符号的整数 → [加减] 允许前导零的整数<br>允许前导零的整数 → (‘0’|’1’|’2’|…|’9’){‘0’|’1’|’2’|…|’9’}<br>空白项 → {空白字符}<br>空白字符 → （空格） | \t<br>加减 → ‘+’ | ‘-‘</p>
+<p>自定义函数定义 → 自定义函数名 空白项 ‘(‘ 空白项 自变量 空白项 [‘,’ 空白项 自变量 空白项 [‘,’ 空白项 自变量 空白项]] ‘)’ 空白项 ‘=’ 空白项 函数表达式<br>自定义函数调用 → 自定义函数名 空白项 ‘(‘ 空白项 因子 空白项 [‘,’ 空白项 因子 空白项 [‘,’ 空白项 因子 空白项]] ‘)’<br>自定义函数名 → ‘f’ | ‘g’ | ‘h’<br>函数表达式 → 表达式 (注：本次作业中函数表达式保证不会调用自己或其他自定义函数)</p>
+<blockquote>
+<p>老规矩，空白字符对我们已经构不成威胁，所以我们去除空白字符，然后去除基元，简单表示。</p>
+</blockquote>
+<ul>
+<li><p>下面是省流版的形式化表示(与上次的不同已加粗)</p>
+</li>
+<li><p>Expr    -&gt; [±] Term    | Expr ‘±’ Term</p>
+</li>
+<li>Term    -&gt; [±] Factor  | Term ‘*‘ Factor</li>
+<li>Factor  -&gt; <strong>Variable</strong> | ConNum | ExprFactor</li>
+<li><strong>Variable-&gt; PowFunc | TriFunc | DefFunc</strong></li>
+<li>PowFunc -&gt; indepVar index</li>
+<li>ConNum  -&gt; [±] Num</li>
+<li>ExpFac  -&gt; ‘(‘ Expr ‘)’ index</li>
+<li><strong>TriFunc -&gt; ‘sin’ ‘(‘ Factor ‘)’ index | ‘cos’ ‘(‘ Factor ‘)’ index</strong></li>
+<li><p><strong>DefFunc -&gt; (‘f’|’g’|’h’) ‘(‘ Factor[<em>\times</em> 3] ‘)’</strong></p>
+<ul>
+<li><strong>(‘f’|’g’|’h’) ‘(‘ indepVar[<em>\times</em> 3] ‘)’ = Expr</strong></li>
+</ul>
+</li>
+<li><p>Num     -&gt; ( 0 ~ 9 ) { 0 ~ 9 }</p>
+</li>
+<li>indepVar-&gt; (‘x’ | ‘y’ | ‘z’)</li>
+<li>index   -&gt; [‘**‘ [‘+’] Num]</li>
+</ul>
+<h2 id="分析需求-amp-坑点汇总"><a href="#分析需求-amp-坑点汇总" class="headerlink" title="分析需求&amp;坑点汇总"></a>分析需求&amp;坑点汇总</h2><ul>
+<li>展开括号以及自定义函数</li>
+<li>尽可能短</li>
+</ul>
+<h3 id="关于三角函数"><a href="#关于三角函数" class="headerlink" title="关于三角函数"></a>关于三角函数</h3><ul>
+<li>三角函数里的x**2一定要注意，如果直接修改为x*x要加括号，但是显然不好。但如果在多项的表达式里面，反正要加括号还是得弄成后者<ul>
+<li>就是说要注意TriFunc里面是Factor</li>
+</ul>
+</li>
+<li>三角函数除了展开内部的因子外，如何化简？</li>
+<li>三角函数：<ul>
+<li>判断相等：<ul>
+<li>重载hashcode比较。</li>
+<li>判断因子的poly相等。</li>
+<li>字符串排序对比。</li>
+</ul>
+</li>
+<li>化简：<ul>
+<li>cos(0),sin(0)</li>
+<li>同类项合并。</li>
+<li>平方项合并。(博主实在没时间了，只实现了最简单的合并)</li>
+<li>倍角合并</li>
+<li>先都把倍角展开成一倍角，再进行合并，最后进行化简</li>
+<li>cos里有个负号可以省去，注意cos(-1), cos((-1))的不同</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="关于函数定义与调用"><a href="#关于函数定义与调用" class="headerlink" title="关于函数定义与调用"></a>关于函数定义与调用</h3><ul>
+<li>怎么储存函数的定义？存字符串还是存表达式？</li>
+<li>怎么解决函数的调用问题，可能需要一个新的函数类，在构造的时候解决函数调用的问题？或者说在toPoly的时候解决掉调用的问题？</li>
+<li>函数：<ul>
+<li>定义：正则表达式分成两份。一份字符串处理，另一份表达式打表储存。<ul>
+<li>在处理函数定义的时候，只记录形式参数的位置，就用uvw替换掉乱序的xyz。（可以这么去考虑，也可以建立起形参实参彼此之间的关系</li>
+</ul>
+</li>
+<li>调用：<ul>
+<li>方法一：字符串替换，但是得加上括号作为表达式，兼顾x**2中用y**2替换x的问题（我不是这么实现的，不丁真，而且不推荐</li>
+<li>方法二：扫到形参调用实参的Factor，每个类都加上substitute的方法，递归调用，最后都把自变量替换为表达式因子（也不一定是表达式因子，可以有其他的调用）。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现"></a>具体实现</h2><h3 id="uml类图及简述"><a href="#uml类图及简述" class="headerlink" title="uml类图及简述"></a>uml类图及简述</h3><p><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OO/ExprExpansion2.0/uml.png" alt="uml"></p>
+<ul>
+<li>以上是我本次作业的类图（只放出了核心的方法与关系</li>
+<li>我继承自第一次作业的架构，其中分为了三个纵向的层次结构，parse层次，Expr层次，Poly层次</li>
+<li>其中比较亮点的地方在于toPoly，toString，substitute，deepClone等方法，我均通过上层调用下一层的递归实现，体现了层次化的思想。</li>
+<li>具体细节请看下文。</li>
+</ul>
+<h3 id="需求实现"><a href="#需求实现" class="headerlink" title="需求实现"></a>需求实现</h3><ul>
+<li>首先要强调的一点仍然是parser的实现，我们需要规定调用时，lexer指在要处理位置；退出调用时，lexer停在处理完的位置（Term调因子的时候）。这样在能过统一上层调用的实现。</li>
+<li>然后就是在Expr类的设置上，我新增DefFunc类与TriFunc类实现Factor的接口（注意虽然在形式化的表述上Factor是他俩的爷爷辈，但是Variable符号并没有被整体引用过，所以让他俩直接实现Factor也是一样的）</li>
+<li>然后就是关于Poly类的兼容问题，第二次作业中新增了三角函数类，所以Poly的最终形式中会多出来三角函数的item所以我将Mono改名Item，并将其一分为二，下设MonoItem与TriItem，但是他们内部的权限开到最高，只是为了方便输出与合并而已（做出了一个违背祖宗的决定。</li>
+<li>化简的最终形式应该是 $\Sigma ConNum<em>x^a</em>y^b<em>z^c</em>\Pi \sin(Factor)^{d_i} * \Pi \cos(Factor)^{e_j} $ 所以Item的属性如下：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//item的属性</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Item</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> MonoItem monoItem;</span><br><span class="line">    <span class="keyword">private</span> ArrayList&lt;TriItem&gt; triItems;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>下面具体实现三件事：<ul>
+<li>函数定义与调用，深克隆，三角函数化简</li>
+</ul>
+</li>
+</ul>
+<h4 id="函数定义与调用的实现"><a href="#函数定义与调用的实现" class="headerlink" title="函数定义与调用的实现"></a>函数定义与调用的实现</h4><ul>
+<li>函数定义，新建静态类FuncDefinition<ul>
+<li>睿睿说：在函数定义的时候把第一二三个位置的形参都换成u，v，w，这样我就不需要考虑实参和xyz的对应关系了<ul>
+<li>俺觉得很有道理。</li>
+</ul>
+</li>
+<li>但是要直接字符串替换要考虑后续迭代中的冲突问题，如果后续添加的函数中包含xyz，uvw等字符，那就需要换或者另找办法了<ul>
+<li>所以为了可拓展性，我还是修改了策略，传入实参后，弄一个hashmap形成形参实参的映射。</li>
+</ul>
+</li>
+<li>而关于存字符串还是存表达式的问题，由于我的函数调用的实现是substitute()方法的递归调用替换，另外为了性能效率(每一次用表达式还得重新Parse一遍)，构造Def对象时就展开成表达式。后续直接调用即可（但是得注意深克隆，毕竟静态函数表中的表达式我不可以去改变他）。</li>
+</ul>
+</li>
+<li>关于函数调用：<ul>
+<li>要代入的话，Expr这些类就需要对外提供查询修改的接口，要尽量对外隐藏细节，我只能把形参传入，然后递归的调用下去了。我在每个类都设置了substitute的方法，递归调用，直到Factor层面（Term与Expr的substitute的方法与Factor的不同，Factor有返回值Factor），遇到在实参形参映射表中的变量就替换（所以我们知道调用的叶节点就是PowFunc和ConNum）</li>
+</ul>
+</li>
+<li>关于调用的返回值，可以一劳永逸的套个带指数的ExprFactor（但是这样会增加递归调用层数，增大代价以及debug的难度），也可以分情况返回不同的Factor</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//可以分情况写成：</span></span><br><span class="line"><span class="type">Factor</span> <span class="variable">defFactor</span> <span class="operator">=</span> varMap.get(varName).deepClone();</span><br><span class="line"><span class="keyword">if</span> (defFactor <span class="keyword">instanceof</span> ConstNum)&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">ConstNum</span>();</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (defFactor <span class="keyword">instanceof</span> PowFunc) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">PowFunc</span>();</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (defFactor <span class="keyword">instanceof</span> ExprFactor) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">ExprFactor</span>();</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (defFactor <span class="keyword">instanceof</span> DefFunc) &#123;</span><br><span class="line">    <span class="comment">//DefFunc可以转化为ExprFactor</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">ExprFactor</span>();</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (defFactor <span class="keyword">instanceof</span> TriFunc) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">TriFunc</span>();</span><br><span class="line">&#125;       </span><br><span class="line"><span class="comment">//也可以一劳永逸的写成</span></span><br><span class="line"><span class="type">Expr</span> <span class="variable">expr</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Expr</span>();</span><br><span class="line"><span class="type">Term</span> <span class="variable">term</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Term</span>();</span><br><span class="line">term.addFactor(varMap.get(varName).deepClone());</span><br><span class="line">expr.addTerm(term);</span><br><span class="line"><span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">ExprFactor</span>(expr, index);</span><br></pre></td></tr></table></figure>
+<h4 id="关于深克隆的实现"><a href="#关于深克隆的实现" class="headerlink" title="关于深克隆的实现"></a>关于深克隆的实现</h4><ul>
+<li>深克隆很重要，函数调用一定要使用深克隆，所以我们需要在类中提前实现深克隆的方法</li>
+<li>不过深克隆也可以采取递归的方法来克隆类中的每一个属性。</li>
+<li>最后的叶节点也会是PowFunc与ConNum。</li>
+<li>相信不会很难，按部就班写好即可。</li>
+</ul>
+<h4 id="三角函数的存放与化简"><a href="#三角函数的存放与化简" class="headerlink" title="三角函数的存放与化简"></a>三角函数的存放与化简</h4><ul>
+<li>先写出toPloy的方法。</li>
+<li>然后需要写一个判断Poly相等的方法，来实现三角函数合并。<ul>
+<li>判断因子相等，有两个方法，一个是调用factor.equals，另一个是调用Poly.equals</li>
+<li>equals的方法也是递归的实现。</li>
+</ul>
+</li>
+<li>若加入三角函数化简公式，在addpoly与multipoly中改即可（item中处理维度不高）。可以添加item中的方法使poly获取到mono|tri的信息然后判断是否可以合并。</li>
+<li>判定三角函数里是否需要括号的准则是不出现不在poly.toString首的正负号，可以用字符串匹配<ul>
+<li>但是有误，具体请看ExprExpansion3.0的前言2.1</li>
+</ul>
+</li>
+</ul>
+<h2 id="自动化测试"><a href="#自动化测试" class="headerlink" title="自动化测试"></a>自动化测试</h2><ul>
+<li>第二次作业这一周太忙了，本来不打算弄自动化测试的，但是得到了睿睿的帮助（大家可以移步友链<a href="https://toby-shi-cloud.github.io">toby’s Bolg</a>），睿睿负责了评测的部分，我设计了数据生成器。</li>
+<li>第二次的数据生成器并不能像第一次那样无脑的随机递归下降，如果这样，生成的数据的复杂度直接起飞，但是又不能卡定生成概率，让数据变得很弱。</li>
+<li>所以我有一点核心设计是增加了一个全局的难度指标，随着难度的增加去影响不同分支的生成概率。设计示意如下：</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">ran_num = random.random()</span><br><span class="line"><span class="keyword">if</span> ran_num &lt; <span class="number">0.25</span> - <span class="number">0.03</span>*difficulty:</span><br><span class="line">    difficulty += <span class="number">1</span></span><br><span class="line">    rand_expr_factor()</span><br><span class="line"><span class="keyword">elif</span> ran_num &lt; <span class="number">0.40</span> + <span class="number">0.03</span>*difficulty:</span><br><span class="line">    rand_signed_int()</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    rand_var_factor()</span><br></pre></td></tr></table></figure>
+<ul>
+<li>另外还有用全局标记来影响下一个生成分支中的生成概率的设计，这主要解决的是，函数定义的复杂度与表达式的复杂度之间有差异，函数调用的实参因子的复杂度不宜过高的这些问题。设计的大致示意如下：</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">expr_used = <span class="literal">True</span></span><br><span class="line">expr = rand_expr()</span><br><span class="line">expr_used = <span class="literal">False</span></span><br></pre></td></tr></table></figure>
+<h2 id="第二次作业的问题总结"><a href="#第二次作业的问题总结" class="headerlink" title="第二次作业的问题总结"></a>第二次作业的问题总结</h2><ul>
+<li>在第二次作业的这一周里，博主忙东忙西，每天睡眠时间平均4小时不到，其中OO的代码我熬了一晚上优化，但是优化坏了，而且代码风格遭到了严重的破坏（这告诉我们一定要规律作息，不要熬夜打代码！！！</li>
+<li>不过我也感谢我急急忙忙的第二次作业的经历，在第二次的跨越式迭代之后，我对于层次化的理解又更近了一步。并且我在第二次作业过后再来审视我的石山代码，得到了不少的教训。</li>
+<li>优化了许多，最后形成了ExprExpansion2.1，具体请看下一次博客。</li>
+</ul>
+]]></content>
       <categories>
         <category>BUAA面向对象</category>
       </categories>
@@ -124,9 +296,9 @@
 <p>Thinking 0.1 思考下列有关 Git 的问题：<br>• 在前述已初始化的 ~/learnGit 目录下，创建一个名为 README.txt 的文件。执行命令 git status &gt; Untracked.txt。<br>• 在 README.txt 文件中添加任意文件内容，然后使用 add 命令，再执行命令git status &gt; Stage.txt。<br>• 提交 README.txt，并在提交说明里写入自己的学号。<br>• 执行命令 cat Untracked.txt 和 cat Stage.txt，对比两次运行的结果，体会 README.txt 两次所处位置的不同。<br>• 修改 README.txt 文件，再执行命令 git status &gt; Modified.txt。<br>• 执行命令 cat Modified.txt，观察其结果和第一次执行 add 命令之前的 status 是否一样，并思考原因。</p>
 </blockquote>
 <ul>
-<li>在刚开始第一个<code>git status</code>时，效果如下，但是因为我已经将README.txt文件提交过了，所以并不在未跟踪的文件里<br><img src="/.io//1Untracked.png" alt="Untracked"></li>
-<li>添加内容进readme中然后<code>git add README.txt</code>，此时文件在状态为Staged，位置在暂存区（而若已修改未提交则应该在工作区），下一步是commit<br><img src="/.io//1Stage.png" alt="Stage"></li>
-<li>已修改未提交的文件则应该在工作区，状态为Modified，我们仍需要用<code>git add README.txt</code>将其更新。<br><img src="/.io//1Modified.png" alt="Modified"></li>
+<li>在刚开始第一个<code>git status</code>时，效果如下，但是因为我已经将README.txt文件提交过了，所以并不在未跟踪的文件里<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OS/lab0/1Untracked.png" alt="Untracked"></li>
+<li>添加内容进readme中然后<code>git add README.txt</code>，此时文件在状态为Staged，位置在暂存区（而若已修改未提交则应该在工作区），下一步是commit<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OS/lab0/1Stage.png" alt="Stage"></li>
+<li>已修改未提交的文件则应该在工作区，状态为Modified，我们仍需要用<code>git add README.txt</code>将其更新。<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OS/lab0/1Modified.png" alt="Modified"></li>
 </ul>
 <h3 id="Thinking-0-2"><a href="#Thinking-0-2" class="headerlink" title="Thinking 0.2"></a>Thinking 0.2</h3><blockquote>
 <p>Thinking 0.2 仔细看看0.10，思考一下箭头中的 add the file 、stage the file 和 commit 分别对应的是 Git 里的哪些命令呢？</p>
@@ -156,12 +328,12 @@
 </blockquote>
 <ul>
 <li>我们可以在下面的图看到过程，收获就是版本回退的时候，版本库中的新版本并没有消失，因为我们还能够再通过hashCode回到新版本。</li>
-<li>HEAD代表当前版本，HEAD\^代表上一个版本，HEAD\^\^代表上两个版本，以此类推。<br><img src="/.io//4.0.png" alt="q4"></li>
+<li>HEAD代表当前版本，HEAD\^代表上一个版本，HEAD\^\^代表上两个版本，以此类推。<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OS/lab0/4.0.png" alt="q4"></li>
 </ul>
 <h3 id="Thinking-0-5"><a href="#Thinking-0-5" class="headerlink" title="Thinking 0.5"></a>Thinking 0.5</h3><blockquote>
 <p>Thinking 0.5 执行如下命令, 并查看结果<br>• echo first<br>• echo second &gt; output.txt<br>• echo third &gt; output.txt<br>• echo forth &gt;&gt; output.txt</p>
 </blockquote>
-<p><img src="/.io//5.1.png" alt="5.1演示"></p>
+<p><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OS/lab0/5.1.png" alt="5.1演示"></p>
 <h3 id="Thinking-0-6"><a href="#Thinking-0-6" class="headerlink" title="Thinking 0.6"></a>Thinking 0.6</h3><blockquote>
 <p>Thinking 0.6 使用你知道的方法（包括重定向）创建下图内容的文件（文件命名为 test），将创建该文件的命令序列保存在 command 文件中，并将 test 文件作为批处理文件运行，将运行结果输出至 result 文件中。给出 command 文件和 result 文件的内容，并对最后的结果进行解释说明（可以从 test 文件的内容入手）. 具体实现的过程中思考下列问题:<br>echo echo Shell Start 与 echo ‘echo Shell Start’效果是否有区别; echo echo<br>$ c &gt; file1 与 echo ‘echo $c&gt;file1’效果是否有区别.</p>
 </blockquote>
@@ -1584,8 +1756,8 @@
       </categories>
       <tags>
         <tag>北航</tag>
-        <tag>CO</tag>
         <tag>大二</tag>
+        <tag>CO</tag>
         <tag>计组</tag>
         <tag>MIPS</tag>
         <tag>P7</tag>
@@ -3116,8 +3288,8 @@
       </categories>
       <tags>
         <tag>北航</tag>
-        <tag>CO</tag>
         <tag>大二</tag>
+        <tag>CO</tag>
         <tag>计组</tag>
         <tag>MIPS</tag>
         <tag>P6</tag>
@@ -4290,8 +4462,8 @@
       </categories>
       <tags>
         <tag>北航</tag>
-        <tag>CO</tag>
         <tag>大二</tag>
+        <tag>CO</tag>
         <tag>计组</tag>
         <tag>MIPS</tag>
         <tag>P5</tag>
@@ -4559,8 +4731,8 @@
       </categories>
       <tags>
         <tag>北航</tag>
-        <tag>CO</tag>
         <tag>大二</tag>
+        <tag>CO</tag>
         <tag>计组</tag>
         <tag>MIPS</tag>
         <tag>P4</tag>
@@ -4982,8 +5154,8 @@
       </categories>
       <tags>
         <tag>北航</tag>
-        <tag>CO</tag>
         <tag>大二</tag>
+        <tag>CO</tag>
         <tag>计组</tag>
         <tag>MIPS</tag>
         <tag>P3</tag>
@@ -5382,8 +5554,8 @@
       </categories>
       <tags>
         <tag>北航</tag>
-        <tag>CO</tag>
         <tag>大二</tag>
+        <tag>CO</tag>
         <tag>计组</tag>
         <tag>MIPS</tag>
         <tag>P2</tag>
@@ -5468,8 +5640,8 @@
       </categories>
       <tags>
         <tag>北航</tag>
-        <tag>CO</tag>
         <tag>大二</tag>
+        <tag>CO</tag>
         <tag>计组</tag>
         <tag>MIPS</tag>
         <tag>P2</tag>
