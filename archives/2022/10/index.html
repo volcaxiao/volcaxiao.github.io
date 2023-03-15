@@ -1477,26 +1477,32 @@
   
     <script type="text/javascript">
   comment_el = '#lv-container';
-  load_livere = function () {
-    if ($(comment_el).length) {
-      (function (d, s) {
-        var j, e = d.getElementsByTagName(s)[0];
+  // load_livere = function () {
+  //   if ($(comment_el).length) {
+  //     (function (d, s) {
+  //       var j, e = d.getElementsByTagName(s)[0];
 
-        if (typeof LivereTower === 'function') { return; }
+  //       if (typeof LivereTower === 'function') { return; }
 
-        j = d.createElement(s);
-        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
-        j.async = true;
+  //       j = d.createElement(s);
+  //       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+  //       j.async = true;
 
-        e.parentNode.insertBefore(j, e);
-      })(document, 'script');
-    }
-  }
+  //       e.parentNode.insertBefore(j, e);
+  //     })(document, 'script');
+  //   }
+  // }
   $(document).ready(load_livere);
   document.addEventListener('pjax:complete', function () {
     load_livere();
   });
+  setInterval(function () {
+  var box = document.querySelector(".trc_rbox_container");
+  if(box) box.outerHTML = "";
+  }, 2000);
 </script>
+
+
   
 
 
