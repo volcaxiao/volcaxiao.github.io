@@ -3801,6 +3801,9 @@ pre:hover::-webkit-scrollbar-thumb:hover,
 .darkModel #waline-comment .vcount {
   color: #fff;
 }
+.trc_rbox_container {
+  display: none !important;
+}
 .search {
   color: #fff;
   padding: 0 15px;
