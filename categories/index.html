@@ -86,10 +86,26 @@
   <!-- 页面预加载动画 -->
 
   
-    <div class="preloader_2" id="loader">
-  <div class="loader"></div>
+    <div class="preloader-1" id="loader">
+  <div  aria-label="Orange and tan hamster running in a metal wheel" role="img" class="wheel-and-hamster">
+    <div class="wheel"></div>
+    <div class="hamster">
+      <div class="hamster__body">
+        <div class="hamster__head">
+          <div class="hamster__ear"></div>
+          <div class="hamster__eye"></div>
+          <div class="hamster__nose"></div>
+        </div>
+        <div class="hamster__limb hamster__limb--fr"></div>
+        <div class="hamster__limb hamster__limb--fl"></div>
+        <div class="hamster__limb hamster__limb--br"></div>
+        <div class="hamster__limb hamster__limb--bl"></div>
+        <div class="hamster__tail"></div>
+      </div>
+    </div>
+    <div class="spoke"></div>
+  </div>
 </div>
-
   
 <script>
   var endLoading = function () {
@@ -203,7 +219,7 @@
   </transition>
   <div class="drawer-box" :class="{'active': visible}">
     <div class="drawer-box-head bg-color">
-      <img class="drawer-box-head_logo lazyload placeholder" src="/images/head.jpg" class="lazyload placeholder" data-srcset="/images/head.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="logo">
+      <img class="drawer-box-head_logo lazyload placeholder" src="/images/android-chrome-512x512.png" class="lazyload placeholder" data-srcset="/images/android-chrome-512x512.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="logo">
       <h3 class="drawer-box-head_title">volca&#39;s blog</h3>
       <h5 class="drawer-box-head_desc">Welcome to Volca&#39;s Blog World</h5>
     </div>
@@ -296,15 +312,6 @@
                     </a>
                   </li>
                   
-                  <li>
-                    <a target="_blank" rel="noopener" href="http://baidu.com">
-                      
-                      <i class="fas fa-film" style="margin-top: -20px;"></i>
-                      
-                      <span>百度</span>
-                    </a>
-                  </li>
-                  
                 </ul>
               
             </li>
@@ -372,7 +379,7 @@
     <div class="blog-title" id="author-avatar">
       
         <div class="avatar">
-          <img src="/images/head.jpg" class="lazyload placeholder" data-srcset="/images/head.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="logo">
+          <img src="/images/android-chrome-512x512.png" class="lazyload placeholder" data-srcset="/images/android-chrome-512x512.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="logo">
         </div>
       
       <a href="/" class="logo">volca&#39;s blog</a>
@@ -460,15 +467,6 @@
                       <i class="fas fa-film" style="margin-top: -20px;"></i>
                       
                       <span>关于我</span>
-                    </a>
-                  </li>
-                  
-                  <li>
-                    <a target="_blank" rel="noopener" href="http://baidu.com">
-                      
-                      <i class="fas fa-film" style="margin-top: -20px;"></i>
-                      
-                      <span>百度</span>
                     </a>
                   </li>
                   
@@ -605,7 +603,7 @@
   function typedFn() {
     const el = '#categories-header-desc';
     const type = 'categories';
-    let desc = '愿你如风，被人温柔以待'
+    let desc = '每个事物都会有归处'
     var typed = new Typed(el, {
       strings: [desc],
       startDelay: 100,
@@ -649,14 +647,6 @@
                 </a>
                 
                 
-                <a href="/categories/BUAA%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" title="BUAA操作系统: 1">
-                    <span class="category-content"
-                        title="BUAA操作系统" style="background-color: #F9E79F;">BUAA操作系统
-                        <span class="category-length">1</span>
-                    </span>
-                </a>
-                
-                
                 <a href="/categories/welcome/" title="welcome: 1">
                     <span class="category-content"
                         title="welcome" style="background-color: #F8C471;">welcome
@@ -669,6 +659,14 @@
                     <span class="category-content"
                         title="北航信息类大一资料" style="background-color: #D7BDE2;">北航信息类大一资料
                         <span class="category-length">7</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/categories/BUAA%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" title="BUAA操作系统: 1">
+                    <span class="category-content"
+                        title="BUAA操作系统" style="background-color: #F9E79F;">BUAA操作系统
+                        <span class="category-length">1</span>
                     </span>
                 </a>
                 
@@ -718,7 +716,7 @@
       if (isDark) {
         this.FISH_COLOR = '#222'; // 暗黑色，有时间把这整成一个变量
       } else {
-        this.FISH_COLOR = '' || 'rgba(66, 185, 133, 0.8)';
+        this.FISH_COLOR = '' || '#5698c3';
       }
     },
     setParameters: function () {
@@ -864,12 +862,36 @@
         
           <div class="link">
             
+              
+                <a href="/volcaxiaoc@buaa.edu.cn" class="social">
+                  
+                    <i class="fas fa-envelope" aria-hidden="true"></i>
+                  
+                </a>
+              
+            
+              
+                <a target="_blank" rel="noopener" href="https://github.com/volcaxiao" class="social">
+                  
+                    <i class="fas fa-github" aria-hidden="true"></i>
+                  
+                </a>
+              
+            
+              
+                <a href="tencent://AddContact/?fromId=50&amp;fromSubId=1&amp;subcmd=all&amp;uin=2322863798" class="social">
+                  
+                    <i class="fas fa-qq" aria-hidden="true"></i>
+                  
+                </a>
+              
+            
           </div>
         
       
         
           <div class="footer-copyright">
-            <p>Copyright © 2019 - 2020 <a target="_blank" rel="noopener" href="https://github.com/yuang01">yuang01</a> | Powered by <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">Hexo</a> | Theme <a target="_blank" rel="noopener" href="https://github.com/yuang01/theme">Bamboo</a> </p>
+            <p>Copyright © 2019 - 2020 <a target="_blank" rel="noopener" href="https://github.com/volcaxiao">volcaxiao</a> | Powered by <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">Hexo</a> | Theme <a target="_blank" rel="noopener" href="https://github.com/yuang01/theme">Bamboo</a> </p>
 
           </div>
         
@@ -988,7 +1010,7 @@
   class=""
   server="tencent"
   type="playlist"
-  id="8062553743"
+  id="8213928257"
   fixed='true'
   autoplay='false'
   theme='#42b983'
@@ -1307,7 +1329,7 @@
         function doSomething() {
           that.$notify({
             title: "成功",
-            content: "代码已复制，请遵守相关授权协议。",
+            content: "代码已复制，请遵守相关授权协议，也请不要断章取义喔~",
             type: 'success'
           })
         }
@@ -1382,9 +1404,7 @@
 <!-- 爱心点击 -->
 
   
-    <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 999; pointer-events: none;" ></canvas>
-    <script src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script>
-    <script src="/js/cursor/explosion.min.js"></script>
+    <script src="/js/cursor/fireworks.js"></script>
   
 
 
