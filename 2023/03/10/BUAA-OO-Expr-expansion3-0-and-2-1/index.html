@@ -628,7 +628,7 @@
 
 
 <div class="post-detail-header" id="thumbnail_canvas" style="background-repeat: no-repeat; background-size: cover; 
-  background-position: center center;position: relative;background-image:url('/images/gallery/2023Spring/1678845584358.jpg')">
+  background-position: center center;position: relative;background-image:url('https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OO/ExprExpansion3.0/EE3uml.png')">
   <div class="post-detail-header-mask"></div>
   <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
   
@@ -660,11 +660,11 @@
       
         <div class="post-detail-header_wordcount">
           <span class="totalcount">
-            <i class="fas fa-file-text-o"></i> 字数统计: 66 |
+            <i class="fas fa-file-text-o"></i> 字数统计: 2.9k |
           </span>
   
           <span class="min2read">
-            <i class="fas fa-clock"></i> 阅读时长: 1分钟 |
+            <i class="fas fa-clock"></i> 阅读时长: 10分钟 |
           </span>
   
           
@@ -691,8 +691,155 @@
   <div class="main-content">
     <article class="post post-detail">
       <div class="post-content">
-        <p>北航面向对象与程序设计课程作业，表达式展开Expr-expansion 3.0，对2.1的迭代开发。<br>插曲：对2.0的代码风格进行美化及debug。形成Expr-expansion 2.1。<br>新增需求：自定义函数嵌套，求导。</p>
+        <p>北航面向对象与程序设计课程作业，表达式展开Expr-expansion 3.0，对2.1的迭代开发。<br>插曲：对2.0的代码风格进行美化及debug。形成Expr-expansion 2.1。<br>新增需求：自定义函数嵌套，求导。<br>这一次的博客主要是向大家展示架构，就不做过多的细节论述了，相信大家经过前几次的迭代，已经具备了一定的结构抽象的能力，不必局限于具体的细节呈现了。</p>
 <span id="more"></span>
+<h1 id="hw3-log"><a href="#hw3-log" class="headerlink" title="hw3_log"></a>hw3_log</h1><h2 id="对hw-2的教训的整理以及策略的变化（2-1）"><a href="#对hw-2的教训的整理以及策略的变化（2-1）" class="headerlink" title="对hw_2的教训的整理以及策略的变化（2.1）"></a>对hw_2的教训的整理以及策略的变化（2.1）</h2><ul>
+<li>使用<strong>泛型</strong>写<strong>静态方法</strong>对于ArrayList容器进行<strong>不考虑顺序判等</strong>（我把这个作为静态方法放置在MainClass中。</li>
+<li>当然已经有不少同学在第三次的作业中开始使用<strong>HashMap高效率的索引合并</strong>，这种方法值得借鉴。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; <span class="type">boolean</span> <span class="title function_">isCollectionMatch</span><span class="params">(Collection&lt;T&gt; list1, Collection&lt;T&gt; list2)</span> &#123;</span><br><span class="line">    <span class="comment">//pre - judge</span></span><br><span class="line">    <span class="keyword">if</span> (list1 == list2) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (list1 == <span class="literal">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> list2.isEmpty();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (list2 == <span class="literal">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> list1.isEmpty();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (list1.size() != list2.size()) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//judge</span></span><br><span class="line">    <span class="keyword">final</span> List&lt;T&gt; list1Clone = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;(list1);</span><br><span class="line">    <span class="keyword">for</span> (T item:</span><br><span class="line">         list2) &#123;</span><br><span class="line">        Iterator&lt;T&gt; iterator = list1Clone.iterator();</span><br><span class="line">        <span class="type">boolean</span> <span class="variable">listEq</span> <span class="operator">=</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">while</span> (iterator.hasNext()) &#123;</span><br><span class="line">            <span class="keyword">if</span> (item.equals(iterator.next())) &#123;</span><br><span class="line">                iterator.remove();</span><br><span class="line">                listEq = <span class="literal">true</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (!listEq) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//all_match</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>hw2的失败来自于在<strong>poly部分的计算复杂化</strong>以及<strong>toPoly.toString()的复用</strong>（大家一定要保持良好的代码风格呀！！！<ul>
+<li>每一次的toPoly都是一次巨大的开销，我还去反复调用（（</li>
+<li>因为toString的方法里也会调用toPoly，所以我们也需要<strong>去除toString的重复调用</strong></li>
+<li>我为了优化打了许多的特判，然后代码风格上出现了问题（我在每一个判断的<strong>if条件语句</strong>中重复调用了toPoly或者toString的方法，导致性能开销极大。<ul>
+<li>所以我去掉了条件里的重复调用，只用了一个toPoly()，如下：</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//before optimize</span></span><br><span class="line"><span class="keyword">if</span> (factor.toPoly().toString().equals(<span class="string">&quot;...&quot;</span>)) &#123;</span><br><span class="line">  <span class="comment">//do something</span></span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (factor.toPoly().toString().equals(<span class="string">&quot;...&quot;</span>)) &#123;</span><br><span class="line">  <span class="comment">//do something</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//...</span></span><br><span class="line"><span class="comment">//after optimize</span></span><br><span class="line"><span class="type">String</span> <span class="variable">factorStr</span> <span class="operator">=</span> factor.toPoly().toString();</span><br><span class="line"><span class="keyword">if</span> (factorStr.equals(<span class="string">&quot;...&quot;</span>)) &#123;</span><br><span class="line">  <span class="comment">//do something</span></span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (factorStr.equals(<span class="string">&quot;...&quot;</span>)) &#123;</span><br><span class="line">  <span class="comment">//do something</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//...</span></span><br><span class="line"><span class="comment">//一定要引以为戒呜呜呜</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>我的Poly包与Expr包之间要有一个比较明显的<strong>界限分离</strong>，即在Poly类中不应该再调用类的toPoly的方法，也不应该含有Expr包的属性。在Expr中，也只在最后才使用到toPoly的方法。</p>
+<ul>
+<li>类与类之间的<strong>数据太共享</strong>不是一个好事！！！</li>
+<li>所以我把三角函数的单独元TriItem中存入一个 <strong>factorPoly=factor.toPoly()</strong> 作为属性，而不是以factor作为属性（这其实也解决了我的上一个问题。</li>
+</ul>
+</li>
+<li><p>然后就是对于Poly类中的二元运算，因为需要<strong>避免改变传入值的值</strong>，所以我每一次运算都会进行一次深克隆</p>
+<ul>
+<li>所有的二元运算的静态方法都变成了<strong>改变this的一元运算</strong>，防止每一次都深克隆带来巨大的开销。（只需要保证方法不改变传入值即可</li>
+</ul>
+</li>
+<li><p>ExprExpansion2.1是一次在代码风格上的巨大升级，优化后的代码行数直接由2.0的1300多行来到了1100多行</p>
+</li>
+<li>而且在优化以后，方法的复杂度大大降低，详细见下图（只给出复杂度超标的方法）：<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OO/ExprExpansion3.0/EE2.0.png" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OO/ExprExpansion3.0/EE2.0.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="EE2.0"></li>
+<li>优化后：<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OO/ExprExpansion3.0/EE2.1.png" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OO/ExprExpansion3.0/EE2.1.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="EE2.1"></li>
+<li>EE2.0(ExprExpansion2.0)的时候那些用到了<strong>ArrayList判等的Equals方法</strong>全都暴雷，原因就是<strong>重复造了很多轮子</strong>。</li>
+<li>其余的复杂度也有所下降。</li>
+</ul>
+<h2 id="hw3新增需求"><a href="#hw3新增需求" class="headerlink" title="hw3新增需求"></a>hw3新增需求</h2><ul>
+<li>自定义函数定义中可以包含自定义函数（保证不会递归调用）和求导算子（先求导后代入）（既任意因子）</li>
+<li>表达式增加<strong>求导算子</strong>（最多<strong>只能出现一次</strong>,也就是不会有高阶导）</li>
+</ul>
+<h2 id="形式化表述"><a href="#形式化表述" class="headerlink" title="形式化表述"></a>形式化表述</h2><ul>
+<li>详细的形式化表述就不给出了，变化就是因子增加了求导因子，然后自定义函数中可以调用自定义函数</li>
+<li><p>下面是省流版：</p>
+</li>
+<li><p>Expr    -&gt; [±] Term    | Expr ‘±’ Term</p>
+</li>
+<li>Term    -&gt; [±] Factor  | Term ‘*‘ Factor</li>
+<li>Factor  -&gt; Variable | ConNum | ExprFactor | <strong>Deriv</strong></li>
+<li>Variable-&gt; PowFunc | TriFunc | DefFunc</li>
+<li>PowFunc -&gt; indepVar index</li>
+<li>ConNum  -&gt; [±] Num</li>
+<li>ExpFac  -&gt; ‘(‘ Expr ‘)’ index</li>
+<li>TriFunc -&gt; ‘sin’ ‘(‘ Factor ‘)’ index | ‘cos’ ‘(‘ Factor ‘)’ index</li>
+<li>DefFunc -&gt; (‘f’|’g’|’h’) ‘(‘ Factor[<em>\times</em> 3] ‘)’<ul>
+<li>(‘f’|’g’|’h’) ‘(‘ indepVar[<em>\times</em> 3] ‘)’ = Expr</li>
+</ul>
+</li>
+<li><p><strong>Deriv   -&gt; operator ‘(‘ Expr ‘)’</strong></p>
+<ul>
+<li><strong>operator -&gt; d indepVar</strong></li>
+</ul>
+</li>
+<li><p>Num     -&gt; ( 0 ~ 9 ) { 0 ~ 9 }</p>
+</li>
+<li>indepVar-&gt; (‘x’ | ‘y’ | ‘z’)</li>
+<li>index   -&gt; [‘**‘ [‘+’] Num]</li>
+</ul>
+<h2 id="需求分析"><a href="#需求分析" class="headerlink" title="需求分析"></a>需求分析</h2><h2 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现"></a>具体实现</h2><h3 id="uml类图以及简述"><a href="#uml类图以及简述" class="headerlink" title="uml类图以及简述"></a>uml类图以及简述</h3><p><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OO/ExprExpansion3.0/EE3uml.png" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OO/ExprExpansion3.0/EE3uml.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="EE3uml"></p>
+<ul>
+<li>第三次的迭代<strong>跨度不是很大</strong>，架构比较完整合适的话基本上半天能够码完</li>
+<li>但是毕竟三次迭代过去了，我把完整类图放出来应该问题也不大的，但是我发现可能有点乱了，所以加了一些颜色做了<strong>横向层次上的区分</strong>（图可以放大看。</li>
+<li>除了纵向的递归的层次之外，从类图中我们可以明显的看出，分为<strong>解析类，表达式类，化简多项式类</strong>。</li>
+<li>三者之间结构的关系相信1.0和2.0的博客已经说的很清楚了，这里就不再赘述了。<ul>
+<li>我们面临的主要问题是如何按照<strong>开闭原则</strong>最小修改的对这次的程序迭代开发：</li>
+<li>这一次的博客主要是向大家<strong>展示架构</strong>，就不做过多的细节论述了。</li>
+</ul>
+</li>
+</ul>
+<h3 id="迭代需求实现的细节"><a href="#迭代需求实现的细节" class="headerlink" title="迭代需求实现的细节"></a>迭代需求实现的细节</h3><h4 id="函数调用函数的问题"><a href="#函数调用函数的问题" class="headerlink" title="函数调用函数的问题"></a>函数调用函数的问题</h4><ul>
+<li>我先实现函数调用调用自定义函数的问题<ul>
+<li>关键还是在DefFunc类中也<strong>实现substitute的方法</strong>。（这应该是这个接口的共同的方法，</li>
+<li>但是我们<strong>不需要对Def类中的实参也进行实参的替换</strong>，因为在构造DefFunc时，我就已经将其中的函数全都替换成了表达式，所以我们要做的工作仅仅只是调用Expr.substitute()！非常的简单。<ul>
+<li>所以这样，在函数定义完之后，函数类的核心的<strong>属性是它展开后的表达式</strong>，函数定义表里面就<strong>不会出现嵌套函数</strong>这个东西了（皮都展开了，什么叫做远见明察呀</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> Factor <span class="title function_">substitute</span><span class="params">(HashMap&lt;String, Factor&gt; varMap)</span> &#123;</span><br><span class="line">    defExpr.substitute(varMap);</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">this</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="求导的实现"><a href="#求导的实现" class="headerlink" title="求导的实现"></a>求导的实现</h4><ul>
+<li>我认为求导的实现<strong>和函数调用相似</strong>，每个类里都有一个求导的方法derivate()（但是具体实现上有点区别，比如考虑到<strong>Term的乘法求导法则</strong>，我们让它的derivate方法返回一个ArrayList&lt; Term &gt;<ul>
+<li>然后像函数调用一样递归的调用求导方法，解析展开成一个表达式</li>
+</ul>
+</li>
+<li><strong>不要</strong>想把DefFunc这种的derivate的返回值设成表达式因子，没必要，返回自己怎么啦。<ul>
+<li>不要考虑覆写的问题，本来就是一种转换，本来后面不需要用到原版，本来就是一种覆写。</li>
+<li>最后都要toPoly，反倒是返回表达式因子会让你在debug的时候十分的难受。</li>
+</ul>
+</li>
+<li>最后的重担落在了<strong>幂函数和三角函数</strong>的身上，为了实现链式求导法则以及幂函数求导的常数等需求，我们使<strong>Factor的derivate方法返回Term</strong>。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">Factor</span> &#123;</span><br><span class="line">    Factor <span class="title function_">substitute</span><span class="params">(HashMap&lt;String, Factor&gt; varMap)</span>;</span><br><span class="line"></span><br><span class="line">    Term <span class="title function_">derivate</span><span class="params">(String varName)</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>一定要注意<strong>链式法则与乘法法则的深克隆问题</strong>，不然连着给你改了。</li>
+</ul>
+<h4 id="结构上的统一性解读"><a href="#结构上的统一性解读" class="headerlink" title="结构上的统一性解读"></a>结构上的统一性解读</h4><ul>
+<li>所以其实在结构里，DefFunc，ExprFactor，Deriv都是统一的，他们<strong>内部都有一个Expr属性</strong>，除了生成方法不一致之外，其他都可以比较趋同的实现。对于DefFunc和Deriv我<strong>在构造的时候已经做好了表达式的展开</strong>，保证方法来的时候我的表达式已经准备好了。<ul>
+<li>（结构中已经有了两种趋同，一种是<strong>求导方法和代入方法的趋同</strong>（生成方法上的趋同），另一种是上述<strong>三个类在结构实现上的趋同</strong></li>
+</ul>
+</li>
+<li>第三种趋同是<strong>链式求导法则数学的统一性</strong>上，不需要特判是否有指数，表达式因子三角函数因子和变量因子按照链式法则求的方法是有一致性的。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> Term <span class="title function_">derivate</span><span class="params">(String varName)</span> &#123;</span><br><span class="line">    <span class="type">Term</span> <span class="variable">newTerm</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Term</span>();</span><br><span class="line">    <span class="comment">//加入常数，变量名不同，当常数处理</span></span><br><span class="line">    <span class="keyword">if</span> (index == <span class="number">0</span> || !varName.equals(<span class="built_in">this</span>.varName)) &#123;</span><br><span class="line">        newTerm.addFactor(<span class="keyword">new</span> <span class="title class_">ConstNum</span>(BigInteger.ZERO, <span class="string">&quot;+&quot;</span>));</span><br><span class="line">        <span class="comment">//指数为0就是常数求导</span></span><br><span class="line">        <span class="keyword">return</span> newTerm;</span><br><span class="line">    &#125;</span><br><span class="line">    newTerm.addFactor(<span class="keyword">new</span> <span class="title class_">ConstNum</span>(<span class="keyword">new</span> <span class="title class_">BigInteger</span>(String.valueOf(index)), <span class="string">&quot;+&quot;</span>));</span><br><span class="line">    <span class="comment">//指数减1，加入原函数</span></span><br><span class="line">    index -= <span class="number">1</span>;</span><br><span class="line">    newTerm.addFactor(<span class="built_in">this</span>);</span><br><span class="line">    <span class="keyword">return</span> newTerm;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="gt-但是我有一个问题，链式求导法则的方法大致趋同，需不需要单独设立一个链式法则求导的方法呢，欢迎在评论区探讨！"><a href="#gt-但是我有一个问题，链式求导法则的方法大致趋同，需不需要单独设立一个链式法则求导的方法呢，欢迎在评论区探讨！" class="headerlink" title="&gt; 但是我有一个问题，链式求导法则的方法大致趋同，需不需要单独设立一个链式法则求导的方法呢，欢迎在评论区探讨！"></a>&gt; 但是我有一个问题，链式求导法则的方法大致趋同，需不需要单独设立一个链式法则求导的方法呢，欢迎在评论区探讨！</h2><blockquote>
+<p>这次的自动化评测机也只是在前两代的基础上小改一下下，所以就不说了。</p>
+</blockquote>
+<h2 id="三次迭代架构的度量分析"><a href="#三次迭代架构的度量分析" class="headerlink" title="三次迭代架构的度量分析"></a>三次迭代架构的度量分析</h2><h3 id="码量上"><a href="#码量上" class="headerlink" title="码量上"></a>码量上</h3><ul>
+<li>首先最为直观的肯定是<strong>代码行数上的变化</strong>，反映了<strong>代码的规模</strong>，<strong>类的规模</strong>。(首先声明每次作业的代码风格分都是满分</li>
+<li>请见下表：</li>
+</ul>
+<p><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OO/ExprExpansion3.0/Lines.jpg" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OO/ExprExpansion3.0/Lines.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="Lines"></p>
+<ul>
+<li>首先可以看到，我用<strong>浅红色标出的EE2.0</strong>(ExprExpansion)，代码的长度极其的灾难，其中Item类更是达到了250行左右，但是经过优化之后的EE2.1代码行数上正常了许多。</li>
+<li>最后的<strong>码量落到了1300左右</strong>。</li>
+</ul>
+<h3 id="复杂度上"><a href="#复杂度上" class="headerlink" title="复杂度上"></a>复杂度上</h3><ul>
+<li>然后就是方法的复杂度分析（只选取了<strong>部分关键的方法以及复杂度超标的方法</strong>）</li>
+<li>下面是对指标的解释：</li>
+</ul>
+<blockquote>
+<p>CogC 是<strong>圈复杂度</strong>的意思，与下面的v(G)一样<br>v(G) 是<strong>圈复杂度</strong>，表示程序中独立路径的数量，也就是测试程序所需的最少路径条数。圈复杂度越大，说明程序越复杂，越容易出错，越难测试和维护。<br>iv(G) 是<strong>模块设计复杂度</strong>，表示程序中结构化程度的高低。模块设计复杂度越大，说明程序越不符合结构化设计原则，越难理解和修改。<br>ev(G) 是<strong>基本复杂度</strong>，表示程序中非结构化成分的多少。非结构化成分指的是那些不遵循顺序、选择、循环三种基本控制结构的语句或语句块。基本复杂度越大，说明程序越不规范，越降低了代码质量和可读性。</p>
+</blockquote>
+<p><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OO/ExprExpansion3.0/metrics_metrics.jpg" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OO/ExprExpansion3.0/metrics_metrics.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="method metrics"></p>
+<ul>
+<li>下面是EE3.0中<strong>复杂度超标</strong>的部分：</li>
+</ul>
+<p><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OO/ExprExpansion3.0/EE3.0.png" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OO/ExprExpansion3.0/EE3.0.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="EE3.0"></p>
+<ul>
+<li>我们可以看到，对于圈复杂度，只有<strong>Lexer.next()</strong>方法与<strong>TriItem.toString()</strong>超标，<ul>
+<li>对于next()的方法实现，因为我是<strong>一次输出一个相对完整的字符串</strong>，所以我需要调用其他的一些方法来达成模块化设计的需求。</li>
+<li>而对于TriItem.toString()的方法中，我为了许多细节的化简优化，比如说输出括号、去除符号等，打了<strong>许多的特判</strong>，所以圈复杂度会很高。</li>
+</ul>
+</li>
+<li>但是可以看到，许多方法的<strong>基本复杂度还是挺糟糕的</strong>，这也说明了我的<strong>代码质量与风格</strong>确实有比较大的问题（这也导致了<strong>EE2.0的缺陷</strong>），接下来还是得在这一方面多下功夫。</li>
+<li>可喜的是我的模块设计复杂度都比较的良好，这也得<strong>益于良好的架构</strong>与<strong>合适的方法属性设置</strong>。</li>
+</ul>
+
       </div>
       <div class="post-tags-categories">
         
@@ -941,7 +1088,7 @@
   <div class='content'>
     <div class="toc-main">
       <div class="toc-content">
-        <!--  -->
+        <!-- <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#hw3-log"><span class="toc-text">hw3_log</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%B9hw-2%E7%9A%84%E6%95%99%E8%AE%AD%E7%9A%84%E6%95%B4%E7%90%86%E4%BB%A5%E5%8F%8A%E7%AD%96%E7%95%A5%E7%9A%84%E5%8F%98%E5%8C%96%EF%BC%882-1%EF%BC%89"><span class="toc-text">对hw_2的教训的整理以及策略的变化（2.1）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#hw3%E6%96%B0%E5%A2%9E%E9%9C%80%E6%B1%82"><span class="toc-text">hw3新增需求</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BD%A2%E5%BC%8F%E5%8C%96%E8%A1%A8%E8%BF%B0"><span class="toc-text">形式化表述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90"><span class="toc-text">需求分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B7%E4%BD%93%E5%AE%9E%E7%8E%B0"><span class="toc-text">具体实现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#uml%E7%B1%BB%E5%9B%BE%E4%BB%A5%E5%8F%8A%E7%AE%80%E8%BF%B0"><span class="toc-text">uml类图以及简述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%AD%E4%BB%A3%E9%9C%80%E6%B1%82%E5%AE%9E%E7%8E%B0%E7%9A%84%E7%BB%86%E8%8A%82"><span class="toc-text">迭代需求实现的细节</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8%E5%87%BD%E6%95%B0%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-text">函数调用函数的问题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B1%82%E5%AF%BC%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="toc-text">求导的实现</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BB%93%E6%9E%84%E4%B8%8A%E7%9A%84%E7%BB%9F%E4%B8%80%E6%80%A7%E8%A7%A3%E8%AF%BB"><span class="toc-text">结构上的统一性解读</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#gt-%E4%BD%86%E6%98%AF%E6%88%91%E6%9C%89%E4%B8%80%E4%B8%AA%E9%97%AE%E9%A2%98%EF%BC%8C%E9%93%BE%E5%BC%8F%E6%B1%82%E5%AF%BC%E6%B3%95%E5%88%99%E7%9A%84%E6%96%B9%E6%B3%95%E5%A4%A7%E8%87%B4%E8%B6%8B%E5%90%8C%EF%BC%8C%E9%9C%80%E4%B8%8D%E9%9C%80%E8%A6%81%E5%8D%95%E7%8B%AC%E8%AE%BE%E7%AB%8B%E4%B8%80%E4%B8%AA%E9%93%BE%E5%BC%8F%E6%B3%95%E5%88%99%E6%B1%82%E5%AF%BC%E7%9A%84%E6%96%B9%E6%B3%95%E5%91%A2%EF%BC%8C%E6%AC%A2%E8%BF%8E%E5%9C%A8%E8%AF%84%E8%AE%BA%E5%8C%BA%E6%8E%A2%E8%AE%A8%EF%BC%81"><span class="toc-text">&gt; 但是我有一个问题，链式求导法则的方法大致趋同，需不需要单独设立一个链式法则求导的方法呢，欢迎在评论区探讨！</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E6%AC%A1%E8%BF%AD%E4%BB%A3%E6%9E%B6%E6%9E%84%E7%9A%84%E5%BA%A6%E9%87%8F%E5%88%86%E6%9E%90"><span class="toc-text">三次迭代架构的度量分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A0%81%E9%87%8F%E4%B8%8A"><span class="toc-text">码量上</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%8D%E6%9D%82%E5%BA%A6%E4%B8%8A"><span class="toc-text">复杂度上</span></a></li></ol></li></ol></li></ol> -->
         <div class="toc"></div>
       </div>
     </div>
@@ -976,7 +1123,7 @@
             <div class="post-img-box">
               <a href="/2023/03/16/BUAA-OS-lab1-%E5%86%85%E6%A0%B8%EF%BC%8C%E5%90%AF%E5%8A%A8%EF%BC%8Cprintf/" class="post-img " style="background-size: cover; 
                 background-position: center center;">
-                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/source/_post/BUAA-OS-lab1-%E5%86%85%E6%A0%B8%EF%BC%8C%E5%90%AF%E5%8A%A8%EF%BC%8Cprintf/1.2.4.png" class="lazyload placeholder" data-srcset="/source/_post/BUAA-OS-lab1-%E5%86%85%E6%A0%B8%EF%BC%8C%E5%90%AF%E5%8A%A8%EF%BC%8Cprintf/1.2.4.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OS/lab1/1.2.4.png" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OS/lab1/1.2.4.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
               </a>
             </div>
             <div class="post-date-title">
@@ -1018,7 +1165,7 @@
             <div class="post-img-box">
               <a href="/2023/03/10/BUAA-OO-Expr-expansion3-0-and-2-1/" class="post-img " style="background-size: cover; 
                 background-position: center center;">
-                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/images/gallery/2023Spring/1678845584358.jpg" class="lazyload placeholder" data-srcset="/images/gallery/2023Spring/1678845584358.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OO/ExprExpansion3.0/EE3uml.png" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OO/ExprExpansion3.0/EE3uml.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
               </a>
             </div>
             <div class="post-date-title">
