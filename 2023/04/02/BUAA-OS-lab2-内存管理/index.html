@@ -11,7 +11,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>BUAA-OS-lab2-内存管理 | volca&#39;s blog</title>
+  <title>【BUAA-OS】lab2-内存管理 | volca&#39;s blog</title>
 
   <link rel="icon" type="image/png" href="/images/favicon-16x16.png">
   <link rel="stylesheet" href="https://at.alicdn.com/t/font_1911880_c1nvbyezg17.css">
@@ -628,14 +628,14 @@
 
 
 <div class="post-detail-header" id="thumbnail_canvas" style="background-repeat: no-repeat; background-size: cover; 
-  background-position: center center;position: relative;background-image:url('/images/gallery/2023Spring/1678845584401.jpg')">
+  background-position: center center;position: relative;background-image:url('/images/gallery/2023Spring/1678845583450.jpg')">
   <div class="post-detail-header-mask"></div>
   <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
   
   <div class="post-detail-header_info-box">
     <div class="title-box">
       <span class="title">
-        BUAA-OS-lab2-内存管理
+        【BUAA-OS】lab2-内存管理
       </span>
     </div>
     
@@ -647,15 +647,24 @@
       
 
       
+        <span class="post-detail-header_categories">
+          <i class="iconfont iconbookmark1"></i> 分类：
+          
+            <a href="/categories/BUAA%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" class="post-detail-header_category">
+              BUAA操作系统
+            </a>
+          
+        </span>
+      
 
       
         <div class="post-detail-header_wordcount">
           <span class="totalcount">
-            <i class="fas fa-file-text-o"></i> 字数统计: 0 |
+            <i class="fas fa-file-text-o"></i> 字数统计: 1.9k |
           </span>
   
           <span class="min2read">
-            <i class="fas fa-clock"></i> 阅读时长: 1分钟 |
+            <i class="fas fa-clock"></i> 阅读时长: 7分钟 |
           </span>
   
           
@@ -682,9 +691,125 @@
   <div class="main-content">
     <article class="post post-detail">
       <div class="post-content">
-        
+        <p>BUAA-OS lab2实验报告，关于mos系统的内存管理机制的实现，内存初始化，二级页表，TLB重填等内容。</p>
+<span id="more"></span>
+<h1 id="lab2-log"><a href="#lab2-log" class="headerlink" title="lab2_log"></a>lab2_log</h1><h2 id="思考题"><a href="#思考题" class="headerlink" title="思考题"></a>思考题</h2><h3 id="Thinking2-1"><a href="#Thinking2-1" class="headerlink" title="Thinking2.1"></a>Thinking2.1</h3><blockquote>
+<p>Thinking 2.1 请根据上述说明，回答问题：在编写的 C 程序中，指针变量中存储的地址是虚拟地址，还是物理地址？MIPS 汇编程序中 lw 和 sw 使用的是虚拟地址，还是物理地址？</p>
+</blockquote>
+<ul>
+<li>都是虚拟地址，因为CPU只会发出虚拟地址，虚拟地址都需要经过映射才会得到物理地址。</li>
+</ul>
+<h3 id="Thinking2-2"><a href="#Thinking2-2" class="headerlink" title="Thinking2.2"></a>Thinking2.2</h3><blockquote>
+<p>Thinking 2.2 请思考下述两个问题：<br>• 从可重用性的角度，阐述用宏来实现链表的好处。<br>• 查看实验环境中的 /usr/include/sys/queue.h，了解其中单向链表与循环链表的实现，比较它们与本实验中用的双向链表，分析三者在插入与删除操作上的性能差异。</p>
+</blockquote>
+<ul>
+<li>使用宏定义对链表的操作进行封装，提高了代码的可重用性，提高了可读性。</li>
+<li>单项链表只能获取每一项的后一项，所以在某项前插入与删除的操作只能从头开始遍历链表，但可以在后一项直接插入。</li>
+<li>循环链表删除插入性能与单向链表一致，但是由于有尾部指针，所以在最后一项上插入开销小。</li>
+<li>双向链表在某项前后的插入操作以及对某项的删除操作都只有O(1)的开销。</li>
+</ul>
+<h3 id="Thinking2-3"><a href="#Thinking2-3" class="headerlink" title="Thinking2.3"></a>Thinking2.3</h3><blockquote>
+<p>Thinking 2.3 请阅读 include/queue.h 以及 include/pmap.h, 将 Page_list 的结构梳理清楚，选择正确的展开结构。</p>
+</blockquote>
+<ul>
+<li>我选择C结构，Page_list的结构体中有一个指向表头的指针，然后每一个页的项由一个包含两个指针的pp_link与一个表示索引次数的pp_ref表示。</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Page_list</span>&#123;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">        <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">            <span class="class"><span class="keyword">struct</span> <span class="title">Page</span> *<span class="title">le_next</span>;</span></span><br><span class="line">            <span class="class"><span class="keyword">struct</span> <span class="title">Page</span> **<span class="title">le_prev</span>;</span></span><br><span class="line">        &#125; pp_link;</span><br><span class="line">        u_short pp_ref;</span><br><span class="line">    &#125;* lh_first;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Thinking2-4"><a href="#Thinking2-4" class="headerlink" title="Thinking2.4"></a>Thinking2.4</h3><blockquote>
+<p>Thinking 2.4 请思考下面两个问题：<br>• 请阅读上面有关 R3000-TLB 的描述，从虚拟内存的实现角度，阐述 ASID 的必要性。<br>• 请阅读《IDT R30xx Family Software Reference Manual》的 Chapter 6，结合 ASID段的位数，说明 R3000 中可容纳不同的地址空间的最大数量。</p>
+</blockquote>
+<ul>
+<li>address identifier必要性：在操作系统中，同一虚拟地址在不同的地址空间中会映射到不同的物理地址上，每个进程会有自己的虚拟地址空间，所以需要用ASID来区别改虚拟地址是在哪个进程中。</li>
+<li>ASID在EntryHi中占了6位，所以最大可以容纳64个地址空间。</li>
+</ul>
+<h3 id="Thinking2-5"><a href="#Thinking2-5" class="headerlink" title="Thinking2.5"></a>Thinking2.5</h3><blockquote>
+<p>Thinking 2.5 请回答下述三个问题：<br>• tlb_invalidate 和 tlb_out 的调用关系？<br>• 请用一句话概括 tlb_invalidate 的作用。<br>• 逐行解释 tlb_out 中的汇编代码。</p>
+</blockquote>
+<ul>
+<li>tlb_invalidata调用了tlb_out。</li>
+<li>在页表内容改变后删除它在TLB中的旧表项。</li>
+<li>tlb_out代码如下：</li>
+</ul>
+<figure class="highlight mips"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">LEAF(tlb_out)</span><br><span class="line"><span class="meta">.set</span> <span class="keyword">noreorder</span></span><br><span class="line"><span class="keyword"></span>        <span class="keyword">mfc0 </span>   <span class="built_in">t0</span>, CP0_ENTRYHI</span><br><span class="line">        <span class="keyword">mtc0 </span>   <span class="built_in">a0</span>, CP0_ENTRYHI</span><br><span class="line">        <span class="keyword">nop</span></span><br><span class="line"><span class="keyword"></span>        <span class="keyword">tlbp</span></span><br><span class="line"><span class="keyword"></span>        <span class="keyword">nop</span></span><br><span class="line"><span class="keyword"></span>        <span class="keyword">mfc0 </span>   <span class="built_in">t1</span>, CP0_INDEX</span><br><span class="line"><span class="meta">.set</span> reorder</span><br><span class="line">        <span class="keyword">bltz </span>   <span class="built_in">t1</span>, NO_SUCH_ENTRY</span><br><span class="line"><span class="meta">.set</span> <span class="keyword">noreorder</span></span><br><span class="line"><span class="keyword"></span>        <span class="keyword">mtc0 </span>   <span class="built_in">zero</span>, CP0_ENTRYHI</span><br><span class="line">        <span class="keyword">mtc0 </span>   <span class="built_in">zero</span>, CP0_ENTRYLO0</span><br><span class="line">        <span class="keyword">nop</span></span><br><span class="line"><span class="keyword"></span>        <span class="keyword">tlbwi</span></span><br><span class="line"><span class="keyword"></span><span class="meta">.set</span> reorder</span><br><span class="line"><span class="symbol"></span></span><br><span class="line"><span class="symbol">NO_SUCH_ENTRY:</span></span><br><span class="line">        <span class="keyword">mtc0 </span>   <span class="built_in">t0</span>, CP0_ENTRYHI</span><br><span class="line">        <span class="keyword">j </span>      <span class="built_in">ra</span></span><br><span class="line">END(tlb_out)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>tlb_out由tlb_invalidate调用，主要作用就是清空TLB表项。</li>
+<li>首先将cp0_entryHI的原来的值存在t0寄存器中，我们看后面可以知道主要是为了找不到的时候恢复原样用的。</li>
+<li>然后就是把a0这个传入的参数写入cp0_entryHI随后用tlbp查找，得到索引值，如果大于等于0，就是找到了。</li>
+<li>然后我们就可以将cp0_entryHI和cp0_entryLO都置为0，最后用tlbwi将值写到index位置的tlb里，达到清零的目的。</li>
+</ul>
+<h3 id="Thinking2-6"><a href="#Thinking2-6" class="headerlink" title="Thinking2.6"></a>Thinking2.6</h3><blockquote>
+<p>Thinking 2.6 任选下述二者之一回答：<br>• 简单了解并叙述 X86 体系结构中的内存管理机制，比较 X86 和 MIPS 在内存管理上的区别。<br>• 简单了解并叙述 RISC-V 中的内存管理机制，比较 RISC-V 与 MIPS 在内存管理上的区别。</p>
+</blockquote>
+<ul>
+<li>理论课上提到了x86的内存管理机制，x86架构采用的是段页式管理机制，mips采用页式管理。</li>
+<li>而且x86的页映射机制是可选的，可以通过CR0寄存器的PG位来设置。</li>
+<li>除了段式的差别之外，x86的页式内存管理也与mips的有所不同，对于TLB不命中的处理机制上，mips会触发异常后TLB重填，然后第二次访问。而x86会直接索引CR3得到页目录基址，得到目标的PFN，然后再来重填TLB。</li>
+</ul>
+<h3 id="ThinkingA-1"><a href="#ThinkingA-1" class="headerlink" title="ThinkingA.1"></a>ThinkingA.1</h3><blockquote>
+<p>Thinking A.1 在现代的 64 位系统中，提供了 64 位的字长，但实际上不是 64 位页式存储系统。假设在 64 位系统中采用三级页表机制，页面大小 4KB。由于 64 位系统中字长为8B，且页目录也占用一页，因此页目录中有 512 个页目录项，因此每级页表都需要 9 位。因此在 64 位系统下，总共需要 3 × 9 + 12 = 39 位就可以实现三级页表机制，并不需要 64位。<br>现考虑上述 39 位的三级页式存储系统，虚拟地址空间为 512 GB，若三级页表的基地址为 PTbase，请计算：<br>• 三级页表页目录的基地址。<br>• 映射到页目录自身的页目录项（自映射）。</p>
+</blockquote>
+<ul>
+<li>三级页表页目录的基地址为： $PT_{base} +  PT_{base} &lt;&lt; 9 + PT_{base} &lt;&lt; 18$</li>
+<li>映射到页目录自身的页表项： $PT_{base} +  PT_{base} &lt;&lt; 9 + PT_{base} &lt;&lt; 18 + PT_{base} &lt;&lt; 27 $</li>
+</ul>
+<h2 id="难点分析"><a href="#难点分析" class="headerlink" title="难点分析"></a>难点分析</h2><ul>
+<li>这次主要要操作的文件为include/queue.c与kern/pmap.c，但同时，我们离不开include/mmu.h与include/pmap.h中定义的宏。</li>
+</ul>
+<h3 id="Exercise2-1-2-5"><a href="#Exercise2-1-2-5" class="headerlink" title="Exercise2.1-2.5"></a>Exercise2.1-2.5</h3><ul>
+<li>这里主要需要完成内核初始化mips_init()中的两个函数</li>
+<li>mips_detect_memory()</li>
+<li><p>page_init()</p>
+</li>
+<li><p>主要利用BY2PG宏，定义在mmu.h中，代表页面的大小。</p>
+</li>
+<li><p>然后就是实现双向链表宏，为后续做准备。</p>
+</li>
+<li><p>理解Page结构体的引导的链表项，指向的应该是物理空闲页的页号，通过pmap.h中的两个函数page2pa与pa2page完成于物理页面号与物理地址之间的转换。</p>
+</li>
+<li><p>然后就是完成管理物理内存的四个函数</p>
+</li>
+<li>page_init, page_alloc, page_decref, page_free</li>
+</ul>
+<h3 id="Exercise2-6-2-7"><a href="#Exercise2-6-2-7" class="headerlink" title="Exercise2.6-2.7"></a>Exercise2.6-2.7</h3><ul>
+<li>这里主要就是虚拟内存管理的结构，我们要实现一个两级页表，一级页目录(PD)，一级页表(PT)，可以用PDX(va)和PTX(va)来获取一个虚拟地址的页目录号和页表号，即第31-22位与第21-12位。</li>
+<li>用Pde与Pte来表示页目录项及页表项。其实就是u_long。</li>
+<li>MOS的满页不会置换，而是直接报错。</li>
+<li>pgdir_walk函数的功能是完成页目录项到页表项的映射。</li>
+<li>page_insert函数完成的是建立起页表与实际页控制块对应的物理页面的映射。</li>
+</ul>
+<h3 id="Exercise2-8-2-10"><a href="#Exercise2-8-2-10" class="headerlink" title="Exercise2.8-2.10"></a>Exercise2.8-2.10</h3><ul>
+<li>TLB重填，指导书说的挺清楚的，看懂mips的汇编代码就好了~</li>
+</ul>
+<h2 id="实验体会"><a href="#实验体会" class="headerlink" title="实验体会"></a>实验体会</h2><ul>
+<li>相较于lab1，lab2难度上增加很大，首先就是课下实验花费了大量的时间，但是很多地方还是不理解，我觉得最主要的还是先理解理论知识，得要先学会二级页表的寻址的规则，自映射的规则，不然会很难看懂源代码的意思。而且还有许多宏定义，一定要确保看过源代码，知道这个宏的用途。所以工作量还是很大的，但还是给自己留下了一点教训吧，os还是真的必须重视理论，这是一切的基础！而且得花时间！</li>
+</ul>
+
       </div>
       <div class="post-tags-categories">
+        
+        <div class="tags">
+          
+            <a href="/tags/%E5%8C%97%E8%88%AA/" class="">
+              北航
+            </a>
+          
+            <a href="/tags/%E5%A4%A7%E4%BA%8C/" class="">
+              大二
+            </a>
+          
+            <a href="/tags/OS/" class="">
+              OS
+            </a>
+          
+            <a href="/tags/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/" class="">
+              内存管理
+            </a>
+          
+            <a href="/tags/%E9%A1%B5%E5%BC%8F%E5%AD%98%E5%82%A8/" class="">
+              页式存储
+            </a>
+          
+        </div>
         
       </div>
       
@@ -695,7 +820,7 @@
     </li>
     <li class="post-copyright-link">
     <strong>文章链接:  </strong>
-    <a href="/2023/04/02/BUAA-OS-lab2-内存管理/" target="_blank" title="BUAA-OS-lab2-内存管理">http://volcaxiao.github.io/2023/04/02/BUAA-OS-lab2-内存管理/</a>
+    <a href="/2023/04/02/BUAA-OS-lab2-内存管理/" target="_blank" title="【BUAA-OS】lab2-内存管理">http://volcaxiao.github.io/2023/04/02/BUAA-OS-lab2-内存管理/</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明:   </strong>
@@ -719,15 +844,18 @@
   <div class="post-nav-next post-nav-item">
     <div class="post-nav-img" style="background-size: cover; 
       background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="/images/gallery/2023Spring/1678845583725.jpg" class="lazyload placeholder" data-srcset="/images/gallery/2023Spring/1678845583725.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" src="" alt="">
+      <img class="lazyload lazyload placeholder" src="/images/gallery/2023Spring/1678845584297.jpg" class="lazyload placeholder" data-srcset="/images/gallery/2023Spring/1678845584297.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" src="" alt="">
     </div>
     <a href="/2023/04/02/BUAA-OO-ElevatorDispatcher-2-0/" class="post-nav-link">
       <div class="title">
         下一篇: <i class="fas fa-angle-right"></i>
-        <div class="title-text">BUAA-OO-ElevatorDispatcher-2-0</div>
+        <div class="title-text">【BUAA-OO】ElevatorDispatcher2.0</div>
       </div>
       <!-- <div class="content">
-        
+        还没有写好，芝士一些打码过程中的记录，等到博客周的时候再去整理叭
+
+hw6_log新增需求
+掌握线程安全知识并解决线程安
       </div> -->
     </a>
   </div>
@@ -881,7 +1009,7 @@
   <div class='content'>
     <div class="toc-main">
       <div class="toc-content">
-        <!--  -->
+        <!-- <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#lab2-log"><span class="toc-text">lab2_log</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%9D%E8%80%83%E9%A2%98"><span class="toc-text">思考题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Thinking2-1"><span class="toc-text">Thinking2.1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Thinking2-2"><span class="toc-text">Thinking2.2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Thinking2-3"><span class="toc-text">Thinking2.3</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Thinking2-4"><span class="toc-text">Thinking2.4</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Thinking2-5"><span class="toc-text">Thinking2.5</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Thinking2-6"><span class="toc-text">Thinking2.6</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ThinkingA-1"><span class="toc-text">ThinkingA.1</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9A%BE%E7%82%B9%E5%88%86%E6%9E%90"><span class="toc-text">难点分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Exercise2-1-2-5"><span class="toc-text">Exercise2.1-2.5</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Exercise2-6-2-7"><span class="toc-text">Exercise2.6-2.7</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Exercise2-8-2-10"><span class="toc-text">Exercise2.8-2.10</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E4%BD%93%E4%BC%9A"><span class="toc-text">实验体会</span></a></li></ol></li></ol> -->
         <div class="toc"></div>
       </div>
     </div>
@@ -916,7 +1044,7 @@
             <div class="post-img-box">
               <a href="/2023/04/02/BUAA-OS-lab2-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/" class="post-img " style="background-size: cover; 
                 background-position: center center;">
-                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/images/gallery/2023Spring/1678845584401.jpg" class="lazyload placeholder" data-srcset="/images/gallery/2023Spring/1678845584401.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/images/gallery/2023Spring/1678845583450.jpg" class="lazyload placeholder" data-srcset="/images/gallery/2023Spring/1678845583450.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
               </a>
             </div>
             <div class="post-date-title">
@@ -925,7 +1053,7 @@
                   <span class="post-date">04-02</span>
                 
               </div>
-              <a class="post-title" href="/2023/04/02/BUAA-OS-lab2-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/">BUAA-OS-lab2-内存管理</a>
+              <a class="post-title" href="/2023/04/02/BUAA-OS-lab2-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/">【BUAA-OS】lab2-内存管理</a>
             </div>
           </div>
         
@@ -937,7 +1065,7 @@
             <div class="post-img-box">
               <a href="/2023/04/02/BUAA-OO-ElevatorDispatcher-2-0/" class="post-img " style="background-size: cover; 
                 background-position: center center;">
-                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/images/gallery/2023Spring/1678845583725.jpg" class="lazyload placeholder" data-srcset="/images/gallery/2023Spring/1678845583725.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/images/gallery/2023Spring/1678845584297.jpg" class="lazyload placeholder" data-srcset="/images/gallery/2023Spring/1678845584297.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
               </a>
             </div>
             <div class="post-date-title">
@@ -946,7 +1074,7 @@
                   <span class="post-date">04-02</span>
                 
               </div>
-              <a class="post-title" href="/2023/04/02/BUAA-OO-ElevatorDispatcher-2-0/">BUAA-OO-ElevatorDispatcher-2-0</a>
+              <a class="post-title" href="/2023/04/02/BUAA-OO-ElevatorDispatcher-2-0/">【BUAA-OO】ElevatorDispatcher2.0</a>
             </div>
           </div>
         
@@ -958,7 +1086,7 @@
             <div class="post-img-box">
               <a href="/2023/04/02/BUAA-OO-ElevatorDispatcher-1-0/" class="post-img " style="background-size: cover; 
                 background-position: center center;">
-                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/images/gallery/2023Spring/1678845583725.jpg" class="lazyload placeholder" data-srcset="/images/gallery/2023Spring/1678845583725.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/images/gallery/2023Spring/1678845584297.jpg" class="lazyload placeholder" data-srcset="/images/gallery/2023Spring/1678845584297.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
               </a>
             </div>
             <div class="post-date-title">
@@ -967,7 +1095,7 @@
                   <span class="post-date">04-02</span>
                 
               </div>
-              <a class="post-title" href="/2023/04/02/BUAA-OO-ElevatorDispatcher-1-0/">BUAA-OO-ElevatorDispatcher-1-0</a>
+              <a class="post-title" href="/2023/04/02/BUAA-OO-ElevatorDispatcher-1-0/">【BUAA-OO】ElevatorDispatcher1.0</a>
             </div>
           </div>
         
@@ -1144,6 +1272,59 @@
 		height: 100%;
 	}
 </style>
+
+
+  <script>
+  // https://github.com/theme-next/hexo-theme-next/blob/master/layout/_third-party/math/mathjax.swig
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = 'https://unpkg.com/mathjax@3.0/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    // 文章章节标题不能为 “MathJax” ，否则会报错。
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
 
 
 

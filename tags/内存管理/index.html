@@ -11,7 +11,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>离散数学自然数归纳法与基数 | volca&#39;s blog</title>
+  <title>标签: 内存管理 | volca&#39;s blog</title>
 
   <link rel="icon" type="image/png" href="/images/favicon-16x16.png">
   <link rel="stylesheet" href="https://at.alicdn.com/t/font_1911880_c1nvbyezg17.css">
@@ -615,887 +615,109 @@
 </header>
         <!-- 内容区域 -->
         
- <!-- prismjs 代码高亮 -->
- 
 
+<div class="bg-dark-floor" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -2;"></div>
+<div class="bg-light-floor-tagDetail" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -3;"></div>
 
-<div class="bg-dark-floor" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -1;"></div>
-
-
-  <!-- 文章详情页顶部图片和标题 -->
-
-
-
-
-<div class="post-detail-header" id="thumbnail_canvas" style="background-repeat: no-repeat; background-size: cover; 
-  background-position: center center;position: relative;background-image:url('/images/gallery/2023Spring/1678845788006.jpg')">
-  <div class="post-detail-header-mask"></div>
-  <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
-  
-  <div class="post-detail-header_info-box">
-    <div class="title-box">
-      <span class="title">
-        离散数学自然数归纳法与基数
-      </span>
-    </div>
-    
-    
-      
-        <span class="post-detail-header_date">
-          <i class="fas fa-calendar"></i> 发表于：2023-02-08 |
-        </span>
-      
-
-      
-        <span class="post-detail-header_categories">
-          <i class="iconfont iconbookmark1"></i> 分类：
-          
-            <a href="/categories/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%EF%BC%88%E4%BA%8C%EF%BC%89/" class="post-detail-header_category">
-              离散数学（二）
-            </a>
-          
-        </span>
-      
-
-      
-        <div class="post-detail-header_wordcount">
-          <span class="totalcount">
-            <i class="fas fa-file-text-o"></i> 字数统计: 2.3k |
-          </span>
-  
-          <span class="min2read">
-            <i class="fas fa-clock"></i> 阅读时长: 9分钟 |
-          </span>
-  
-          
-            <span class="reading">
-              <i class="fas fa-eye"></i> 阅读量：<span id="busuanzi_value_page_pv"></span>
-            </span>
-          
-        </div>
-      
-    
+<div class="tag-header" style="background-image: url('/images/gallery/2023Spring/1678845583502.jpg');">
+  <div class="tag-header-title">
+    tag
   </div>
+  <div class="tag-header-desc">
   
-  
-    <script src="/js/bubble/bubble.js"></script>
-  
-</div>
-
-
-
-
-
-<div class="post-detail-content post-row" 
-  style="padding-top: 0px;">
-  <div class="main-content">
-    <article class="post post-detail">
-      <div class="post-content">
-        <p>蒟蒻博主缓考了离散，于是开始芝士总结与复习，进度（4/5）</p>
-<span id="more"></span>
-<h1 id="自然数归纳法与基数"><a href="#自然数归纳法与基数" class="headerlink" title="自然数归纳法与基数"></a>自然数归纳法与基数</h1><h2 id="自然数"><a href="#自然数" class="headerlink" title="自然数"></a>自然数</h2><h3 id="自然数构造"><a href="#自然数构造" class="headerlink" title="自然数构造"></a>自然数构造</h3><ul>
-<li><p>自然数依托于用集合论构造，各种性质用Peano公理推导，所以构造出的自然数需要满足Peano公理</p>
-</li>
-<li><p>集合的后继：$对于集合A，其后继集合定义为A^+ = A \cup \{A\}(所以每个集合的后继是唯一的) $</p>
-<ul>
-<li>所以我们知道后继集合的几点性质：<ul>
-<li>$A \subseteq A^+(A的元素在A^+里)；A \in A^+ (A本身也在A^+里) $</li>
-<li>$A^+ \neq \phi $</li>
-</ul>
-</li>
-<li>例：<ul>
-<li>$\phi^+ = \{\phi \} $</li>
-<li>$\{\phi\}^+ = \{\phi, \{ \phi \} \} $</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>所以由上述性质：冯·诺依曼(Von Neumann)给出了他构造自然数系统&lt; N,+,·&gt;的方案</p>
-<ul>
-<li><script type="math/tex; mode=display">
-    \begin{align*}
-        &0 = \phi    \\
-        &1 = 0^+ = \phi^+ = \{ 0 \}     \\
-        &2 = 1^+ = \{\phi \}^+ = \{0,1\}     \\
-        &3 = 2^+ = 2 \cup \{2\} = \{0,1,2 \}     \\
-        &...     \\
-        &n+1 = n^+ = \{0,1,2,...,n \}
-    \end{align*}</script></li>
-<li>我们可以采用集合论中学到的归纳定义法来定义自然数：<ul>
-<li>$0 \in N (基础项) $</li>
-<li>$若 n \in N , 则 n^+ \in N (归纳项) $</li>
-<li>$只有有限次应用1与2得到的元素才是自然数 $</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>引理：$若n \in N, 则\cup n^+ = n $</p>
-</li>
-</ul>
-<h3 id="Peano公理及运算性质"><a href="#Peano公理及运算性质" class="headerlink" title="Peano公理及运算性质"></a>Peano公理及运算性质</h3><ul>
-<li>我们前面说构造的自然数需要满足Peano公理，Peano公理的内容如下：<ul>
-<li>P1: $0 \in N $(归纳基础项)</li>
-<li>P2: $若n \in N, 则n^+ \in N $(归纳项)</li>
-<li>P3: $若n \in N, 则 n^+ \neq 0 $(没有以0为后继的项，0是初始项)</li>
-<li>P4: $若n,m \in N \wedge n^+ = m^+, 则n = m $(后继的唯一性,可由上述引理得到)</li>
-<li>P5: $满足P1与P2的极小化 $</li>
-</ul>
-</li>
-<li><p>由Peano公理以及后继的性质我们可以知道作为集合的自然数的几点性质：</p>
-<ul>
-<li>传递性: $若n_1 \in n_2, n_2 \in n_3, 则 n_1 \in n_3 $</li>
-<li>三岐性: $对于任意两个n_1, n_2 \in N, 满足(n_1 \in n_2) \vee (n_1 = n_2) \vee (n_2 \in n_1) $</li>
-<li>良基性: $不存在一个自然数的无穷递降序列n_{1\sim}，使得n_{i+1} \in n_i $</li>
-</ul>
-</li>
-<li><p>所以我们由Peano公理的三大性质可以知道，我们可以定义出自然数元素之间的关系，以及自然数的运算，我们称之为大/小于，加法，乘法。</p>
-<ul>
-<li>小于: $若m,n \in N 且 m \in n, 则我们称m小于n，记作m&lt;n $(很明显，小于关系是一个逆序关系)</li>
-<li>由此我们也可以类推出小于等于关系，它是一个（全）偏序关系，由于良基性，它也会是一个良序关系。</li>
-<li>加法: $m+0 = 0; m + n^+ = (m + n)^+ $</li>
-<li>乘法: $m \cdot 0 = 0; m \cdot n^+ = m \cdot n + m $   (自己拿两个数加一加乘一乘就能理会其中的归纳意味)</li>
-</ul>
-</li>
-</ul>
-<h2 id="数学归纳法"><a href="#数学归纳法" class="headerlink" title="数学归纳法"></a>数学归纳法</h2><ul>
-<li>上文中Peano公理的极小化有几种表述的方法，详细见集合论一章的描述，其中有一种极小化方法如下：<ul>
-<li>$若S \subseteq N 满足0 \in S且n \in S \rightarrow n^+ \in S(1/2条)，则S = N $</li>
-</ul>
-</li>
-<li>这个极小化方法是数学归纳法的基础，下面是数学归纳法的叙述（第一归纳法）<ul>
-<li>$设P(n)是自然数论域上的性质(或谓词)，若能证明1与2，则对所有n\in N,P(n)为真 $<ol>
-<li>$P(0)为真 $</li>
-<li>$对任何n \in N, P(n) \Rightarrow P(n^+) $</li>
-</ol>
-</li>
-<li>可表述为：$P(0) \wedge (\forall n)(P(n) \rightarrow P(n+1)) \Rightarrow \forall n P(n) $</li>
-<li>基础项也可从非0数k开始：<ul>
-<li>$P(k) \wedge (\forall n)(n \geq k \wedge P(n) \rightarrow P(n+1)) \Rightarrow \forall n(n \geq k \rightarrow P(n)) $</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>我们可以从第一归纳法推出第二归纳法：<ul>
-<li>$\forall n(\forall k(k&lt;n \rightarrow P(k)) \rightarrow P(n)) \Rightarrow \forall nP(n) $</li>
-<li>上述归纳不需要单独列出P(0)条件，因为任取到n=0时，条件等价于P(0)<blockquote>
-<p>…证明过程</p>
-</blockquote>
-</li>
-</ul>
-</li>
-<li>二维归纳原理：暂略</li>
-</ul>
-<h2 id="基数"><a href="#基数" class="headerlink" title="基数"></a>基数</h2><h3 id="集合大小的度量与比较"><a href="#集合大小的度量与比较" class="headerlink" title="集合大小的度量与比较"></a>集合大小的度量与比较</h3><ul>
-<li>比较两个集合的大小有两个方法：<ul>
-<li>计数法：数出元素的个数，谁大谁多。</li>
-<li>愚人比宝：每次各取其一，看谁先取完。</li>
-<li>对于一个无限集，计数法失效，但我们怎么用第二个方法？可以在该集合与某个自然数之间建立一个双射。</li>
-</ul>
-</li>
-<li>等势：若在两个集合之间存在一个双射，则称集合对等（或等势），记作 $A \sim B $<ul>
-<li>我们易知等势关系具有自反对称传递性，是等价关系</li>
-</ul>
-</li>
-<li>集合是有穷集 当且仅当 它与一个自然数等势，且唯一（由三岐性反证法证明），这个自然数被称为有穷集合的<span id="jishu"><strong>基数</strong></span>，记作 $\sharp A $<ul>
-<li>而若集合是无穷极，就不能与一个自然数等势</li>
-</ul>
-</li>
-<li>定义了有穷集合的基数，我们就可以定义出对应关系与基数大小了<ul>
-<li>$显然，A \sim B \Rightarrow \sharp A = \sharp B $</li>
-<li>$若存在A到B的单射，则也就是A等势的自然数与B的自然数之间存在单射，所以\sharp A \leq \sharp B $</li>
-<li>$若\sharp A \leq \sharp B且\sharp A \neq \sharp B，则记为\sharp A &lt; \sharp B $</li>
-<li>由自然数的三岐性可知，任何两个基数之间可以比较大小</li>
-<li>基数相等是等价关系，小于等于是偏序关系</li>
-</ul>
-</li>
-<li>小技巧：我们可以通过tan函数建立任何一个连续的开区间与实数R的双射等势关系<ul>
-<li>正是如此，我们发现无穷集合可以与它本身的真子集等势（这是无穷集合的一固有性质）</li>
-</ul>
-</li>
-</ul>
-<h3 id="抽屉原理"><a href="#抽屉原理" class="headerlink" title="抽屉原理"></a>抽屉原理</h3><ul>
-<li>由上述表述，我们可发现无穷集合与有限集合的一点根本差别：<ul>
-<li>任何与自身真子集等势的集合都是无穷集合</li>
-<li>所以任何有限集都不能与自身的真子集对等</li>
-</ul>
-</li>
-<li>上述对于有限集的叙述叫做抽屉原理（鸽笼原理），通俗的说：<ul>
-<li>你有n+1本书，但是只有个抽屉，你就建立不了一个n+1与n的双射，一定会有一个抽屉放了不止一本书。</li>
-<li>形式抽象化的表示为：<ul>
-<li>$把s(s\geq 1)个元素分成t组，必有一个组至少有\lceil s/t \rceil 个元素(\lceil \rceil 为向上取整的记号) $</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="无穷集"><a href="#无穷集" class="headerlink" title="无穷集"></a>无穷集</h3><ul>
-<li>上文中提到了<a href="#jishu">有穷集合的基数</a>的概念，我们拓展它，让它不再局限在元素个数这一个概念，对于无限集，我们也定义它的基数，只是规定特殊的记号。<ul>
-<li>$我们令\sharp N = \aleph_0 $</li>
-<li>对于上文中关于有穷集合基数的大小的性质，都可以推广到基数上</li>
-</ul>
-</li>
-<li>基数的定义：$F是集合组，\sim 是F上的等势关系，关系\sim在F上的等价类称为基数 $<ul>
-<li>$对于A \in F 我们本应将基数记为[A]_\sim ，但我们沿用上面的记号以达到统一概念的目的，记为\sharp A$</li>
-</ul>
-</li>
-<li>可数无穷集合：与自然数等势的集合我们称为可数无穷集合，基数为  $\aleph _0 $<ul>
-<li>可数集合 = 有穷集合 + 无穷可数集合，其余均是不可数集合</li>
-</ul>
-</li>
-<li>定理：无穷集的三个等价条件<ul>
-<li>A是无穷集</li>
-<li>A有可数无穷的子集（证明：可以从出去已选元素的A中选择元素，因为A是无穷的，所以取之不尽，这样就构造出了一个可数无穷的子集）</li>
-<li>A有真子集与它等势</li>
-</ul>
-</li>
-<li>上文中我们提到了<a href="#jishu">单射</a>可以确定两个集合基数的大小，满射也同样可以<ul>
-<li>$存在A到B的满射 \iff \sharp B \leq \sharp A $</li>
-<li>证明：</li>
-<li><script type="math/tex; mode=display">
-    \begin{align*}
-        \Rightarrow \\
-        &若从A \rightarrow B有满射f，则f右可逆\\
-        &存在g:B \rightarrow A，使得f \cdot g = I_B\\
-        &I_B是双射，所以g是单射\\
-        &\therefore \sharp B \leq \sharp A \\
-        \Leftarrow \\
-        &若\sharp B \leq \sharp A,则有单射g:B \rightarrow A\\
-        &g左可逆，存在f:A \rightarrow B使得f \cdot g = I_B\\
-        &I_B是双射,所以f是满射
-    \end{align*}</script></li>
-</ul>
-</li>
-<li>还有几个有趣的问题：<ul>
-<li>$N\times N \sim N $</li>
-<li>$N \sim Q $</li>
-<li>$N \sim Z $<blockquote>
-<p>…</p>
-</blockquote>
-</li>
-</ul>
-</li>
-<li>实数集合不可数(证明：在(0,1)上构造一个无穷序列，然后利用规则，找出一个数不属于这个序列，推出矛盾，实数集合不可数)，下面我们讨论它的基数<ul>
-<li>引理：对于每个集合A，皆有 $\sharp A &lt; \sharp \rho(A) $<ul>
-<li>$首先，我们可以定义g(a) = \{a\}使得A\rightarrow \rho(A),显然g是单射，所以\sharp A \leq \sharp \rho(A) $</li>
-<li>$然后通过反证法来证明\sharp A \neq \sharp \rho (A) $</li>
-</ul>
-</li>
-<li>因为不可数，所以 $\sharp N \neq \sharp R $，我们定义 $\sharp R = \aleph $</li>
-<li>我们可以证明：$\sharp \rho(N) = \sharp R $<ul>
-<li>证明非常的精彩，利用集合的特征函数，与实数的二进制编码</li>
-<li>任意给定一个实数，写出实数的二进制编码，对于编码上的每一位，为1则表示在对应的集合中</li>
-<li>这样我们就得到了一个实数到一个自然数集合的双射</li>
-</ul>
-</li>
-<li>所以 $\sharp R = \sharp \rho(N) &gt; \sharp N $，即 $\aleph &gt; \aleph_0 $</li>
-</ul>
-</li>
-<li>有意思的问题：<ul>
-<li>$\sharp (R \times R) = \aleph $  (思路：找一个特定的值域为R的二元连续函数)</li>
-</ul>
-</li>
-</ul>
-<blockquote>
-<p>待完善。。。</p>
-</blockquote>
-
-      </div>
-      <div class="post-tags-categories">
-        
-        <div class="tags">
-          
-            <a href="/tags/%E5%A4%A7%E4%BA%8C/" class="">
-              大二
-            </a>
-          
-            <a href="/tags/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A62/" class="">
-              离散数学2
-            </a>
-          
-            <a href="/tags/%E8%87%AA%E7%84%B6%E6%95%B0/" class="">
-              自然数
-            </a>
-          
-            <a href="/tags/%E6%95%B0%E5%AD%A6%E5%BD%92%E7%BA%B3%E6%B3%95/" class="">
-              数学归纳法
-            </a>
-          
-            <a href="/tags/%E5%9F%BA%E6%95%B0/" class="">
-              基数
-            </a>
-          
-        </div>
-        
-      </div>
-      
-        <div class="copyright">
-  <ul class="post-copyright">
-    <li class="post-copyright-author">
-    <strong>作者:  </strong>Volca Xiao</a>
-    </li>
-    <li class="post-copyright-link">
-    <strong>文章链接:  </strong>
-    <a href="/2023/02/08/离散数学（二）基数总结/" target="_blank" title="离散数学自然数归纳法与基数">http://volcaxiao.github.io/2023/02/08/离散数学（二）基数总结/</a>
-    </li>
-    <li class="post-copyright-license">
-      <strong>版权声明:   </strong>
-      本网站所有文章除特别声明外,均采用 <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">CC BY-NC-ND 4.0</a>
-      许可协议。转载请注明出处!
-    </li>
-  </ul>
-<div>
-      
-    </article>
-    <!-- 上一篇文章和下一篇文章 -->
-    
-      <!-- 文章详情页的上一页和下一页 -->
-<div class="post-nav">
-
-
-
-  
-  <div class="post-nav-prev post-nav-item">
-    <div class="post-nav-img" style="background-size: cover; 
-      background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="/images/gallery/2023Spring/1678845583930.jpeg" class="lazyload placeholder" data-srcset="/images/gallery/2023Spring/1678845583930.jpeg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-    </div>
-    <a href="/2023/02/08/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%EF%BC%88%E4%BA%8C%EF%BC%89%E5%9B%BE%E8%AE%BA%E6%80%BB%E7%BB%93/" class="post-nav-link">
-      <div class="title">
-        <i class="fas fa-angle-left"></i> 上一篇:
-        <div class="title-text">离散数学图论</div>
-      </div>
-      
-      <!-- <div class="content">
-        在写了在写了，鳖急憋急。。。
-
-图论
-图其实也就是点与关系的集合
-
-基本概念
-图论的概念特多
-无向图：$如果 \Psi:
-      </div> -->
-    </a>
-  </div>
-
-
-
-  
-  <div class="post-nav-next post-nav-item">
-    <div class="post-nav-img" style="background-size: cover; 
-      background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="/images/gallery/2023Spring/1678845584297.jpg" class="lazyload placeholder" data-srcset="/images/gallery/2023Spring/1678845584297.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" src="" alt="">
-    </div>
-    <a href="/2023/02/08/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%EF%BC%88%E4%BA%8C%EF%BC%89%E5%87%BD%E6%95%B0%E6%80%BB%E7%BB%93/" class="post-nav-link">
-      <div class="title">
-        下一篇: <i class="fas fa-angle-right"></i>
-        <div class="title-text">离散数学函数</div>
-      </div>
-      <!-- <div class="content">
-        蒟蒻博主缓考了离散，于是开始芝士总结与复习，进度（3/5）
-
-函数基本概念
-函数是一种特殊的关系，这种关系满足单值性，即
-      </div> -->
-    </a>
-  </div>
-
-</div>
-
-    
-    
-
-    <!-- 打赏 -->
-    
-
-    <!-- 分享 -->
-    
-      <!-- https://github.com/overtrue/share.js -->
-<!-- 文章详情页的分享 -->
-<div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
-
-<script src="/js/shareJs/social-share.min.js"></script>
-</script>
-
-<style>
-  .social-share {
-    margin: 20px 0;
+    <span class="title" id="tag-header-desc"></span>
+    <script>
+  function typedFn() {
+    const el = '#tag-header-desc';
+    const type = 'tagDetail';
+    let desc = '但是它们又普遍联系着'
+    var typed = new Typed(el, {
+      strings: [desc],
+      startDelay: 100,
+      typeSpeed: 100,
+      loop: true,
+      backSpeed: 50,
+      showCursor: true
+    });
   }
-</style>
-
-
-    
-    
-    <!-- 评论 -->
-    <!-- 评论 -->
-
-  <div id="myComment">
-    
-      <!-- 来必力City版安装代码 -->
-<div id="lv-container" data-id="city" data-uid="MTAyMC81NzIwMC8zMzY2NA==">
-<script type="text/javascript">
-    (function(d, s) {
-        var j, e = d.getElementsByTagName(s)[0];
-    
-        if (typeof LivereTower === 'function') { return; }
-    
-        j = d.createElement(s);
-        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
-        j.async = true;
-    
-        e.parentNode.insertBefore(j, e);
-    })(document, 'script');
+  typedFn();
 </script>
-<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
-</div>
-<!-- City版安装代码已完成 -->
     
   </div>
+  <div class="mask-box"></div>
+</div>
 
-<!-- comment script in themes\hexo-theme-bamboo\layout\_partial\scripts\index.ejs -->
 
 
+<div class="tag">
+  <div class="tag-name">
+    <div class="name" style="background-color: #D5F5E3;">内存管理 分类</div>
   </div>
+  <!-- 每一篇文章卡片 -->
+  <!-- hash算法 -->
 
-  <!-- 目录 -->
-  <aside id='l_side'>
+<section class="posts">
   
     
-      <section class="widget side_blogger">
-  <div class='content'>
-    
-      
-        <a class='avatar flat-box rectangle' href='/about/'>
-          <img src='/images/head.jpg'/>
+    <article class="post reveal" style="flex-direction: row-reverse;   ">
+      <div class="post-main">
+        <div class="post-info">
+          <div class="post-time">
+            <i class="fas fa-clock" aria-hidden="true"></i>
+            <span class="post-time">2023-04-02</span>
+          </div>
+          <div class="post-title">
+            <a class="post-title-link" href="/2023/04/02/BUAA-OS-lab2-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/">【BUAA-OS】lab2-内存管理</a>
+          </div>
+          <div class="post-meta">
+            <div class="post-tags">
+              <!-- 文章详情页的标签 -->
+
+    <i class="iconfont icontag"></i>
+    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OS/" rel="tag">OS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/" rel="tag">内存管理</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8C%97%E8%88%AA/" rel="tag">北航</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%A4%A7%E4%BA%8C/" rel="tag">大二</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%A1%B5%E5%BC%8F%E5%AD%98%E5%82%A8/" rel="tag">页式存储</a></li></ul>
+
+            </div>
+            <div class="post-categories">
+              <!-- 文章详情页的分类 -->
+
+<div class="article-category">
+  <i class="iconfont iconbookmark1"></i>
+  <a class="article-category-link" href="/categories/BUAA%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">BUAA操作系统</a>
+</div>
+
+
+            </div>
+          </div>
+          <div class="post-img-mobile">
+            <a href="/2023/04/02/BUAA-OS-lab2-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/" style="background-size: cover; 
+              background-position: center center;">
+              <img class="lazyload lazyload placeholder" src="/images/gallery/2023Spring/1678845583450.jpg" class="lazyload placeholder" data-srcset="/images/gallery/2023Spring/1678845583450.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+            </a>
+          </div>
+          <div class="post-content">
+            <p>BUAA-OS lab2实验报告，关于mos系统的内存管理机制的实现，内存初始化，二级页表，TLB重填等内容。</p>
+          </div>
+        </div>
+        <div class="post-more">
+          <a href="/2023/04/02/BUAA-OS-lab2-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/">
+            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
+          </a>
+        </div>
+      </div>
+      <div class="post-img">
+        <a href="/2023/04/02/BUAA-OS-lab2-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/" style="background-size: cover; 
+          background-position: center center;">
+          <img class="lazyload lazyload placeholder" src="/images/gallery/2023Spring/1678845583450.jpg" class="lazyload placeholder" data-srcset="/images/gallery/2023Spring/1678845583450.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
         </a>
-      
-    
-    
-      <div class='text'>
-        
-          <h2>Volca Xiao</h2>
-        
-        
-          <p>Welcome to Volca’s World</p>
-
-        
-        
-          <p><span id="jinrishici-sentence">volca's blog</span></p>
-          <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
-        
       </div>
-    
-    
-      <div class="social-wrapper">
-        
-          
-            <a href="/atom.xml"
-              class="social fas fa-rss flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="/volcaxiaoc@buaa.edu.cn"
-              class="social fas fa-envelope flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="https://github.com/volcaxiao"
-              class="social fas fa-github flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="tencent://AddContact/?fromId=50&amp;fromSubId=1&amp;subcmd=all&amp;uin=2322863798"
-              class="social fas fa-qq flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-      </div>
-    
-  </div>
+    </article>
+  
 </section>
-
-    
-  
-  
-  
-
-  <div class="layout_sticky">    
-    
-      
-<section class="widget side_toc">
-  
-  <header>
-    
-      <i style="color: " class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name' style="color: ">本文目录</span>
-    
-  </header>
-
-
-  <div class='content'>
-    <div class="toc-main">
-      <div class="toc-content">
-        <!-- <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%87%AA%E7%84%B6%E6%95%B0%E5%BD%92%E7%BA%B3%E6%B3%95%E4%B8%8E%E5%9F%BA%E6%95%B0"><span class="toc-text">自然数归纳法与基数</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%87%AA%E7%84%B6%E6%95%B0"><span class="toc-text">自然数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%AA%E7%84%B6%E6%95%B0%E6%9E%84%E9%80%A0"><span class="toc-text">自然数构造</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Peano%E5%85%AC%E7%90%86%E5%8F%8A%E8%BF%90%E7%AE%97%E6%80%A7%E8%B4%A8"><span class="toc-text">Peano公理及运算性质</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E5%AD%A6%E5%BD%92%E7%BA%B3%E6%B3%95"><span class="toc-text">数学归纳法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%95%B0"><span class="toc-text">基数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9B%86%E5%90%88%E5%A4%A7%E5%B0%8F%E7%9A%84%E5%BA%A6%E9%87%8F%E4%B8%8E%E6%AF%94%E8%BE%83"><span class="toc-text">集合大小的度量与比较</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8A%BD%E5%B1%89%E5%8E%9F%E7%90%86"><span class="toc-text">抽屉原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%A0%E7%A9%B7%E9%9B%86"><span class="toc-text">无穷集</span></a></li></ol></li></ol></li></ol> -->
-        <div class="toc"></div>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- 手机端目录按钮 -->
-<div id="toc-mobile-btn">
-  <i class="fas fa-list-ul" aria-hidden="true"></i>
 </div>
 
-      
-  <section class="widget side_recent_post">
-    
-  <header>
-    
-      <a style="color: " href='/tags/'><i class="fas fa-book fa-fw" aria-hidden="true"></i><span class='name'>最新文章</span></a>
-    
-  </header>
-
-
-    <div class='content'>
-      
-      <!-- hash算法 -->
-      
-      <div class="aside-list">
-        
-          <div class="aside-list-item">
-            
-            
-            
-
-            <div class="post-img-box">
-              <a href="/2023/04/02/BUAA-OS-lab2-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/" class="post-img " style="background-size: cover; 
-                background-position: center center;">
-                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/images/gallery/2023Spring/1678845583450.jpg" class="lazyload placeholder" data-srcset="/images/gallery/2023Spring/1678845583450.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                
-                  <span class="post-date">04-02</span>
-                
-              </div>
-              <a class="post-title" href="/2023/04/02/BUAA-OS-lab2-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/">【BUAA-OS】lab2-内存管理</a>
-            </div>
-          </div>
-        
-          <div class="aside-list-item">
-            
-            
-            
-
-            <div class="post-img-box">
-              <a href="/2023/04/02/BUAA-OO-ElevatorDispatcher-2-0/" class="post-img " style="background-size: cover; 
-                background-position: center center;">
-                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/images/gallery/2023Spring/1678845584297.jpg" class="lazyload placeholder" data-srcset="/images/gallery/2023Spring/1678845584297.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                
-                  <span class="post-date">04-02</span>
-                
-              </div>
-              <a class="post-title" href="/2023/04/02/BUAA-OO-ElevatorDispatcher-2-0/">【BUAA-OO】ElevatorDispatcher2.0</a>
-            </div>
-          </div>
-        
-          <div class="aside-list-item">
-            
-            
-            
-
-            <div class="post-img-box">
-              <a href="/2023/04/02/BUAA-OO-ElevatorDispatcher-1-0/" class="post-img " style="background-size: cover; 
-                background-position: center center;">
-                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/images/gallery/2023Spring/1678845584297.jpg" class="lazyload placeholder" data-srcset="/images/gallery/2023Spring/1678845584297.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                
-                  <span class="post-date">04-02</span>
-                
-              </div>
-              <a class="post-title" href="/2023/04/02/BUAA-OO-ElevatorDispatcher-1-0/">【BUAA-OO】ElevatorDispatcher1.0</a>
-            </div>
-          </div>
-        
-          <div class="aside-list-item">
-            
-            
-            
-
-            <div class="post-img-box">
-              <a href="/2023/03/16/BUAA-OS-lab1-%E5%86%85%E6%A0%B8%EF%BC%8C%E5%90%AF%E5%8A%A8%EF%BC%8Cprintf/" class="post-img " style="background-size: cover; 
-                background-position: center center;">
-                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OS/lab1/1.2.4.png" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OS/lab1/1.2.4.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                
-                  <span class="post-date">03-16</span>
-                
-              </div>
-              <a class="post-title" href="/2023/03/16/BUAA-OS-lab1-%E5%86%85%E6%A0%B8%EF%BC%8C%E5%90%AF%E5%8A%A8%EF%BC%8Cprintf/">【BUAA-OS】lab1_内核，启动，printf</a>
-            </div>
-          </div>
-        
-          <div class="aside-list-item">
-            
-            
-            
-
-            <div class="post-img-box">
-              <a href="/2023/03/14/%E5%8C%97%E8%88%AA%E4%BF%A1%E6%81%AF%E7%B1%BB%E6%95%B0%E5%88%86%EF%BC%88%E4%BA%8C%EF%BC%89%E8%B5%84%E6%96%99/" class="post-img " style="background-size: cover; 
-                background-position: center center;">
-                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/%E5%8C%97%E8%88%AA%E4%BF%A1%E6%81%AF%E7%B1%BB%E6%95%B0%E5%88%86%EF%BC%88%E4%B8%80%EF%BC%89%E8%B5%84%E6%96%99/emmmm.jpg" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/%E5%8C%97%E8%88%AA%E4%BF%A1%E6%81%AF%E7%B1%BB%E6%95%B0%E5%88%86%EF%BC%88%E4%B8%80%EF%BC%89%E8%B5%84%E6%96%99/emmmm.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                
-                  <span class="post-date">03-14</span>
-                
-              </div>
-              <a class="post-title" href="/2023/03/14/%E5%8C%97%E8%88%AA%E4%BF%A1%E6%81%AF%E7%B1%BB%E6%95%B0%E5%88%86%EF%BC%88%E4%BA%8C%EF%BC%89%E8%B5%84%E6%96%99/">【BUAA-数分2】北航信息类数分二资料</a>
-            </div>
-          </div>
-        
-      </div>
-    </div>
-  </section>
-
-    
-  </div>
-</aside>
-
-  <!-- 图片放大 Wrap images with fancybox support -->
-  <script src="/js/wrapImage.js"></script>
-</div>
-
-<!-- 文章详情页背景图 -->
-<div id="appBgSwiper" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -2;"
-	:style="{'background-color': bgColor ? bgColor : 'transparent'}">
-	<transition-group tag="ul" :name="names">
-		<li v-for='(image,index) in img' :key='index' v-show="index === mark" class="bg-swiper-box">
-			<img :src="image" class="bg-swiper-img no-lazy">
-		</li>
-	</transition-group>
-</div>
-<script>
-	var vm = new Vue({
-		el: '#appBgSwiper',
-		data: {
-			names: '' || 'fade' || 'fade', // translate-fade fade
-			mark: 0,
-			img: [],
-			bgColor: '',
-			time: null
-		},
-		methods: {   //添加方法
-			change(i, m) {
-				if (i > m) {
-					// this.names = 'fade';
-				} else if (i < m) {
-					// this.names = 'fade';
-				} else {
-					return;
-				}
-				this.mark = i;
-			},
-			prev() {
-				// this.names = 'fade';
-				this.mark--;
-				if (this.mark === -1) {
-					this.mark = 3;
-					return
-				}
-			},
-			next() {
-				// this.names = 'fade';
-				this.mark++;
-				if (this.mark === this.img.length) {
-					this.mark = 0;
-					return
-				}
-			},
-			autoPlay() {
-				// this.names = 'fade';
-				this.mark++;
-				if (this.mark === this.img.length) {
-					this.mark = 0;
-					return
-				}
-			},
-			play() {
-				let bgImgDelay = '' || '180000'
-				let delay = parseInt(bgImgDelay) || 180000;
-				this.time = setInterval(this.autoPlay, delay);
-			},
-			enter() {
-				clearInterval(this.time);
-			},
-			leave() {
-				this.play();
-			}
-		},
-		created() {
-			this.play()
-		},
-		beforeDestroy() {
-			clearInterval(this.time);
-		},
-		mounted() {
-			let prop = '' || '';
-			let isImg = prop.includes('.bmp') || prop.includes('.jpg') || prop.includes('.png') || prop.includes('.tif') || prop.includes('.gif') || prop.includes('.pcx') || prop.includes('.tga') || prop.includes('.exif') || prop.includes('.fpx') || prop.includes('.psd') || prop.includes('.cdr') || prop.includes('.pcd') || prop.includes('.dxf') || prop.includes('.ufo') || prop.includes('.eps') || prop.includes('.ai') || prop.includes('.raw') || prop.includes('.WMF') || prop.includes('.webp') || prop.includes('.jpeg') || prop.includes('http://') || prop.includes('https://')
-			if (isImg) {
-				let img = prop.split(',');
-				let configRoot = '/'
-				let arrImg = [];
-				img.forEach(el => {
-					var Expression = /http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w- .\/?%&=]*)?/;
-					var objExp = new RegExp(Expression);
-
-					if (objExp.test(el)) {
-						// http or https
-						arrImg.push(el);
-					} else {
-						// 非http or https开头
-						// 本地文件
-						let firstStr = el.charAt(0);
-						if (firstStr == '/') {
-							el = el.substr(1); // 删除第一个字符 '/',因为 configRoot最后一个字符为 /
-						}
-						el = configRoot + el;
-						arrImg.push(el);
-					}
-				})
-				this.img = arrImg;
-			} else {
-				this.bgColor = prop;
-			}
-		}
-	})
-</script>
-
-<style>
-	.bg-swiper-box {
-		position: absolute;
-		display: block;
-		width: 100%;
-		height: 100%;
-	}
-
-	.bg-swiper-img {
-		object-fit: cover;
-		width: 100%;
-		height: 100%;
-	}
-</style>
-
-
-  <script>
-  // https://github.com/theme-next/hexo-theme-next/blob/master/layout/_third-party/math/mathjax.swig
-  if (typeof MathJax === 'undefined') {
-    window.MathJax = {
-      loader: {
-        source: {
-          '[tex]/amsCd': '[tex]/amscd',
-          '[tex]/AMScd': '[tex]/amscd'
-        }
-      },
-      tex: {
-        inlineMath: {'[+]': [['$', '$']]},
-        tags: 'ams'
-      },
-      options: {
-        renderActions: {
-          findScript: [10, doc => {
-            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
-              const display = !!node.type.match(/; *mode=display/);
-              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
-              const text = document.createTextNode('');
-              node.parentNode.replaceChild(text, node);
-              math.start = {node: text, delim: '', n: 0};
-              math.end = {node: text, delim: '', n: 0};
-              doc.math.push(math);
-            });
-          }, '', false],
-          insertedScript: [200, () => {
-            document.querySelectorAll('mjx-container').forEach(node => {
-              let target = node.parentNode;
-              if (target.nodeName.toLowerCase() === 'li') {
-                target.parentNode.classList.add('has-jax');
-              }
-            });
-          }, '', false]
-        }
-      }
-    };
-    (function () {
-      var script = document.createElement('script');
-      script.src = 'https://unpkg.com/mathjax@3.0/es5/tex-mml-chtml.js';
-      script.defer = true;
-      document.head.appendChild(script);
-    })();
-  } else {
-    // 文章章节标题不能为 “MathJax” ，否则会报错。
-    MathJax.startup.document.state(0);
-    MathJax.texReset();
-    MathJax.typeset();
-  }
-</script>
-
-
-
-
-  <script>
-  function loadMermaid() {
-    if (document.getElementsByClassName('mermaid').length) {
-      if (window.mermaidJsLoad) mermaid.init()
-      else {
-        loadScript('https://unpkg.com/mermaid/dist/mermaid.min.js').then(() => {
-          window.mermaidJsLoad = true
-          mermaid.initialize({
-            theme: 'default',
-          })
-          if ('true') {
-            mermaid.init();
-          }
-        })
-      }
-    }
-  };
-  document.addEventListener("DOMContentLoaded", function () {
-    loadMermaid();
-  })
-
-  document.addEventListener('pjax:complete', function () {
-    loadMermaid();
-  })
+<div class="w-70">
   
-</script>
-
+</div>
 
       </main>
     </div>

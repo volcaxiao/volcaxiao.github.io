@@ -11,7 +11,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>BUAA-OO-ElevatorDispatcher-1-0 | volca&#39;s blog</title>
+  <title>【BUAA-OO】ElevatorDispatcher1.0 | volca&#39;s blog</title>
 
   <link rel="icon" type="image/png" href="/images/favicon-16x16.png">
   <link rel="stylesheet" href="https://at.alicdn.com/t/font_1911880_c1nvbyezg17.css">
@@ -628,14 +628,14 @@
 
 
 <div class="post-detail-header" id="thumbnail_canvas" style="background-repeat: no-repeat; background-size: cover; 
-  background-position: center center;position: relative;background-image:url('/images/gallery/2023Spring/1678845583725.jpg')">
+  background-position: center center;position: relative;background-image:url('/images/gallery/2023Spring/1678845584297.jpg')">
   <div class="post-detail-header-mask"></div>
   <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
   
   <div class="post-detail-header_info-box">
     <div class="title-box">
       <span class="title">
-        BUAA-OO-ElevatorDispatcher-1-0
+        【BUAA-OO】ElevatorDispatcher1.0
       </span>
     </div>
     
@@ -647,15 +647,24 @@
       
 
       
+        <span class="post-detail-header_categories">
+          <i class="iconfont iconbookmark1"></i> 分类：
+          
+            <a href="/categories/BUAA%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/" class="post-detail-header_category">
+              BUAA面向对象
+            </a>
+          
+        </span>
+      
 
       
         <div class="post-detail-header_wordcount">
           <span class="totalcount">
-            <i class="fas fa-file-text-o"></i> 字数统计: 0 |
+            <i class="fas fa-file-text-o"></i> 字数统计: 1.6k |
           </span>
   
           <span class="min2read">
-            <i class="fas fa-clock"></i> 阅读时长: 1分钟 |
+            <i class="fas fa-clock"></i> 阅读时长: 5分钟 |
           </span>
   
           
@@ -682,9 +691,155 @@
   <div class="main-content">
     <article class="post post-detail">
       <div class="post-content">
-        
+        <p>还没有写好，芝士一些打码过程中的记录，等到博客周的时候再去整理叭</p>
+<span id="more"></span>
+<h1 id="hw5-log"><a href="#hw5-log" class="headerlink" title="hw5_log"></a>hw5_log</h1><h2 id="前置知识-多线程"><a href="#前置知识-多线程" class="headerlink" title="前置知识-多线程"></a>前置知识-多线程</h2><ul>
+<li>IDEA多线程调试</li>
+<li><code>t1.yield()</code>, <code>t1.sleep()</code>, <code>t2.join()</code>, <code>o.wait()</code>, <code>o.notifiy()</code>都是调度策略，不要轮询<ul>
+<li>在共享对象中与线程对象中的调度策略是不一样的</li>
+</ul>
+</li>
+<li>如果共享对象不发出调度指令，我们需要线程互斥控制，<code>synchronized</code>关键字，每一个同步控制块都有一把锁，拿到锁的线程才能进控制块。<ul>
+<li>static于非static的区别</li>
+<li>方法级的同步控制与obj的局部代码的同步块</li>
+</ul>
+</li>
+<li>直接调用run与线程调度执行run的区别，阅读Thread类的源码与Runable的源码，发现Runable十分简单粗暴的留了个run的方法</li>
+<li>生产者模式：以智能交通系统实时统计车流为例</li>
+<li>观察者模式</li>
+<li>我们的电梯其实是一种生产消费的模式，电梯是生产者，乘客是消费者，是一种多对多的服务</li>
+</ul>
+<h2 id="需求分析"><a href="#需求分析" class="headerlink" title="需求分析"></a>需求分析</h2><ul>
+<li>需要实现一个电梯调度的系统（电梯的属性固定），尽可能快的完成乘客的请求</li>
+<li>电梯可以有可以捎带策略，基准是ALS调度策略<ul>
+<li>主请求与被捎带请求的概念</li>
+</ul>
+</li>
+<li><p>队列和楼层之间的关系是否需要更便捷的管理？</p>
+</li>
+<li><p>注意可能上了就下的极端情况（后续迭代</p>
+</li>
+</ul>
+<h2 id="可能用到的设计模式"><a href="#可能用到的设计模式" class="headerlink" title="可能用到的设计模式"></a>可能用到的设计模式</h2><ul>
+<li>生产者消费者模式：输入类作为生产者，任务表作为托盘，电梯作为消费者</li>
+<li>观察者模式：（后续迭代可能会有，比如说乘客突然改变想法</li>
+<li>工厂模式：考虑到后续自定义电梯的实现</li>
+<li>状态模式：电梯可以有好几种状态，上行下行，开门关门，满员，（故障。。。</li>
+<li>策略模式：主要考虑到，电梯策略的选择，与分派器策略的选择</li>
+<li>单例模式</li>
+<li>责任链模式</li>
+<li>master-worker模式</li>
+</ul>
+<h2 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现"></a>具体实现</h2><ul>
+<li>生产消费：<ul>
+<li>实现输入接口</li>
+<li>建立电梯的类</li>
+<li>建立请求表类<ul>
+<li>建立请求类（即passenger）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>设置策略类</p>
+<ul>
+<li>电梯策略</li>
+<li>分派器策略</li>
+</ul>
+</li>
+<li><p>为了统一代码的风格，提高效率，我这里提前对代码进行几点规定：</p>
+<ul>
+<li>设锁的房内只提供对共享资源读写的能力，其余不设锁</li>
+<li>只在取不到需求的时候wait，而且是在需求表的方法中wait，所以在Dispatcher与Elevator的类中不需要wait</li>
+<li>只在需求表这一个共享对象中设锁（其实电梯也是共享对象，但综合考虑下来，不设锁的效率更优。</li>
+</ul>
+</li>
+<li><p>在类的设置上，我遵循开闭原则，面向于接口编程，而不是面向于实现，这样能够让我轻松的迭代，所以我采取Strategy、Evaluation两个接口实现（采取策略模式，同时又方便我随时转换调度器评价方式与电梯运行策略</p>
+<ul>
+<li>第一次作业就先不利用Elevator接口了，后面有横向电梯再用</li>
+</ul>
+</li>
+<li><p>结束的策略，isEmpty()的实现，isEmpty()和isEnd()分开。</p>
+</li>
+<li>getPassenger方法，用于调度器的分派与上电梯的实现， 所以应该兼顾删除功能</li>
+<li>可以同一时间来很多人，这个也要兼顾到。<ul>
+<li>需不需要一次分派几条来提高效率？？？</li>
+<li>这里就是两种不同的选择了，这决定了RequestTable的实现</li>
+<li>如果来一个走一个的话request会很简单，因为在request里不会有过多的停留</li>
+</ul>
+</li>
+</ul>
+<h3 id="多线程控制上"><a href="#多线程控制上" class="headerlink" title="多线程控制上"></a>多线程控制上</h3><ul>
+<li>一种方法是共享数据类中<code>synchronized</code>方法</li>
+<li>另一种方法是在需求表中实现读写锁</li>
+<li>会不会在电梯来remove需求的时候notifyAll然后把那种在等待需求的wait给解了<ul>
+<li>不会，每一次锁只是所以个对象，并不会锁住这一个类</li>
+</ul>
+</li>
+<li>notify和notifyAll的区别<ul>
+<li>这点可以后面细说</li>
+</ul>
+</li>
+</ul>
+<h3 id="调度器"><a href="#调度器" class="headerlink" title="调度器"></a>调度器</h3><ul>
+<li>我应该设置一个对全局展开调度的东西，毕竟我们是六个电梯共享相同的需求，所以区分整体的调度器与各自的策略器是有必要的<ul>
+<li>而且今年的电梯有电费性能，所以我个人感觉自由竞争调度不太妥当，会使其浪费电量。</li>
+<li>所以我的策略是，在电梯和需求表之间插上一个Dispatcher，Dispatcher将一张大的需求表分成小部分分派给各个电梯，各个电梯之间独立运行（不知道其他电梯是个什么状态），（<del>等到电梯openDoor的时候再来删除总需求表中的队列，但如果人满了的话呢</del>）但我发现这样没用，调度器分配出去就不能反悔了（所以可以在总表中删除了）</li>
+</ul>
+</li>
+<li>初步调度策略是最近的一个，如果反向就加上距离<ul>
+<li>但是有弊端，就是全都同一时间输入，更有甚者都在同一个楼层向上走，那会乱</li>
+<li>所以解决方法，必需加入对于人数的考虑，人满了就不接了，或者说那个人少让哪个去</li>
+<li>然后还可以考虑等待队列的长度，等的人越多就分数低</li>
+<li>所以综合考虑下来，形成了我的DistanceEva的评价接口的实现。</li>
+<li>细说。。。</li>
+</ul>
+</li>
+</ul>
+<h3 id="电梯运行策略"><a href="#电梯运行策略" class="headerlink" title="电梯运行策略"></a>电梯运行策略</h3><ul>
+<li>这里主要用的是LOOK的策略</li>
+<li>对满员状态的处理，应该不停，不要浪费时间</li>
+<li>用ArrayList&lt; ArrayList&lt; Passenger &gt; &gt;来将所有目标楼层为同一栋的乘客放到一起，在FloorQueue中与Elevator中，他们是同一类人，方便索引。</li>
+<li>LOOK是否需要考虑前面的请求也是和运行同一方向的</li>
+</ul>
+<h2 id="优化思路"><a href="#优化思路" class="headerlink" title="优化思路"></a>优化思路</h2><ul>
+<li>单例模式实现一些东西</li>
+<li>用读写锁灵活实现</li>
+<li>增加调度及运行策略</li>
+<li>实时调度而不是六个电梯分派任务，比如说六个电梯都已经满了，那我就先不分配，先等到有空出来的再分配</li>
+<li>给请求队列加上passengerNum的属性，这样判断empty就不需要遍历了</li>
+<li>开关门在啥时候上客也有讲究，应该在关门时上客，这样可以保证所有请求是到位的</li>
+</ul>
+
       </div>
       <div class="post-tags-categories">
+        
+        <div class="tags">
+          
+            <a href="/tags/%E5%8C%97%E8%88%AA/" class="">
+              北航
+            </a>
+          
+            <a href="/tags/%E5%A4%A7%E4%BA%8C/" class="">
+              大二
+            </a>
+          
+            <a href="/tags/OO/" class="">
+              OO
+            </a>
+          
+            <a href="/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/" class="">
+              面向对象
+            </a>
+          
+            <a href="/tags/%E7%94%B5%E6%A2%AF/" class="">
+              电梯
+            </a>
+          
+            <a href="/tags/%E7%AC%AC%E4%BA%8C%E5%8D%95%E5%85%83/" class="">
+              第二单元
+            </a>
+          
+        </div>
         
       </div>
       
@@ -695,7 +850,7 @@
     </li>
     <li class="post-copyright-link">
     <strong>文章链接:  </strong>
-    <a href="/2023/04/02/BUAA-OO-ElevatorDispatcher-1-0/" target="_blank" title="BUAA-OO-ElevatorDispatcher-1-0">http://volcaxiao.github.io/2023/04/02/BUAA-OO-ElevatorDispatcher-1-0/</a>
+    <a href="/2023/04/02/BUAA-OO-ElevatorDispatcher-1-0/" target="_blank" title="【BUAA-OO】ElevatorDispatcher1.0">http://volcaxiao.github.io/2023/04/02/BUAA-OO-ElevatorDispatcher-1-0/</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明:   </strong>
@@ -717,16 +872,19 @@
   <div class="post-nav-prev post-nav-item">
     <div class="post-nav-img" style="background-size: cover; 
       background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="/images/gallery/2023Spring/1678845583725.jpg" class="lazyload placeholder" data-srcset="/images/gallery/2023Spring/1678845583725.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+      <img class="lazyload lazyload placeholder" src="/images/gallery/2023Spring/1678845584297.jpg" class="lazyload placeholder" data-srcset="/images/gallery/2023Spring/1678845584297.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
     </div>
     <a href="/2023/04/02/BUAA-OO-ElevatorDispatcher-2-0/" class="post-nav-link">
       <div class="title">
         <i class="fas fa-angle-left"></i> 上一篇:
-        <div class="title-text">BUAA-OO-ElevatorDispatcher-2-0</div>
+        <div class="title-text">【BUAA-OO】ElevatorDispatcher2.0</div>
       </div>
       
       <!-- <div class="content">
-        
+        还没有写好，芝士一些打码过程中的记录，等到博客周的时候再去整理叭
+
+hw6_log新增需求
+掌握线程安全知识并解决线程安
       </div> -->
     </a>
   </div>
@@ -901,7 +1059,7 @@ lab1_
   <div class='content'>
     <div class="toc-main">
       <div class="toc-content">
-        <!--  -->
+        <!-- <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#hw5-log"><span class="toc-text">hw5_log</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86-%E5%A4%9A%E7%BA%BF%E7%A8%8B"><span class="toc-text">前置知识-多线程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90"><span class="toc-text">需求分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%AF%E8%83%BD%E7%94%A8%E5%88%B0%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F"><span class="toc-text">可能用到的设计模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B7%E4%BD%93%E5%AE%9E%E7%8E%B0"><span class="toc-text">具体实现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%8E%A7%E5%88%B6%E4%B8%8A"><span class="toc-text">多线程控制上</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B0%83%E5%BA%A6%E5%99%A8"><span class="toc-text">调度器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%B5%E6%A2%AF%E8%BF%90%E8%A1%8C%E7%AD%96%E7%95%A5"><span class="toc-text">电梯运行策略</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%98%E5%8C%96%E6%80%9D%E8%B7%AF"><span class="toc-text">优化思路</span></a></li></ol></li></ol> -->
         <div class="toc"></div>
       </div>
     </div>
@@ -936,7 +1094,7 @@ lab1_
             <div class="post-img-box">
               <a href="/2023/04/02/BUAA-OS-lab2-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/" class="post-img " style="background-size: cover; 
                 background-position: center center;">
-                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/images/gallery/2023Spring/1678845584401.jpg" class="lazyload placeholder" data-srcset="/images/gallery/2023Spring/1678845584401.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/images/gallery/2023Spring/1678845583450.jpg" class="lazyload placeholder" data-srcset="/images/gallery/2023Spring/1678845583450.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
               </a>
             </div>
             <div class="post-date-title">
@@ -945,7 +1103,7 @@ lab1_
                   <span class="post-date">04-02</span>
                 
               </div>
-              <a class="post-title" href="/2023/04/02/BUAA-OS-lab2-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/">BUAA-OS-lab2-内存管理</a>
+              <a class="post-title" href="/2023/04/02/BUAA-OS-lab2-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/">【BUAA-OS】lab2-内存管理</a>
             </div>
           </div>
         
@@ -957,7 +1115,7 @@ lab1_
             <div class="post-img-box">
               <a href="/2023/04/02/BUAA-OO-ElevatorDispatcher-2-0/" class="post-img " style="background-size: cover; 
                 background-position: center center;">
-                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/images/gallery/2023Spring/1678845583725.jpg" class="lazyload placeholder" data-srcset="/images/gallery/2023Spring/1678845583725.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/images/gallery/2023Spring/1678845584297.jpg" class="lazyload placeholder" data-srcset="/images/gallery/2023Spring/1678845584297.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
               </a>
             </div>
             <div class="post-date-title">
@@ -966,7 +1124,7 @@ lab1_
                   <span class="post-date">04-02</span>
                 
               </div>
-              <a class="post-title" href="/2023/04/02/BUAA-OO-ElevatorDispatcher-2-0/">BUAA-OO-ElevatorDispatcher-2-0</a>
+              <a class="post-title" href="/2023/04/02/BUAA-OO-ElevatorDispatcher-2-0/">【BUAA-OO】ElevatorDispatcher2.0</a>
             </div>
           </div>
         
@@ -978,7 +1136,7 @@ lab1_
             <div class="post-img-box">
               <a href="/2023/04/02/BUAA-OO-ElevatorDispatcher-1-0/" class="post-img " style="background-size: cover; 
                 background-position: center center;">
-                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/images/gallery/2023Spring/1678845583725.jpg" class="lazyload placeholder" data-srcset="/images/gallery/2023Spring/1678845583725.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/images/gallery/2023Spring/1678845584297.jpg" class="lazyload placeholder" data-srcset="/images/gallery/2023Spring/1678845584297.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
               </a>
             </div>
             <div class="post-date-title">
@@ -987,7 +1145,7 @@ lab1_
                   <span class="post-date">04-02</span>
                 
               </div>
-              <a class="post-title" href="/2023/04/02/BUAA-OO-ElevatorDispatcher-1-0/">BUAA-OO-ElevatorDispatcher-1-0</a>
+              <a class="post-title" href="/2023/04/02/BUAA-OO-ElevatorDispatcher-1-0/">【BUAA-OO】ElevatorDispatcher1.0</a>
             </div>
           </div>
         
@@ -1164,6 +1322,59 @@ lab1_
 		height: 100%;
 	}
 </style>
+
+
+  <script>
+  // https://github.com/theme-next/hexo-theme-next/blob/master/layout/_third-party/math/mathjax.swig
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = 'https://unpkg.com/mathjax@3.0/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    // 文章章节标题不能为 “MathJax” ，否则会报错。
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
 
 
 
