@@ -628,7 +628,7 @@
 
 
 <div class="post-detail-header" id="thumbnail_canvas" style="background-repeat: no-repeat; background-size: cover; 
-  background-position: center center;position: relative;background-image:url('/images/gallery/2023Spring/1678845584297.jpg')">
+  background-position: center center;position: relative;background-image:url('https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OO/ElevatorDispatcher1.0/%E6%9E%B6%E6%9E%84%E7%A4%BA%E6%84%8F%E5%9B%BE.png')">
   <div class="post-detail-header-mask"></div>
   <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
   
@@ -660,11 +660,11 @@
       
         <div class="post-detail-header_wordcount">
           <span class="totalcount">
-            <i class="fas fa-file-text-o"></i> 字数统计: 1.6k |
+            <i class="fas fa-file-text-o"></i> 字数统计: 3.7k |
           </span>
   
           <span class="min2read">
-            <i class="fas fa-clock"></i> 阅读时长: 5分钟 |
+            <i class="fas fa-clock"></i> 阅读时长: 12分钟 |
           </span>
   
           
@@ -691,123 +691,176 @@
   <div class="main-content">
     <article class="post post-detail">
       <div class="post-content">
-        <p>还没有写好，芝士一些打码过程中的记录，等到博客周的时候再去整理叭</p>
+        <p>北航面向对象与程序设计第二单元课程作业，电梯调度器ElevatorDispatcher 1.0。<br>主要涉及多线程程序设计，设计模式的使用。</p>
 <span id="more"></span>
 <h1 id="hw5-log"><a href="#hw5-log" class="headerlink" title="hw5_log"></a>hw5_log</h1><h2 id="前置知识-多线程"><a href="#前置知识-多线程" class="headerlink" title="前置知识-多线程"></a>前置知识-多线程</h2><ul>
-<li>IDEA多线程调试</li>
-<li><code>t1.yield()</code>, <code>t1.sleep()</code>, <code>t2.join()</code>, <code>o.wait()</code>, <code>o.notifiy()</code>都是调度策略，不要轮询<ul>
-<li>在共享对象中与线程对象中的调度策略是不一样的</li>
+<li>IDEA多线程调试，试过，感觉报用，感觉还是<strong>print输出</strong>的方法最能模拟这个多线程的<strong>运行时的状态</strong>。<ul>
+<li>其实如果可以，去实现一个<strong>debug模式</strong>，输入一个标志进入debug模式（还可以有不同的debug模式），运行时输出自己想要的信息。（要不然还得自己一行一行的注释，累死，而且容易出问题，忘删了交上去浪费一次机会！</li>
 </ul>
 </li>
+<li><code>t1.yield()</code>, <code>t1.sleep()</code>, <code>t2.join()</code>, <code>o.wait()</code>, <code>o.notifiy()</code>都是调度策略，<strong>不要轮询</strong></li>
 <li>如果共享对象不发出调度指令，我们需要线程互斥控制，<code>synchronized</code>关键字，每一个同步控制块都有一把锁，拿到锁的线程才能进控制块。<ul>
-<li>static于非static的区别</li>
-<li>方法级的同步控制与obj的局部代码的同步块</li>
+<li>对于这里，如果刚刚学多线程，会有点迷惑，这个块有什么用，我觉得可以带着这个疑问看下去，理会区分<strong>类和线程之间的差别</strong>。</li>
+<li>static于非static的区别，<strong>锁对象和锁类</strong>的区别。</li>
+<li>方法级的同步控制与obj的局部代码的同步块，其实是一样的，只是说把synchronized块放到方法上的话，<strong>同步块就是一整个方法</strong>。</li>
 </ul>
 </li>
-<li>直接调用run与线程调度执行run的区别，阅读Thread类的源码与Runable的源码，发现Runable十分简单粗暴的留了个run的方法</li>
-<li>生产者模式：以智能交通系统实时统计车流为例</li>
-<li>观察者模式</li>
-<li>我们的电梯其实是一种生产消费的模式，电梯是生产者，乘客是消费者，是一种多对多的服务</li>
+<li>直接调用run与线程调度执行run的区别，阅读Thread类的源码与Runable的源码，发现Runable十分简单粗暴的留了个run的方法，所以区别在于，直接调用run方法其实只相当于<strong>执行了一个函数</strong>，并没有创建一个线程，<strong>创建线程需要Thread类的start方法</strong>。所以一般不要去直接调用run方法。</li>
+<li>生产者模式，观察者模式，这是两种比较典型的多线程设计模式，这个可以后面说。<ul>
+<li>我们的电梯其实是一种很明显的生产消费的模式，输入线程是需求的生产者，电梯是需求的消费者，是一种一对多的服务，当然没那么简单，这个后面再说。</li>
+</ul>
+</li>
 </ul>
 <h2 id="需求分析"><a href="#需求分析" class="headerlink" title="需求分析"></a>需求分析</h2><ul>
 <li>需要实现一个电梯调度的系统（电梯的属性固定），尽可能快的完成乘客的请求</li>
 <li>电梯可以有可以捎带策略，基准是ALS调度策略<ul>
-<li>主请求与被捎带请求的概念</li>
+<li>但是我选择大家的选择LOOK策略，因为我觉得这个方法更加<strong>能够灵活应对增加的请求</strong>，同时用户等待时间也会比较短。</li>
 </ul>
 </li>
 <li><p>队列和楼层之间的关系是否需要更便捷的管理？</p>
+<ul>
+<li>我选择<strong>分楼层管理请求队列</strong>，方便查询。</li>
+</ul>
 </li>
-<li><p>注意可能上了就下的极端情况（后续迭代</p>
+<li><p>注意可能上了就下的极端情况（后续迭代，但是好像没有，预测失败。。。</p>
 </li>
 </ul>
 <h2 id="可能用到的设计模式"><a href="#可能用到的设计模式" class="headerlink" title="可能用到的设计模式"></a>可能用到的设计模式</h2><ul>
-<li>生产者消费者模式：输入类作为生产者，任务表作为托盘，电梯作为消费者</li>
-<li>观察者模式：（后续迭代可能会有，比如说乘客突然改变想法</li>
+<li><strong>生产者消费者模式</strong>：输入类作为生产者，任务表作为托盘，电梯作为消费者（其实并不是</li>
+<li>观察者模式：（后续迭代可能会有，比如说乘客突然改变想法，但是也没有，再次预测失败呜呜呜</li>
 <li>工厂模式：考虑到后续自定义电梯的实现</li>
-<li>状态模式：电梯可以有好几种状态，上行下行，开门关门，满员，（故障。。。</li>
-<li>策略模式：主要考虑到，电梯策略的选择，与分派器策略的选择</li>
+<li>状态模式：电梯可以有好几种状态，上行下行，开门关门，满员，（故障，预测成功！！！</li>
+<li><strong>策略模式</strong>：主要考虑到，电梯策略的选择，与分派器策略的选择</li>
 <li>单例模式</li>
 <li>责任链模式</li>
 <li>master-worker模式</li>
 </ul>
 <h2 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现"></a>具体实现</h2><ul>
-<li>生产消费：<ul>
+<li><p>生产消费模型：</p>
+<ul>
 <li>实现输入接口</li>
-<li>建立电梯的类</li>
 <li>建立请求表类<ul>
 <li>建立请求类（即passenger）</li>
 </ul>
 </li>
+<li>建立调度器类（这个不是必须的，但是后续迭代中逐渐变得必须了起来</li>
+<li>建立电梯的类</li>
+<li>实现输出接口</li>
 </ul>
 </li>
 <li><p>设置策略类</p>
 <ul>
 <li>电梯策略</li>
-<li>分派器策略</li>
+<li>调度器策略</li>
 </ul>
 </li>
 <li><p>为了统一代码的风格，提高效率，我这里提前对代码进行几点规定：</p>
 <ul>
 <li>设锁的房内只提供对共享资源读写的能力，其余不设锁</li>
-<li>只在取不到需求的时候wait，而且是在需求表的方法中wait，所以在Dispatcher与Elevator的类中不需要wait</li>
+<li>只在取不到需求的时候wait，而且是<strong>在需求表的方法中wait</strong>，所以在Dispatcher与Elevator的类中不需要wait，让共享对象自己来做好自己的管理</li>
 <li>只在需求表这一个共享对象中设锁（其实电梯也是共享对象，但综合考虑下来，不设锁的效率更优。</li>
 </ul>
 </li>
-<li><p>在类的设置上，我遵循开闭原则，面向于接口编程，而不是面向于实现，这样能够让我轻松的迭代，所以我采取Strategy、Evaluation两个接口实现（采取策略模式，同时又方便我随时转换调度器评价方式与电梯运行策略</p>
+<li><p>在类的设置上，我遵循开闭原则，面向于接口编程，而不是面向于实现，这样能够让我轻松的迭代，所以我采取Strategy、Evaluation两个接口实现（采取<strong>策略模式</strong>，同时又方便我随时转换调度器评价方式与电梯运行策略</p>
 <ul>
-<li>第一次作业就先不利用Elevator接口了，后面有横向电梯再用</li>
+<li>第一次作业就先不利用Elevator接口了，后面有横向电梯再用（但是没有，呜呜呜。。。</li>
 </ul>
 </li>
-<li><p>结束的策略，isEmpty()的实现，isEmpty()和isEnd()分开。</p>
-</li>
-<li>getPassenger方法，用于调度器的分派与上电梯的实现， 所以应该兼顾删除功能</li>
-<li>可以同一时间来很多人，这个也要兼顾到。<ul>
-<li>需不需要一次分派几条来提高效率？？？</li>
-<li>这里就是两种不同的选择了，这决定了RequestTable的实现</li>
-<li>如果来一个走一个的话request会很简单，因为在request里不会有过多的停留</li>
-</ul>
+<li><p>上面是任务清单，可能比较的模糊，可以看下面的架构~</p>
 </li>
 </ul>
-<h3 id="多线程控制上"><a href="#多线程控制上" class="headerlink" title="多线程控制上"></a>多线程控制上</h3><ul>
-<li>一种方法是共享数据类中<code>synchronized</code>方法</li>
-<li>另一种方法是在需求表中实现读写锁</li>
-<li>会不会在电梯来remove需求的时候notifyAll然后把那种在等待需求的wait给解了<ul>
-<li>不会，每一次锁只是所以个对象，并不会锁住这一个类</li>
+<h3 id="整体架构与uml“类”类图"><a href="#整体架构与uml“类”类图" class="headerlink" title="整体架构与uml“类”类图"></a>整体架构与uml“类”类图</h3><ul>
+<li>在总体上，我实现了以<strong>生产者消费者模型为主体的架构</strong>，架构示意图大体如下（仅表意，不是严格的类图）：<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OO/ElevatorDispatcher1.0/%E6%9E%B6%E6%9E%84%E7%A4%BA%E6%84%8F%E5%9B%BE.png" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OO/ElevatorDispatcher1.0/%E6%9E%B6%E6%9E%84%E7%A4%BA%E6%84%8F%E5%9B%BE.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="架构示意图"></li>
 </ul>
-</li>
-<li>notify和notifyAll的区别<ul>
-<li>这点可以后面细说</li>
+<h4 id="整体架构模式"><a href="#整体架构模式" class="headerlink" title="整体架构模式"></a>整体架构模式</h4><ul>
+<li>我们可以看到，输入线程和dispatch线程共享一个Request的对象（我们后续称之为<strong>总表</strong>），这是一个生产消费的模型。而且dispatch线程又分别和每一个电梯的运行线程共享一个Request的对象（称为<strong>分表</strong>），这也分别是生产消费的模型。<strong>dispatch线程既是总表的消费者，又是分表的生产者</strong>。<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OO/ElevatorDispatcher1.0/%E7%94%9F%E4%BA%A7%E6%B6%88%E8%B4%B9%E6%A8%A1%E5%9E%8B.png" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OO/ElevatorDispatcher1.0/%E7%94%9F%E4%BA%A7%E6%B6%88%E8%B4%B9%E6%A8%A1%E5%9E%8B.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="生产消费模型"></li>
+<li>然后我们可以看到，在课上有同学提到的<strong>master-worker模型</strong>，在这里也有体现，我们可以看到，dispatcher<strong>统一管理</strong>所有的电梯，它是master将任务分派给不同的worker，像是一个分布式的计算集群（当然我们这里是服务处理集群）。</li>
+<li>但这里需要重点辨析的一点是，在这里<strong>电梯对象存在线程不安全的问题</strong>，是一个由check-then-act引起的<strong>读取不到最新结果</strong>的问题，因为dispather需要对每部电梯的运行状态进行评估分派，所以需要读电梯的数据，但与此同时，电梯的数据是在改变的，所以线程不安全。也就是说，这里电梯这个类的对象，是电梯线程和dispatch线程的共享对象！！！<ul>
+<li>说到这就不得不提一嘴<strong>线程和类之间的关系</strong>了，这一点助教在课上有提过一下，我的理解是线程并不属于类，类里面的<strong>run方法只是一个线程的入口</strong>，像main也是一个入口而已。所以类可以被自己创造的线程访问，在我们这，电梯是一个共享对象，它被dispatch行为的线程和elevate行为的线程给共享访问了。</li>
+<li>我怎么解决这个问题呢，嘿嘿，我第一作业没有解决这个问题（摆手，因为我觉得给电梯加锁的行为不太可取，它会显式的阻塞电梯线程的运行，会拖慢我的速度，而且我也是第二次作业才发现这个问题）<ul>
+<li>剧透一点，在第二次迭代的博客里，我会重点介绍一些<del>歪门邪道</del>，能够解决这个问题。</li>
 </ul>
 </li>
 </ul>
-<h3 id="调度器"><a href="#调度器" class="headerlink" title="调度器"></a>调度器</h3><ul>
-<li>我应该设置一个对全局展开调度的东西，毕竟我们是六个电梯共享相同的需求，所以区分整体的调度器与各自的策略器是有必要的<ul>
-<li>而且今年的电梯有电费性能，所以我个人感觉自由竞争调度不太妥当，会使其浪费电量。</li>
-<li>所以我的策略是，在电梯和需求表之间插上一个Dispatcher，Dispatcher将一张大的需求表分成小部分分派给各个电梯，各个电梯之间独立运行（不知道其他电梯是个什么状态），（<del>等到电梯openDoor的时候再来删除总需求表中的队列，但如果人满了的话呢</del>）但我发现这样没用，调度器分配出去就不能反悔了（所以可以在总表中删除了）</li>
+</li>
+</ul>
+<blockquote>
+<p>再剧透一点，这其实很适用于第二次的迭代，因为电梯要maintain把请求放回去，其实也就是电梯线程也变成了总表的生产者（图中标为new的曲线），这又增加了一层生产消费的模型。</p>
+</blockquote>
+<h4 id="策略模式的应用"><a href="#策略模式的应用" class="headerlink" title="策略模式的应用"></a>策略模式的应用</h4><ul>
+<li>我们直观上来看，有两个地方需要用到策略：<strong>分派策略</strong>，<strong>运行策略</strong>。</li>
+<li>所以我们可以使用策略模式，策略模式中，需要用到策略的对象拥有一个策略的属性，这个属性是一个<strong>策略的接口</strong>，然后具体的策略我们只需要用一个策略类去实现这样一个接口，而且我们注意到，这个接口甚至只需要一个方法，就是<code>getStrategy(...)</code>。后续需要<strong>变更方法或者增量开发</strong>的时候只需要将<strong>接口的实现切换</strong>就行。</li>
+<li>与之对比的是，用不同具体方法的分派器的类去继承分派器的类，读者可以自行体会一下这两者之间的差异，体会一下<strong>面向接口</strong>编程的优点。</li>
+<li>如下图，在我们这次作业中电梯可以有运行策略，分派器可以有分派策略：<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OO/ElevatorDispatcher1.0/%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F.png" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OO/ElevatorDispatcher1.0/%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="策略模式"></li>
+</ul>
+<blockquote>
+<p>所以你甚至可以设想给<strong>不同的电梯装载不同的策略</strong>，然后调度的时候结合不同的策略的特点来调度。或者说在不同的情况下，应用分派器相应的不同的分派策略。十分的灵活十分的好玩，而且迭代加功能的时候，面向接口有不同的实现就行了。（但是我没有实现，懒orz）</p>
+</blockquote>
+<h3 id="电梯运行策略的选择——LOOK"><a href="#电梯运行策略的选择——LOOK" class="headerlink" title="电梯运行策略的选择——LOOK"></a>电梯运行策略的选择——LOOK</h3><ul>
+<li>这里主要用的是LOOK的策略<ul>
+<li>LOOK需要考虑前面的请求也是和运行同一方向的</li>
+<li>但其实其他同学（包括往届学长的博客里对LOOK的策略解读的比较的全面了，所以我就不对具体策略进行解读了，下面是伪代码的实现（我觉得这样可能更加直观，<strong>每走一步获取一下strategy</strong></li>
 </ul>
 </li>
-<li>初步调度策略是最近的一个，如果反向就加上距离<ul>
-<li>但是有弊端，就是全都同一时间输入，更有甚者都在同一个楼层向上走，那会乱</li>
-<li>所以解决方法，必需加入对于人数的考虑，人满了就不接了，或者说那个人少让哪个去</li>
-<li>然后还可以考虑等待队列的长度，等的人越多就分数低</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">LookStrategy</span> <span class="keyword">implements</span> <span class="title class_">Strategy</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> Status <span class="title function_">getStrategy</span><span class="params">(Elevator elevator)</span> &#123;</span><br><span class="line">        <span class="comment">//判断电梯是否需要开门</span></span><br><span class="line">        <span class="keyword">if</span> (canOpenForIn() || canOpenForOut())</span><br><span class="line">            <span class="keyword">return</span> OPEN;</span><br><span class="line">        <span class="comment">//判断电梯是否有人·</span></span><br><span class="line">        <span class="keyword">if</span> (!elevator.isEmpty()) &#123;</span><br><span class="line">            <span class="keyword">return</span> MOVE;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">//请求队列中是否有人</span></span><br><span class="line">            <span class="keyword">if</span> (!passengerQueue.isEmpty()) &#123;</span><br><span class="line">                <span class="comment">//人在原方向还是反方向</span></span><br><span class="line">                <span class="keyword">if</span> (pasInSameDir())</span><br><span class="line">                    <span class="keyword">return</span> MOVE;</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                    <span class="keyword">return</span> REVERSE;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="comment">//请求队列输入是否结束</span></span><br><span class="line">                <span class="keyword">if</span> (passengerQueue.isEnd())</span><br><span class="line">                    <span class="keyword">return</span> END;</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                    <span class="keyword">return</span> WAIT;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>对满员状态的处理：应该不停，不要浪费时间</li>
+<li>用ArrayList&lt; ArrayList&lt; Passenger &gt; &gt;来将<strong>所有楼层一样</strong>的乘客放到一起，在RequestTable中把同一<strong>fromFloor</strong>的乘客放在一起，在Elevator中，把<strong>toFloor</strong>一样的乘客放在一起。他们是同一类人，<strong>方便索引</strong>。</li>
+</ul>
+<h3 id="调度器的实现"><a href="#调度器的实现" class="headerlink" title="调度器的实现"></a>调度器的实现</h3><ul>
+<li>我应该设置一个对<strong>全局展开调度</strong>的东西，毕竟我们是六个电梯共享相同的需求，为了<strong>用电量的考虑</strong>，我每个请求只能让一个电梯去动！<ul>
+<li>感觉自由竞争调度<strong>不太妥当</strong>，会使其浪费电量，最后发现自由竞争其实可以拿到90+的分数，但是不会太高。</li>
+<li>所以我的策略是，在电梯和需求表之间插上一个<strong>Dispatcher</strong>，Dispatcher将一张大的需求表分成<strong>小部分分派</strong>给各个电梯，各个电梯之间独立运行（不知道其他电梯是个什么状态），</li>
+<li>调度器分配出去就不能反悔了（所以<strong>可以在总表中删除了，如果可以反悔，那不就是自由竞争嘛</strong>！）</li>
+</ul>
+</li>
+<li>初步调度策略是<strong>最近的一个</strong>，如果反向就加上距离<ul>
+<li>但是有弊端，就是全都同一时间输入，更有甚者都在同一个楼层向上走，那会乱<ul>
+<li>所以解决方法，必需加入<strong>对于人数的考虑</strong>，人满了就不接了，或者说哪个人少让哪个去</li>
+</ul>
+</li>
+<li>然后还可以考虑<strong>等待队列的长度</strong>，等的人越多就分数低</li>
 <li>所以综合考虑下来，形成了我的DistanceEva的评价接口的实现。</li>
-<li>细说。。。</li>
+<li>下面细说：</li>
 </ul>
 </li>
 </ul>
-<h3 id="电梯运行策略"><a href="#电梯运行策略" class="headerlink" title="电梯运行策略"></a>电梯运行策略</h3><ul>
-<li>这里主要用的是LOOK的策略</li>
-<li>对满员状态的处理，应该不停，不要浪费时间</li>
-<li>用ArrayList&lt; ArrayList&lt; Passenger &gt; &gt;来将所有目标楼层为同一栋的乘客放到一起，在FloorQueue中与Elevator中，他们是同一类人，方便索引。</li>
-<li>LOOK是否需要考虑前面的请求也是和运行同一方向的</li>
+<h4 id="调度策略的选择——DistanceEva-自创偷懒评价"><a href="#调度策略的选择——DistanceEva-自创偷懒评价" class="headerlink" title="调度策略的选择——DistanceEva(自创偷懒评价)"></a>调度策略的选择——DistanceEva(自创偷懒评价)</h4><ul>
+<li>与其说是一种Distance评价法，其实不如说是一种<strong>综合评价法</strong>，因为我后续加入了许许多多的指标，在调参之后，能够达到接近影子电梯（这个第二次博客有谈到）的水平。</li>
+<li>我假设电梯是一个<strong>最高层（或者最底层）到它现在要到的最底层（或者最高层）的一个来回工作的圈</strong>，计算还要走多少楼，电梯才能接到这个乘客<ul>
+<li>比如，我在7楼要下行，但是这个电梯现在在6楼下行到2楼，那它现在就需要先到2楼，再上行到11楼，再下行到7楼，才能接到我。算出来Distance是4+9+4=17。</li>
 </ul>
-<h2 id="优化思路"><a href="#优化思路" class="headerlink" title="优化思路"></a>优化思路</h2><ul>
-<li>单例模式实现一些东西</li>
-<li>用读写锁灵活实现</li>
-<li>增加调度及运行策略</li>
-<li>实时调度而不是六个电梯分派任务，比如说六个电梯都已经满了，那我就先不分配，先等到有空出来的再分配</li>
-<li>给请求队列加上passengerNum的属性，这样判断empty就不需要遍历了</li>
-<li>开关门在啥时候上客也有讲究，应该在关门时上客，这样可以保证所有请求是到位的</li>
+</li>
+<li>然后考虑到<strong>几个会影响电梯的评分的指标</strong>，经过调参之后，最后评价方式变成了这样：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> (<span class="type">int</span>) (<span class="number">22</span> - distance - elevator.getPassengerQueue().getPassengerNum() * <span class="number">2.2</span> - elevator.getPassengerNum() * <span class="number">2</span>);</span><br></pre></td></tr></table></figure>
+<h4 id="强扭的瓜不甜，你可以找到更好的-调度的考虑"><a href="#强扭的瓜不甜，你可以找到更好的-调度的考虑" class="headerlink" title="强扭的瓜不甜，你可以找到更好的(调度的考虑)"></a>强扭的瓜不甜，你可以找到更好的(调度的考虑)</h4><ul>
+<li>但是回到了最开始的一个的问题，如果一下子输入许许多多的请求，dispatcher就把它们全都分配出去了！然后发现随着电梯的运行，有些电梯装不下了，有的乘客可能一开始<strong>遇上的不是对的电梯</strong>。<ul>
+<li>所以，强扭的瓜不甜。如果每个电梯的评价<strong>都不是很高</strong>，那我们就<strong>先不分配</strong>，让它<strong>留在总表里</strong>，等待分配的时机。</li>
+<li>然后，递归下去<strong>查另一个人的情况</strong>。</li>
+</ul>
+</li>
+<li>所以我们必须知道分配有没有成功，如果一个人都没分配出去，说明现在<strong>所有电梯都不适合增加任何一个请求</strong>。<ul>
+<li>所以dispatch的方法需要带上返回值！</li>
+<li>然后如果<strong>返回false，需要阻塞，避免轮询</strong>。<ul>
+<li>可以通过wait电梯的同步块的请求，但是我没有给电梯设同步块。</li>
+<li>所以我是<strong>简单的sleep</strong>，我发现sleep(50)的时候，效果最好。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>下面是dispatch递归分配结构的<strong>伪代码实现</strong></li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">boolean</span> <span class="title function_">dispatch</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">Passenger</span> <span class="variable">passenger</span> <span class="operator">=</span> requestTable.getAndRemovePas();</span><br><span class="line">    <span class="keyword">if</span> (passenger == <span class="literal">null</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    bestEle = getBestEle(passenger);</span><br><span class="line">    <span class="comment">//没有合适的就返回null,继续递归寻找下一个，return后再把现在那个给加回去</span></span><br><span class="line">    <span class="keyword">if</span> (bestEle == <span class="literal">null</span>) &#123;</span><br><span class="line">        isDisped = dispatch();</span><br><span class="line">        requestTable.add(passenger);</span><br><span class="line">        <span class="keyword">return</span> isDised;</span><br><span class="line">    &#125;</span><br><span class="line">    bestElePasQueue.add(passenger);</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="最后最需要注意的——结束条件"><a href="#最后最需要注意的——结束条件" class="headerlink" title="最后最需要注意的——结束条件"></a>最后最需要注意的——结束条件</h3><ul>
+<li>第一次作业的结束条件还比较的简单，但后续几次迭代的时候，如果发现<strong>电梯死锁了</strong>，电梯<strong>有请求没有处理</strong>，分派器<strong>有请求没有分配出去</strong>等等问题，那就要好好思考一下是不是<strong>提早结束了，或者还没结束</strong>。</li>
+<li>给请求队列加上passengerNum的属性，这样判断empty就不需要遍历了。</li>
+</ul>
+<h2 id="一些未实现的优化思路"><a href="#一些未实现的优化思路" class="headerlink" title="一些未实现的优化思路"></a>一些未实现的优化思路</h2><ul>
+<li><strong>单例模式</strong>实现一些东西（规范！</li>
+<li>用<strong>读写锁</strong>灵活实现互斥与同步控制</li>
+<li>增加<strong>调度及运行策略</strong>（灵活选择！</li>
 </ul>
 
       </div>
@@ -872,7 +925,7 @@
   <div class="post-nav-prev post-nav-item">
     <div class="post-nav-img" style="background-size: cover; 
       background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="/images/gallery/2023Spring/1678845584297.jpg" class="lazyload placeholder" data-srcset="/images/gallery/2023Spring/1678845584297.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+      <img class="lazyload lazyload placeholder" src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OO/ElevatorDispatcher2.0/uml.png" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OO/ElevatorDispatcher2.0/uml.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
     </div>
     <a href="/2023/04/02/BUAA-OO-ElevatorDispatcher-2-0/" class="post-nav-link">
       <div class="title">
@@ -881,10 +934,7 @@
       </div>
       
       <!-- <div class="content">
-        还没有写好，芝士一些打码过程中的记录，等到博客周的时候再去整理叭
-
-hw6_log新增需求
-掌握线程安全知识并解决线程安
+        北航面向对象与程序设计第二单元课程作业，电梯调度器ElevatorDispatcher 2.0。为1.0的迭代，新增需求
       </div> -->
     </a>
   </div>
@@ -1059,7 +1109,7 @@ lab1_
   <div class='content'>
     <div class="toc-main">
       <div class="toc-content">
-        <!-- <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#hw5-log"><span class="toc-text">hw5_log</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86-%E5%A4%9A%E7%BA%BF%E7%A8%8B"><span class="toc-text">前置知识-多线程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90"><span class="toc-text">需求分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%AF%E8%83%BD%E7%94%A8%E5%88%B0%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F"><span class="toc-text">可能用到的设计模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B7%E4%BD%93%E5%AE%9E%E7%8E%B0"><span class="toc-text">具体实现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%8E%A7%E5%88%B6%E4%B8%8A"><span class="toc-text">多线程控制上</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B0%83%E5%BA%A6%E5%99%A8"><span class="toc-text">调度器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%B5%E6%A2%AF%E8%BF%90%E8%A1%8C%E7%AD%96%E7%95%A5"><span class="toc-text">电梯运行策略</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%98%E5%8C%96%E6%80%9D%E8%B7%AF"><span class="toc-text">优化思路</span></a></li></ol></li></ol> -->
+        <!-- <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#hw5-log"><span class="toc-text">hw5_log</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86-%E5%A4%9A%E7%BA%BF%E7%A8%8B"><span class="toc-text">前置知识-多线程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90"><span class="toc-text">需求分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%AF%E8%83%BD%E7%94%A8%E5%88%B0%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F"><span class="toc-text">可能用到的设计模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B7%E4%BD%93%E5%AE%9E%E7%8E%B0"><span class="toc-text">具体实现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84%E4%B8%8Euml%E2%80%9C%E7%B1%BB%E2%80%9D%E7%B1%BB%E5%9B%BE"><span class="toc-text">整体架构与uml“类”类图</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84%E6%A8%A1%E5%BC%8F"><span class="toc-text">整体架构模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%BA%94%E7%94%A8"><span class="toc-text">策略模式的应用</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%B5%E6%A2%AF%E8%BF%90%E8%A1%8C%E7%AD%96%E7%95%A5%E7%9A%84%E9%80%89%E6%8B%A9%E2%80%94%E2%80%94LOOK"><span class="toc-text">电梯运行策略的选择——LOOK</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B0%83%E5%BA%A6%E5%99%A8%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="toc-text">调度器的实现</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%B0%83%E5%BA%A6%E7%AD%96%E7%95%A5%E7%9A%84%E9%80%89%E6%8B%A9%E2%80%94%E2%80%94DistanceEva-%E8%87%AA%E5%88%9B%E5%81%B7%E6%87%92%E8%AF%84%E4%BB%B7"><span class="toc-text">调度策略的选择——DistanceEva(自创偷懒评价)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BC%BA%E6%89%AD%E7%9A%84%E7%93%9C%E4%B8%8D%E7%94%9C%EF%BC%8C%E4%BD%A0%E5%8F%AF%E4%BB%A5%E6%89%BE%E5%88%B0%E6%9B%B4%E5%A5%BD%E7%9A%84-%E8%B0%83%E5%BA%A6%E7%9A%84%E8%80%83%E8%99%91"><span class="toc-text">强扭的瓜不甜，你可以找到更好的(调度的考虑)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%80%E5%90%8E%E6%9C%80%E9%9C%80%E8%A6%81%E6%B3%A8%E6%84%8F%E7%9A%84%E2%80%94%E2%80%94%E7%BB%93%E6%9D%9F%E6%9D%A1%E4%BB%B6"><span class="toc-text">最后最需要注意的——结束条件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E4%BA%9B%E6%9C%AA%E5%AE%9E%E7%8E%B0%E7%9A%84%E4%BC%98%E5%8C%96%E6%80%9D%E8%B7%AF"><span class="toc-text">一些未实现的优化思路</span></a></li></ol></li></ol> -->
         <div class="toc"></div>
       </div>
     </div>
@@ -1092,6 +1142,27 @@ lab1_
             
 
             <div class="post-img-box">
+              <a href="/2023/04/14/BUAA-OO-ElevatorDispatcher-3-0/" class="post-img " style="background-size: cover; 
+                background-position: center center;">
+                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OO/ElevatorDispatcher3.0/codeMR%E5%88%86%E6%9E%90.png" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OO/ElevatorDispatcher3.0/codeMR%E5%88%86%E6%9E%90.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+              </a>
+            </div>
+            <div class="post-date-title">
+              <div>
+                
+                  <span class="post-date">04-14</span>
+                
+              </div>
+              <a class="post-title" href="/2023/04/14/BUAA-OO-ElevatorDispatcher-3-0/">【BUAA-OO】ElevatorDispatcher3.0</a>
+            </div>
+          </div>
+        
+          <div class="aside-list-item">
+            
+            
+            
+
+            <div class="post-img-box">
               <a href="/2023/04/02/BUAA-OS-lab2-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/" class="post-img " style="background-size: cover; 
                 background-position: center center;">
                 <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/images/gallery/2023Spring/1678845583450.jpg" class="lazyload placeholder" data-srcset="/images/gallery/2023Spring/1678845583450.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
@@ -1115,7 +1186,7 @@ lab1_
             <div class="post-img-box">
               <a href="/2023/04/02/BUAA-OO-ElevatorDispatcher-2-0/" class="post-img " style="background-size: cover; 
                 background-position: center center;">
-                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/images/gallery/2023Spring/1678845584297.jpg" class="lazyload placeholder" data-srcset="/images/gallery/2023Spring/1678845584297.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OO/ElevatorDispatcher2.0/uml.png" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OO/ElevatorDispatcher2.0/uml.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
               </a>
             </div>
             <div class="post-date-title">
@@ -1136,7 +1207,7 @@ lab1_
             <div class="post-img-box">
               <a href="/2023/04/02/BUAA-OO-ElevatorDispatcher-1-0/" class="post-img " style="background-size: cover; 
                 background-position: center center;">
-                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/images/gallery/2023Spring/1678845584297.jpg" class="lazyload placeholder" data-srcset="/images/gallery/2023Spring/1678845584297.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OO/ElevatorDispatcher1.0/%E6%9E%B6%E6%9E%84%E7%A4%BA%E6%84%8F%E5%9B%BE.png" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OO/ElevatorDispatcher1.0/%E6%9E%B6%E6%9E%84%E7%A4%BA%E6%84%8F%E5%9B%BE.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
               </a>
             </div>
             <div class="post-date-title">
@@ -1167,27 +1238,6 @@ lab1_
                 
               </div>
               <a class="post-title" href="/2023/03/16/BUAA-OS-lab1-%E5%86%85%E6%A0%B8%EF%BC%8C%E5%90%AF%E5%8A%A8%EF%BC%8Cprintf/">【BUAA-OS】lab1_内核，启动，printf</a>
-            </div>
-          </div>
-        
-          <div class="aside-list-item">
-            
-            
-            
-
-            <div class="post-img-box">
-              <a href="/2023/03/14/%E5%8C%97%E8%88%AA%E4%BF%A1%E6%81%AF%E7%B1%BB%E6%95%B0%E5%88%86%EF%BC%88%E4%BA%8C%EF%BC%89%E8%B5%84%E6%96%99/" class="post-img " style="background-size: cover; 
-                background-position: center center;">
-                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/%E5%8C%97%E8%88%AA%E4%BF%A1%E6%81%AF%E7%B1%BB%E6%95%B0%E5%88%86%EF%BC%88%E4%B8%80%EF%BC%89%E8%B5%84%E6%96%99/emmmm.jpg" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/%E5%8C%97%E8%88%AA%E4%BF%A1%E6%81%AF%E7%B1%BB%E6%95%B0%E5%88%86%EF%BC%88%E4%B8%80%EF%BC%89%E8%B5%84%E6%96%99/emmmm.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                
-                  <span class="post-date">03-14</span>
-                
-              </div>
-              <a class="post-title" href="/2023/03/14/%E5%8C%97%E8%88%AA%E4%BF%A1%E6%81%AF%E7%B1%BB%E6%95%B0%E5%88%86%EF%BC%88%E4%BA%8C%EF%BC%89%E8%B5%84%E6%96%99/">【BUAA-数分2】北航信息类数分二资料</a>
             </div>
           </div>
         

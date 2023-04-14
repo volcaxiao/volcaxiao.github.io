@@ -11,7 +11,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>标签: 大二 | volca&#39;s blog</title>
+  <title>【BUAA-OO】ElevatorDispatcher3.0 | volca&#39;s blog</title>
 
   <link rel="icon" type="image/png" href="/images/favicon-16x16.png">
   <link rel="stylesheet" href="https://at.alicdn.com/t/font_1911880_c1nvbyezg17.css">
@@ -615,341 +615,766 @@
 </header>
         <!-- 内容区域 -->
         
+ <!-- prismjs 代码高亮 -->
+ 
 
-<div class="bg-dark-floor" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -2;"></div>
-<div class="bg-light-floor-tagDetail" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -3;"></div>
 
-<div class="tag-header" style="background-image: url('/images/gallery/2023Spring/1678845583502.jpg');">
-  <div class="tag-header-title">
-    tag
-  </div>
-  <div class="tag-header-desc">
+<div class="bg-dark-floor" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -1;"></div>
+
+
+  <!-- 文章详情页顶部图片和标题 -->
+
+
+
+
+<div class="post-detail-header" id="thumbnail_canvas" style="background-repeat: no-repeat; background-size: cover; 
+  background-position: center center;position: relative;background-image:url('https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OO/ElevatorDispatcher3.0/codeMR%E5%88%86%E6%9E%90.png')">
+  <div class="post-detail-header-mask"></div>
+  <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
   
-    <span class="title" id="tag-header-desc"></span>
-    <script>
-  function typedFn() {
-    const el = '#tag-header-desc';
-    const type = 'tagDetail';
-    let desc = '但是它们又普遍联系着'
-    var typed = new Typed(el, {
-      strings: [desc],
-      startDelay: 100,
-      typeSpeed: 100,
-      loop: true,
-      backSpeed: 50,
-      showCursor: true
-    });
-  }
-  typedFn();
-</script>
-    
-  </div>
-  <div class="mask-box"></div>
-</div>
-
-
-
-<div class="tag">
-  <div class="tag-name">
-    <div class="name" style="background-color: #F9E79F;">大二 分类</div>
-  </div>
-  <!-- 每一篇文章卡片 -->
-  <!-- hash算法 -->
-
-<section class="posts">
-  
-    
-    <article class="post reveal" style="flex-direction: row-reverse;   ">
-      <div class="post-main">
-        <div class="post-info">
-          <div class="post-time">
-            <i class="fas fa-clock" aria-hidden="true"></i>
-            <span class="post-time">2022-10-12</span>
-          </div>
-          <div class="post-title">
-            <a class="post-title-link" href="/2022/10/12/BUAA-CO-p2mips%E6%B1%87%E7%BC%96%E7%BF%BB%E8%AF%91C%E4%BB%A3%E7%A0%81%E5%85%B8%E4%BE%8B/">【BUAA-CO】p2mips汇编翻译C代码典例</a>
-          </div>
-          <div class="post-meta">
-            <div class="post-tags">
-              <!-- 文章详情页的标签 -->
-
-    <i class="iconfont icontag"></i>
-    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CO/" rel="tag">CO</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MIPS/" rel="tag">MIPS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/P2/" rel="tag">P2</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8C%97%E8%88%AA/" rel="tag">北航</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%A4%A7%E4%BA%8C/" rel="tag">大二</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%A1%E7%BB%84/" rel="tag">计组</a></li></ul>
-
-            </div>
-            <div class="post-categories">
-              <!-- 文章详情页的分类 -->
-
-<div class="article-category">
-  <i class="iconfont iconbookmark1"></i>
-  <a class="article-category-link" href="/categories/BUAA%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/">BUAA计算机组成原理</a>
-</div>
-
-
-            </div>
-          </div>
-          <div class="post-img-mobile">
-            <a href="/2022/10/12/BUAA-CO-p2mips%E6%B1%87%E7%BC%96%E7%BF%BB%E8%AF%91C%E4%BB%A3%E7%A0%81%E5%85%B8%E4%BE%8B/" style="background-size: cover; 
-              background-position: center center;">
-              <img class="lazyload lazyload placeholder" src="/images/gallery/2023Spring/1678845583865.jpg" class="lazyload placeholder" data-srcset="/images/gallery/2023Spring/1678845583865.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-            </a>
-          </div>
-          <div class="post-content">
-            <p>汇编语言是一种比机械码稍高级一点的语言，而MIPS的汇编语言是一种专用于MIPS架构的CPU的汇编语言，相较于ARM，X86等现在主流的架构的汇编语言，MIPS较为简单，适合入门。<br>MIPS汇编语言是可以一对一翻译成机械码的，每条指令的翻译规则不同，这里需要查手册来解决。<br>至于我们学的C/C++等高级语言，也可以翻译成汇编语言，这个过程叫编译，一般来说编译器可以办成这件事，但对于我们需要学习MIPS的人来说，这需要咱们自己来。</p>
-          </div>
-        </div>
-        <div class="post-more">
-          <a href="/2022/10/12/BUAA-CO-p2mips%E6%B1%87%E7%BC%96%E7%BF%BB%E8%AF%91C%E4%BB%A3%E7%A0%81%E5%85%B8%E4%BE%8B/">
-            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
-          </a>
-        </div>
-      </div>
-      <div class="post-img">
-        <a href="/2022/10/12/BUAA-CO-p2mips%E6%B1%87%E7%BC%96%E7%BF%BB%E8%AF%91C%E4%BB%A3%E7%A0%81%E5%85%B8%E4%BE%8B/" style="background-size: cover; 
-          background-position: center center;">
-          <img class="lazyload lazyload placeholder" src="/images/gallery/2023Spring/1678845583865.jpg" class="lazyload placeholder" data-srcset="/images/gallery/2023Spring/1678845583865.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-        </a>
-      </div>
-    </article>
-  
-    
-    <article class="post reveal" style="   ">
-      <div class="post-main">
-        <div class="post-info">
-          <div class="post-time">
-            <i class="fas fa-clock" aria-hidden="true"></i>
-            <span class="post-time">2022-09-13</span>
-          </div>
-          <div class="post-title">
-            <a class="post-title-link" href="/2022/09/13/%E5%B7%A5%E7%A7%91%E5%A4%A7%E7%89%A9-%E7%83%AD%E5%8A%9B%E5%AD%A6%E5%9F%BA%E7%A1%80%E6%80%BB%E7%BB%93/">工科大物-热力学基础总结</a>
-          </div>
-          <div class="post-meta">
-            <div class="post-tags">
-              <!-- 文章详情页的标签 -->
-
-    <i class="iconfont icontag"></i>
-    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%A4%A7%E4%BA%8C/" rel="tag">大二</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%83%AD%E5%8A%9B%E5%AD%A6/" rel="tag">热力学</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%83%AD%E5%8A%9B%E5%AD%A6%E5%9F%BA%E7%A1%80/" rel="tag">热力学基础</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%89%A9%E7%90%86/" rel="tag">物理</a></li></ul>
-
-            </div>
-            <div class="post-categories">
-              <!-- 文章详情页的分类 -->
-
-<div class="article-category">
-  <i class="iconfont iconbookmark1"></i>
-  <a class="article-category-link" href="/categories/%E5%B7%A5%E7%A7%91%E5%A4%A7%E5%AD%A6%E7%89%A9%E7%90%86/">工科大学物理</a>
-</div>
-
-
-            </div>
-          </div>
-          <div class="post-img-mobile">
-            <a href="/2022/09/13/%E5%B7%A5%E7%A7%91%E5%A4%A7%E7%89%A9-%E7%83%AD%E5%8A%9B%E5%AD%A6%E5%9F%BA%E7%A1%80%E6%80%BB%E7%BB%93/" style="background-size: cover; 
-              background-position: center center;">
-              <img class="lazyload lazyload placeholder" src="/images/gallery/2023Spring/1678845583687.jpg" class="lazyload placeholder" data-srcset="/images/gallery/2023Spring/1678845583687.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-            </a>
-          </div>
-          <div class="post-content">
-            <p>系边上老师的课边做的一些笔记以及自己的一些想法，但有时候可能会拖更，分享给大家，有不妥之处，敬请评论区指正。</p>
-          </div>
-        </div>
-        <div class="post-more">
-          <a href="/2022/09/13/%E5%B7%A5%E7%A7%91%E5%A4%A7%E7%89%A9-%E7%83%AD%E5%8A%9B%E5%AD%A6%E5%9F%BA%E7%A1%80%E6%80%BB%E7%BB%93/">
-            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
-          </a>
-        </div>
-      </div>
-      <div class="post-img">
-        <a href="/2022/09/13/%E5%B7%A5%E7%A7%91%E5%A4%A7%E7%89%A9-%E7%83%AD%E5%8A%9B%E5%AD%A6%E5%9F%BA%E7%A1%80%E6%80%BB%E7%BB%93/" style="background-size: cover; 
-          background-position: center center;">
-          <img class="lazyload lazyload placeholder" src="/images/gallery/2023Spring/1678845583687.jpg" class="lazyload placeholder" data-srcset="/images/gallery/2023Spring/1678845583687.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-        </a>
-      </div>
-    </article>
-  
-    
-    <article class="post reveal" style="flex-direction: row-reverse;   ">
-      <div class="post-main">
-        <div class="post-info">
-          <div class="post-time">
-            <i class="fas fa-clock" aria-hidden="true"></i>
-            <span class="post-time">2022-09-10</span>
-          </div>
-          <div class="post-title">
-            <a class="post-title-link" href="/2022/09/10/OO-pre-Summary/">【BUAA-OO】pre_Summary</a>
-          </div>
-          <div class="post-meta">
-            <div class="post-tags">
-              <!-- 文章详情页的标签 -->
-
-    <i class="iconfont icontag"></i>
-    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OO/" rel="tag">OO</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pre/" rel="tag">pre</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8C%97%E8%88%AA/" rel="tag">北航</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%A4%A7%E4%BA%8C/" rel="tag">大二</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/" rel="tag">面向对象</a></li></ul>
-
-            </div>
-            <div class="post-categories">
-              <!-- 文章详情页的分类 -->
-
-<div class="article-category">
-  <i class="iconfont iconbookmark1"></i>
-  <a class="article-category-link" href="/categories/BUAA%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/">BUAA面向对象</a>
-</div>
-
-
-            </div>
-          </div>
-          <div class="post-img-mobile">
-            <a href="/2022/09/10/OO-pre-Summary/" style="background-size: cover; 
-              background-position: center center;">
-              <img class="lazyload lazyload placeholder" src="/images/gallery/2023Spring/1678845583725.jpg" class="lazyload placeholder" data-srcset="/images/gallery/2023Spring/1678845583725.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-            </a>
-          </div>
-          <div class="post-content">
-            <p>常见styleCheck报错改进合集，git相关知识，在题解过程中了解java语法以及面向对象知识</p>
-          </div>
-        </div>
-        <div class="post-more">
-          <a href="/2022/09/10/OO-pre-Summary/">
-            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
-          </a>
-        </div>
-      </div>
-      <div class="post-img">
-        <a href="/2022/09/10/OO-pre-Summary/" style="background-size: cover; 
-          background-position: center center;">
-          <img class="lazyload lazyload placeholder" src="/images/gallery/2023Spring/1678845583725.jpg" class="lazyload placeholder" data-srcset="/images/gallery/2023Spring/1678845583725.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-        </a>
-      </div>
-    </article>
-  
-    
-    <article class="post reveal" style="   ">
-      <div class="post-main">
-        <div class="post-info">
-          <div class="post-time">
-            <i class="fas fa-clock" aria-hidden="true"></i>
-            <span class="post-time">2022-09-06</span>
-          </div>
-          <div class="post-title">
-            <a class="post-title-link" href="/2022/09/06/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%EF%BC%88%E4%BA%8C%EF%BC%89%E7%AC%AC%E4%BA%94%E7%AB%A0%E6%80%BB%E7%BB%93/">离散数学集合论</a>
-          </div>
-          <div class="post-meta">
-            <div class="post-tags">
-              <!-- 文章详情页的标签 -->
-
-    <i class="iconfont icontag"></i>
-    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%A4%A7%E4%BA%8C/" rel="tag">大二</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A62/" rel="tag">离散数学2</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9B%86%E5%90%88/" rel="tag">集合</a></li></ul>
-
-            </div>
-            <div class="post-categories">
-              <!-- 文章详情页的分类 -->
-
-<div class="article-category">
-  <i class="iconfont iconbookmark1"></i>
-  <a class="article-category-link" href="/categories/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%EF%BC%88%E4%BA%8C%EF%BC%89/">离散数学（二）</a>
-</div>
-
-
-            </div>
-          </div>
-          <div class="post-img-mobile">
-            <a href="/2022/09/06/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%EF%BC%88%E4%BA%8C%EF%BC%89%E7%AC%AC%E4%BA%94%E7%AB%A0%E6%80%BB%E7%BB%93/" style="background-size: cover; 
-              background-position: center center;">
-              <img class="lazyload lazyload placeholder" src="/images/gallery/2023Spring/1678845583450.jpg" class="lazyload placeholder" data-srcset="/images/gallery/2023Spring/1678845583450.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-            </a>
-          </div>
-          <div class="post-content">
-            <p>也系边上老师的课边做的一些笔记以及自己的一些想法，但有时候可能会拖更，分享给大家，有不妥之处，敬请评论区指正。</p>
-          </div>
-        </div>
-        <div class="post-more">
-          <a href="/2022/09/06/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%EF%BC%88%E4%BA%8C%EF%BC%89%E7%AC%AC%E4%BA%94%E7%AB%A0%E6%80%BB%E7%BB%93/">
-            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
-          </a>
-        </div>
-      </div>
-      <div class="post-img">
-        <a href="/2022/09/06/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%EF%BC%88%E4%BA%8C%EF%BC%89%E7%AC%AC%E4%BA%94%E7%AB%A0%E6%80%BB%E7%BB%93/" style="background-size: cover; 
-          background-position: center center;">
-          <img class="lazyload lazyload placeholder" src="/images/gallery/2023Spring/1678845583450.jpg" class="lazyload placeholder" data-srcset="/images/gallery/2023Spring/1678845583450.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-        </a>
-      </div>
-    </article>
-  
-    
-    <article class="post reveal" style="flex-direction: row-reverse;   ">
-      <div class="post-main">
-        <div class="post-info">
-          <div class="post-time">
-            <i class="fas fa-clock" aria-hidden="true"></i>
-            <span class="post-time">2022-09-06</span>
-          </div>
-          <div class="post-title">
-            <a class="post-title-link" href="/2022/09/06/%E5%B7%A5%E7%A7%91%E5%A4%A7%E7%89%A9-%E6%B0%94%E4%BD%93%E5%8A%A8%E7%90%86%E8%AE%BA%E6%80%BB%E7%BB%93/">工科大物-气体动理论总结</a>
-          </div>
-          <div class="post-meta">
-            <div class="post-tags">
-              <!-- 文章详情页的标签 -->
-
-    <i class="iconfont icontag"></i>
-    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%A4%A7%E4%BA%8C/" rel="tag">大二</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%B0%94%E4%BD%93%E5%8A%A8%E7%90%86%E8%AE%BA/" rel="tag">气体动理论</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%83%AD%E5%8A%9B%E5%AD%A6/" rel="tag">热力学</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%89%A9%E7%90%86/" rel="tag">物理</a></li></ul>
-
-            </div>
-            <div class="post-categories">
-              <!-- 文章详情页的分类 -->
-
-<div class="article-category">
-  <i class="iconfont iconbookmark1"></i>
-  <a class="article-category-link" href="/categories/%E5%B7%A5%E7%A7%91%E5%A4%A7%E5%AD%A6%E7%89%A9%E7%90%86/">工科大学物理</a>
-</div>
-
-
-            </div>
-          </div>
-          <div class="post-img-mobile">
-            <a href="/2022/09/06/%E5%B7%A5%E7%A7%91%E5%A4%A7%E7%89%A9-%E6%B0%94%E4%BD%93%E5%8A%A8%E7%90%86%E8%AE%BA%E6%80%BB%E7%BB%93/" style="background-size: cover; 
-              background-position: center center;">
-              <img class="lazyload lazyload placeholder" src="/images/gallery/2023Spring/1678845583915.jpg" class="lazyload placeholder" data-srcset="/images/gallery/2023Spring/1678845583915.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-            </a>
-          </div>
-          <div class="post-content">
-            <p>系边上老师的课边做的一些笔记以及自己的一些想法，但有时候可能会拖更，分享给大家，有不妥之处，敬请评论区指正。</p>
-          </div>
-        </div>
-        <div class="post-more">
-          <a href="/2022/09/06/%E5%B7%A5%E7%A7%91%E5%A4%A7%E7%89%A9-%E6%B0%94%E4%BD%93%E5%8A%A8%E7%90%86%E8%AE%BA%E6%80%BB%E7%BB%93/">
-            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
-          </a>
-        </div>
-      </div>
-      <div class="post-img">
-        <a href="/2022/09/06/%E5%B7%A5%E7%A7%91%E5%A4%A7%E7%89%A9-%E6%B0%94%E4%BD%93%E5%8A%A8%E7%90%86%E8%AE%BA%E6%80%BB%E7%BB%93/" style="background-size: cover; 
-          background-position: center center;">
-          <img class="lazyload lazyload placeholder" src="/images/gallery/2023Spring/1678845583915.jpg" class="lazyload placeholder" data-srcset="/images/gallery/2023Spring/1678845583915.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-        </a>
-      </div>
-    </article>
-  
-</section>
-</div>
-
-<div class="w-70">
-  
-  <!-- <nav class="page-nav">
-    <a class="extend prev" rel="prev" href="/tags/%E5%A4%A7%E4%BA%8C/page/2/">上一页</a><a class="page-number" href="/tags/%E5%A4%A7%E4%BA%8C/">1</a><a class="page-number" href="/tags/%E5%A4%A7%E4%BA%8C/page/2/">2</a><span class="page-number current">3</span>
-  </nav> -->
-  <div class="page-nav">
-    
-      <a href="/tags/%E5%A4%A7%E4%BA%8C/page/2/"
-         class="page-nav-pre">
-         <i class="fas fa-angle-left"></i><span class="ml-5">上一页</span>
-      </a>
-    
-    <div class="page-info">
-        <div class="page-info-text">3 / 3</div>
+  <div class="post-detail-header_info-box">
+    <div class="title-box">
+      <span class="title">
+        【BUAA-OO】ElevatorDispatcher3.0
+      </span>
     </div>
     
+    
+      
+        <span class="post-detail-header_date">
+          <i class="fas fa-calendar"></i> 发表于：2023-04-14 |
+        </span>
+      
+
+      
+        <span class="post-detail-header_categories">
+          <i class="iconfont iconbookmark1"></i> 分类：
+          
+            <a href="/categories/BUAA%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/" class="post-detail-header_category">
+              BUAA面向对象
+            </a>
+          
+        </span>
+      
+
+      
+        <div class="post-detail-header_wordcount">
+          <span class="totalcount">
+            <i class="fas fa-file-text-o"></i> 字数统计: 2.8k |
+          </span>
+  
+          <span class="min2read">
+            <i class="fas fa-clock"></i> 阅读时长: 10分钟 |
+          </span>
+  
+          
+            <span class="reading">
+              <i class="fas fa-eye"></i> 阅读量：<span id="busuanzi_value_page_pv"></span>
+            </span>
+          
+        </div>
+      
+    
+  </div>
+  
+  
+    <script src="/js/bubble/bubble.js"></script>
+  
+</div>
+
+
+
+
+
+<div class="post-detail-content post-row" 
+  style="padding-top: 0px;">
+  <div class="main-content">
+    <article class="post post-detail">
+      <div class="post-content">
+        <p>北航面向对象与程序设计第二单元课程作业，电梯调度器ElevatorDispatcher 3.0。<br>为2.0的迭代，新增需求：</p>
+<ol>
+<li>限制同楼层服务电梯。</li>
+<li>电梯可达楼层属性限制。</li>
+</ol>
+<span id="more"></span>
+<h1 id="hw7-log"><a href="#hw7-log" class="headerlink" title="hw7_log"></a>hw7_log</h1><h2 id="新增需求"><a href="#新增需求" class="headerlink" title="新增需求"></a>新增需求</h2><ul>
+<li>调度上有一点变化，限制了<strong>楼层停靠电梯的数量</strong></li>
+<li>电梯可达性分析，一部电梯不一定能在所有的楼层停靠，所以需要考虑<strong>换乘的问题</strong>。（这一点的跨度很大，所以得好好分析需求</li>
+</ul>
+<h2 id="需求分析"><a href="#需求分析" class="headerlink" title="需求分析"></a>需求分析</h2><ul>
+<li>限制同楼层<strong>服务中电梯的个数</strong>与<strong>只接人电梯的个数</strong><ul>
+<li>这其实是对openAndClose做出的限制，而且<strong>满了的话也只好阻塞一下</strong>，等别的电梯退出服务状态再运行，没有什么好的优化办法（总不能说不下客了叭）。</li>
+<li>这个请求我想到的是交给总表来解决，因为电梯可以访问到总表，所以每一次开门和关门的时候都让<strong>总表的标志位+1-1</strong>就行了<ul>
+<li>说到这，我觉得requestTable其实承担了太多的责任，这样<strong>其实是不好的</strong>，不符合单一责任的原则。</li>
+<li>我给我的RequestTable类<strong>改名为KanbanBoard</strong>，这样感觉更加贴切。</li>
+</ul>
+</li>
+<li>后来我知道了一个<strong>信号量</strong>的做法，挺好用的，但是来不及实现了。</li>
+</ul>
+</li>
+<li>对于电梯的可达性，这是电梯的一个final性质。<ul>
+<li>我觉得可以在dispatcher里<strong>动态维护一个电梯可达图</strong>，在addEle与maintain的时候对它做出改变。（但是我最终没有实现。</li>
+<li>我选择在每一次需要获取从某层到某层的距离的时候，直接使用<strong>电梯的canAccess</strong>方法。</li>
+</ul>
+</li>
+<li>给乘客加上<strong>乘坐路径的属性</strong>，然后原来的直接去的楼层属性改为<strong>destination</strong>。</li>
+</ul>
+<h2 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现"></a>具体实现</h2><ul>
+<li>第三次作业结束了，uml类图如下，由于一个比较好的架构，三次作业我只增加了一个类，就是关于<strong>路径规划</strong>的类：</li>
+</ul>
+<p><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OO/ElevatorDispatcher3.0/uml.png" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OO/ElevatorDispatcher3.0/uml.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="uml"></p>
+<h3 id="同楼层服务电梯的数量限制"><a href="#同楼层服务电梯的数量限制" class="headerlink" title="同楼层服务电梯的数量限制"></a>同楼层服务电梯的数量限制</h3><ul>
+<li>这个比较好实现，按照我上面需求分析的做法做就好了在每次开关门的时候都<strong>请示一下KanbanBoard</strong>。</li>
+<li>但是我在这个地方出了一个<strong>很傻的bug</strong>！！！<ul>
+<li>因为我在maintain之后电梯的开关门是自行实现的，而不是调用的openAndClose方法，所以我在<strong>maintain的时候没有请示</strong>。</li>
+<li>这导致强测WA了两个点，呜呜呜呜呜。</li>
+</ul>
+</li>
+</ul>
+<h3 id="可达性分析（路径规划"><a href="#可达性分析（路径规划" class="headerlink" title="可达性分析（路径规划"></a>可达性分析（路径规划</h3><ul>
+<li><p>在做这个可达性分析的时候，我非常的纠结，有过想大改的冲动，但是在<strong>一点一点的摸索</strong>中也探寻到了一个较好的方法。（从下面这幅图就能够看出来我有多纠结了。。。<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OO/ElevatorDispatcher3.0/%E7%BA%A0%E7%BB%93ing.png" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OO/ElevatorDispatcher3.0/%E7%BA%A0%E7%BB%93ing.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="纠结ing"></p>
+</li>
+<li><p>所以确实现实不太允许我去这么做了，所以我的策略还是对于每一个需要dispatch出去的乘客，我先对他<strong>进行可达性分析</strong>，决定他<strong>下一步要去往哪一层</strong>，然后就<strong>照常分派</strong>，到不了那一层的电梯，我就直接不考虑就行。</p>
+<ul>
+<li>所以这样我就抽象出来了两条，<strong>路线规划</strong>与<strong>电梯选择</strong>，电梯选择我早就用<strong>Evaluation接口</strong>做好了。路线规划我也采取一种<strong>综合评价的方法</strong>，也采用<strong>策略模式，接口命名为PathPlanning</strong>，首先是一定要<strong>可达</strong>，可达的其次是可选择的<strong>电梯数量</strong>，这条路径上<strong>人多不多</strong>，<strong>电梯的属性</strong>。。。</li>
+<li>这些属性将在哪体现，这就涉及到我们探究可达路径的方法，其实无论是<strong>dfs还是floyd还是dijstra</strong>，只需要注意<strong>加权路径的权重怎么给</strong>，就可以灵活的解决我们这个规划最短路径的问题了。</li>
+</ul>
+</li>
+<li>另外需要给乘客加上乘坐路径的属性<ul>
+<li>这个属性是dispatcher给他规划的，所以对于电梯而言，只需要看路程属性即可。不需要关注目的地。</li>
+</ul>
+</li>
+<li>所以电梯又多出来一个生产的途径，要多多考<strong>虑一下结束条件</strong>了。</li>
+</ul>
+<h4 id="路径规划及权重考虑"><a href="#路径规划及权重考虑" class="headerlink" title="路径规划及权重考虑"></a>路径规划及权重考虑</h4><ul>
+<li>路径规划的实现：（<strong>自定义边权重</strong>）dijstra算法</li>
+<li>关于dijstra算法的具体实现我这里就具体，网上的板子挺多的，可以选取一个单源dijstra算法实现抄一抄。我这里也给出大致的实现（<strong>仅仅表意</strong>，请根据自己的需要改编）。</li>
+<li>但注意由于我不是一种纯静态的实现，所以我把<strong>路径整个都记录了下来</strong>（很简单，用一个数组记录前驱节点即可）。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> Passenger <span class="title function_">planPath</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="comment">//初始化三个数组</span></span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">     * result: 存起点到每个点的当前的最短路径</span></span><br><span class="line"><span class="comment">      * visited: 记录下这个点的最短路径是否已经找到</span></span><br><span class="line"><span class="comment">      * prevs: 记录下找到这个点的前驱节点</span></span><br><span class="line"><span class="comment">      */</span></span><br><span class="line">    <span class="type">int</span>[] result = <span class="keyword">new</span> <span class="title class_">int</span>[<span class="number">11</span>];</span><br><span class="line">    <span class="type">boolean</span>[] visited = <span class="keyword">new</span> <span class="title class_">boolean</span>[<span class="number">11</span>];</span><br><span class="line">    <span class="type">int</span>[] prevs = <span class="keyword">new</span> <span class="title class_">int</span>[<span class="number">11</span>];</span><br><span class="line">    <span class="comment">//初始化，没有找到前驱节点的点数组值为-2，初始点前驱节点为-1</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; <span class="number">11</span>; i++) &#123;</span><br><span class="line">        result[i] = Integer.MAX_VALUE;</span><br><span class="line">        prevs[i] = -<span class="number">2</span>;</span><br><span class="line">        visited[i] = <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    prevs[fromFloor] = -<span class="number">1</span>;</span><br><span class="line">    <span class="type">int</span> <span class="variable">curFloor</span> <span class="operator">=</span> fromFloor;</span><br><span class="line">    result[curFloor] = <span class="number">0</span>;</span><br><span class="line">    <span class="comment">//循环寻路</span></span><br><span class="line">    <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">        <span class="comment">//此楼层的最短路径已找到，如果这个楼层是目的地，则退出</span></span><br><span class="line">        visited[curFloor] = <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">if</span> (curFloor == destination) &#123;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//循环遍历这个点到每个未访问点的距离</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; <span class="number">11</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (!visited[i]) &#123;</span><br><span class="line">                <span class="type">int</span> <span class="variable">distance</span> <span class="operator">=</span> getVirtualDistance(curFloor, i);</span><br><span class="line">                <span class="keyword">if</span> (distance != Integer.MAX_VALUE) &#123;</span><br><span class="line">                     <span class="comment">//如果路径较短，更新result，将此节点记为前驱节点。</span></span><br><span class="line">                     <span class="keyword">if</span> (result[i] &gt; result[curFloor] + distance) &#123;</span><br><span class="line">                         result[i] = result[curFloor] + distance;</span><br><span class="line">                         prevs[i] = curFloor;</span><br><span class="line">                    &#125;</span><br><span class="line">                 &#125;</span><br><span class="line">             &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//找所有已有的result中的最短距离,更新所在楼层</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">minLen</span> <span class="operator">=</span> Integer.MAX_VALUE;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; <span class="number">11</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (!visited[i] &amp;&amp; result[i] &lt;= minLen) &#123;</span><br><span class="line">                curFloor = i;</span><br><span class="line">                minLen = result[i];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//到destination距离最大，不可达，数据的问题，报错</span></span><br><span class="line">    <span class="keyword">if</span> (result[destination] == Integer.MAX_VALUE) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">IllegalStateException</span>(<span class="string">&quot;passenger &quot;</span> + passenger.getId() + <span class="string">&quot; can&#x27;t reach destination&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//现在给前驱数组压栈，找到前驱为-1，则当前点就是要去的楼层，这里是我的实现（用栈的结构来表示乘客下一个要去的地方。</span></span><br><span class="line">    <span class="keyword">while</span> (prevs[prevs[curFloor]] &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">        passenger.pushToFloor(curFloor + <span class="number">1</span>);</span><br><span class="line">        curFloor = prevs[curFloor];</span><br><span class="line">        cnt++;</span><br><span class="line">    &#125;</span><br><span class="line">    passenger.pushToFloor(curFloor + <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">return</span> passenger;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>写了这么一大堆dijstra，其实最重要最关键最灵活的是<strong>路径权重的选取</strong>，也就是<code>int distance = getVirtualDistance(curFloor, i)</code>这一句。<ul>
+<li>路径权重可以考虑的有<strong>距离，换乘次数，最合适的电梯的评分</strong>（可能这条路上没有合适的电梯）。。。</li>
+<li>这是最为灵活的，如果你想<strong>尽量少换乘</strong>，就可以每一次getDistance的时候就<strong>加上一个巨大的权重</strong>，让它能够忽略其他的值。</li>
+</ul>
+</li>
+</ul>
+<h4 id="动态还是静态？有一点折中"><a href="#动态还是静态？有一点折中" class="headerlink" title="动态还是静态？有一点折中"></a>动态还是静态？有一点折中</h4><ul>
+<li>关于<strong>动态</strong>的给乘客规划路径（即乘客每走过一程就重新规划一下），<strong>还是静态</strong>规划（即一开始就给乘客规定好，后面就按照这条路径走，有maintain的时候另说）。我觉得都有其优缺点。<ul>
+<li>我这里采取的<strong>不是动态规划</strong>的方式，是因为我的加权路径计算比较的复杂，会遇上一个乘客<strong>在相邻两楼之间来回穿梭</strong>的bug。</li>
+<li>但是我采用的也<strong>不是静态</strong>的规划，因为很难假定乘客走完这一程之后<strong>电梯是否发生了天翻地覆的变化</strong>。</li>
+</ul>
+</li>
+<li>还记得我说过我的“<strong>不强扭瓜</strong>”的<strong>分派方式</strong>嘛，我这里可以与这种分派方式做<strong>一个适配</strong>。<ul>
+<li>即：一开始给乘客<strong>规划好所有的路径</strong>，然后每次乘客回到总表中重新分派的时候，如果<strong>有合适的电梯</strong>能够满足他的下一个需求的话，<strong>就使用</strong>这部电梯。<strong>如果没有</strong>！那就给这个乘客<strong>重新规划路径</strong>。这是一种<strong>半动态的方式</strong>。</li>
+</ul>
+</li>
+</ul>
+<h3 id="DistanceEva！改改还能用"><a href="#DistanceEva！改改还能用" class="headerlink" title="DistanceEva！改改还能用"></a>DistanceEva！改改还能用</h3><ul>
+<li>distance只需要改动两点，就能够在这一次的迭代中，达到可观的效果。</li>
+<li>一点是考虑到<strong>电梯的可达性</strong>，我再假定从1楼到11楼不合理了，应该是<strong>从可达的最低楼层到最高楼层</strong></li>
+<li>另外的一点新的考虑是，其实对于<strong>电梯里的人与请求的人</strong>的考虑，我认为，<strong>不应该是线性的</strong>了！！！！！<ul>
+<li>电梯剩余可载人数有三人和有五人有什么区别嘛？至少<strong>对于一个人</strong>是否<strong>能上这部电梯</strong>是没有区别的！！！</li>
+<li>所以我对于人数上的分数有一定的调整。</li>
+</ul>
+</li>
+<li>经过参数调优之后，结果如下：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> (<span class="type">int</span>) ((<span class="number">33</span> - distance - elevator.passengerStatus() - speed * <span class="number">17</span> - accessNum) / (speed * speed * accessNum));</span><br><span class="line"><span class="comment">//其中，电梯类的passengerStatus方法实现如下(可以看到是个阶梯状)：</span></span><br><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">passengerStatus</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">double</span> <span class="variable">busyIndex</span> <span class="operator">=</span> fullPasNum * <span class="number">1.3</span> - passengerNum * <span class="number">1.1</span> - passengerQueue.getPassengerNum();</span><br><span class="line">    <span class="keyword">if</span> (busyIndex &gt; <span class="number">3</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (busyIndex &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">3</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (busyIndex &gt; -<span class="number">3</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">7</span> + (<span class="type">int</span>) (<span class="number">0.5</span> * passengerQueue.getPassengerNum());</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">10</span> + passengerQueue.getPassengerNum();</span><br><span class="line">    &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="结束条件"><a href="#结束条件" class="headerlink" title="结束条件"></a>结束条件</h3><ul>
+<li>结束条件也需要改动了，因为只要<strong>有电梯在动</strong>，就有可能<strong>有新需求</strong>，所以dispatcher不应该这么早结束。<ul>
+<li>结束条件再加一条，所有电梯都是wait或者maintain的状态，分派才结束！</li>
+</ul>
+</li>
+</ul>
+<h2 id="代码分析"><a href="#代码分析" class="headerlink" title="代码分析"></a>代码分析</h2><ul>
+<li>我用jetbrains自己家的<strong>codeMR插件</strong>（雪牲又<strong>可以白嫖</strong>，快冲）分析了一份结果出来。还挺好看的，但是我有些东西看不太懂，而且它以本地html的形式展现，我懒得弄上net了，就不放上来了，效果如下图：<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OO/ElevatorDispatcher3.0/codeMR%E5%88%86%E6%9E%90.png" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OO/ElevatorDispatcher3.0/codeMR%E5%88%86%E6%9E%90.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="codeMR分析"></li>
+<li><p>其实可以看出，虽然我从一到三次迭代从未重构，还算考虑周全，但是确实<strong>最后Elevator类，KanbanBoard类</strong>的<strong>复杂度</strong>还是太高了一点，<strong>代码行数</strong>也比较的恐怖，其实也本应该多做一点细分的。<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OO/ElevatorDispatcher3.0/%E4%BB%A3%E7%A0%81%E8%A1%8C%E6%95%B0.png" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OO/ElevatorDispatcher3.0/%E4%BB%A3%E7%A0%81%E8%A1%8C%E6%95%B0.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="代码行数"><br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OO/ElevatorDispatcher3.0/%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%88%86%E6%9E%90.png" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OO/ElevatorDispatcher3.0/%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%88%86%E6%9E%90.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="复杂度分析"></p>
+</li>
+<li><p>然后可以看到，圈复杂度比较高的都是些<strong>评价的算法</strong>，这个是因为我的评价体系确实<strong>考虑的太多</strong>了（</p>
+</li>
+</ul>
+<h2 id="小感想"><a href="#小感想" class="headerlink" title="小感想"></a>小感想</h2><ul>
+<li>这是我第一次写这么大规模的多线程的程序，教会了我很多分析线程安全问题解决问题的方法，我觉得这不仅是面向对象的程序设计所独有的一些经验。包括多进程的程序设计，并发并行程序设计等等都与这章所学到的知识息息相关。感觉在其中受益匪浅吧。</li>
+<li>另外这一章远不只是多线程这么简单，还教会了我使用设计模式，运用规范的面向对象设计原则去展开我的设计。</li>
+<li>在分析需求的过程中体会拓展与实现的各种巧思，这一点直接训练在思维能力上。我认为迭代开发中的架构设计稳定，不仅取决于良好的架构与代码风格，而且还取决于对于需求的分析，对于需求实现的发散！</li>
+</ul>
+
+      </div>
+      <div class="post-tags-categories">
+        
+        <div class="tags">
+          
+            <a href="/tags/%E5%8C%97%E8%88%AA/" class="">
+              北航
+            </a>
+          
+            <a href="/tags/%E5%A4%A7%E4%BA%8C/" class="">
+              大二
+            </a>
+          
+            <a href="/tags/OO/" class="">
+              OO
+            </a>
+          
+            <a href="/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/" class="">
+              面向对象
+            </a>
+          
+            <a href="/tags/%E7%94%B5%E6%A2%AF/" class="">
+              电梯
+            </a>
+          
+            <a href="/tags/%E7%AC%AC%E4%BA%8C%E5%8D%95%E5%85%83/" class="">
+              第二单元
+            </a>
+          
+        </div>
+        
+      </div>
+      
+        <div class="copyright">
+  <ul class="post-copyright">
+    <li class="post-copyright-author">
+    <strong>作者:  </strong>Volca Xiao</a>
+    </li>
+    <li class="post-copyright-link">
+    <strong>文章链接:  </strong>
+    <a href="/2023/04/14/BUAA-OO-ElevatorDispatcher-3-0/" target="_blank" title="【BUAA-OO】ElevatorDispatcher3.0">http://volcaxiao.github.io/2023/04/14/BUAA-OO-ElevatorDispatcher-3-0/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>版权声明:   </strong>
+      本网站所有文章除特别声明外,均采用 <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">CC BY-NC-ND 4.0</a>
+      许可协议。转载请注明出处!
+    </li>
+  </ul>
+<div>
+      
+    </article>
+    <!-- 上一篇文章和下一篇文章 -->
+    
+      <!-- 文章详情页的上一页和下一页 -->
+<div class="post-nav">
+
+
+
+
+
+  
+  <div class="post-nav-next post-nav-item">
+    <div class="post-nav-img" style="background-size: cover; 
+      background-position: center center;">
+      <img class="lazyload lazyload placeholder" src="/images/gallery/2023Spring/1678845583450.jpg" class="lazyload placeholder" data-srcset="/images/gallery/2023Spring/1678845583450.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" src="" alt="">
+    </div>
+    <a href="/2023/04/02/BUAA-OS-lab2-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/" class="post-nav-link">
+      <div class="title">
+        下一篇: <i class="fas fa-angle-right"></i>
+        <div class="title-text">【BUAA-OS】lab2-内存管理</div>
+      </div>
+      <!-- <div class="content">
+        BUAA-OS lab2实验报告，关于mos系统的内存管理机制的实现，内存初始化，二级页表，TLB重填等内容。
+
+lab
+      </div> -->
+    </a>
   </div>
 
 </div>
+
+    
+    
+
+    <!-- 打赏 -->
+    
+
+    <!-- 分享 -->
+    
+      <!-- https://github.com/overtrue/share.js -->
+<!-- 文章详情页的分享 -->
+<div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+
+<script src="/js/shareJs/social-share.min.js"></script>
+</script>
+
+<style>
+  .social-share {
+    margin: 20px 0;
+  }
+</style>
+
+
+    
+    
+    <!-- 评论 -->
+    <!-- 评论 -->
+
+  <div id="myComment">
+    
+      <!-- 来必力City版安装代码 -->
+<div id="lv-container" data-id="city" data-uid="MTAyMC81NzIwMC8zMzY2NA==">
+<script type="text/javascript">
+    (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+    
+        if (typeof LivereTower === 'function') { return; }
+    
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+    
+        e.parentNode.insertBefore(j, e);
+    })(document, 'script');
+</script>
+<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+</div>
+<!-- City版安装代码已完成 -->
+    
+  </div>
+
+<!-- comment script in themes\hexo-theme-bamboo\layout\_partial\scripts\index.ejs -->
+
+
+  </div>
+
+  <!-- 目录 -->
+  <aside id='l_side'>
+  
+    
+      <section class="widget side_blogger">
+  <div class='content'>
+    
+      
+        <a class='avatar flat-box rectangle' href='/about/'>
+          <img src='/images/head.jpg'/>
+        </a>
+      
+    
+    
+      <div class='text'>
+        
+          <h2>Volca Xiao</h2>
+        
+        
+          <p>Welcome to Volca’s World</p>
+
+        
+        
+          <p><span id="jinrishici-sentence">volca's blog</span></p>
+          <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+        
+      </div>
+    
+    
+      <div class="social-wrapper">
+        
+          
+            <a href="/atom.xml"
+              class="social fas fa-rss flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
+            </a>
+          
+        
+          
+            <a href="/volcaxiaoc@buaa.edu.cn"
+              class="social fas fa-envelope flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
+            </a>
+          
+        
+          
+            <a href="https://github.com/volcaxiao"
+              class="social fas fa-github flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
+            </a>
+          
+        
+          
+            <a href="tencent://AddContact/?fromId=50&amp;fromSubId=1&amp;subcmd=all&amp;uin=2322863798"
+              class="social fas fa-qq flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
+            </a>
+          
+        
+      </div>
+    
+  </div>
+</section>
+
+    
+  
+  
+  
+
+  <div class="layout_sticky">    
+    
+      
+<section class="widget side_toc">
+  
+  <header>
+    
+      <i style="color: " class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name' style="color: ">本文目录</span>
+    
+  </header>
+
+
+  <div class='content'>
+    <div class="toc-main">
+      <div class="toc-content">
+        <!-- <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#hw7-log"><span class="toc-text">hw7_log</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B0%E5%A2%9E%E9%9C%80%E6%B1%82"><span class="toc-text">新增需求</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90"><span class="toc-text">需求分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B7%E4%BD%93%E5%AE%9E%E7%8E%B0"><span class="toc-text">具体实现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%8C%E6%A5%BC%E5%B1%82%E6%9C%8D%E5%8A%A1%E7%94%B5%E6%A2%AF%E7%9A%84%E6%95%B0%E9%87%8F%E9%99%90%E5%88%B6"><span class="toc-text">同楼层服务电梯的数量限制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%AF%E8%BE%BE%E6%80%A7%E5%88%86%E6%9E%90%EF%BC%88%E8%B7%AF%E5%BE%84%E8%A7%84%E5%88%92"><span class="toc-text">可达性分析（路径规划</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%B7%AF%E5%BE%84%E8%A7%84%E5%88%92%E5%8F%8A%E6%9D%83%E9%87%8D%E8%80%83%E8%99%91"><span class="toc-text">路径规划及权重考虑</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8A%A8%E6%80%81%E8%BF%98%E6%98%AF%E9%9D%99%E6%80%81%EF%BC%9F%E6%9C%89%E4%B8%80%E7%82%B9%E6%8A%98%E4%B8%AD"><span class="toc-text">动态还是静态？有一点折中</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DistanceEva%EF%BC%81%E6%94%B9%E6%94%B9%E8%BF%98%E8%83%BD%E7%94%A8"><span class="toc-text">DistanceEva！改改还能用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%93%E6%9D%9F%E6%9D%A1%E4%BB%B6"><span class="toc-text">结束条件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%88%86%E6%9E%90"><span class="toc-text">代码分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%8F%E6%84%9F%E6%83%B3"><span class="toc-text">小感想</span></a></li></ol></li></ol> -->
+        <div class="toc"></div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- 手机端目录按钮 -->
+<div id="toc-mobile-btn">
+  <i class="fas fa-list-ul" aria-hidden="true"></i>
+</div>
+
+      
+  <section class="widget side_recent_post">
+    
+  <header>
+    
+      <a style="color: " href='/tags/'><i class="fas fa-book fa-fw" aria-hidden="true"></i><span class='name'>最新文章</span></a>
+    
+  </header>
+
+
+    <div class='content'>
+      
+      <!-- hash算法 -->
+      
+      <div class="aside-list">
+        
+          <div class="aside-list-item">
+            
+            
+            
+
+            <div class="post-img-box">
+              <a href="/2023/04/14/BUAA-OO-ElevatorDispatcher-3-0/" class="post-img " style="background-size: cover; 
+                background-position: center center;">
+                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OO/ElevatorDispatcher3.0/codeMR%E5%88%86%E6%9E%90.png" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OO/ElevatorDispatcher3.0/codeMR%E5%88%86%E6%9E%90.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+              </a>
+            </div>
+            <div class="post-date-title">
+              <div>
+                
+                  <span class="post-date">04-14</span>
+                
+              </div>
+              <a class="post-title" href="/2023/04/14/BUAA-OO-ElevatorDispatcher-3-0/">【BUAA-OO】ElevatorDispatcher3.0</a>
+            </div>
+          </div>
+        
+          <div class="aside-list-item">
+            
+            
+            
+
+            <div class="post-img-box">
+              <a href="/2023/04/02/BUAA-OS-lab2-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/" class="post-img " style="background-size: cover; 
+                background-position: center center;">
+                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/images/gallery/2023Spring/1678845583450.jpg" class="lazyload placeholder" data-srcset="/images/gallery/2023Spring/1678845583450.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+              </a>
+            </div>
+            <div class="post-date-title">
+              <div>
+                
+                  <span class="post-date">04-02</span>
+                
+              </div>
+              <a class="post-title" href="/2023/04/02/BUAA-OS-lab2-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/">【BUAA-OS】lab2-内存管理</a>
+            </div>
+          </div>
+        
+          <div class="aside-list-item">
+            
+            
+            
+
+            <div class="post-img-box">
+              <a href="/2023/04/02/BUAA-OO-ElevatorDispatcher-2-0/" class="post-img " style="background-size: cover; 
+                background-position: center center;">
+                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OO/ElevatorDispatcher2.0/uml.png" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OO/ElevatorDispatcher2.0/uml.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+              </a>
+            </div>
+            <div class="post-date-title">
+              <div>
+                
+                  <span class="post-date">04-02</span>
+                
+              </div>
+              <a class="post-title" href="/2023/04/02/BUAA-OO-ElevatorDispatcher-2-0/">【BUAA-OO】ElevatorDispatcher2.0</a>
+            </div>
+          </div>
+        
+          <div class="aside-list-item">
+            
+            
+            
+
+            <div class="post-img-box">
+              <a href="/2023/04/02/BUAA-OO-ElevatorDispatcher-1-0/" class="post-img " style="background-size: cover; 
+                background-position: center center;">
+                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OO/ElevatorDispatcher1.0/%E6%9E%B6%E6%9E%84%E7%A4%BA%E6%84%8F%E5%9B%BE.png" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OO/ElevatorDispatcher1.0/%E6%9E%B6%E6%9E%84%E7%A4%BA%E6%84%8F%E5%9B%BE.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+              </a>
+            </div>
+            <div class="post-date-title">
+              <div>
+                
+                  <span class="post-date">04-02</span>
+                
+              </div>
+              <a class="post-title" href="/2023/04/02/BUAA-OO-ElevatorDispatcher-1-0/">【BUAA-OO】ElevatorDispatcher1.0</a>
+            </div>
+          </div>
+        
+          <div class="aside-list-item">
+            
+            
+            
+
+            <div class="post-img-box">
+              <a href="/2023/03/16/BUAA-OS-lab1-%E5%86%85%E6%A0%B8%EF%BC%8C%E5%90%AF%E5%8A%A8%EF%BC%8Cprintf/" class="post-img " style="background-size: cover; 
+                background-position: center center;">
+                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OS/lab1/1.2.4.png" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OS/lab1/1.2.4.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+              </a>
+            </div>
+            <div class="post-date-title">
+              <div>
+                
+                  <span class="post-date">03-16</span>
+                
+              </div>
+              <a class="post-title" href="/2023/03/16/BUAA-OS-lab1-%E5%86%85%E6%A0%B8%EF%BC%8C%E5%90%AF%E5%8A%A8%EF%BC%8Cprintf/">【BUAA-OS】lab1_内核，启动，printf</a>
+            </div>
+          </div>
+        
+      </div>
+    </div>
+  </section>
+
+    
+  </div>
+</aside>
+
+  <!-- 图片放大 Wrap images with fancybox support -->
+  <script src="/js/wrapImage.js"></script>
+</div>
+
+<!-- 文章详情页背景图 -->
+<div id="appBgSwiper" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -2;"
+	:style="{'background-color': bgColor ? bgColor : 'transparent'}">
+	<transition-group tag="ul" :name="names">
+		<li v-for='(image,index) in img' :key='index' v-show="index === mark" class="bg-swiper-box">
+			<img :src="image" class="bg-swiper-img no-lazy">
+		</li>
+	</transition-group>
+</div>
+<script>
+	var vm = new Vue({
+		el: '#appBgSwiper',
+		data: {
+			names: '' || 'fade' || 'fade', // translate-fade fade
+			mark: 0,
+			img: [],
+			bgColor: '',
+			time: null
+		},
+		methods: {   //添加方法
+			change(i, m) {
+				if (i > m) {
+					// this.names = 'fade';
+				} else if (i < m) {
+					// this.names = 'fade';
+				} else {
+					return;
+				}
+				this.mark = i;
+			},
+			prev() {
+				// this.names = 'fade';
+				this.mark--;
+				if (this.mark === -1) {
+					this.mark = 3;
+					return
+				}
+			},
+			next() {
+				// this.names = 'fade';
+				this.mark++;
+				if (this.mark === this.img.length) {
+					this.mark = 0;
+					return
+				}
+			},
+			autoPlay() {
+				// this.names = 'fade';
+				this.mark++;
+				if (this.mark === this.img.length) {
+					this.mark = 0;
+					return
+				}
+			},
+			play() {
+				let bgImgDelay = '' || '180000'
+				let delay = parseInt(bgImgDelay) || 180000;
+				this.time = setInterval(this.autoPlay, delay);
+			},
+			enter() {
+				clearInterval(this.time);
+			},
+			leave() {
+				this.play();
+			}
+		},
+		created() {
+			this.play()
+		},
+		beforeDestroy() {
+			clearInterval(this.time);
+		},
+		mounted() {
+			let prop = '' || '';
+			let isImg = prop.includes('.bmp') || prop.includes('.jpg') || prop.includes('.png') || prop.includes('.tif') || prop.includes('.gif') || prop.includes('.pcx') || prop.includes('.tga') || prop.includes('.exif') || prop.includes('.fpx') || prop.includes('.psd') || prop.includes('.cdr') || prop.includes('.pcd') || prop.includes('.dxf') || prop.includes('.ufo') || prop.includes('.eps') || prop.includes('.ai') || prop.includes('.raw') || prop.includes('.WMF') || prop.includes('.webp') || prop.includes('.jpeg') || prop.includes('http://') || prop.includes('https://')
+			if (isImg) {
+				let img = prop.split(',');
+				let configRoot = '/'
+				let arrImg = [];
+				img.forEach(el => {
+					var Expression = /http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w- .\/?%&=]*)?/;
+					var objExp = new RegExp(Expression);
+
+					if (objExp.test(el)) {
+						// http or https
+						arrImg.push(el);
+					} else {
+						// 非http or https开头
+						// 本地文件
+						let firstStr = el.charAt(0);
+						if (firstStr == '/') {
+							el = el.substr(1); // 删除第一个字符 '/',因为 configRoot最后一个字符为 /
+						}
+						el = configRoot + el;
+						arrImg.push(el);
+					}
+				})
+				this.img = arrImg;
+			} else {
+				this.bgColor = prop;
+			}
+		}
+	})
+</script>
+
+<style>
+	.bg-swiper-box {
+		position: absolute;
+		display: block;
+		width: 100%;
+		height: 100%;
+	}
+
+	.bg-swiper-img {
+		object-fit: cover;
+		width: 100%;
+		height: 100%;
+	}
+</style>
+
+
+  <script>
+  // https://github.com/theme-next/hexo-theme-next/blob/master/layout/_third-party/math/mathjax.swig
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = 'https://unpkg.com/mathjax@3.0/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    // 文章章节标题不能为 “MathJax” ，否则会报错。
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+
+
+
+  <script>
+  function loadMermaid() {
+    if (document.getElementsByClassName('mermaid').length) {
+      if (window.mermaidJsLoad) mermaid.init()
+      else {
+        loadScript('https://unpkg.com/mermaid/dist/mermaid.min.js').then(() => {
+          window.mermaidJsLoad = true
+          mermaid.initialize({
+            theme: 'default',
+          })
+          if ('true') {
+            mermaid.init();
+          }
+        })
+      }
+    }
+  };
+  document.addEventListener("DOMContentLoaded", function () {
+    loadMermaid();
+  })
+
+  document.addEventListener('pjax:complete', function () {
+    loadMermaid();
+  })
+  
+</script>
+
 
       </main>
     </div>

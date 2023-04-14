@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://volcaxiao.github.io/2023/04/14/BUAA-OO-ElevatorDispatcher-3-0/</loc>
+    <lastmod>2023-04-14</lastmod>
+  </url>
+  <url>
     <loc>http://volcaxiao.github.io/2023/04/02/BUAA-OO-ElevatorDispatcher-2-0/</loc>
-    <lastmod>2023-04-06</lastmod>
+    <lastmod>2023-04-14</lastmod>
   </url>
   <url>
     <loc>http://volcaxiao.github.io/2023/04/02/BUAA-OO-ElevatorDispatcher-1-0/</loc>
-    <lastmod>2023-04-06</lastmod>
+    <lastmod>2023-04-14</lastmod>
   </url>
   <url>
     <loc>http://volcaxiao.github.io/2023/04/02/BUAA-OS-lab2-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/</loc>
