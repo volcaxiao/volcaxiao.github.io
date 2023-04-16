@@ -660,7 +660,7 @@
       
         <div class="post-detail-header_wordcount">
           <span class="totalcount">
-            <i class="fas fa-file-text-o"></i> 字数统计: 2.8k |
+            <i class="fas fa-file-text-o"></i> 字数统计: 2.9k |
           </span>
   
           <span class="min2read">
@@ -756,6 +756,7 @@
 <li>写了这么一大堆dijstra，其实最重要最关键最灵活的是<strong>路径权重的选取</strong>，也就是<code>int distance = getVirtualDistance(curFloor, i)</code>这一句。<ul>
 <li>路径权重可以考虑的有<strong>距离，换乘次数，最合适的电梯的评分</strong>（可能这条路上没有合适的电梯）。。。</li>
 <li>这是最为灵活的，如果你想<strong>尽量少换乘</strong>，就可以每一次getDistance的时候就<strong>加上一个巨大的权重</strong>，让它能够忽略其他的值。</li>
+<li>如果你想要让<strong>适当的换乘</strong>来分担直达电梯的压力（可能有只留了一部直达电梯，其他都要换乘的情况），可以选择权衡一下<strong>换乘次数</strong>与<strong>电梯状况</strong>的影响路径权重的配比。</li>
 </ul>
 </li>
 </ul>
@@ -857,6 +858,24 @@
 <div class="post-nav">
 
 
+
+  
+  <div class="post-nav-prev post-nav-item">
+    <div class="post-nav-img" style="background-size: cover; 
+      background-position: center center;">
+      <img class="lazyload lazyload placeholder" src="/images/gallery/2023Spring/1678845583450.jpg" class="lazyload placeholder" data-srcset="/images/gallery/2023Spring/1678845583450.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+    </div>
+    <a href="/2023/04/15/OS-%E5%81%9A%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84shell/" class="post-nav-link">
+      <div class="title">
+        <i class="fas fa-angle-left"></i> 上一篇:
+        <div class="title-text">OS-做一个简单的shell</div>
+      </div>
+      
+      <!-- <div class="content">
+        
+      </div> -->
+    </a>
+  </div>
 
 
 
@@ -1061,6 +1080,27 @@ lab
             
 
             <div class="post-img-box">
+              <a href="/2023/04/15/OS-%E5%81%9A%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84shell/" class="post-img " style="background-size: cover; 
+                background-position: center center;">
+                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/images/gallery/2023Spring/1678845583450.jpg" class="lazyload placeholder" data-srcset="/images/gallery/2023Spring/1678845583450.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+              </a>
+            </div>
+            <div class="post-date-title">
+              <div>
+                
+                  <span class="post-date">04-15</span>
+                
+              </div>
+              <a class="post-title" href="/2023/04/15/OS-%E5%81%9A%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84shell/">OS-做一个简单的shell</a>
+            </div>
+          </div>
+        
+          <div class="aside-list-item">
+            
+            
+            
+
+            <div class="post-img-box">
               <a href="/2023/04/14/BUAA-OO-ElevatorDispatcher-3-0/" class="post-img " style="background-size: cover; 
                 background-position: center center;">
                 <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OO/ElevatorDispatcher3.0/codeMR%E5%88%86%E6%9E%90.png" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OO/ElevatorDispatcher3.0/codeMR%E5%88%86%E6%9E%90.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
@@ -1136,27 +1176,6 @@ lab
                 
               </div>
               <a class="post-title" href="/2023/04/02/BUAA-OO-ElevatorDispatcher-1-0/">【BUAA-OO】ElevatorDispatcher1.0</a>
-            </div>
-          </div>
-        
-          <div class="aside-list-item">
-            
-            
-            
-
-            <div class="post-img-box">
-              <a href="/2023/03/16/BUAA-OS-lab1-%E5%86%85%E6%A0%B8%EF%BC%8C%E5%90%AF%E5%8A%A8%EF%BC%8Cprintf/" class="post-img " style="background-size: cover; 
-                background-position: center center;">
-                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OS/lab1/1.2.4.png" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OS/lab1/1.2.4.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                
-                  <span class="post-date">03-16</span>
-                
-              </div>
-              <a class="post-title" href="/2023/03/16/BUAA-OS-lab1-%E5%86%85%E6%A0%B8%EF%BC%8C%E5%90%AF%E5%8A%A8%EF%BC%8Cprintf/">【BUAA-OS】lab1_内核，启动，printf</a>
             </div>
           </div>
         

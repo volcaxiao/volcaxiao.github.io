@@ -68,6 +68,7 @@
 <li>写了这么一大堆dijstra，其实最重要最关键最灵活的是<strong>路径权重的选取</strong>，也就是<code>int distance = getVirtualDistance(curFloor, i)</code>这一句。<ul>
 <li>路径权重可以考虑的有<strong>距离，换乘次数，最合适的电梯的评分</strong>（可能这条路上没有合适的电梯）。。。</li>
 <li>这是最为灵活的，如果你想<strong>尽量少换乘</strong>，就可以每一次getDistance的时候就<strong>加上一个巨大的权重</strong>，让它能够忽略其他的值。</li>
+<li>如果你想要让<strong>适当的换乘</strong>来分担直达电梯的压力（可能有只留了一部直达电梯，其他都要换乘的情况），可以选择权衡一下<strong>换乘次数</strong>与<strong>电梯状况</strong>的影响路径权重的配比。</li>
 </ul>
 </li>
 </ul>
@@ -385,6 +386,11 @@
         <tag>welcome</tag>
         <tag>start</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>OS-做一个简单的shell</title>
+    <url>/2023/04/15/OS-%E5%81%9A%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84shell/</url>
+    <content><![CDATA[]]></content>
   </entry>
   <entry>
     <title>【BUAA-OS】lab2-内存管理</title>
