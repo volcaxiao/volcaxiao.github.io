@@ -388,6 +388,140 @@
       </tags>
   </entry>
   <entry>
+    <title>BUAA-OO-JML-SocialContact</title>
+    <url>/2023/06/10/BUAA-OO-JML-SocialContact/</url>
+    <content><![CDATA[<h1 id="unit3-log"><a href="#unit3-log" class="headerlink" title="unit3_log"></a>unit3_log</h1><h2 id="Pre"><a href="#Pre" class="headerlink" title="Pre"></a>Pre</h2><ul>
+<li>第三单元的主题是<strong>规格化设计</strong>，需要我们学会理解与使用JML语言对于java程序进行建模，从而实现对于<strong>需求的形式化</strong>。</li>
+<li>形式化有许多好处：<ul>
+<li>逻辑明确，没有二义性，具有<strong>可靠性</strong>。</li>
+<li>能够形式化的东西一定能够<strong>自动化</strong>，所以有利于自动化的测试。</li>
+<li>规格上的形式化是一种<strong>契约式编程</strong>，架构层面是不需要关注实现的。</li>
+</ul>
+</li>
+<li>但也因为不需要关注实现，所以关注实现的应该是实现规格的我，所以这一章很<strong>重视算法的考察</strong>，需要特别注意代码运行时的效率。</li>
+<li>另外，jml语言本身用来<strong>逻辑严密的表示</strong>需求也是比较困难的，此外，我们去分析需求也会有一定的困难。</li>
+<li>我在这几周确实也忙于应付各种事情，疲于oo，所以也确实发现自己没有前两单元时那么有激情了，没有花大心思去琢磨算法与优化策略了，中测都是敷衍了事，自己也没有弄评测机，互测也没有再兴奋的去挨个嗅探了。</li>
+</ul>
+<h2 id="总体的架构"><a href="#总体的架构" class="headerlink" title="总体的架构"></a>总体的架构</h2><ul>
+<li>这单元作业总体的<strong>架构非常简单</strong>，是课程组给定的，也没有什么层次<ul>
+<li>（其实我觉得挺无聊的，虽说为了难度考虑，但是这单元确实抛去了前两单元oo最好玩的架构设计。</li>
+</ul>
+</li>
+<li><p>整体架构如图：<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OO/SocialContact/%E6%9E%B6%E6%9E%84.png" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OO/SocialContact/%E6%9E%B6%E6%9E%84.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="整体架构"></p>
+</li>
+<li><p>主要就是Run（课程组给定）给NetWork发出指令，然后Network做出反应，更进一步的是，方法都定死了，你只需要根据JML来完成具体的实现就可以了。</p>
+</li>
+<li>所以我认为，在这一单元中，我们充当的角色变了，前两单元中我们是<strong>独立的软件开发者</strong>，从架构到实现到测试<strong>整套流程</strong>是我们自己打下来的。但这一单元我们好像是一个<strong>底层码农</strong>（这里没有歧视的意思），我们不需要去关心整体的架构了，我们看到的只是框架定好的函数，我们需要做的，也只是想方设法提高自己要实现的方法的<strong>效率</strong>罢了。<ul>
+<li>而JML，只是一种架构师与码农之间的<strong>形式化规范化的契约</strong>，至于这个契约怎么样，我们后面专有一节，谈谈<a href="#对于jml的理解">对于JML的认识</a>。</li>
+</ul>
+</li>
+</ul>
+<h2 id="对于测试"><a href="#对于测试" class="headerlink" title="对于测试"></a>对于测试</h2><h3 id="测试的门类"><a href="#测试的门类" class="headerlink" title="测试的门类"></a>测试的门类</h3><ul>
+<li>而对于测试，虽然说我这单元并没有心力去实现评测机与实现junit的测试（这里特别感谢hpy们的评测数据与评测机），前两单元的时候有实现评测机，所以浅浅谈谈对于测试的认识吧</li>
+<li>首先是从总体上来分可以分为两大类，<strong>黑箱测试</strong>与<strong>白箱测试</strong><ul>
+<li><strong>黑箱测试</strong>是不关注于具体，但是<strong>关注于整体</strong>，给输入，得到输出，看看输出是否正确。</li>
+<li><strong>白箱测试</strong>中具体实现是透明的，你可以看着具体实现<strong>针对性</strong>的进行测试。</li>
+</ul>
+</li>
+<li><p>但这只是泛泛的分类，具体还有许多种测试方法，比如单元测试、集成测试、回归测试等等</p>
+<ul>
+<li><strong>单元测试</strong>是对每个小的<strong>设计单元</strong>的验证测试，测试单个的方法是否可以达到要求，这通常是一种<strong>白箱测试</strong>。</li>
+<li><strong>集成测试</strong>是测试对于<strong>不同模块之间的接口</strong>，测试他们之间的协同配合工作是否正常，一般是由<strong>黑盒测试</strong>与静态<strong>白盒测试</strong>相结合。</li>
+<li><strong>系统测试</strong>层次又要更高些，是对于<strong>整个系统</strong>的测试，这个时候一般就是<strong>黑盒测试</strong>了，白盒的话一整个系统看不下来。<ul>
+<li>系统测试的方式有很多种，我们常说的<strong>回归测试</strong>与<strong>冒烟测试</strong>是属于系统测试的。</li>
+</ul>
+</li>
+<li>一般部署一个软件还会有一个<strong>验收测试</strong>，是用户或者甲方来做，这也是最全面的，也就是我们经常看到的软件的<strong>Alpha版</strong>与<strong>Beta版</strong>测试软件。</li>
+</ul>
+</li>
+<li><p>值得一提的是，这些测试的方法一般作为软件测试的<strong>不同阶段</strong>该干的事，我们可以看到这些测试的<strong>层次是由小到大的</strong>，也就是说，一个合格的软件应该要一整套流程都过完的。</p>
+</li>
+<li>然后还有一种分类的方式就是分为<strong>功能测试</strong>与<strong>压力测试</strong>，具体该干什么，顾名思义，大致可以理解为中测和强测的关系。</li>
+</ul>
+<h3 id="具体测试的门道"><a href="#具体测试的门道" class="headerlink" title="具体测试的门道"></a>具体测试的门道</h3><ul>
+<li>具体设计测试数据以及验证的方式也可以谈一谈：</li>
+<li>静态的“肉眼”测试手段：<strong>手动构造数据</strong>的话讲究的是一个<strong>覆盖度</strong>和<strong>边界值</strong>测试<ul>
+<li>如何保证覆盖？</li>
+<li>至少说对于每个分支都要覆盖到，对于<strong>数据不同的条件</strong>，想想它有什么不同的分支，然后将这个分支构成一棵<strong>语法树</strong>，根据这棵树来构造。</li>
+<li>而边界值呢，就是对于某些东西<strong>针对性</strong>的构造数据，比如在数据范围上下死手，比如有的实现方法可能无法应对某种结构的数据。</li>
+</ul>
+</li>
+<li>自动化的测试：什么东西可以自动化？<strong>一切可以形式化的东西都可以自动化</strong>！<ul>
+<li>所以其实自动化数据是一个<strong>解析数据文法</strong>的过程。</li>
+<li>所以我们结合JML语言，这是一个高度形式化的语言，所以我们可以<strong>通过JML</strong>对方法进行自动化的验证。<ul>
+<li><strong>前置条件</strong>是对于<strong>数据构造</strong>的约束。</li>
+<li><strong>后置条件</strong>用来验证<strong>结果的正确性</strong>。</li>
+<li>课程组为此也提出了OKtest的验证方式，所以我们具体来谈谈对于Oktest。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="对于OKtest"><a href="#对于OKtest" class="headerlink" title="对于OKtest"></a>对于OKtest</h2><ul>
+<li>我理解的oktest其实就是一种<strong>单元测试</strong>了，是在方法级的测试，但是课程组的oktest测试方法与我直观想到的有点不一样。</li>
+<li>课程组的oktest似乎与<strong>我的方法的实现无关</strong>，我认为这是不太对的，因此也提出一点建议叭<ul>
+<li>比较单纯的将自己输入的两组数据做一个比较和验证，这不是只能验证自己的<strong>数据构造的正确性</strong>吗？</li>
+<li>当然我还能想到的一点合理性是将输入oktest的数据变成一组数据输入，然后来将afterdata与得到的结果对拍。</li>
+</ul>
+</li>
+<li>所以我的建议是可以将oktest输入的<strong>数据载入到程序</strong>中，然后<strong>调用方法</strong>，得到结果再来验证其正确性。</li>
+</ul>
+<h2 id="对于JML的理解"><a href="#对于JML的理解" class="headerlink" title="对于JML的理解"></a>对于JML的理解</h2><ul>
+<li>然后来谈谈对于JML的理解叭，大家对于它的评价挺多元的。</li>
+<li><p>先谈谈对于<strong>规格与实现分离</strong>的这样一种做法，我认为确实需要，而且对于大的工程来讲很必要</p>
+<ul>
+<li>首先的一点优点就是前面提到的，形式化的东西能够<strong>自动化</strong>。</li>
+<li>其次就是规格这种<strong>契约式</strong>的编程，在团队合作编程时可以统一表述需要。</li>
+<li>然后就是确实在做<strong>大型软件</strong>的时候，架构师与实现者之间的分离，需要用规格来写作。这样，实现者就可以聚焦于具体方法的实现，来提高方法的性能。</li>
+</ul>
+</li>
+<li><p>但是JML这一种<strong>高度形式化</strong>的规格表述，确实就<strong>有利有弊</strong>了。</p>
+<ul>
+<li>利的话在一开始已经提到了，没有二义性，可靠，有利于自动化。</li>
+<li>但是这无疑会也会加大规格设计者（架构师）与程序员的<strong>负担</strong>（特别是程序员。</li>
+</ul>
+</li>
+<li>对于架构师来讲，本身JML的编写就比较的复杂，要<strong>验证JML这种形式化与需求的非形式化之间</strong>的一致性比较的困难。<ul>
+<li>但是我们也能往好的方面想一点点，毕竟复杂的方法JML会写的比较的复杂，这也一定程度上<strong>逼迫</strong>了架构师去做<strong>降低方法复杂度的设计</strong>。</li>
+</ul>
+</li>
+<li><p>但是对于程序员来讲，我觉得JML很大程度上，并<strong>不是程序员友好的</strong>。</p>
+<ul>
+<li>虽然它没有二义性，但是<strong>程序员不是机器</strong>，很容易看错，这是一种<strong>损失了易读性换来的确定性</strong>，能不能够提高程序员的理解准确性，很难说。</li>
+<li>然后就是JML也为了确定性规避了太多太多已有的<strong>抽象</strong>，包括说用JML来表示一个图论结论的抽象，JML<strong>用纯粹的数理逻辑的表述</strong>会写的又臭又长！远不如其他的形式化的表述来的直观！</li>
+<li>最后就是我觉得，程序员看懂了一个JML以后，实现的时候，脑子里也<strong>不一定会装着JML去实现</strong>，所以，为什么不在一开始就把需求明确一点告诉这个可怜的程序员呢？<ul>
+<li>比如，有一个规格，很长很长，它就为了表达一个需要弄一个最小生成树，然后我是一个程序员，我花了很多根头发把它看懂了，“哦，原来要实现最小生成树啊”，然后我开始实现最小生成树了，在网上找板子抄，这个实现过程跟JML一点关系都没有了！</li>
+<li>我认为是要寻求规格与实现的分离，但是分离和语言上的需求我都可以知道啊，我在知道这玩意是要做最小生成树之后再去看JML是不是都会清秀许多哇。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>所以说到这，我也有<strong>两点建议</strong>叭。</p>
+<ul>
+<li>JML的形式化似乎有点太极端了，能不能有<strong>中和一点</strong>的形式化的方案。</li>
+<li>如果它太过于极端，那也可以<strong>留下JML</strong>，但是<strong>同时</strong>给出<strong>自然语言</strong>的描述，<strong>两种规格</strong>，一种极端形式化，一种极端非形式化。这样程序员可以<strong>按照自己的需要</strong>，在<strong>用自然语言大致理解需求</strong>之后，<strong>用JML来消除掉自己的一些疑虑</strong>。</li>
+</ul>
+</li>
+</ul>
+<h2 id="单元总结"><a href="#单元总结" class="headerlink" title="单元总结"></a>单元总结</h2><ul>
+<li>这单元整体来讲还是有不少收获的，包括对于这种契约式编程的初体验，对于各种测试方式的认识。</li>
+<li>但是由于自己这几周也确实心力憔悴，没有好好花心思，整体来讲还是有些遗憾的。</li>
+<li>而有一些对于课程本身的建议也相当于是激发自己和大家的思考了，欢迎大家来讨论！</li>
+</ul>
+]]></content>
+      <categories>
+        <category>BUAA面向对象</category>
+      </categories>
+      <tags>
+        <tag>北航</tag>
+        <tag>大二</tag>
+        <tag>OO</tag>
+        <tag>面向对象</tag>
+        <tag>JML</tag>
+        <tag>第三单元</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>BUAA-OS-lab6-管道与shell</title>
     <url>/2023/06/10/BUAA-OS-lab6-%E7%AE%A1%E9%81%93%E4%B8%8Eshell/</url>
     <content><![CDATA[<p>BUAA-OS lab6实验报告，关于mos系统的管道通信的实现，shell的实现。</p>

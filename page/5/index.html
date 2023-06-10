@@ -11,7 +11,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>归档: 2023 | volca&#39;s blog</title>
+  <title>volca&#39;s blog</title>
 
   <link rel="icon" type="image/png" href="/images/favicon-16x16.png">
   <link rel="stylesheet" href="https://at.alicdn.com/t/font_1911880_c1nvbyezg17.css">
@@ -614,275 +614,1342 @@
     
 </header>
         <!-- 内容区域 -->
-        <div class="bg-dark-floor" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -2;"></div>
-<div class="bg-light-floor-archive" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -3;"></div>
-<div class="archive-header" style="background-image:url('/images/gallery/2023Spring/1678845584201.jpg')">
-  <div class="archive-header-title">
-    archive
-  </div>
-  <div class="archive-header-desc">
+        
+  <!-- 首页轮播 -->
   
-  <span class="title" id="archive-header-desc"></span>
-  <script>
-  function typedFn() {
-    const el = '#archive-header-desc';
-    const type = 'archive';
-    let desc = '时间会给你答案'
-    var typed = new Typed(el, {
-      strings: [desc],
-      startDelay: 100,
-      typeSpeed: 100,
-      loop: true,
-      backSpeed: 50,
-      showCursor: true
-    });
-  }
-  typedFn();
-</script>
-  
-  </div>
-  <div class="mask-box"></div>
-</div>
 
-<div class="archive-video">
-  <video class="full-video" autoplay loop muted>
-      <source style="width: 100%;height: 100vh;" src="/">
-  </video>
-  <div class="video-header-title">
-    archive
-  </div>
-  <div class="video-header-desc">
-  
-      <span class="title" id="archive-video-header-desc"></span>
-      <script>
-  function typedFn() {
-    const el = '#archive-video-header-desc';
-    const type = 'archive';
-    let desc = '时间会给你答案'
-    var typed = new Typed(el, {
-      strings: [desc],
-      startDelay: 100,
-      typeSpeed: 100,
-      loop: true,
-      backSpeed: 50,
-      showCursor: true
-    });
-  }
-  typedFn();
-</script>
+  <link href="/js/vue-typed-js/index.css" rel="stylesheet">
+
+
+
+
+
+
+<div class="swiper-length" style="display: none;">3</div>
+<div id="appSwiper"
+  class=""
+  @mouseenter="stopAutoPlay()" 
+  @mouseleave="startAutoPlay()"
+>
+  <swiper v-cloak ref="mySwiper" :options="swiperOptions" @slideChangeTransitionEnd="slideChangeTransitionEnd">
+    
       
-  </div>
-  <div class="mask-box"></div>
+        <swiper-slide>
+          <div class="item swiper-lazy" data-background="/images/gallery/2023Spring/1678845583586.jpg" style="background-size: 300000px; 
+            background-position: left center;" style="position: relative;">
+            <div class="swiper-bgmask" style="position: absolute;top: 0;left: 0;width: 100%;height: 100%;"></div>
+              <div class="flag">
+                
+                <div class="img-mask swiper-lazy swiper-default-bgImg" data-background="/images/gallery/2023Spring/1678845583586.jpg" style="height: 100%; background-size: cover; 
+                  background-position: center center;">
+                  <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>   
+                </div>
+                <div class="flag-text">
+                  <div class="flag-text-content">
+                    <div class="title ani animated" swiper-animate-effect="fadeInDown" swiper-animate-duration="0.2s" swiper-animate-delay="0.1s">Volcano</div>
+                    
+                      <div  class="ani animated default-excerpt" swiper-animate-effect="fadeInDown" swiper-animate-duration="0.2s" swiper-animate-delay="0.1s">
+                        <vue-typed-js :strings="defaultDesc" :loop="defaultDescTypedLoop" :type-speed="100" :back-speed="50">
+                          <h1 class="typing"></h1>
+                        </vue-typed-js>
+                      </div>
+                      
+                  </div>
+                  <div style="display: flex;" class="flag-text-btns">
+                    
+                      <div class="ani animated" swiper-animate-effect="fadeInDown" swiper-animate-duration="0.2s" swiper-animate-delay="0.1s"><a target="_blank" rel="noopener" href="http://volcaxiao.top/categories/" class="read-more swiper-btn-color" style="display: inline-block; z-index:1;">看看分类</a></div>
+                    
+                    
+                      <div class="ani animated" style="margin-left: 10px;" swiper-animate-effect="fadeInDown" swiper-animate-duration="0.2s" swiper-animate-delay="0.1s"><a target="_blank" rel="noopener" href="http://volcaxiao.top/friends/" class="read-more swiper-btn-color2" style="display: inline-block; z-index:1;border: 1px solid white;">看看友链</a></div>
+                    
+                  </div>
+                </div>
+              </div>
+          </div>
+        </swiper-slide>
+      
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+          
+          <swiper-slide>
+            <div class="item swiper-lazy" data-background="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OO/ElevatorDispatcher3.0/codeMR%E5%88%86%E6%9E%90.png" style=" background-size: 300000px; 
+            background-position: left center;" style="position: relative;">
+              <div class="swiper-bgmask" style="position: absolute;top: 0;left: 0;width: 100%;height: 100%;"></div>
+              <div class="flag" style="z-index: 2;">
+                <div class="img-mask swiper-lazy" data-background="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OO/ElevatorDispatcher3.0/codeMR%E5%88%86%E6%9E%90.png" style="height: 100%; background-size: cover; 
+                  background-position: center center;">
+                  <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>  
+                </div>
+                <div class="flag-text">
+                  <div class="flag-text-content">
+                    <div class="title ani animated" swiper-animate-effect="fadeInDown" swiper-animate-duration="0.2s" swiper-animate-delay="0.1s">
+                      <a href="/2023/04/14/BUAA-OO-ElevatorDispatcher-3-0/">
+                        【BUAA-OO】ElevatorDispatcher3.0
+                      </a>
+                    </div>
+                    <div class="excerpt ani animated" swiper-animate-effect="fadeInDown" swiper-animate-duration="0.2s" swiper-animate-delay="0.1s"><p>北航面向对象与程序设计第二单元课程作业，电梯调度器ElevatorDispatcher 3.0。<br>为2.0的迭代，新增需求：</p>
+<ol>
+<li>限制同楼层服务电梯。</li>
+<li>电梯可达楼层属性限制。</li>
+</ol></div>
+                  </div>
+                  <div class="bottom-one-btn ani animated" swiper-animate-effect="fadeInDown" swiper-animate-duration="0.2s" swiper-animate-delay="0.1s"><a href="/2023/04/14/BUAA-OO-ElevatorDispatcher-3-0/" class="read-more swiper-btn-color" style="display: inline-block; z-index:1;">阅读更多</a></div>
+                </div>
+              </div>
+            </div>
+
+          </swiper-slide>
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+          
+          <swiper-slide>
+            <div class="item swiper-lazy" data-background="https://pica.zhimg.com/80/v2-4dc929a46e9fb56c13911592af0be9dc_1440w.jpg?source=1940ef5c" style=" background-size: 300000px; 
+            background-position: left center;" style="position: relative;">
+              <div class="swiper-bgmask" style="position: absolute;top: 0;left: 0;width: 100%;height: 100%;"></div>
+              <div class="flag" style="z-index: 2;">
+                <div class="img-mask swiper-lazy" data-background="https://pica.zhimg.com/80/v2-4dc929a46e9fb56c13911592af0be9dc_1440w.jpg?source=1940ef5c" style="height: 100%; background-size: cover; 
+                  background-position: center center;">
+                  <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>  
+                </div>
+                <div class="flag-text">
+                  <div class="flag-text-content">
+                    <div class="title ani animated" swiper-animate-effect="fadeInDown" swiper-animate-duration="0.2s" swiper-animate-delay="0.1s">
+                      <a href="/2023/03/14/%E5%8C%97%E8%88%AA%E4%BF%A1%E6%81%AF%E7%B1%BB%E6%95%B0%E5%88%86%EF%BC%88%E4%BA%8C%EF%BC%89%E8%B5%84%E6%96%99/">
+                        【BUAA-数分2】北航信息类数分二资料
+                      </a>
+                    </div>
+                    <div class="excerpt ani animated" swiper-animate-effect="fadeInDown" swiper-animate-duration="0.2s" swiper-animate-delay="0.1s"><p>北航大一的数分（二）的资料，期中期末的往年题，其中21级的题没有答案，不过欢迎讨论。</p></div>
+                  </div>
+                  <div class="bottom-one-btn ani animated" swiper-animate-effect="fadeInDown" swiper-animate-duration="0.2s" swiper-animate-delay="0.1s"><a href="/2023/03/14/%E5%8C%97%E8%88%AA%E4%BF%A1%E6%81%AF%E7%B1%BB%E6%95%B0%E5%88%86%EF%BC%88%E4%BA%8C%EF%BC%89%E8%B5%84%E6%96%99/" class="read-more swiper-btn-color" style="display: inline-block; z-index:1;">阅读更多</a></div>
+                </div>
+              </div>
+            </div>
+
+          </swiper-slide>
+        
+      
+        
+        
+          
+          <swiper-slide>
+            <div class="item swiper-lazy" data-background="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OO/ExprExpansion3.0/EE3uml.png" style=" background-size: 300000px; 
+            background-position: left center;" style="position: relative;">
+              <div class="swiper-bgmask" style="position: absolute;top: 0;left: 0;width: 100%;height: 100%;"></div>
+              <div class="flag" style="z-index: 2;">
+                <div class="img-mask swiper-lazy" data-background="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OO/ExprExpansion3.0/EE3uml.png" style="height: 100%; background-size: cover; 
+                  background-position: center center;">
+                  <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>  
+                </div>
+                <div class="flag-text">
+                  <div class="flag-text-content">
+                    <div class="title ani animated" swiper-animate-effect="fadeInDown" swiper-animate-duration="0.2s" swiper-animate-delay="0.1s">
+                      <a href="/2023/03/10/BUAA-OO-Expr-expansion3-0-and-2-1/">
+                        【BUAA-OO】Expr_expansion3.0_and_2.1
+                      </a>
+                    </div>
+                    <div class="excerpt ani animated" swiper-animate-effect="fadeInDown" swiper-animate-duration="0.2s" swiper-animate-delay="0.1s"><p>北航面向对象与程序设计课程作业，表达式展开Expr-expansion 3.0，对2.1的迭代开发。<br>插曲：对2.0的代码风格进行美化及debug。形成Expr-expansion 2.1。<br>新增需求：自定义函数嵌套，求导。<br>这一次的博客主要是向大家展示架构，就不做过多的细节论述了，相信大家经过前几次的迭代，已经具备了一定的结构抽象的能力，不必局限于具体的细节呈现了。</p></div>
+                  </div>
+                  <div class="bottom-one-btn ani animated" swiper-animate-effect="fadeInDown" swiper-animate-duration="0.2s" swiper-animate-delay="0.1s"><a href="/2023/03/10/BUAA-OO-Expr-expansion3-0-and-2-1/" class="read-more swiper-btn-color" style="display: inline-block; z-index:1;">阅读更多</a></div>
+                </div>
+              </div>
+            </div>
+
+          </swiper-slide>
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+    <div class="swiper-pagination" slot="pagination" pointer style=""></div>
+    <div class="swiper-button-prev swiper-button-white" pointer slot="button-prev" style=""></div>
+    <div class="swiper-button-next swiper-button-white" pointer slot="button-next" style=""></div>
+    
+  </swiper>
+  
+    <div id="scroll-down" @click="toPostContent()">
+      <a href="javascript:;">
+        <i class="fas fa-angle-down scroll-down-effects"></i>
+      </a>
+    </div>
+  
+  <canvas id="header_canvas"style="position:absolute;bottom:0;width:100%;pointer-events:none;"></canvas>
+  
+    <svg class="hans-container" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none"><defs><path id="hans-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"></path></defs><g class="hans-parallax"><use xlink:href="#hans-wave" x="50" y="0" fill="rgba(224,233,239,.5)"></use><use xlink:href="#hans-wave" x="50" y="3" fill="rgba(224,233,239,.5)"></use><use xlink:href="#hans-wave" x="50" y="6" fill="rgba(224,233,239,.5)"></use></g></svg>
+    
 </div>
 
-<!-- hash算法 -->
+
+<style>.hans-parallax>use{animation:hans-wave-move 12s linear infinite}.hans-parallax>use:nth-child(1){animation-delay:-2s}.hans-parallax>use:nth-child(2){animation-delay:-2s;animation-duration:5s}.hans-parallax>use:nth-child(3){animation-delay:-4s;animation-duration:3s}@keyframes hans-wave-move{0%{transform:translate(-90px,0)}100%{transform:translate(85px,0)}}</style>
+<style>
+  .hans-container {
+    position: absolute!important;
+    bottom: 0;
+    width: 100%;
+    height: 120px;
+    z-index: 100;
+    pointer-events:none;
+  }
+</style>
 
 
-<div class="archive-main">
-  <section class="archive">
-    <div class="archive-content">
-      <ul class="post-archive">
-        
-        
-          
+<script>
+  var autoplay = JSON.parse('true');
+  var delay = '5000';
+  var loop = JSON.parse('true') ? false : JSON.parse('true');
+  var effect = 'slide';
+  var swiperLength = parseInt(document.querySelector(".swiper-length").innerText);
+  var defaultDesc = 'Simon I just don&#39;t know，我该往哪里走';
+  defaultDesc = defaultDesc.split(',');
+  var defaultDescTypedLoop = JSON.parse('true');
+  var vm = new Vue({
+    el: '#appSwiper',
+    data: {
+      defaultDesc: defaultDesc,
+      defaultDescTypedLoop,
+      swiperOptions: {
+        pagination: {
+          el: '.swiper-pagination',
+          clickable: true // 允许点击小圆点跳转
+        },
+        loop: loop ? true : false,
+        effect, // fade
+        autoplay: (autoplay && swiperLength > 1) ? {
+  　　　　delay,
+  　　　　disableOnInteraction: false // 手动切换之后继续自动轮播
+    　　} : false,
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
+        },
+        lazy: {
+          loadPrevNext: true,
+        },
+        on:{
+          init: function() {
+            swiperAnimateCache(this); //隐藏动画元素 
+            swiperAnimate(this); //初始化完成开始动画
+          }, 
+          slideChangeTransitionEnd: function(){ 
+            swiperAnimate(this); //每个slide切换结束时也运行当前slide动画
+          } 
+        }
+        // Some Swiper option/callback...
+      }
+    },
+    computed: {
+      swiper() {
+        return this.$refs.mySwiper.$swiper
+      }
+    },
+    mounted() {
+      // console.log('Current Swiper instance object', this.swiper)
+      // this.swiper.slideTo(0, 1000, false)
+    },
+    methods: {
+      stopAutoPlay() {
+        (autoplay && swiperLength > 1) && this.swiper.autoplay.stop();
+      },
+      startAutoPlay() {
+        (autoplay && swiperLength > 1) && this.swiper.autoplay.start();
+      },
+      slideChangeTransitionEnd() {
+        console.log('1');
+      },
+      toPostContent() {
+        const fullHeight = $(window).height() - 60;
+        $('html,body').animate({scrollTop: fullHeight},500);
+      }
+    },
+    created() {}
+  })
+</script>
+
+  <script src="/js/bubble/homeBubble.js"></script>
+
+<style>
+#appSwiper {
+  position: relative;
+  user-select: none;
+  overflow: hidden;
+  font-family: Titillium Web,'PingFang SC','Hiragino Sans GB','Microsoft JhengHei','Microsoft YaHei',sans-serif;
+}
+.default-excerpt {
+  font-size: 1.6em;
+  margin-top: 1em;
+  color: #eee;
+}
+.bottom-one-btn {
+  margin-top: 15px;
+}
+.swiper-container {
+  overflow: hidden;
+  z-index: 0;
+}
+.swiper-slide {
+  height: 350px;
+  position: relative;
+}
+.swiper-button-prev,
+.swiper-button-next {
+  padding: 10px 10px;
+  transition: background 0.2s;
+}
+.swiper-button-prev:hover,
+.swiper-button-next:hover {
+  background: rgba(0, 0, 0, 0.2);
+}
+.swiper-slide .item {
+  width: 100%;
+  height: 100%;
+}
+.flag {
+  position: relative;
+  width: 70%;
+  margin: 0 auto;
+  color: #ffffff;
+  height: 100%;
+  background: #000;
+}
+.flag img {
+  min-height: 100%;
+}
+.flag-text {
+  position: absolute;
+  top: 50px;
+  left: 50px;
+  width: 80%;
+  height: 280px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  z-index: 9999;
+}
+.flag-text .title {
+  font-size: 1.8em;
+}
+.flag-text .title a {
+  color: #fff;
+  transition: color 0.3s;
+}
+.flag-text .title a:hover {
+  color: #5698c3;
+}
+.flag-text .excerpt {
+  color: #eee;
+  width: 70%;
+  line-height: 30px;
+  height: 150px;
+  margin-top: 2%;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 5;
+  overflow: hidden;
+}
+.swiper-pagination-bullet-active {
+  opacity: 1;
+  background-color: #42b983;
+}
+.img-mask {
+  opacity:0.6; filter: alpha(opacity=60);
+}
+.flag-text .read-more {
+  margin-bottom: 30px;
+  padding: 5px 15px;
+  color: #ffffff;
+  border-radius: 20px;
+}
+#scroll-down {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 2.5em;
+  color: #fff;
+  cursor: pointer;
+  z-index: 2;
+}
+#scroll-down a {
+  color: #fff;
+}
+@-webkit-keyframes rightan
+  {
+  
+  0%
+  {
+    transform: translateY(0);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translateY(-30px);
+    opacity: 1;
+  }
+  100%
+  {
+    transform: translateY(0);
+    opacity: 0.5;
+  }
+}
+.scroll-down-effects {
+  animation: rightan 1.5s infinite;
+}
+/* 当头部导航设置为背景透明的时候 */
+.swiper-slide {
+  height: 400px;
+}
+.flag-text {
+  top: 80px;
+}
+
+@media (min-width: 992px) {
+  .swiper-button-prev {
+    margin-left: 15%;
+    transform: translateX(-180%);
+  }
+  .swiper-button-next {
+    margin-right: 15%;
+    transform: translateX(180%);
+  }
+  .flag-text .title {
+    width: 80%;
+    line-height: 35px;
+    max-height: 70px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+  }
+}
+@media screen and (max-width: 1200px) { 
+  .flag {
+    width: 80%;
+  }
+  .swiper-button-prev {
+    margin-left: 10%;
+    transform: translateX(-180%);
+  }
+  .swiper-button-next {
+    margin-right: 10%;
+    transform: translateX(180%);
+  }
+}
+@media (max-width: 992px) {
+  .flag {
+    width: 100%;
+  }
+  .flag-text .title {
+    font-size: 1.5em;
+    margin-top: 50px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+  }
+  .flag-text {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 80%;
+    height: 100%;
+    margin-left: 50%;
+    transform: translateX(-50%);
+  }
+  .flag-text .excerpt {
+    width: 100%;
+    line-height: 25px;
+    height: 125px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 5;
+    overflow: hidden;
+  }
+  .flag-text .read-more {
+    margin-bottom: 80px;
+  }
+}
+@media (max-width: 992px) and (min-width: 551px) {
+  .flag-text .excerpt {
+    width: 70%;
+  }
+}
+@media (max-width: 551px) {
+  .swiper-slide {
+    height: 250px;
+  }
+  .flag-text .title {
+    line-height: 30px;
+    max-height: 60px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    margin-top: 20px;
+  }
+  .flag-text .excerpt {
+    font-size: 1em;
+    line-height: 20px;
+    height: 80px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+  }
+  .flag-text .excerpt { 
+    margin-top: 10px;
+  }
+  .flag-text .read-more {
+    margin-top: 10px;
+    margin-bottom: 50px;
+  }
+  .swiper-button-prev,
+  .swiper-button-next {
+    transform: scale(0.5);
+  }
+  .swiper-button-prev {
+    left: 0;
+  }
+  .swiper-button-next {
+    right: 0;
+  }
+}
+/* 当头部导航设置为背景透明的时候 */
+  @media (max-width: 992px) {
+    .flag-text {
+      top: 60px;
+      height: 80%;
+    }
+  }
+  @media (max-width: 551px) {
+    .swiper-slide {
+      height: 310px;
+    }
+  }
+
+/* 文字或者按钮居中显示 */
+
+  .flag-text {
+    left: 10%;
+  }
+  .flag-text .flag-text-content {
+    width: 100%;
+    text-align: center;
+  }
+  .flag-text .title {
+    width: 100%;
+    text-align: center;
+  }
+  .flag-text .excerpt { 
+    width: 100%;
+    text-align: center;
+  }
+  .bottom-one-btn {
+    display: flex;
+    justify-content: center;
+  }
+  .default-excerpt {
+    display: flex;
+    justify-content: center;
+    font-size: 1.6em;
+  }
+  .flag-text-btns {
+    justify-content: center;
+  }
+  @media (min-width: 992px) {
+    .flag-text .excerpt {
+      line-height: 30px;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 5;
+      overflow: hidden;
+    }
+  }
+  @media (max-width: 992px) {
+    .flag-text {
+      margin-left: 0;
+      transform: translateX(0);
+    }
+  }
+
+
+
+
+/* 全屏显示 */
+
+  .flag {
+    width: 100%;
+  }
+  .swiper-slide {
+    height: 100vh;
+  }
+  .flag-text {
+    top: 50%;
+    left: 15%;
+    transform: translateY(-50%);
+    width: 70%;
+    height: auto;
+  }
+  .flag-text .title {
+    font-size: 2.8em;
+    line-height: 1.5em;
+    max-height: none;
+  }
+  .flag-text .excerpt {
+    font-size: 1.25em;
+    height: 150px;
+  }
+  .flag-text .read-more {
+    margin-top: 10px;
+  }
+  .swiper-button-prev,
+  .swiper-button-next {
+    margin-top: -60px!important;
+  }
+  .swiper-btn-color,
+  .swiper-btn-color2 {
+    background-color: transparent;
+    border: 1px solid #fff;
+  }
+  .swiper-btn-color:hover,
+  .swiper-btn-color2:hover {
+    background-color: #5698c3;
+    border: 1px solid #5698c3!important;
+  }
+  .flag-text-btns {
+    justify-content: center;
+  }
+  .swiper-button-prev {
+    margin-left: 10px;
+    transform: translateX(0);
+    border-radius: 50%;
+    padding: 0;
+    width: 50px;
+    height: 50px;
+  }
+  .swiper-button-next {
+    margin-right: 10px;
+    transform: translateX(0);
+    border-radius: 50%;
+    padding: 0;
+    width: 50px;
+    height: 50px;
+  }
+  .swiper-button-next:after, .swiper-button-prev:after {
+    font-size: 1.2em;
+  }
+  @media (min-width: 992px) {
+    .flag-text .excerpt {
+      line-height: 35px;
+      height: 175px;
+    }
+    .default-excerpt {
+      min-height: 150px;
+    }
+    .typed-element {
+      align-items: unset;
+    }
+  }
+  @media (max-width: 992px) {
+    .flag-text {
+      margin-left: 0;
+      height: 60%;
+      top: 55%;
+    }
+    .flag-text .title {
+      font-size: 2.4em;
+      margin-top: 0;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      overflow: hidden;
+    }
+    .flag-text .excerpt {
+      line-height: 35px;
+      height: 185px;
+    }
+    .flag-text .read-more {
+      margin-top: 20px;
+    }
+  }
+  @media (max-width: 551px) {
+    .flag-text {
+      height: 60%;
+    }
+    .flag-text .title {
+      font-size: 2.2em;
+    }
+    .flag-text .excerpt {
+      line-height: 30px;
+    }
+    .flag-text .read-more {
+      margin-top: 50px;
+      padding: 10px 30px;
+    }
+    .swiper-button-prev {
+      margin-left: 0;
+    }
+    .swiper-button-next {
+      margin-right: 0;
+    }
+    .default-excerpt {
+      margin-top: 1em;
+    }
+  }
+
+
+/* video */
+.swiper-video {
+  width: 100%;
+  height: 100%;
+}
+.swiper-video video {
+  pointer-events: none;
+}
+.swiper-video-maskBox{
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: #000;
+  opacity: 0.2;
+  z-index: 1;
+}
+@media (min-width: 992px) {
+  
+    .swiper-video {
+      display: none;
+    }
+    .swiper-default-bgImg {
+      display: block;  
+    }
+  
+}
+@media (max-width: 992px) {
+  .swiper-video {
+    display: none;
+  }
+  .swiper-default-bgImg {
+    display: block;  
+  }
+}
+/* video-end */
+</style>
+
+
+<div id="l_main">
+  <div class="l_content">
+    <!-- 自定义的内容 -->
+    
+    <!-- 首页座右铭 -->
+    
+    <!-- 首页公告 -->
+    
+    <!-- 首页文章置顶 -->
+    
+
+
+
+    <div class="bg-floor" id="home-bg-floor" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -2;"></div>
+    <!-- 每一篇文章卡片 -->
+    <!-- hash算法 -->
+
+<section class="posts">
+  
+    
+    <article class="post reveal" style="flex-direction: row-reverse;   ">
+      <div class="post-main">
+        <div class="post-info">
+          <div class="post-time">
+            <i class="fas fa-clock" aria-hidden="true"></i>
+            <span class="post-time">2022-09-06</span>
+          </div>
+          <div class="post-title">
+            <a class="post-title-link" href="/2022/09/06/blog%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/">blog配置教程</a>
+          </div>
+          <div class="post-meta">
+            <div class="post-tags">
+              <!-- 文章详情页的标签 -->
+
+            </div>
+            <div class="post-categories">
+              <!-- 文章详情页的分类 -->
+
+
+            </div>
+          </div>
+          <div class="post-img-mobile">
+            <a href="/2022/09/06/blog%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/" style="background-size: cover; 
+              background-position: center center;">
+              <img class="lazyload lazyload placeholder" src="/images/gallery/2023Spring/1678845583620.jpg" class="lazyload placeholder" data-srcset="/images/gallery/2023Spring/1678845583620.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+            </a>
+          </div>
+          <div class="post-content">
             
-            <div class="year" data-aos="zoom-in-up">
-                <div class="bullet"></div>
-                <a href="/archives/2023">2023</a>
-            </div>
-          
-          <li class="post-item" data-aos="fade-left">
-            
-            <div class="post-img-box">
-              <a href="/2023/06/10/BUAA-OO-JML-SocialContact/" class="post-img " style="background-size: cover; 
-                background-position: center center;">
-                <img class="lazyload lazyload placeholder" src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OO/SocialContact/%E6%9E%B6%E6%9E%84.png" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OO/SocialContact/%E6%9E%B6%E6%9E%84.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                <span class="post-date">06-10</span>
-              </div>
-              <a class="post-title" href="/2023/06/10/BUAA-OO-JML-SocialContact/">BUAA-OO-JML-SocialContact</a>
-            </div>
-          </li>
-        
-          
-          <li class="post-item" data-aos="fade-left">
-            
-            <div class="post-img-box">
-              <a href="/2023/06/10/BUAA-OS-lab6-%E7%AE%A1%E9%81%93%E4%B8%8Eshell/" class="post-img " style="background-size: cover; 
-                background-position: center center;">
-                <img class="lazyload lazyload placeholder" src="/images/gallery/2023Spring/1678845584451.jpg" class="lazyload placeholder" data-srcset="/images/gallery/2023Spring/1678845584451.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                <span class="post-date">06-10</span>
-              </div>
-              <a class="post-title" href="/2023/06/10/BUAA-OS-lab6-%E7%AE%A1%E9%81%93%E4%B8%8Eshell/">BUAA-OS-lab6-管道与shell</a>
-            </div>
-          </li>
-        
-          
-          <li class="post-item" data-aos="fade-left">
-            
-            <div class="post-img-box">
-              <a href="/2023/06/10/BUAA-OS-lab5-%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/" class="post-img " style="background-size: cover; 
-                background-position: center center;">
-                <img class="lazyload lazyload placeholder" src="/images/gallery/2023Spring/1678845583725.jpg" class="lazyload placeholder" data-srcset="/images/gallery/2023Spring/1678845583725.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                <span class="post-date">06-10</span>
-              </div>
-              <a class="post-title" href="/2023/06/10/BUAA-OS-lab5-%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/">BUAA-OS-lab5-文件系统</a>
-            </div>
-          </li>
-        
-          
-          <li class="post-item" data-aos="fade-left">
-            
-            <div class="post-img-box">
-              <a href="/2023/06/10/BUAA-OS-lab4-%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8%E4%B8%8Eipc%E4%B8%8Efork/" class="post-img " style="background-size: cover; 
-                background-position: center center;">
-                <img class="lazyload lazyload placeholder" src="/images/gallery/2023Spring/1678845584401.jpg" class="lazyload placeholder" data-srcset="/images/gallery/2023Spring/1678845584401.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                <span class="post-date">06-10</span>
-              </div>
-              <a class="post-title" href="/2023/06/10/BUAA-OS-lab4-%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8%E4%B8%8Eipc%E4%B8%8Efork/">BUAA-OS-lab4-系统调用与ipc与fork</a>
-            </div>
-          </li>
-        
-          
-          <li class="post-item" data-aos="fade-left">
-            
-            <div class="post-img-box">
-              <a href="/2023/06/10/BUAA-OS-lab3-%E8%BF%9B%E7%A8%8B%E4%B8%8E%E8%B0%83%E5%BA%A6/" class="post-img " style="background-size: cover; 
-                background-position: center center;">
-                <img class="lazyload lazyload placeholder" src="/images/gallery/2023Spring/1678845787989.jpg" class="lazyload placeholder" data-srcset="/images/gallery/2023Spring/1678845787989.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                <span class="post-date">06-10</span>
-              </div>
-              <a class="post-title" href="/2023/06/10/BUAA-OS-lab3-%E8%BF%9B%E7%A8%8B%E4%B8%8E%E8%B0%83%E5%BA%A6/">BUAA-OS-lab3-进程与调度</a>
-            </div>
-          </li>
-        
-          
-          <li class="post-item" data-aos="fade-left">
-            
-            <div class="post-img-box">
-              <a href="/2023/04/15/OS-%E5%81%9A%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84shell/" class="post-img " style="background-size: cover; 
-                background-position: center center;">
-                <img class="lazyload lazyload placeholder" src="/images/gallery/2023Spring/1678845583450.jpg" class="lazyload placeholder" data-srcset="/images/gallery/2023Spring/1678845583450.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                <span class="post-date">04-15</span>
-              </div>
-              <a class="post-title" href="/2023/04/15/OS-%E5%81%9A%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84shell/">OS-做一个简单的shell</a>
-            </div>
-          </li>
-        
-          
-          <li class="post-item" data-aos="fade-left">
-            
-            <div class="post-img-box">
-              <a href="/2023/04/14/BUAA-OO-ElevatorDispatcher-3-0/" class="post-img " style="background-size: cover; 
-                background-position: center center;">
-                <img class="lazyload lazyload placeholder" src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OO/ElevatorDispatcher3.0/codeMR%E5%88%86%E6%9E%90.png" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OO/ElevatorDispatcher3.0/codeMR%E5%88%86%E6%9E%90.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                <span class="post-date">04-14</span>
-              </div>
-              <a class="post-title" href="/2023/04/14/BUAA-OO-ElevatorDispatcher-3-0/">【BUAA-OO】ElevatorDispatcher3.0</a>
-            </div>
-          </li>
-        
-          
-          <li class="post-item" data-aos="fade-left">
-            
-            <div class="post-img-box">
-              <a href="/2023/04/02/BUAA-OS-lab2-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/" class="post-img " style="background-size: cover; 
-                background-position: center center;">
-                <img class="lazyload lazyload placeholder" src="/images/gallery/2023Spring/1678845583450.jpg" class="lazyload placeholder" data-srcset="/images/gallery/2023Spring/1678845583450.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                <span class="post-date">04-02</span>
-              </div>
-              <a class="post-title" href="/2023/04/02/BUAA-OS-lab2-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/">【BUAA-OS】lab2-内存管理</a>
-            </div>
-          </li>
-        
-          
-          <li class="post-item" data-aos="fade-left">
-            
-            <div class="post-img-box">
-              <a href="/2023/04/02/BUAA-OO-ElevatorDispatcher-2-0/" class="post-img " style="background-size: cover; 
-                background-position: center center;">
-                <img class="lazyload lazyload placeholder" src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OO/ElevatorDispatcher2.0/uml.png" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OO/ElevatorDispatcher2.0/uml.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                <span class="post-date">04-02</span>
-              </div>
-              <a class="post-title" href="/2023/04/02/BUAA-OO-ElevatorDispatcher-2-0/">【BUAA-OO】ElevatorDispatcher2.0</a>
-            </div>
-          </li>
-        
-          
-          <li class="post-item" data-aos="fade-left">
-            
-            <div class="post-img-box">
-              <a href="/2023/04/02/BUAA-OO-ElevatorDispatcher-1-0/" class="post-img " style="background-size: cover; 
-                background-position: center center;">
-                <img class="lazyload lazyload placeholder" src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OO/ElevatorDispatcher1.0/%E6%9E%B6%E6%9E%84%E7%A4%BA%E6%84%8F%E5%9B%BE.png" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OO/ElevatorDispatcher1.0/%E6%9E%B6%E6%9E%84%E7%A4%BA%E6%84%8F%E5%9B%BE.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                <span class="post-date">04-02</span>
-              </div>
-              <a class="post-title" href="/2023/04/02/BUAA-OO-ElevatorDispatcher-1-0/">【BUAA-OO】ElevatorDispatcher1.0</a>
-            </div>
-          </li>
-        
-      </ul>
-    </div>
-  </section>
-  <div class="w-70">
+          </div>
+        </div>
+        <div class="post-more">
+          <a href="/2022/09/06/blog%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/">
+            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
+          </a>
+        </div>
+      </div>
+      <div class="post-img">
+        <a href="/2022/09/06/blog%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/" style="background-size: cover; 
+          background-position: center center;">
+          <img class="lazyload lazyload placeholder" src="/images/gallery/2023Spring/1678845583620.jpg" class="lazyload placeholder" data-srcset="/images/gallery/2023Spring/1678845583620.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+        </a>
+      </div>
+    </article>
+  
+</section>
+    <!-- 翻页 -->
     
   <!-- <nav class="page-nav">
-    <span class="page-number current">1</span><a class="page-number" href="/archives/2023/page/2/">2</a><a class="extend next" rel="next" href="/archives/2023/page/2/">下一页</a>
+    <a class="extend prev" rel="prev" href="/page/4/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span>
   </nav> -->
   <div class="page-nav">
     
+      <a href="/page/4/"
+         class="page-nav-pre">
+         <i class="fas fa-angle-left"></i><span class="ml-5">上一页</span>
+      </a>
+    
     <div class="page-info">
-        <div class="page-info-text">1 / 2</div>
+        <div class="page-info-text">5 / 5</div>
     </div>
     
-      <a href="/archives/2023/page/2/"
-         class="page-nav-next">
-          <span class="mr-5">下一页</span><i class="fas fa-angle-right"></i>
-      </a>
-      
   </div>
 
   </div>
+
+  <aside id='l_side'>
+  
+    
+      <section class="widget side_blogger">
+  <div class='content'>
+    
+      
+        <a class='avatar flat-box rectangle' href='/about/'>
+          <img src='/images/head.jpg'/>
+        </a>
+      
+    
+    
+      <div class='text'>
+        
+          <h2>Volca Xiao</h2>
+        
+        
+          <p>Welcome to Volca’s World</p>
+
+        
+        
+          <p><span id="jinrishici-sentence">volca's blog</span></p>
+          <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+        
+      </div>
+    
+    
+      <div class="social-wrapper">
+        
+          
+            <a href="/volcaxiaoc@buaa.edu.cn"
+              class="social fas fa-envelope flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
+            </a>
+          
+        
+          
+            <a href="tencent://AddContact/?fromId=50&amp;fromSubId=1&amp;subcmd=all&amp;uin=2322863798"
+              class="social fa fa-paper-plane flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
+            </a>
+          
+        
+          
+            <a href="http://volcaxiao.top/about/"
+              class="social fa fa-user-plus flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
+            </a>
+          
+        
+      </div>
+    
+  </div>
+</section>
+
+    
+  
+  
+  
+
+  <div class="layout_sticky">    
+    
+      
+        
+    <section class="widget side_category">
+      
+  <header>
+    
+      <a style="color: " href='/blog/categories/'><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i><span class='name'>文章分类</span></a>
+    
+  </header>
+
+
+      <div class='content'>
+        <ul class="entry navigation">
+          
+            <li><a class="flat-box"
+              title="/categories/BUAA%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" href="/categories/BUAA%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"
+              id="categoriesBUAAE6938DE4BD9CE7B3BBE7BB9F"
+              ><div class='name'>BUAA操作系统</div><div class='badge'>(7)</div></a></li>
+          
+            <li><a class="flat-box"
+              title="/categories/BUAA%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" href="/categories/BUAA%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/"
+              id="categoriesBUAAE8AEA1E7AE97E69CBAE7BB84E68890E58E9FE79086"
+              ><div class='name'>BUAA计算机组成原理</div><div class='badge'>(8)</div></a></li>
+          
+            <li><a class="flat-box"
+              title="/categories/BUAA%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/" href="/categories/BUAA%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/"
+              id="categoriesBUAAE99DA2E59091E5AFB9E8B1A1"
+              ><div class='name'>BUAA面向对象</div><div class='badge'>(9)</div></a></li>
+          
+            <li><a class="flat-box"
+              title="/categories/welcome/" href="/categories/welcome/"
+              id="categorieswelcome"
+              ><div class='name'>welcome</div><div class='badge'>(1)</div></a></li>
+          
+            <li><a class="flat-box"
+              title="/categories/%E5%8C%97%E8%88%AA%E4%BF%A1%E6%81%AF%E7%B1%BB%E5%A4%A7%E4%B8%80%E8%B5%84%E6%96%99/" href="/categories/%E5%8C%97%E8%88%AA%E4%BF%A1%E6%81%AF%E7%B1%BB%E5%A4%A7%E4%B8%80%E8%B5%84%E6%96%99/"
+              id="categoriesE58C97E888AAE4BFA1E681AFE7B1BBE5A4A7E4B880E8B584E69699"
+              ><div class='name'>北航信息类大一资料</div><div class='badge'>(7)</div></a></li>
+          
+            <li><a class="flat-box"
+              title="/categories/%E5%B7%A5%E7%A7%91%E5%A4%A7%E5%AD%A6%E7%89%A9%E7%90%86/" href="/categories/%E5%B7%A5%E7%A7%91%E5%A4%A7%E5%AD%A6%E7%89%A9%E7%90%86/"
+              id="categoriesE5B7A5E7A791E5A4A7E5ADA6E789A9E79086"
+              ><div class='name'>工科大学物理</div><div class='badge'>(2)</div></a></li>
+          
+            <li><a class="flat-box"
+              title="/categories/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%EF%BC%88%E4%BA%8C%EF%BC%89/" href="/categories/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%EF%BC%88%E4%BA%8C%EF%BC%89/"
+              id="categoriesE7A6BBE695A3E695B0E5ADA6EFBC88E4BA8CEFBC89"
+              ><div class='name'>离散数学（二）</div><div class='badge'>(5)</div></a></li>
+          
+        </ul>
+      </div>
+    </section>
+  
+  
+      
+      
+        
+<section class="widget side_tagcloud">
+    
+  <header>
+    
+      <a style="color: " href='/tags/'><i class="fas fa-tags fa-fw" aria-hidden="true"></i><span class='name'>热门标签</span></a>
+    
+  </header>
+
+
+    <div class='content'>
+    <a href="/tags/CO/" style="font-size: 20.25px; color: #6f6f6f">CO</a> <a href="/tags/C%E8%AF%AD%E8%A8%80/" style="font-size: 14px; color: #999">C语言</a> <a href="/tags/JML/" style="font-size: 14px; color: #999">JML</a> <a href="/tags/Linux/" style="font-size: 14px; color: #999">Linux</a> <a href="/tags/MIPS/" style="font-size: 19px; color: #777">MIPS</a> <a href="/tags/Makefile/" style="font-size: 14px; color: #999">Makefile</a> <a href="/tags/OO/" style="font-size: 21.5px; color: #666">OO</a> <a href="/tags/OS/" style="font-size: 19px; color: #777">OS</a> <a href="/tags/P0/" style="font-size: 14px; color: #999">P0</a> <a href="/tags/P2/" style="font-size: 15.25px; color: #919191">P2</a> <a href="/tags/P3/" style="font-size: 14px; color: #999">P3</a> <a href="/tags/P4/" style="font-size: 14px; color: #999">P4</a> <a href="/tags/P5/" style="font-size: 14px; color: #999">P5</a> <a href="/tags/P6/" style="font-size: 14px; color: #999">P6</a> <a href="/tags/P7/" style="font-size: 14px; color: #999">P7</a> <a href="/tags/bash/" style="font-size: 14px; color: #999">bash</a> <a href="/tags/elf/" style="font-size: 14px; color: #999">elf</a> <a href="/tags/fork/" style="font-size: 14px; color: #999">fork</a> <a href="/tags/git/" style="font-size: 14px; color: #999">git</a> <a href="/tags/ipc/" style="font-size: 14px; color: #999">ipc</a> <a href="/tags/logisim/" style="font-size: 14px; color: #999">logisim</a> <a href="/tags/pre/" style="font-size: 15.25px; color: #919191">pre</a> <a href="/tags/printf%E5%AE%9E%E7%8E%B0/" style="font-size: 14px; color: #999">printf实现</a> <a href="/tags/shell/" style="font-size: 15.25px; color: #919191">shell</a> <a href="/tags/start/" style="font-size: 14px; color: #999">start</a> <a href="/tags/welcome/" style="font-size: 14px; color: #999">welcome</a> <a href="/tags/wps/" style="font-size: 14px; color: #999">wps</a> <a href="/tags/%E5%85%B3%E7%B3%BB/" style="font-size: 14px; color: #999">关系</a> <a href="/tags/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/" style="font-size: 14px; color: #999">内存管理</a> <a href="/tags/%E5%87%BD%E6%95%B0/" style="font-size: 14px; color: #999">函数</a> <a href="/tags/%E5%8C%97%E8%88%AA/" style="font-size: 24px; color: #555">北航</a> <a href="/tags/%E5%9B%BE%E8%AE%BA/" style="font-size: 14px; color: #999">图论</a> <a href="/tags/%E5%9F%BA%E6%95%B0/" style="font-size: 14px; color: #999">基数</a> <a href="/tags/%E5%A4%A7%E4%B8%80/" style="font-size: 19px; color: #777">大一</a> <a href="/tags/%E5%A4%A7%E4%BA%8C/" style="font-size: 22.75px; color: #5e5e5e">大二</a> <a href="/tags/%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86/" style="font-size: 14px; color: #999">存储管理</a> <a href="/tags/%E6%95%B0%E5%88%86/" style="font-size: 15.25px; color: #919191">数分</a> <a href="/tags/%E6%95%B0%E5%AD%A6%E5%BD%92%E7%BA%B3%E6%B3%95/" style="font-size: 14px; color: #999">数学归纳法</a> <a href="/tags/%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/" style="font-size: 14px; color: #999">文件系统</a> <a href="/tags/%E6%97%B6%E9%97%B4%E7%89%87%E8%B0%83%E5%BA%A6/" style="font-size: 14px; color: #999">时间片调度</a> <a href="/tags/%E6%A0%91/" style="font-size: 14px; color: #999">树</a> <a href="/tags/%E6%B0%94%E4%BD%93%E5%8A%A8%E7%90%86%E8%AE%BA/" style="font-size: 14px; color: #999">气体动理论</a> <a href="/tags/%E7%83%AD%E5%8A%9B%E5%AD%A6/" style="font-size: 15.25px; color: #919191">热力学</a> <a href="/tags/%E7%83%AD%E5%8A%9B%E5%AD%A6%E5%9F%BA%E7%A1%80/" style="font-size: 14px; color: #999">热力学基础</a> <a href="/tags/%E7%89%A9%E7%90%86/" style="font-size: 15.25px; color: #919191">物理</a> <a href="/tags/%E7%8A%B6%E6%80%81%E7%BC%96%E7%A0%81/" style="font-size: 14px; color: #999">状态编码</a> <a href="/tags/%E7%94%B5%E6%A2%AF/" style="font-size: 16.5px; color: #888">电梯</a> <a href="/tags/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A62/" style="font-size: 17.75px; color: #808080">离散数学2</a> <a href="/tags/%E7%AC%AC%E4%B8%80%E5%8D%95%E5%85%83/" style="font-size: 16.5px; color: #888">第一单元</a> <a href="/tags/%E7%AC%AC%E4%B8%89%E5%8D%95%E5%85%83/" style="font-size: 14px; color: #999">第三单元</a> <a href="/tags/%E7%AC%AC%E4%BA%8C%E5%8D%95%E5%85%83/" style="font-size: 16.5px; color: #888">第二单元</a> <a href="/tags/%E7%AE%A1%E9%81%93/" style="font-size: 14px; color: #999">管道</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E5%90%AF%E5%8A%A8/" style="font-size: 14px; color: #999">系统启动</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8/" style="font-size: 14px; color: #999">系统调用</a> <a href="/tags/%E8%87%AA%E7%84%B6%E6%95%B0/" style="font-size: 14px; color: #999">自然数</a> <a href="/tags/%E8%A1%A8%E8%BE%BE%E5%BC%8F/" style="font-size: 16.5px; color: #888">表达式</a> <a href="/tags/%E8%AE%A1%E7%BB%84/" style="font-size: 19px; color: #777">计组</a> <a href="/tags/%E8%B5%84%E6%BA%90/" style="font-size: 17.75px; color: #808080">资源</a> <a href="/tags/%E8%BF%9B%E7%A8%8B%E5%88%9B%E5%BB%BA/" style="font-size: 14px; color: #999">进程创建</a> <a href="/tags/%E9%9B%86%E5%90%88/" style="font-size: 14px; color: #999">集合</a> <a href="/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/" style="font-size: 21.5px; color: #666">面向对象</a> <a href="/tags/%E9%A1%B5%E5%BC%8F%E5%AD%98%E5%82%A8/" style="font-size: 14px; color: #999">页式存储</a> <a href="/tags/%E9%AB%98%E4%BB%A3/" style="font-size: 17.75px; color: #808080">高代</a>
+    </div>
+</section>
+
+  
+      
+      
+  <section class="widget side_recent_post">
+    
+  <header>
+    
+      <a style="color: " href='/tags/'><i class="fas fa-book fa-fw" aria-hidden="true"></i><span class='name'>最新文章</span></a>
+    
+  </header>
+
+
+    <div class='content'>
+      
+      <!-- hash算法 -->
+      
+      <div class="aside-list">
+        
+          <div class="aside-list-item">
+            
+            
+            
+
+            <div class="post-img-box">
+              <a href="/2023/06/10/BUAA-OO-JML-SocialContact/" class="post-img " style="background-size: cover; 
+                background-position: center center;">
+                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OO/SocialContact/%E6%9E%B6%E6%9E%84.png" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OO/SocialContact/%E6%9E%B6%E6%9E%84.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+              </a>
+            </div>
+            <div class="post-date-title">
+              <div>
+                
+                  <span class="post-date">06-10</span>
+                
+              </div>
+              <a class="post-title" href="/2023/06/10/BUAA-OO-JML-SocialContact/">BUAA-OO-JML-SocialContact</a>
+            </div>
+          </div>
+        
+          <div class="aside-list-item">
+            
+            
+            
+
+            <div class="post-img-box">
+              <a href="/2023/06/10/BUAA-OS-lab6-%E7%AE%A1%E9%81%93%E4%B8%8Eshell/" class="post-img " style="background-size: cover; 
+                background-position: center center;">
+                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/images/gallery/2023Spring/1678845584451.jpg" class="lazyload placeholder" data-srcset="/images/gallery/2023Spring/1678845584451.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+              </a>
+            </div>
+            <div class="post-date-title">
+              <div>
+                
+                  <span class="post-date">06-10</span>
+                
+              </div>
+              <a class="post-title" href="/2023/06/10/BUAA-OS-lab6-%E7%AE%A1%E9%81%93%E4%B8%8Eshell/">BUAA-OS-lab6-管道与shell</a>
+            </div>
+          </div>
+        
+          <div class="aside-list-item">
+            
+            
+            
+
+            <div class="post-img-box">
+              <a href="/2023/06/10/BUAA-OS-lab5-%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/" class="post-img " style="background-size: cover; 
+                background-position: center center;">
+                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/images/gallery/2023Spring/1678845583725.jpg" class="lazyload placeholder" data-srcset="/images/gallery/2023Spring/1678845583725.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+              </a>
+            </div>
+            <div class="post-date-title">
+              <div>
+                
+                  <span class="post-date">06-10</span>
+                
+              </div>
+              <a class="post-title" href="/2023/06/10/BUAA-OS-lab5-%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/">BUAA-OS-lab5-文件系统</a>
+            </div>
+          </div>
+        
+          <div class="aside-list-item">
+            
+            
+            
+
+            <div class="post-img-box">
+              <a href="/2023/06/10/BUAA-OS-lab4-%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8%E4%B8%8Eipc%E4%B8%8Efork/" class="post-img " style="background-size: cover; 
+                background-position: center center;">
+                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/images/gallery/2023Spring/1678845584401.jpg" class="lazyload placeholder" data-srcset="/images/gallery/2023Spring/1678845584401.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+              </a>
+            </div>
+            <div class="post-date-title">
+              <div>
+                
+                  <span class="post-date">06-10</span>
+                
+              </div>
+              <a class="post-title" href="/2023/06/10/BUAA-OS-lab4-%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8%E4%B8%8Eipc%E4%B8%8Efork/">BUAA-OS-lab4-系统调用与ipc与fork</a>
+            </div>
+          </div>
+        
+          <div class="aside-list-item">
+            
+            
+            
+
+            <div class="post-img-box">
+              <a href="/2023/06/10/BUAA-OS-lab3-%E8%BF%9B%E7%A8%8B%E4%B8%8E%E8%B0%83%E5%BA%A6/" class="post-img " style="background-size: cover; 
+                background-position: center center;">
+                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="/images/gallery/2023Spring/1678845787989.jpg" class="lazyload placeholder" data-srcset="/images/gallery/2023Spring/1678845787989.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+              </a>
+            </div>
+            <div class="post-date-title">
+              <div>
+                
+                  <span class="post-date">06-10</span>
+                
+              </div>
+              <a class="post-title" href="/2023/06/10/BUAA-OS-lab3-%E8%BF%9B%E7%A8%8B%E4%B8%8E%E8%B0%83%E5%BA%A6/">BUAA-OS-lab3-进程与调度</a>
+            </div>
+          </div>
+        
+      </div>
+    </div>
+  </section>
+
+      
+  <section class="widget side_archives">
+    
+    <header><a style="color: red" href='/archives/'><i class="fas fa-archive fa-fw" aria-hidden="true"></i><span class='name'>归档</span></a></header><div class="content"><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/06/"><span class="card-archive-list-date">六月 2023</span><span class="card-archive-list-count">5</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/04/"><span class="card-archive-list-date">四月 2023</span><span class="card-archive-list-count">5</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/03/"><span class="card-archive-list-date">三月 2023</span><span class="card-archive-list-count">5</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/02/"><span class="card-archive-list-date">二月 2023</span><span class="card-archive-list-count">5</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/12/"><span class="card-archive-list-date">十二月 2022</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/11/"><span class="card-archive-list-date">十一月 2022</span><span class="card-archive-list-count">6</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/10/"><span class="card-archive-list-date">十月 2022</span><span class="card-archive-list-count">6</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/09/"><span class="card-archive-list-date">九月 2022</span><span class="card-archive-list-count">8</span></a></li></ul></div>
+  </section>
+
+      <section class="widget side_webinfo">
+  
+  <header>
+    
+      <i style="color: " class="fas fa-chart-line fa-fw" aria-hidden="true"></i><span class='name' style="color: ">站点信息</span>
+    
+  </header>
+
+
+  <div class='content'>
+    <div class="webinfo">
+      
+        <div class="webinfo-item">
+          <div>文章数目：</div>
+          <div>41 篇</div>
+        </div>
+      
+
+      
+        <div class="webinfo-item">
+          <div>已运行时间：</div>
+          <div id="webinfo-runtime-count" publish_date="03/24/2020 21:34:09"></div>
+        </div>
+        <script>
+          var BirthDay = new Date(new Date('2022/02/16'));
+          var today = new Date();
+          var timeold = (today.getTime() - BirthDay.getTime());
+          var daysold = Math.floor(timeold / (24 * 60 * 60 * 1000));
+          document.getElementById('webinfo-runtime-count').innerHTML = daysold + ' 天';
+        </script>
+      
+
+
+      
+        <div class="webinfo-item">
+          <div>本站总字数：</div>
+          <div>77.8k 字</div>
+        </div>
+      
+
+      
+        <div class="webinfo-item">
+          <div>本站访客数：</div>
+          
+          <div><span id="busuanzi_value_site_uv"><i class="fas fa-fan fa-spin fa-fw" aria-hidden="true"></i></span> 人</div>
+          
+        </div>
+      
+
+      
+        <div class="webinfo-item">
+          <div>本站总访问量：</div>
+          
+          <div><span id="busuanzi_value_site_pv"><i class="fas fa-fan fa-spin fa-fw" aria-hidden="true"></i></span> 次</div>
+          
+        </div>
+      
+
+      
+        <div class="webinfo-item">
+          <div>最后活动时间：</div>
+          
+            <div id="last-update" style="display: none;">Sat Jun 10 2023 14:48:01 GMT+0800 (中国标准时间)</div>
+            <div id="last-update-show">2023-06-10 日</div>
+          
+        </div>
+        
+        <script>
+          function timeago(dateTimeStamp) {
+              var minute = 1000 * 60; //把分，时，天，周，半个月，一个月用毫秒表示
+              var hour = minute * 60;
+              var day = hour * 24;
+              var week = day * 7;
+              var month = day * 30;
+              var now = new Date().getTime(); //获取当前时间毫秒
+              var diffValue = now - dateTimeStamp; //时间差
+              if (diffValue < 0) {
+                  return;
+              }
+              var minC = diffValue / minute; //计算时间差的分，时，天，周，月
+              var hourC = diffValue / hour;
+              var dayC = diffValue / day;
+              var weekC = diffValue / week;
+              var monthC = diffValue / month;
+              if (monthC >= 1 && monthC <= 3) {
+                  result = " " + parseInt(monthC) + " 月前"
+              } else if (weekC >= 1 && weekC <= 3) {
+                  result = " " + parseInt(weekC) + " 周前"
+              } else if (dayC >= 1 && dayC <= 6) {
+                  result = " " + parseInt(dayC) + " 天前"
+              } else if (hourC >= 1 && hourC <= 23) {
+                  result = " " + parseInt(hourC) + " 小时前"
+              } else if (minC >= 1 && minC <= 59) {
+                  result = " " + parseInt(minC) + " 分钟前"
+              } else if (diffValue >= 0 && diffValue <= minute) {
+                  result = "刚刚"
+              } else {
+                  var datetime = new Date();
+                  datetime.setTime(dateTimeStamp);
+                  var Nyear = datetime.getFullYear();
+                  var Nmonth = datetime.getMonth() + 1 < 10 ? "0" + (datetime.getMonth() + 1) : datetime.getMonth() + 1;
+                  var Ndate = datetime.getDate() < 10 ? "0" + datetime.getDate() : datetime.getDate();
+                  var Nhour = datetime.getHours() < 10 ? "0" + datetime.getHours() : datetime.getHours();
+                  var Nminute = datetime.getMinutes() < 10 ? "0" + datetime.getMinutes() : datetime.getMinutes();
+                  var Nsecond = datetime.getSeconds() < 10 ? "0" + datetime.getSeconds() : datetime.getSeconds();
+                  result = Nyear + "-" + Nmonth + "-" + Ndate
+              }
+              return result;
+          }
+          var lastUpDate = document.getElementById('last-update').innerHTML;
+          try {
+            document.getElementById('last-update-show').innerHTML = timeago(new Date(lastUpDate));
+          } catch (error) {
+            document.getElementById('last-update-show').innerHTML = '2023-06-10 日';
+          }
+        </script>
+        
+      
+    </div>
+  </div>
+</section>
+      
+    
+  </div>
+</aside>
 </div>
+<!-- 花瓣和雪花飘落 -->
+<!-- 雪花和花瓣特效 -->
+
+  
+    <script type="text/javascript">
+      //只在桌面版网页启用特效
+      var windowWidth = $(window).width();
+      if (windowWidth > 768) {
+        loadScript('/js/falling/sakura.js');
+      }
+    </script>
+  
+
+
+
+<!-- 灯笼 -->
+
 
       </main>
     </div>
