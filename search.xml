@@ -388,6 +388,585 @@
       </tags>
   </entry>
   <entry>
+    <title>BUAA-OS-lab6-管道与shell</title>
+    <url>/2023/06/10/BUAA-OS-lab6-%E7%AE%A1%E9%81%93%E4%B8%8Eshell/</url>
+    <content><![CDATA[<p>BUAA-OS lab6实验报告，关于mos系统的管道通信的实现，shell的实现。</p>
+<span id="more"></span>
+<h1 id="lab6-log"><a href="#lab6-log" class="headerlink" title="lab6_log"></a>lab6_log</h1><h2 id="Pre"><a href="#Pre" class="headerlink" title="Pre"></a>Pre</h2><ul>
+<li>这次实验需要我们实现管道</li>
+<li>实现shell</li>
+<li>实现shell中涉及管道的部分</li>
+</ul>
+<h2 id="Thinking"><a href="#Thinking" class="headerlink" title="Thinking"></a>Thinking</h2><h3 id="Thinking-6-1"><a href="#Thinking-6-1" class="headerlink" title="Thinking 6.1"></a>Thinking 6.1</h3><blockquote>
+<p>Thinking 6.1 示例代码中，父进程操作管道的写端，子进程操作管道的读端。如果现在想让父进程作为“读者”，代码应当如何修改？</p>
+</blockquote>
+<ul>
+<li>这个简单，父进程关掉写端1，子进程关掉读端0。</li>
+</ul>
+<h3 id="Thinking-6-2"><a href="#Thinking-6-2" class="headerlink" title="Thinking 6.2"></a>Thinking 6.2</h3><blockquote>
+<p>Thinking 6.2 上面这种不同步修改 pp_ref 而导致的进程竞争问题在 user/lib/fd.c 中的 dup 函数中也存在。请结合代码模仿上述情景，分析一下我们的 dup 函数中为什么会出现预想之外的情况？</p>
+</blockquote>
+<ul>
+<li>原理同pipe_close一致，都是在一个函数两个相关的页面map或者unmap的之间发生了时钟中断，所以会导致不一致的现象。</li>
+<li>dup的作用就是将oldfdnum指向的数据复制给newfdnum，一共需要有两次map，将newfd所在的虚拟页映射到oldfd所在的物理页，将newfd的数据所在的虚拟页映射到oldfd的数据所在的物理页。这两者之间肯定是对应着的需要一起解一起连的。</li>
+</ul>
+<h3 id="Thinking-6-3"><a href="#Thinking-6-3" class="headerlink" title="Thinking 6.3"></a>Thinking 6.3</h3><blockquote>
+<p>Thinking 6.3 阅读上述材料并思考：为什么系统调用一定是原子操作呢？如果你觉得不是所有的系统调用都是原子操作，请给出反例。希望能结合相关代码进行分析说明。</p>
+</blockquote>
+<ul>
+<li>系统调用一定是原子操作，进程切换是通过定时器产生时钟中断，触发时钟中断切换进程。但是syscall跳转到内核态时，CPU将SR寄存其的IEc置位0，关闭了时钟中断。</li>
+</ul>
+<h3 id="Thinking-6-4"><a href="#Thinking-6-4" class="headerlink" title="Thinking 6.4"></a>Thinking 6.4</h3><blockquote>
+<p>Thinking 6.4 仔细阅读上面这段话，并思考下列问题<br>• 按照上述说法控制 pipe_close 中 fd 和 pipe unmap 的顺序，是否可以解决上述场景的进程竞争问题？给出你的分析过程。<br>• 我们只分析了 close 时的情形，在 fd.c 中有一个 dup 函数，用于复制文件内容。试想，如果要复制的是一个管道，那么是否会出现与 close 类似的问题？请模仿上述材料写写你的理解。</p>
+</blockquote>
+<ul>
+<li>分析得到，当对于pipe页面的引用次数小于对两个fd的和的时候，就会出现安全问题，而只要先解除fd再解除pipe，就不会出现上述问题，问题也仅仅只是拉大了二者的差距而已，对于结果没有影响。</li>
+<li>上面我们说到的dup会出现不一致的情况，但是会不会有安全问题呢？<ul>
+<li>如果复制的时一个管道，也会出现这样的问题，因为这个是先将fd的映射+1，所以也会出现pipe页面的引用次数小于对两个fd的和的问题。</li>
+</ul>
+</li>
+</ul>
+<h3 id="Thinking-6-5"><a href="#Thinking-6-5" class="headerlink" title="Thinking 6.5"></a>Thinking 6.5</h3><blockquote>
+<p>Thinking 6.5 思考以下三个问题。<br>• 认真回看 Lab5 文件系统相关代码，弄清打开文件的过程。<br>• 回顾 Lab1 与 Lab3，思考如何读取并加载 ELF 文件。<br>• 在 Lab1 中我们介绍了 data text bss 段及它们的含义，data 段存放初始化过的全局变量，bss 段存放未初始化的全局变量。关于 memsize 和filesize ，我们在 Note1.3.4中也解释了它们的含义与特点。关于 Note 1.3.4，注意其中关于“bss 段并不在文件中占数据”表述的含义。回顾 Lab3 并思考：elf_load_seg() 和 load_icode_mapper()函数是如何确保加载 ELF 文件时，bss 段数据被正确加载进虚拟内存空间。bss 段在 ELF 中并不占空间，但 ELF 加载进内存后，bss 段的数据占据了空间，并且初始值都是 0。请回顾 elf_load_seg() 和 load_icode_mapper() 的实现，思考这一点是如何实现的？<br>下面给出一些对于上述问题的提示，以便大家更好地把握加载内核进程和加载用户进程的区别与联系，类比完成 spawn 函数。</p>
+</blockquote>
+<ul>
+<li>关于第一个问题，在 Lab3 中我们创建进程，并且通过 ENV_CREATE(…) 在内核态加载了初始进程，而我们的 spawn 函数则是通过和文件系统交互，取得文件描述块，进而找到 ELF 在“硬盘”中的位置，进而读取。</li>
+<li>关于第二个问题，各位已经在 Lab3 中填写了 load_icode 函数，实现了 ELF 可执行文件中读取数据并加载到内存空间，其中通过调用 elf_load_seg 函数来加载各个程序段。在 Lab3 中我们要填写 load_icode_mapper 回调函数，在内核态下加载 ELF 数据到内存空间；相应地，在 Lab6 中 spawn 函数也需要在用户态下使用系统调用为 ELF 数据分配空间。</li>
+<li>而bss段应该与text段data段连续的放在一起，但是ELF中没有空间，在分配映射页面时，text段与data段没有占满的空间置为0给了bss段，然后再给他另外分配的时候，只使用syscall_mem_alloc而不映射。</li>
+</ul>
+<h3 id="Thinking-6-6"><a href="#Thinking-6-6" class="headerlink" title="Thinking 6.6"></a>Thinking 6.6</h3><blockquote>
+<p>Thinking 6.6 通过阅读代码空白段的注释我们知道，将文件复制给标准输入或输出，需要我们将其 dup 到 0 或 1 号文件描述符 (fd)。那么问题来了：在哪步，0 和 1 被“安排”为标准输入和标准输出？请分析代码执行流程，给出答案。</p>
+</blockquote>
+<ul>
+<li>在user/init.c中，打开了console的文件。</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// stdin should be 0, because no file descriptors are open yet</span></span><br><span class="line"><span class="keyword">if</span> ((r = opencons()) != <span class="number">0</span>) &#123;</span><br><span class="line">  user_panic(<span class="string">&quot;opencons: %d&quot;</span>, r);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// stdout</span></span><br><span class="line"><span class="keyword">if</span> ((r = dup(<span class="number">0</span>, <span class="number">1</span>)) &lt; <span class="number">0</span>) &#123;</span><br><span class="line">  user_panic(<span class="string">&quot;dup: %d&quot;</span>, r);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Thinking-6-7"><a href="#Thinking-6-7" class="headerlink" title="Thinking 6.7"></a>Thinking 6.7</h3><blockquote>
+<p>Thinking 6.7 在 shell 中执行的命令分为内置命令和外部命令。在执行内置命令时 shell 不需要 fork 一个子 shell，如 Linux 系统中的 cd 命令。在执行外部命令时 shell 需要 fork一个子 shell，然后子 shell 去执行这条命令。<br>据此判断，在 MOS 中我们用到的 shell 命令是内置命令还是外部命令？请思考为什么Linux 的 cd 命令是内部命令而不是外部命令？</p>
+</blockquote>
+<ul>
+<li>在mos中，我们都会在执行命令前fork一下，通过子进程来完成这个命令，所以都是外部命令。</li>
+<li>cd命令需要改变父进程的状态，即所在的路径，通过fork之后，只改变了子进程，所以需要是内部命令。</li>
+</ul>
+<h3 id="Thinking-6-8"><a href="#Thinking-6-8" class="headerlink" title="Thinking 6.8"></a>Thinking 6.8</h3><blockquote>
+<p>Thinking 6.8 在你的 shell 中输入命令 ls.b | cat.b &gt; motd。<br>• 请问你可以在你的 shell 中观察到几次 spawn ？分别对应哪个进程？<br>• 请问你可以在你的 shell 中观察到几次进程销毁？分别对应哪个进程？</p>
+</blockquote>
+<ul>
+<li>有两次spawn，分别打开了ls.b，cat.b进程</li>
+<li>有四个进程的销毁，分别是左指令的执行进程，右指令的执行进程，spawn打开的两个执行进程。</li>
+</ul>
+<h2 id="Exercise"><a href="#Exercise" class="headerlink" title="Exercise"></a>Exercise</h2><h3 id="Exercise-6-1"><a href="#Exercise-6-1" class="headerlink" title="Exercise 6.1"></a>Exercise 6.1</h3><ul>
+<li>首先是实现pipe，操作都被封装在user/lib/pipe.c中。通过pipe函数创造一个pipe，用pipe_read与pipe_write来实现向pipe中的读写（这里的读写也是阻塞的方式），用pipe_close来关闭pipe，用pipe_is_close来判断是否关闭。</li>
+<li>得理解对于pipe的共享是什么原理，其实就是读端与写端的文件描述符都映射到同一个页面，perm置位PTE_LIBRARY，这样fork的时候两个进程之间能够共享这一个管道。然后这个fd映射的页面上存了一个pipe的结构体。</li>
+<li>这里理解了pipe读写的原理，就应该不会很难，通过对于一个fd上的pipe结构体的共享来完成读写，并且是一种类似于循环队列的方式。</li>
+<li>然后还得理解关于pipe_is_close的判定方法，就是进程对于fd页面的引用与pipe页面的应用次数相等即为close。</li>
+</ul>
+<h3 id="Exercise-6-2-6-3"><a href="#Exercise-6-2-6-3" class="headerlink" title="Exercise 6.2-6.3"></a>Exercise 6.2-6.3</h3><ul>
+<li>接下来是要考虑进程安全的问题，即当读端与写端关闭管道的时候，可能发生在已经解除了对于管道的映射，但是害没有解除对于fd的映射。这就会出现问题，总映射的次数&lt;写端次数+读端次数。</li>
+<li>安全问题的解决思考题说的很清楚了，移步观看。</li>
+<li>所以dup与close里的map与unmap交换一下顺序就可以解决这个问题。<ul>
+<li>当然另一种思路肯定就是关中断。</li>
+</ul>
+</li>
+<li>然后在判断关闭的时候要retry，这个也能解决进程安全的问题，就是说，若在判断过程中发生了中断，那就重新判断一遍。</li>
+</ul>
+<h3 id="Exercise-6-4-6-5"><a href="#Exercise-6-4-6-5" class="headerlink" title="Exercise 6.4-6.5"></a>Exercise 6.4-6.5</h3><ul>
+<li>接下来是shell的实现了，首先要实现一个spawn函数，这个函数的作用是打开文件系统中的文件并且执行。</li>
+<li>打开文件通过与文件系统进程的ipc通信，得到之后为这个二进制文件创建进程。</li>
+<li>然后关于shell的实现，我们需要填充的，只是对于命令的解析，这是一个中间步骤，解析完就可以去运行了，当然碰到&lt; 与 &gt; 与 | 这类特殊的符号，需要进行特别的处理。<ul>
+<li>碰到&lt; 或 &gt;就重定向输入输出，使用dup</li>
+<li>碰到 | 就fork出一个新进程，然后建立起两者之间的管道。</li>
+</ul>
+</li>
+</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
+<li>lab6 总体的实验难度不难，但是要理解整个流程还是花费了不少的时间。</li>
+<li>而且我也感觉lab6最后填空似乎也并没有做出什么东西，于是也激发了我的探索欲望，我选择了做lab6的challenge，在做challenge的过程中，感觉自己对于整个shell的实现过程的理解更加深入了。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>BUAA操作系统</category>
+      </categories>
+      <tags>
+        <tag>北航</tag>
+        <tag>大二</tag>
+        <tag>OS</tag>
+        <tag>shell</tag>
+        <tag>管道</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>BUAA-OS-lab5-文件系统</title>
+    <url>/2023/06/10/BUAA-OS-lab5-%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/</url>
+    <content><![CDATA[<p>BUAA-OS lab5实验报告，关于mos系统的外设的管理，文件系统的实现。</p>
+<span id="more"></span>
+<h1 id="lab5-log"><a href="#lab5-log" class="headerlink" title="lab5_log"></a>lab5_log</h1><h2 id="实验要求"><a href="#实验要求" class="headerlink" title="实验要求"></a>实验要求</h2><ul>
+<li>了解文件系统，磁盘的结构与读写，设备驱动的方法</li>
+<li>实现简单的文件系统服务</li>
+<li>了解微内核的设计思想</li>
+</ul>
+<h2 id="Thinking"><a href="#Thinking" class="headerlink" title="Thinking"></a>Thinking</h2><h3 id="Thinking-5-1"><a href="#Thinking-5-1" class="headerlink" title="Thinking 5.1"></a>Thinking 5.1</h3><blockquote>
+<p>Thinking 5.1 如果通过 kseg0 读写设备，那么对于设备的写入会缓存到 Cache 中。这是一种错误的行为，在实际编写代码的时候这么做会引发不可预知的问题。<br>请思考：这么做这会引发什么问题？对于不同种类的设备（如我们提到的串口设备和 IDE 磁盘）的操作会有差异吗？可以从缓存的性质和缓存更新的策略来考虑。</p>
+</blockquote>
+<ul>
+<li>结构中对于维护cache一致性的方法不同，会引发一定的问题<ul>
+<li>若是写通策略，CPU更新cache内容时，同时对内存进行更新，则不会有问题。</li>
+<li>若是写回策略，CPU更新cache内容时，不会立刻写到内存中，只会在下一次更新cache时更新内存。<ul>
+<li>这对于外设来说，无法及时得到CPU写入的数据，就会有问题。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="Thinking-5-2"><a href="#Thinking-5-2" class="headerlink" title="Thinking 5.2"></a>Thinking 5.2</h3><blockquote>
+<p>Thinking 5.2 查找代码中的相关定义，试回答一个磁盘块中最多能存储多少个文件控制块？一个目录下最多能有多少个文件？我们的文件系统支持的单个文件最大为多大？</p>
+</blockquote>
+<ul>
+<li>File结构体被f_pad对齐为了256B，一个磁盘块为4KB，所以最多容纳16个File。</li>
+<li>一个文件控制块（即File结构体，包括间接）中可以存下的指针为1K，所以可以指向1K块磁盘块，所以可以容纳16K个文件。</li>
+<li>可以存的文件大小是1K*4K=4MB</li>
+</ul>
+<h3 id="Thinking-5-3"><a href="#Thinking-5-3" class="headerlink" title="Thinking 5.3"></a>Thinking 5.3</h3><blockquote>
+<p>Thinking 5.3 请思考，在满足磁盘块缓存的设计的前提下，我们实验使用的内核支持的最大磁盘大小是多少？</p>
+</blockquote>
+<ul>
+<li>因为块缓存是1GB的空间，所以文件系统的磁盘大小也是1GB。</li>
+</ul>
+<h3 id="Thinking-5-4"><a href="#Thinking-5-4" class="headerlink" title="Thinking 5.4"></a>Thinking 5.4</h3><blockquote>
+<p>Thinking 5.4 在本实验中，fs/serv.h、user/include/fs.h 等文件中出现了许多宏定义，<br>试列举你认为较为重要的宏定义，同时进行解释，并描述其主要应用之处。</p>
+</blockquote>
+<ul>
+<li>这里面的宏定义大多数都是指代的不同结构的大小，以及起始结束地址。</li>
+</ul>
+<h3 id="Thinking-5-5"><a href="#Thinking-5-5" class="headerlink" title="Thinking 5.5"></a>Thinking 5.5</h3><blockquote>
+<p>Thinking 5.5 在 Lab4“系统调用与 fork”的实验中我们实现了极为重要的 fork 函数。那么 fork 前后的父子进程是否会共享文件描述符和定位指针呢？请在完成上述练习的基础上编写一个程序进行验证。</p>
+</blockquote>
+<ul>
+<li>文件描述符与定位指针在[FDTABLE, FILEBASE)中，在fork执行时，这一部分会被复制到子进程的页表中，所以他们会共享。</li>
+</ul>
+<h3 id="Thinking-5-6"><a href="#Thinking-5-6" class="headerlink" title="Thinking 5.6"></a>Thinking 5.6</h3><blockquote>
+<p>Thinking 5.6 请解释 File, Fd, Filefd 结构体及其各个域的作用。比如各个结构体会在哪些过程中被使用，是否对应磁盘上的物理实体还是单纯的内存数据等。说明形式自定，要求简洁明了，可大致勾勒出文件系统数据结构与物理实体的对应关系与设计框架。</p>
+</blockquote>
+<ul>
+<li>Fd结构体时被用户所使用的，所以只是内存中的数据，用于标定文件信息。</li>
+<li>Filefd结构体时Fd结构体加上File，File结构体对应着磁盘中的它所在目录的内存，而它自身有的指针指向了它的内容。</li>
+</ul>
+<h3 id="Thinking-5-7"><a href="#Thinking-5-7" class="headerlink" title="Thinking 5.7"></a>Thinking 5.7</h3><blockquote>
+<p>Thinking 5.7 图5.7中有多种不同形式的箭头，请解释这些不同箭头的差别，并思考我们的操作系统是如何实现对应类型的进程间通信的。</p>
+</blockquote>
+<ul>
+<li>uml时序图用不同的形状表示不同的元素，箭头一般表示消息元素，即，不同对象之间发送的消息，表示的含义，或是调用，或是等待。</li>
+<li>发送方先调用ipc_send向接收方发消息，等到接收方调用ipc_recv接收到消息之后，发送方使用ipc_recv等待返回消息。</li>
+</ul>
+<h2 id="Exercise"><a href="#Exercise" class="headerlink" title="Exercise"></a>Exercise</h2><h3 id="Exercise-5-1-5-3"><a href="#Exercise-5-1-5-3" class="headerlink" title="Exercise 5.1-5.3"></a>Exercise 5.1-5.3</h3><ul>
+<li>完成写dev外设与读的系统调用</li>
+<li>IDE的磁盘驱动，通过MIMO实现<ul>
+<li>使用上面实现的系统调用，通过对不同地址的操作来实现。</li>
+</ul>
+</li>
+</ul>
+<h3 id="Exercise-5-4-5-8"><a href="#Exercise-5-4-5-8" class="headerlink" title="Exercise 5.4-5.8"></a>Exercise 5.4-5.8</h3><ul>
+<li>接下来开始构造文件系统，我们虚拟抽象出磁盘块Block的概念，一个Block由多个扇区组成。<ul>
+<li>第0个块叫做boot，就是驱动程序。第1块是Super，里面存着文件系统的基本信息。第2块存着管理空闲磁盘资源的bitmap（一bit一block）。</li>
+</ul>
+</li>
+<li>而文件系统镜像的构建在tools/fsformat.c中，与mos处在同一个层级。<ul>
+<li>可以在fs/Makefile中构建初始的file</li>
+<li>用法是<code>Usage: fsformat &lt;img-file&gt; [files or directories]...</code></li>
+<li>我们通过user/lib/fs.h定义了File结构体（文件控制块）</li>
+</ul>
+</li>
+<li>Block缓存的机制，因为文件系统通过一个进程来实现，所以用1G的空间来做映射。</li>
+<li>接下来fs/serv.h这个文件中提供了对于文件系统的操作接口API。</li>
+<li>fs.c文件里完成了对于文件系统块缓存操作的一些函数。<ul>
+<li>比如diskaddr，map，dir_lookup，file_create；</li>
+</ul>
+</li>
+</ul>
+<h3 id="Exercise-5-9-5-10"><a href="#Exercise-5-9-5-10" class="headerlink" title="Exercise 5.9-5.10"></a>Exercise 5.9-5.10</h3><ul>
+<li>构建完文件系统，接下来是关于文件系统的一些用户接口，主要定义在fd.h中。与file.c中</li>
+<li>fd是我们引入的一个新抽象，文件描述符，read write等操作都需要通过fd在描述符表中索引到文件信息。<ul>
+<li>而在mos中，通过将Fd结构体，强制转换成FileFd结构体，得到被掩盖的File。</li>
+</ul>
+</li>
+</ul>
+<h3 id="Exercise-5-11-5-13"><a href="#Exercise-5-11-5-13" class="headerlink" title="Exercise 5.11-5.13"></a>Exercise 5.11-5.13</h3><ul>
+<li>guidebook中有一幅uml图标定了用户进程是怎么获取到文件系统的服务的。<ul>
+<li>serv.c运行即是文件系统的服务进程，在fs/fs.c中有一个fs_init函数，完成了初始化。</li>
+<li>可以看到它与用户进程之间通过ipc通信来完成服务。这种ipc通信也被封装起来了，在user/lib/fsipc.c中，用户进程通过它们来实现与文件系统进程的通信，文件系统这个用户进程通过使用我们前面所讲的一些用户接口来完成请求。</li>
+</ul>
+</li>
+</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
+<li>整个lab5实验部分做下来还是不难的，但最主要的是要理解前前后后的设计思路。</li>
+<li>从对于外设的读写开始，到用ide磁盘抽象出磁盘块构建文件系统，然后用fs.c完成对于磁盘块缓存的构建。</li>
+<li>然后抽象出文件系统描述符，完成对于文件进程serv操作文件系统的一些接口的创建。</li>
+<li>最后完成其他用户进程与文件系统进程之间的通信。</li>
+<li>这一整个过程十分的完整且精巧，体现了微内核结构下操作系统的层次结构。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>BUAA操作系统</category>
+      </categories>
+      <tags>
+        <tag>北航</tag>
+        <tag>大二</tag>
+        <tag>OS</tag>
+        <tag>存储管理</tag>
+        <tag>文件系统</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>BUAA-OS-lab4-系统调用与ipc与fork</title>
+    <url>/2023/06/10/BUAA-OS-lab4-%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8%E4%B8%8Eipc%E4%B8%8Efork/</url>
+    <content><![CDATA[<p>BUAA-OS lab4实验报告，关于mos系统的系统调用的实现，与ipc的实现，写时复制fork的实现。</p>
+<span id="more"></span>
+<h1 id="lab4-log"><a href="#lab4-log" class="headerlink" title="lab4_log"></a>lab4_log</h1><h2 id="实验目标"><a href="#实验目标" class="headerlink" title="实验目标"></a>实验目标</h2><ul>
+<li>系统调用的概念及流程。</li>
+<li>实现进程间的通信。</li>
+<li>实现fork函数。</li>
+<li>页写入异常的处理流程。</li>
+</ul>
+<h2 id="主要关注文件"><a href="#主要关注文件" class="headerlink" title="主要关注文件"></a>主要关注文件</h2><ul>
+<li>user/lib/syscall_lib.c 在用户空间中，syscall_*是最接近内核的函数</li>
+<li>user/lib/syscall_wrap.S mysyscall函数</li>
+<li>kern/syscall_all.c 包含系统调用的所有操作，sys_*函数与上文中的syscall_*一一对应</li>
+</ul>
+<h2 id="Thinking"><a href="#Thinking" class="headerlink" title="Thinking"></a>Thinking</h2><h3 id="Thinking-4-1"><a href="#Thinking-4-1" class="headerlink" title="Thinking 4.1"></a>Thinking 4.1</h3><blockquote>
+<p>Thinking 4.1 思考并回答下面的问题：<br>• 内核在保存现场的时候是如何避免破坏通用寄存器的？<br>• 系统陷入内核调用后可以直接从当时的 $a0-$a3 参数寄存器中得到用户调用 msyscall留下的信息吗？<br>• 我们是怎么做到让 sys 开头的函数“认为”我们提供了和用户调用 msyscall 时同样的参数的？<br>• 内核处理系统调用的过程对 Trapframe 做了哪些更改？这种修改对应的用户态的变化是什么？</p>
+</blockquote>
+<ul>
+<li>SAVE_ALL（include/stackframe.h），将所有的通用寄存器保存进PCB中。</li>
+<li>当时的a0-a3寄存器的参数可能并不是传入的参数了，因为在异常分发函数时就保存进PCB了。但是一般没有被破坏，所以还是可以的。</li>
+<li>通过tf结构体中a0寄存器的值，即syscall_*函数传入的系统调用号，在func指针数组中取出函数头。然后将其他传入的参数进一步传入到sys_*函数中。</li>
+<li>改变了reg[2]即v0寄存器的值，就是系统调用函数的返回值，这个返回值可以标志系统调用是否成功，不成功就输出相应的错误码。</li>
+</ul>
+<h3 id="Thinking-4-2"><a href="#Thinking-4-2" class="headerlink" title="Thinking 4.2"></a>Thinking 4.2</h3><blockquote>
+<p>Thinking 4.2 思考 envid2env 函数: 为什么 envid2env 中需要判断 e-&gt;env_id != envid的情况？如果没有这步判断会发生什么情况？</p>
+</blockquote>
+<ul>
+<li>我们可以看到，在mkenvid中，envid的生成是通过asid与在envs中的偏移地址得到的。</li>
+<li>所以有可能envid越界的情况，所以需要判断申请到的env的id是不是等于请求的envid。</li>
+</ul>
+<h3 id="Thinking-4-3"><a href="#Thinking-4-3" class="headerlink" title="Thinking 4.3"></a>Thinking 4.3</h3><blockquote>
+<p>Thinking 4.3 思考下面的问题，并对这个问题谈谈你的理解：请回顾 kern/env.c 文件中 mkenvid() 函数的实现，该函数不会返回 0，请结合系统调用和 IPC 部分的实现与envid2env() 函数的行为进行解释。 </p>
+</blockquote>
+<ul>
+<li>mkenvid函数不会返回0，所以不会有进程的envid为0，但是通过envid2env的实现我们可以看到若传入的envid参数为0，我们直接返回当前进程。</li>
+<li>而ipc中或其他函数中有时候需要获取当前进程的PCB，所以使用0这一位可以很好的索引。</li>
+</ul>
+<h2 id="Thinking-4-4"><a href="#Thinking-4-4" class="headerlink" title="Thinking 4.4"></a>Thinking 4.4</h2><blockquote>
+<p>Thinking 4.4 关于 fork 函数的两个返回值，下面说法正确的是：<br>A、fork 在父进程中被调用两次，产生两个返回值<br>B、fork 在两个进程中分别被调用一次，产生两个不同的返回值<br>C、fork 只在父进程中被调用了一次，在两个进程中各产生一个返回值<br>D、fork 只在子进程中被调用了一次，在两个进程中各产生一个返回值</p>
+</blockquote>
+<ul>
+<li>C，fork函数的调用只发生在父进程中，并通过调用syscall_exofork函数创建了进程。此时，内核给两个进程设置了不同的返回值，父进程中返回子进程的id，子进程返回0。</li>
+</ul>
+<h3 id="Thinking-4-5"><a href="#Thinking-4-5" class="headerlink" title="Thinking 4.5"></a>Thinking 4.5</h3><blockquote>
+<p>Thinking 4.5 我们并不应该对所有的用户空间页都使用 duppage 进行映射。那么究竟哪些用户空间页应该映射，哪些不应该呢？请结合 kern/env.c 中 env_init 函数进行的页面映射、include/mmu.h 里的内存布局图以及本章的后续描述进行思考。</p>
+</blockquote>
+<ul>
+<li>首先肯定映射用户空间的页面，而且应该映射有效的页（PTE_V）。</li>
+<li>然后就是用户空间中ULIM到USTACKTOP之间的部分，储存的是页表信息，异常处理栈等，或是已经完成了拷贝的（页表），或是父子进程共享的（异常处理栈），或是都不需要用到的。所以不需要映射。</li>
+<li>只需要映射USTACKTOP以下的区域。</li>
+</ul>
+<h3 id="Thinking-4-6"><a href="#Thinking-4-6" class="headerlink" title="Thinking 4.6"></a>Thinking 4.6</h3><blockquote>
+<p>Thinking 4.6 在遍历地址空间存取页表项时你需要使用到 vpd 和 vpt 这两个指针，请参考 user/include/lib.h 中的相关定义，思考并回答这几个问题：<br>• vpt 和 vpd 的作用是什么？怎样使用它们？<br>• 从实现的角度谈一下为什么进程能够通过这种方式来存取自身的页表？<br>• 它们是如何体现自映射设计的？<br>• 进程能够通过这种方式来修改自己的页表项吗？</p>
+</blockquote>
+<ul>
+<li>vpt与vpd分别是用户页表与用户页目录的地址，当作数组使用就好啦</li>
+<li>在lib.h文件中我们看到实现为：</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> vpt ((volatile Pte *)UVPT)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> vpd ((volatile Pde *)(UVPT + (PDX(UVPT) &lt;&lt; PGSHIFT)))</span></span><br></pre></td></tr></table></figure>
+<p>vpd为自映射机制的寻址。</p>
+<ul>
+<li>vpd为vpt地址的高10位置到中间10位实现的，等价于UVPT | (UVPT &gt;&gt; 10)</li>
+<li>不能，页表项是内核下维护的，只能在内核态修改。内核为进程提供了内存访问的接口，进程并不能直接修改页表项。</li>
+</ul>
+<h3 id="Thinking-4-7"><a href="#Thinking-4-7" class="headerlink" title="Thinking 4.7"></a>Thinking 4.7</h3><blockquote>
+<p>Thinking 4.7 在 do_tlb_mod 函数中，你可能注意到了一个向异常处理栈复制 Trapframe运行现场的过程，请思考并回答这几个问题：<br>• 这里实现了一个支持类似于“异常重入”的机制，而在什么时候会出现这种“异常重入”？<br>• 内核为什么需要将异常的现场 Trapframe 复制到用户空间？</p>
+</blockquote>
+<ul>
+<li>因为mos的缺页异常处理是自定义的，通过sys_set_tlb_mod_entry实现指定处理函数的目的，就算这里的实现暂时没有异常重入的现象，也很难保证后续自定义的异常处理函数中会不会写PTE_COW页造成重入。</li>
+<li>由于微内核结构，异常的处理是自定义的，所以在用户态进行，用户态访问不到内核空间，所以需要将现场保存在用户空间。</li>
+</ul>
+<h3 id="Thinking-4-8"><a href="#Thinking-4-8" class="headerlink" title="Thinking 4.8"></a>Thinking 4.8</h3><blockquote>
+<p>Thinking 4.8 在用户态处理页写入异常，相比于在内核态处理有什么优势？</p>
+</blockquote>
+<ul>
+<li>这里也是微内核结构的优点，介绍了内核出错的可能，防止整个系统的崩溃。</li>
+</ul>
+<h3 id="Thinking-4-9"><a href="#Thinking-4-9" class="headerlink" title="Thinking 4.9"></a>Thinking 4.9</h3><blockquote>
+<p>Thinking 4.9 请思考并回答以下几个问题：<br>• 为什么需要将 syscall_set_tlb_mod_entry 的调用放置在 syscall_exofork 之前？<br>• 如果放置在写时复制保护机制完成之后会有怎样的效果？</p>
+</blockquote>
+<ul>
+<li>因为这个写时复制的异常处理在父进程与子进程中都需要设置，先设置再执行syscall_exofork函数，这样，父子进程中的tlb_mod异常出口都设置完毕。</li>
+<li>我们看到父进程在执行完syscall_exofork后就返回了，等到写时复制机制完成后再设置的话，父进程的异常处理就不是写时复制了。</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">child = syscall_exofork();</span><br><span class="line"><span class="keyword">if</span> (child == <span class="number">0</span>) &#123;</span><br><span class="line">	env = envs + ENVX(syscall_getenvid());</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Exercise"><a href="#Exercise" class="headerlink" title="Exercise"></a>Exercise</h2><h3 id="Exercise-4-1-4-2"><a href="#Exercise-4-1-4-2" class="headerlink" title="Exercise 4.1-4.2"></a>Exercise 4.1-4.2</h3><ul>
+<li>完成系统调用陷入内核的基本操作</li>
+<li>系统调用的步骤就是：<ul>
+<li>先在用户空间中调用syscall_*的函数，这个函数在用户空间中，是一个库函数（user/lib/syscall_lib.c）。</li>
+<li>然后它调用msyscall函数（user/lib/syscall_wrap.S），也在用户空间中，并且传入系统调用号参数（在include/sys call.h中有定义）及其他不定长的参数。</li>
+<li>msyscall调用syscall诱发系统异常陷入内核态。</li>
+</ul>
+</li>
+<li>然后就到了lab3中系统异常的部分。<ul>
+<li>先是到了异常分发函数（kern/entry.S）。</li>
+<li>然后按照Cause寄存器的异常码到了handle_sys（kern/genex.S）函数。</li>
+</ul>
+</li>
+<li>handle_sys调用do_syscall（kern/syscall_all.c）进行系统调用的进一步分发。</li>
+</ul>
+<h3 id="Exercise-4-3-4-7"><a href="#Exercise-4-3-4-7" class="headerlink" title="Exercise 4.3-4.7"></a>Exercise 4.3-4.7</h3><ul>
+<li>这几个训练需要完成一系列的系统调用函数。</li>
+<li>首先就是完成envid2env的函数，这个函数在几乎在所有的函数中都需要用到，因为传递参数的时候都只传递了一个进程的id。<ul>
+<li>若传入envid==0，则直接返回当前进程。</li>
+<li>不然可以通过ENVX(envid)宏来获取index。</li>
+<li>但是后续还需执行一系列的检查。<ul>
+<li>特别注意的时checkperm这一个参数，在不为零时需要检查取出的进程应该时本进程或是本进程的子进程（可以通过parent_id来判断哦），不然报错-E_BAD_ENV。<ul>
+<li>这一点的考虑其实是多数的系统调用一般都只能在子进程中或此进程中调用，如果调飞了就不好了</li>
+<li>但是注意后续的ipc通信就是个不需要checkperm的特例了，通信不应局限在自己家，</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="Exercise-4-8"><a href="#Exercise-4-8" class="headerlink" title="Exercise 4.8"></a>Exercise 4.8</h3><ul>
+<li>实现IPC进程通过陷入到内核中与其他进程通信的行为。</li>
+<li>进程间通信是通过修改PCB里的东西来实现的。</li>
+<li>对于页面的操作使用pmap.c中的封装好的函数来实现。</li>
+</ul>
+<h3 id="Exercise-4-9-4-15"><a href="#Exercise-4-9-4-15" class="headerlink" title="Exercise 4.9-4.15"></a>Exercise 4.9-4.15</h3><ul>
+<li>实现fork</li>
+<li>实现sys_exofork来区分父子进程的返回值<ul>
+<li>进程上下文是以指针形式压栈还是数据形式</li>
+</ul>
+</li>
+<li>写时复制页面的准备</li>
+<li>duppage将需要与子进程共享的页面映射给子进程的页表，并设置页表项的权限位置位</li>
+<li>写时复制会触发页写入异常，handle_mod，但是它没有写时复制的机制。由于MOS的微内核设计理念，这个功能我们可以实现在用户空间中。<ul>
+<li>在do_tlb_mod中我们可以设置一个地址储存异常处理函数，即将cp0_epc改变到一个固定地址，这样我们就能通过修改这个地址的值达到自定义异常处理函数的目的。</li>
+<li>通过sys_set_tlb_mod_entry设置返回地址为cow_entry，do_tlb_mod处理时返回。</li>
+<li>cow_entry用户态的处理函数，作用是把va映射到一个新的物理页面。然后来修改。</li>
+</ul>
+</li>
+<li>sys_set_env_status，这这个是fork的最后一步，设置子进程的可运行状态。</li>
+</ul>
+<h2 id="实验体会"><a href="#实验体会" class="headerlink" title="实验体会"></a>实验体会</h2><ul>
+<li>lab4这一章的内容还是很多的。</li>
+<li>完成了系统调用，知道了陪伴我们多年的STL<del>背后的那个男人</del>，在内核和用户态的反复横跳中明白了操作系统这个中介十分的不好干。</li>
+<li>然后就是在此基础上完成了ipc与fork这两个系统调用的示例叭，特别是fork，搭配上写时复制的机制，使得原本的问题复杂了不少。</li>
+<li>虽说过程比较的艰难，但是最后做完之后再整理的过程中看到整个系统每个部分的紧密协同，还是有比较大的成就感的！</li>
+</ul>
+]]></content>
+      <categories>
+        <category>BUAA操作系统</category>
+      </categories>
+      <tags>
+        <tag>北航</tag>
+        <tag>大二</tag>
+        <tag>OS</tag>
+        <tag>系统调用</tag>
+        <tag>ipc</tag>
+        <tag>fork</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>BUAA-OS-lab3-进程与调度</title>
+    <url>/2023/06/10/BUAA-OS-lab3-%E8%BF%9B%E7%A8%8B%E4%B8%8E%E8%B0%83%E5%BA%A6/</url>
+    <content><![CDATA[<p>BUAA-OS lab3实验报告，关于mos系统的进程模式的实现以及进程时间片调度的实现。</p>
+<span id="more"></span>
+<h1 id="lab3-log"><a href="#lab3-log" class="headerlink" title="lab3_log"></a>lab3_log</h1><h2 id="实验要求"><a href="#实验要求" class="headerlink" title="实验要求"></a>实验要求</h2><ul>
+<li>创建一个进程并成功运行</li>
+<li>实现时钟中断</li>
+<li>实现两个进程之间的调度</li>
+</ul>
+<h2 id="相关文件解读"><a href="#相关文件解读" class="headerlink" title="相关文件解读"></a>相关文件解读</h2><ul>
+<li>include/trap.h: 定义了Trapframe结构体，用于在进程调度时保存当前进程上下文环境</li>
+<li>include/env.h: 定义了实现PCB的Env结构体(这个很重要，包含了一个进程所需要的所有的信息)，与一系列进程相关的函数</li>
+</ul>
+<h2 id="思考题"><a href="#思考题" class="headerlink" title="思考题"></a>思考题</h2><h3 id="Thinking-3-1"><a href="#Thinking-3-1" class="headerlink" title="Thinking 3.1"></a>Thinking 3.1</h3><blockquote>
+<p>Thinking 3.1 请结合 MOS 中的页目录自映射应用解释代码中 e-&gt;env_pgdir[PDX(UVPT)] = PADDR(e-&gt;env_pgdir) | PTE_V 的含义。</p>
+</blockquote>
+<ul>
+<li>其中UVPT的起始地址是页表项的起始虚拟地址，PDX获得的是这个虚拟地址的页目录号。<ul>
+<li>这个页目录项就是指向页目录自身的页目录项，我们通过PADDR(e-&gt;env_pgdir)来获取页目录(这个页目录就是页表中的一页)的物理地址。</li>
+</ul>
+</li>
+<li>自映射的意义即是我只需要知道二级页表的初始地址，我就能构造出页目录的初始地址以及指向页目录自身的PDE，这样，方便我们访问管理页表与页目录。</li>
+</ul>
+<h3 id="Thinking-3-2"><a href="#Thinking-3-2" class="headerlink" title="Thinking 3.2"></a>Thinking 3.2</h3><blockquote>
+<p>Thinking 3.2 elf_load_seg 以函数指针的形式，接受外部自定义的回调函数 map_page。请你找到与之相关的 data 这一参数在此处的来源，并思考它的作用。没有这个参数可不可以？为什么？</p>
+</blockquote>
+<ul>
+<li>elf_load_seg函数再load_icode函数中被调用，我们可以看到注释中写道它在lib/elfloader.c中被定义，我们可以看到它的最后一个参数data被传入load_icode的形参e，然后最后在load_icode_mapper里又被转换为了Env*，并将src写的页面插入了env的页表中。</li>
+<li>data参数实现了重定位，实现了解耦合，可以实现函数的复用与拓展</li>
+</ul>
+<h3 id="Thinking-3-3"><a href="#Thinking-3-3" class="headerlink" title="Thinking 3.3"></a>Thinking 3.3</h3><blockquote>
+<p>Thinking 3.3 结合 elf_load_seg 的参数和实现，考虑该函数需要处理哪些页面加载的情况。</p>
+</blockquote>
+<ul>
+<li>elf_load_seg的作用是将elf文件的段加载到内存，我们看它传入了一个文件头的参数，与二进制文件（数组）的参数，以及一个回调方法和参数。通过这个文件头读取这个文件的信息，然后通过回调函数把二进制文件写入data的页中。</li>
+</ul>
+<h3 id="Thinking-3-4"><a href="#Thinking-3-4" class="headerlink" title="Thinking 3.4"></a>Thinking 3.4</h3><blockquote>
+<p>Thinking 3.4 思考上面这一段话，并根据自己在 Lab2 中的理解，回答：<br>• 你认为这里的 env_tf.cp0_epc 存储的是物理地址还是虚拟地址?</p>
+</blockquote>
+<ul>
+<li>mips是冯诺依曼体系结构，指令和数据不分别存储，所以指令也在内存里，也遵循内存管理的虚拟地址结构，所以cp0中应该是虚拟地址。</li>
+</ul>
+<h3 id="Thinking-3-5"><a href="#Thinking-3-5" class="headerlink" title="Thinking 3.5"></a>Thinking 3.5</h3><blockquote>
+<p>Thinking 3.5 试找出 0、1、2、3 号异常处理函数的具体实现位置。8 号异常（系统调用）涉及的 do_syscall() 函数将在 Lab4 中实现。</p>
+</blockquote>
+<ul>
+<li>通过查找功能找到</li>
+<li>handle_int在kern/genex.S中有个显式的函数中在处理</li>
+<li>而其他三个都是通过宏定义重复调用实现的。在kern/genex.S找到了下面语句：</li>
+</ul>
+<figure class="highlight mips"><table><tr><td class="code"><pre><span class="line"><span class="comment">#if !defined(LAB) || LAB &gt;= 4</span></span><br><span class="line"><span class="keyword">BUILD_HANDLER </span>mod do_tlb_mod</span><br><span class="line"><span class="keyword">BUILD_HANDLER </span>sys do_syscall</span><br><span class="line"><span class="comment">#endif</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">BUILD_HANDLER </span>reserved do_reserved</span><br></pre></td></tr></table></figure>
+<h3 id="Thinking-3-6"><a href="#Thinking-3-6" class="headerlink" title="Thinking 3.6"></a>Thinking 3.6</h3><blockquote>
+<p>Thinking 3.6 阅读 init.c、kclock.S、env_asm.S 和 genex.S 这几个文件，并尝试说出enable_irq 和 timer_irq 中每行汇编代码的作用。</p>
+</blockquote>
+<figure class="highlight mips"><table><tr><td class="code"><pre><span class="line">LEAF(enable_irq)</span><br><span class="line">	li      <span class="built_in">t0</span>, (STATUS_CU0 <span class="title">| STATUS_IM4 |</span> STATUS_IEc)</span><br><span class="line">	<span class="keyword">mtc0 </span>   <span class="built_in">t0</span>, CP0_STATUS</span><br><span class="line">	<span class="keyword">jr </span>     <span class="built_in">ra</span></span><br><span class="line">END(enable_irq)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>上面是enable_irq，作用是开启中断。接下来是由kern/entry.S中的函数获得中断函数的入口。<ul>
+<li>开启中断的方式就是写CP0寄存器</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight mips"><table><tr><td class="code"><pre><span class="line"><span class="symbol">timer_irq:</span></span><br><span class="line">	<span class="keyword">sw </span>     <span class="built_in">zero</span>, (KSEG1 <span class="title">| DEV_RTC_ADDRESS |</span> DEV_RTC_INTERRUPT_ACK)</span><br><span class="line">	li      <span class="built_in">a0</span>, <span class="number">0</span></span><br><span class="line">	<span class="keyword">j </span>      <span class="keyword">schedule</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>timer_irq，作用是跳转到schedule中，执行调度。</li>
+<li>具体的实现是给一个地址写入了一个0，大致的意思应该是立即执行<ul>
+<li>KSEG1 | DEV_RTC_ADDRESS 是模拟器（GXemul）映射实时钟的位置</li>
+<li>INTERRUPT_ACK 意思是中断执行。</li>
+</ul>
+</li>
+<li>然后给传入了一个参数，a0=0<ul>
+<li>看到这个参数对应schedule函数中的yield，也就是说不使用yield指定强制切换。</li>
+</ul>
+</li>
+</ul>
+<h3 id="Thinking-3-7"><a href="#Thinking-3-7" class="headerlink" title="Thinking 3.7"></a>Thinking 3.7</h3><blockquote>
+<p>Thinking 3.7 阅读相关代码，思考操作系统是怎么根据时钟中断切换进程的。</p>
+</blockquote>
+<ul>
+<li>mos操作系统发生时钟中断的时候就会最终调用一次schedule函数。</li>
+<li>而这个函数会把env_sched_list中的进程循环执行。<ul>
+<li>每次调用减少当前进程的一个时间片。</li>
+<li>减到0，就把这个进程放到队尾，取出队首的进程执行。</li>
+</ul>
+</li>
+</ul>
+<h2 id="Exercise3-1-3-2"><a href="#Exercise3-1-3-2" class="headerlink" title="Exercise3.1-3.2"></a>Exercise3.1-3.2</h2><ul>
+<li>两个队列：env_free_list, env_sched_list；一个用到lab2的LIST结构，另一个用到TAILQ的双端队列结构。相关宏都定义在include/queque.h中</li>
+<li>实现kern/env.c中的env_init函数：<ul>
+<li>首先我们看到了一个东西<code>__attribute__((aligned(BY2PG)))</code></li>
+<li>然后就是两步走<ul>
+<li>初始化上述两个队列，注意LIST_INIT，TAILQ_INIT是传地址进去的。</li>
+<li>然后反着来，将序号从大到小插到env_free_list的表头。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>然后实现map_segment函数，实现段地址映射的函数，将一段连续的物理页面，映射到一段连续的虚拟地址。<ul>
+<li>只需要补一句，就是把传入的参数中的pa与va每次同时增加BY2PG的大小的地址通过page_insert函数建立起联系。</li>
+<li>但是要注意page_insert函数需要传入page*，所以要用到pa2page。</li>
+</ul>
+</li>
+<li>模板页目录base_pgdir的作用：各个进程的页目录都从这里取项，就不需要占用多个页的孔吉纳来构造多个进程。</li>
+</ul>
+<h2 id="Exercises3-3-3-4"><a href="#Exercises3-3-3-4" class="headerlink" title="Exercises3.3-3.4"></a>Exercises3.3-3.4</h2><ul>
+<li>设置进程控制块PCB：从env_free_list中取出一块，并完成设置。（在env_alloc中完成）<ul>
+<li>其中设置过程需要为进程初始化配置用户地址空间，需要调用env_setup_vm来完成。</li>
+<li>理解进程地址空间的分布：4G的虚拟地址空间，ULIM(0x8000_0000)往上是内核，往下是kuseg。然后ULIM~UVPT(user virtual page table)是用户进程的页表，UVPT~UTOP(user top)是所有进程共享的只读空间。再往下就是用户的可读写空间了。</li>
+</ul>
+</li>
+<li>再来完成env_alloc函数<ul>
+<li>每个进程需要有自己的Trapframe(env_tf)来存放当时的进程的上下文，而我们看Trapframe结构体(include/trap.h中)就能够知道，内容就是我们看到的mipsR3000处理器中的一些寄存器，包括32个通用寄存器，与cp0中的几个寄存器(其中SR寄存器（status register）代表了CPU的运行状态)。</li>
+<li>asid_alloc函数的用法，阅读源代码，是要传入一个指针，asid写在指针指向的地址里。</li>
+<li>alloc中没有页面了要返回-E_NO_FREE_ENV(教程不讲！！！！)</li>
+<li>asid分配不上了要返回错误，所以需要用r来存下返回值。</li>
+</ul>
+</li>
+</ul>
+<h2 id="Exercise3-5-3-8"><a href="#Exercise3-5-3-8" class="headerlink" title="Exercise3.5-3.8"></a>Exercise3.5-3.8</h2><ul>
+<li>这几步主要是加载可执行文件，创建进程并执行</li>
+<li>首先加载二进制镜像：<ul>
+<li>给出了四个函数，四个函数的调用关系是：load_icode调用elf_from与elf_load_seg两个函数，elf_load_seg调用load_icode_mapper。</li>
+<li>要完成load_icode_mapper（这个函数完成单个页面的加载过程，由elf_load_seg函数调用。<ul>
+<li>注意page转换成虚拟地址。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>然后就是env_creat函数创建进程：<ul>
+<li>这是内核初始化直接创建，不是通过fork</li>
+<li>创建需要先分配一个新的Env结构体，然后设置控制块，再将程序装载即可</li>
+</ul>
+</li>
+<li>最后可以进行进程的创建与切换了。<ul>
+<li>通过env_run函数，从现在的进程切换至传入的e进程。（进程上下文就是进程执行时所有寄存器的状态。）</li>
+<li>根据切换运行进程的流程编写相应的代码。<ul>
+<li>保存进程上下文</li>
+<li>切换PCB（curenv）</li>
+<li>切换页表</li>
+<li>tf出栈，恢复现场</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>这里的实现过程其实也体现了调用关系，先实现的被后实现的调用</p>
+</blockquote>
+<h2 id="Exercise3-9-3-12"><a href="#Exercise3-9-3-12" class="headerlink" title="Exercise3.9-3.12"></a>Exercise3.9-3.12</h2><ul>
+<li>kern/entry.S函数的理解。<ul>
+<li>保存当前上下文。</li>
+<li>以异常码为索引index从数组中，取得函数的入口地址，然后跳转。</li>
+</ul>
+</li>
+<li>通过kernel.lds来链接CPU异常与TLBmiss异常的处理程序入口。</li>
+<li>kclock_init初始化时钟<ul>
+<li>在一个地址处写入时钟周期。</li>
+<li>这里主要弄清楚在时钟中断的过程中发生了一些什么调用<ul>
+<li>教程是以首次时钟中断为例，mips_init函数中，在用kclock_init完成时钟初始化之后，调用enable_irq开启中断。然后就是由上面提到的kern/entry.S中的函数获得中断函数的入口。</li>
+<li>中断处理函数是handle_int，在判断完能够中断后，调用timer_irq执行中断处理。</li>
+<li>而这个处理函数的作用就是跳转到schedule中，执行调度。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>实现schedule函数，该函数的作用是：<ul>
+<li>关于static int count;<ul>
+<li>一次声明重复使用。</li>
+</ul>
+</li>
+<li>schedule中使用时间片轮转的方式，但是优先级高的进程的时间片长。</li>
+</ul>
+</li>
+</ul>
+<h2 id="实验体会"><a href="#实验体会" class="headerlink" title="实验体会"></a>实验体会</h2><ul>
+<li>这一章里实现了创建进程到运行到调度。</li>
+<li>让我更加理解了进程的本质，与调度中需要做的一些事情。</li>
+<li>感觉确实难度比lab2稍低一些，因为各个函数的调用关系比较的紧密且明朗。前后需要做的工作也比较的有条理。</li>
+<li>理解了整体每个函数的作用与关系，了解了整个工程的层次结构，其实具体的实现还是一件比较次要的事情。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>BUAA操作系统</category>
+      </categories>
+      <tags>
+        <tag>北航</tag>
+        <tag>大二</tag>
+        <tag>OS</tag>
+        <tag>进程创建</tag>
+        <tag>时间片调度</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>OS-做一个简单的shell</title>
     <url>/2023/04/15/OS-%E5%81%9A%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84shell/</url>
     <content><![CDATA[]]></content>
@@ -2570,8 +3149,8 @@
       </categories>
       <tags>
         <tag>北航</tag>
-        <tag>大二</tag>
         <tag>CO</tag>
+        <tag>大二</tag>
         <tag>计组</tag>
         <tag>MIPS</tag>
         <tag>P7</tag>
@@ -4102,8 +4681,8 @@
       </categories>
       <tags>
         <tag>北航</tag>
-        <tag>大二</tag>
         <tag>CO</tag>
+        <tag>大二</tag>
         <tag>计组</tag>
         <tag>MIPS</tag>
         <tag>P6</tag>
@@ -5276,8 +5855,8 @@
       </categories>
       <tags>
         <tag>北航</tag>
-        <tag>大二</tag>
         <tag>CO</tag>
+        <tag>大二</tag>
         <tag>计组</tag>
         <tag>MIPS</tag>
         <tag>P5</tag>
@@ -5545,8 +6124,8 @@
       </categories>
       <tags>
         <tag>北航</tag>
-        <tag>大二</tag>
         <tag>CO</tag>
+        <tag>大二</tag>
         <tag>计组</tag>
         <tag>MIPS</tag>
         <tag>P4</tag>
@@ -5967,8 +6546,8 @@
       </categories>
       <tags>
         <tag>北航</tag>
-        <tag>大二</tag>
         <tag>CO</tag>
+        <tag>大二</tag>
         <tag>计组</tag>
         <tag>MIPS</tag>
         <tag>P3</tag>
@@ -6367,8 +6946,8 @@
       </categories>
       <tags>
         <tag>北航</tag>
-        <tag>大二</tag>
         <tag>CO</tag>
+        <tag>大二</tag>
         <tag>计组</tag>
         <tag>MIPS</tag>
         <tag>P2</tag>
@@ -6453,8 +7032,8 @@
       </categories>
       <tags>
         <tag>北航</tag>
-        <tag>大二</tag>
         <tag>CO</tag>
+        <tag>大二</tag>
         <tag>计组</tag>
         <tag>MIPS</tag>
         <tag>P2</tag>
