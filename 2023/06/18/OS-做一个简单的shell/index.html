@@ -11,7 +11,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>【BUAA-高代】矩阵相关问题讲课资料 | volca&#39;s blog</title>
+  <title>OS-做一个简单的shell | volca&#39;s blog</title>
 
   <link rel="icon" type="image/png" href="/images/favicon-16x16.png">
   <link rel="stylesheet" href="https://at.alicdn.com/t/font_1911880_c1nvbyezg17.css">
@@ -628,21 +628,21 @@
 
 
 <div class="post-detail-header" id="thumbnail_canvas" style="background-repeat: no-repeat; background-size: cover; 
-  background-position: center center;position: relative;background-image:url('/images/gallery/2023Summer/29.jpg')">
+  background-position: center center;position: relative;background-image:url('https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OS/lab6-c/010d9a3c2649d12959de51b9fb46b23.png')">
   <div class="post-detail-header-mask"></div>
   <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
   
   <div class="post-detail-header_info-box">
     <div class="title-box">
       <span class="title">
-        【BUAA-高代】矩阵相关问题讲课资料
+        OS-做一个简单的shell
       </span>
     </div>
     
     
       
         <span class="post-detail-header_date">
-          <i class="fas fa-calendar"></i> 发表于：2022-11-24 |
+          <i class="fas fa-calendar"></i> 发表于：2023-06-18 |
         </span>
       
 
@@ -650,8 +650,8 @@
         <span class="post-detail-header_categories">
           <i class="iconfont iconbookmark1"></i> 分类：
           
-            <a href="/categories/%E5%8C%97%E8%88%AA%E4%BF%A1%E6%81%AF%E7%B1%BB%E5%A4%A7%E4%B8%80%E8%B5%84%E6%96%99/" class="post-detail-header_category">
-              北航信息类大一资料
+            <a href="/categories/BUAA%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" class="post-detail-header_category">
+              BUAA操作系统
             </a>
           
         </span>
@@ -660,11 +660,11 @@
       
         <div class="post-detail-header_wordcount">
           <span class="totalcount">
-            <i class="fas fa-file-text-o"></i> 字数统计: 986 |
+            <i class="fas fa-file-text-o"></i> 字数统计: 4.5k |
           </span>
   
           <span class="min2read">
-            <i class="fas fa-clock"></i> 阅读时长: 3分钟 |
+            <i class="fas fa-clock"></i> 阅读时长: 16分钟 |
           </span>
   
           
@@ -691,104 +691,311 @@
   <div class="main-content">
     <article class="post post-detail">
       <div class="post-content">
-        <p>朋辈辅导师第十二周直播课-矩阵相关典型问题的备课资料，大家有需要自取，备课本有点乱，建议配合视频一起食用。</p>
+        <p>BUAA-OS课程的挑战性任务，完成一个功能更加完善的shell。<br>MOS Volca Shell实现的功能有要求中的常规功能，以及三个附加功能。<br>相对路径，环境变量，Tab自动补全。<br>本文聚焦于讲解具体的实现思路。<br>代码开源在github上，欢迎大家交流。</p>
 <span id="more"></span>
-<p>资料在这-&gt;<a target="_blank" rel="noopener" href="https://bhpan.buaa.edu.cn:443/link/F1D5448BCDB824AACC5FB3DF2F454490">矩阵相关典型问题</a><br>有效期限：2025-11-11 23:59</p>
-<hr>
-<p>分割线，下面是备课本</p>
-<hr>
-<h1 id="矩阵相关问题"><a href="#矩阵相关问题" class="headerlink" title="矩阵相关问题"></a>矩阵相关问题</h1><p>[toc]</p>
-<h2 id="矩阵的基本盘"><a href="#矩阵的基本盘" class="headerlink" title="矩阵的基本盘"></a>矩阵的基本盘</h2><h3 id="可逆定义定义及相关性质及求逆阵的方法"><a href="#可逆定义定义及相关性质及求逆阵的方法" class="headerlink" title="可逆定义定义及相关性质及求逆阵的方法"></a>可逆定义定义及相关性质及求逆阵的方法</h3><ul>
-<li>可逆的定义及相关性质<blockquote>
-<p>$若\exists B,AB=BA=I，则称A为可逆阵，B为A的逆阵,记作：A^{-1} = B $</p>
-</blockquote>
+<h1 id="lab6-C-log"><a href="#lab6-C-log" class="headerlink" title="lab6-C_log"></a>lab6-C_log</h1><h2 id="pre"><a href="#pre" class="headerlink" title="pre"></a>pre</h2><ul>
+<li>做完lab6之后感觉意犹未尽，我想实现一个属于我自己的shell，让它能够像unix的shell一样功能完备。</li>
+<li>所以我选择完成lab6的challenge。</li>
+</ul>
+<h2 id="读懂lab6的sh-c运行"><a href="#读懂lab6的sh-c运行" class="headerlink" title="读懂lab6的sh.c运行"></a>读懂lab6的sh.c运行</h2><ul>
+<li>函数调用关系</li>
+<li>main函数中</li>
+<li>shell的参数预处理，使用<strong>ARGBEGIN ARGEND</strong>宏定义完成。</li>
+<li>然后循环读入buf<ul>
+<li><strong>readline</strong>函数，这个函数是用来处理输入的，对于输入的特别字符我们需要做处理，比如上下左右键等等，将会成为我们后续工作量的主要。</li>
+</ul>
 </li>
-<li>性质：<blockquote>
-<p>$(ABC)^{-1} = C^{-1}B^{-1}A^{-1} $(proof)<br>行列式不为零则可逆<br>……</p>
-</blockquote>
+<li>然后用<strong>子进程runcmd</strong><ul>
+<li>先用<strong>gettoken</strong>与<strong>parsecmd</strong>来获取解析指令<ul>
+<li>遇到&lt;&gt;<strong>重定向</strong></li>
+<li>在parsecmd中遇到|<strong>进行fork()</strong></li>
+</ul>
 </li>
-<li><p>逆阵唯一性</p>
-<blockquote>
-<script type="math/tex; mode=display">
-  AB =AC =I  
-  则B = BI = B(AC) = (BA)C = C</script></blockquote>
+<li>然后用<strong>spawn运行子程序</strong>，注意spawn中也开了进程了</li>
+<li>父进程在这里既需要<strong>等待</strong>spawn的child执行完，又需要等待rightpipe执行完。</li>
+</ul>
 </li>
-<li><p>拓展唯一性例题的解法<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/0唯一性表示例题1.jpg" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/0唯一性表示例题1.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="唯一性例题"><br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/0唯一性表示例题2.jpg" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/0唯一性表示例题2.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="解法2"></p>
+<li>这就是shell一条<strong>指令的整个处理流程</strong>，我们在此基础上<strong>完善shell</strong>。</li>
+</ul>
+<h2 id="实现功能清单"><a href="#实现功能清单" class="headerlink" title="实现功能清单"></a>实现功能清单</h2><ul>
+<li>‘;’: <a href="#一行多指令--后台任务">一行多指令</a></li>
+<li>‘&amp;’: <a href="#一行多指令--后台任务">后台任务</a></li>
+<li>‘“‘: <a href="#支持引号">引号支持</a></li>
+<li>‘.b’: <a href="#对b的省略">对可执行程序.b的省略</a></li>
+<li><a href="#实现更多的指令">更丰富的指令</a>：<ul>
+<li>mkdir</li>
+<li>touch</li>
+<li>tree</li>
+<li>history</li>
+<li>cd</li>
+<li>ls改进</li>
+</ul>
 </li>
-<li><p>保可逆，反序可逆</p>
-<blockquote>
-<p>A可逆，B可逆，则AB可逆<br>$proof: ABB^{-1}A^{-1} = I $<br>若AB = I ，BA也可逆。</p>
-</blockquote>
+<li><a href="#history历史指令">history历史指令</a></li>
+<li><a href="#环境变量">环境变量</a></li>
+<li><a href="#支持cd--相对路径">相对路径</a></li>
+<li><a href="#tab自动补全">tab自动补全</a></li>
+</ul>
+<h2 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现"></a>具体实现</h2><h3 id="前置准备操作"><a href="#前置准备操作" class="headerlink" title="前置准备操作"></a>前置准备操作</h3><ul>
+<li>为了美观，<strong>关闭</strong>mos原本的destroying iamkilling等<strong>进程信息</strong>。</li>
+<li>然后考虑到我们要<strong>优化shell的输入</strong>，由于键盘键入的东西我们实在是难以预料。<ul>
+<li>对于ascii中的可见字符，shell肯定都要支持。</li>
+<li>但是<strong>大多数不可见字符回显</strong>在屏幕上会极度影响shell的体验。</li>
+<li>所以我们选择<strong>关闭console的读入回显</strong>，只选择我们<strong>可控的字符进行处理输出</strong>，<strong>其余不输出</strong>。</li>
+</ul>
 </li>
-<li>求逆方法有三：增广，伴随，0化式（看见多项式赢麻啦）<blockquote>
-<p>增广矩阵的机理<br>伴随公式的引申<br>0化式，关于矩阵的多项式，例题，关于特征多项式（Caley定理）<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/0化式.jpg" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/0化式.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="0化式"></p>
-</blockquote>
+<li>在user/lib/console.c中， <strong>cons_read</strong>函数有下列代码段，它会把输入的东西输出到控制台上。<ul>
+<li>但是我们<strong>不能</strong>关之以一劳永逸，因为除了shell之外的<strong>其他进程需要用到回显功能</strong>。</li>
+<li>所以我们<strong>加个flag</strong>，只在shell进程中将其置为true，其余进程<strong>不会受到影响</strong>。</li>
+</ul>
 </li>
 </ul>
-<h3 id="正交及相关性质"><a href="#正交及相关性质" class="headerlink" title="正交及相关性质"></a>正交及相关性质</h3><blockquote>
-<p>$A^TA = I,即A^{-1} = A^T,则称A为正交阵 $<br>性质：矩阵乘的转置,与矩阵乘的求逆类似</p>
-</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (c != <span class="string">&#x27;\r&#x27;</span>) &#123;</span><br><span class="line">    debugf(<span class="string">&quot;%c&quot;</span>, c);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    debugf(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <ul>
-<li>保长、保内积、保正交<blockquote>
-<p>$我们知道向量的模长度公式是吧，对于列向量X，它的模长为||X||^2 = X^TX(内积的表示) ，所以列向量AX(A为正交阵)为||AX||^2 = X^TA^TAX ——保长性$<br>$保内积类似，(X,Y) = (AX,AY) = X^TY $<br>$保正交:两种理解：<br>A正交，B正交，则AB正交<br>X \perp Y \Leftrightarrow AX \perp AY $</p>
-</blockquote>
-</li>
-<li>线性变换初步<blockquote>
-<p>线性变换与内积空间来理解, Gram阵</p>
-</blockquote>
-</li>
-<li>每列为单位向量且相互正交，且则阵正交<blockquote>
-<p>用矩阵乘法去理解。</p>
-</blockquote>
+<li>接下来我们开始<strong>按部就班实现功能</strong>。</li>
+</ul>
+<h3 id="一行多指令-amp-后台任务"><a href="#一行多指令-amp-后台任务" class="headerlink" title="一行多指令 &amp; 后台任务"></a>一行多指令 &amp; 后台任务</h3><ul>
+<li>这两个都可以放在一块说，因为结合我们已经实现的’|’管道，这两个都和它的实现差不多。</li>
+<li>一行多指令，就是<strong>没有实现两进程之间的通信</strong>的管道指令罢了。</li>
+<li>而后台任务，就是<strong>不需要等待子进程结束</strong>的一行多指令罢了。</li>
+</ul>
+<h3 id="支持引号"><a href="#支持引号" class="headerlink" title="支持引号"></a>支持引号</h3><ul>
+<li>这个需要在<strong>_gettoken</strong>中修改</li>
+<li>可以简单的在_gettoken的里面检测到”一直读入到下个引号停下来。<ul>
+<li>我并没有<strong>实现shell引号里的转义字符</strong>了，主要原因还是时间来不及了（</li>
+</ul>
 </li>
 </ul>
-<h2 id="矩阵的秩"><a href="#矩阵的秩" class="headerlink" title="矩阵的秩"></a>矩阵的秩</h2><h3 id="秩的xdm"><a href="#秩的xdm" class="headerlink" title="秩的xdm"></a>秩的xdm</h3><ul>
-<li>阶梯阵概念，及其与向量组秩的联系。<blockquote>
-<p>矩阵就是向量组拼起来的，所以矩阵的秩就是向量组的秩。<br>我们在线性方程组的矩阵消元法中见识过，我们把一个矩阵变成阶梯状，我们考虑一下，变成阶梯状以后，后面的向量前缀都是零，所以不可能可以表示前面的向量，所以很简单，阶梯有多少阶，就会有多少秩。<br>那么到底是行向量的秩还是列向量的秩呢，不用纠结我们通过阶梯可以看出，行向量的秩就是列向量的秩。<br>所以三种同解变形，其实就代表着三种初等变换。</p>
-</blockquote>
+<h3 id="键入位置的修改"><a href="#键入位置的修改" class="headerlink" title="键入位置的修改"></a>键入位置的修改</h3><ul>
+<li>这个是工作量最大的之一，主要是<strong>对于显示的动态维护</strong>，<strong>移动光标时和退格删除</strong>时也需要动态回显<ul>
+<li>所以关闭自动回显！！！！</li>
+</ul>
 </li>
-<li>秩一阵<blockquote>
-<p>我们来看一个矩阵，秩一阵，可分解为两个向量之间的乘积。</p>
-</blockquote>
-</li>
-<li><p>我们在最后再来谈秩的各种公式的关系</p>
-<blockquote>
+<li>基本原理是动态维护<strong>两个数组</strong>，一个表示在<strong>光标前的</strong>，一个是在<strong>光标后的</strong>，光标后的是倒序，这样很方便移动光标的时候的改变。</li>
+<li>然后维护<strong>两个指针</strong>，分别指向<strong>两个数组的末尾</strong>。</li>
+</ul>
+<h4 id="光标移动"><a href="#光标移动" class="headerlink" title="光标移动"></a>光标移动</h4><ul>
+<li>所以<strong>左右移光标</strong>的时候，只需要像下面一样：</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (direction == RIGHT) &#123;</span><br><span class="line">    printRight; <span class="comment">//由于关闭回显，所以需要手动移动光标。</span></span><br><span class="line">    beforeCur[beforeLen++] = afterCur[--afterLen];</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (direction == LEFT) &#123;</span><br><span class="line">    printLeft;  <span class="comment">//由于关闭回显，所以需要手动移动光标。</span></span><br><span class="line">    afterCur[afterLen++] = beforeCur[--beforeLen];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <ul>
-<li>满秩则有唯一解<br>$proof: \because r(A) = n $<br>$\therefore \{\alpha_1,……,\alpha_n\}可作为一组基 $<br>$\therefore \forall \beta \in R^n 都会存在\beta 的坐标(x_1,……,x_n) $<br>$坐标即为唯一解 $</li>
-<li>满秩则可逆<br>$proof: 由上可知：AX_1 = \varepsilon_1, AX_2 = \varepsilon_2,……,AX_n = \varepsilon_n 都有解$<br>$所以AA^{-1} = I可解出A^{-1} = (X_1,X_2,……,X_n) $</li>
+<li>怎么移动光标？<ul>
+<li>光标其实就是由<strong>一些特殊的字符</strong>组成的字符串，由显示的外设检测并进行移动光标的操作。</li>
+<li>尝试读入之后将字符诶个输出，发现是下面这样的，我用宏定义实现。</li>
 </ul>
-</blockquote>
-</li>
-<li><p>所以说到这就只需要明确一个事情，满秩，行向量组列向量组无关，行列式不等于0，可逆，只有唯一解，非奇异这都是等价的概念</p>
 </li>
 </ul>
-<h3 id="各种各样的秩公式"><a href="#各种各样的秩公式" class="headerlink" title="各种各样的秩公式"></a>各种各样的秩公式</h3><h4 id="分块秩公式"><a href="#分块秩公式" class="headerlink" title="分块秩公式"></a>分块秩公式</h4><p><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/4分块秩公式.jpg" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/4分块秩公式.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="分块秩公式"></p>
-<h4 id="积阵秩公式"><a href="#积阵秩公式" class="headerlink" title="积阵秩公式"></a>积阵秩公式</h4><ul>
-<li>乘积不增秩公式<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/4不增秩公式.jpg" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/4不增秩公式.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="不增秩公式"></li>
-<li>积0公式<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/4不增秩公式.jpg" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/4不增秩公式.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="积0公式"></li>
-<li>转置积秩公式<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/4积0公式.jpg" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/4积0公式.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="内积秩公式"></li>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> printUp printf(<span class="string">&quot;%c%c%c&quot;</span>, 27, 91, 65);</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> printDown printf(<span class="string">&quot;%c%c%c&quot;</span>, 27, 91, 66);</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> printRight printf(<span class="string">&quot;%c%c%c&quot;</span>, 27, 91, 67);</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> printLeft printf(<span class="string">&quot;%c%c%c&quot;</span>, 27, 91, 68);</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>然后注意对于<strong>左右移动的限制</strong>就好了，如下：<ul>
+<li>至于上下键的键入，下面要用作<strong>实现history</strong>，请待<a href="#history历史指令">下文</a>。</li>
 </ul>
-<h4 id="加减秩公式"><a href="#加减秩公式" class="headerlink" title="加减秩公式"></a>加减秩公式</h4><p><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/4加减秩公式.jpg" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/4加减秩公式.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="加减秩公式"></p>
-<h3 id="奇妙的秩一阵"><a href="#奇妙的秩一阵" class="headerlink" title="奇妙的秩一阵"></a>奇妙的秩一阵</h3><ul>
-<li>用一个例题来说明<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/1秩一阵例题.jpg" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/1秩一阵例题.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="秩一阵例题"></li>
+</li>
 </ul>
-<h4 id="提一嘴先不讲"><a href="#提一嘴先不讲" class="headerlink" title="提一嘴先不讲"></a>提一嘴先不讲</h4><ul>
-<li>秩一阵的特征值</li>
-<li>秩一阵+平移公式+特征值与行列式的关系</li>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (beforeLen == inputLen &amp;&amp; direction == RIGHT) <span class="keyword">return</span>;</span><br><span class="line"><span class="keyword">if</span> (beforeLen == <span class="number">0</span> &amp;&amp; direction == LEFT) <span class="keyword">return</span>;</span><br></pre></td></tr></table></figure>
+<h4 id="退格与删除操作"><a href="#退格与删除操作" class="headerlink" title="退格与删除操作"></a>退格与删除操作</h4><ul>
+<li>对于<strong>退格(backspace)</strong>与<strong>删除(delete)</strong>的实现，维护数组很简单，分别<code>beforeLen--</code>与<code>afterLen--</code>就行。</li>
+<li>但是显示上就要花大功夫了，因为退格一位删除一位意味着将<strong>后续的字符串整体前移</strong>。<ul>
+<li>有一个简单的办法是<strong>每一次输入都刷新整个显示串</strong>，像下面的操作一样(伪代码)。</li>
 </ul>
-<h2 id="下降公式"><a href="#下降公式" class="headerlink" title="下降公式"></a>下降公式</h2><p><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/3换位公式例题.png" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/3换位公式例题.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="换位公式例题"></p>
-<h3 id="换位公式1-0"><a href="#换位公式1-0" class="headerlink" title="换位公式1.0"></a>换位公式1.0</h3><p><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/3换位公式1.0.jpg" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/3换位公式1.0.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="换位公式1"></p>
-<h3 id="换位公式2-0"><a href="#换位公式2-0" class="headerlink" title="换位公式2.0"></a>换位公式2.0</h3><p><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/3换位公式2.0.jpg" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/3换位公式2.0.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="换位公式2"></p>
-<h3 id="换位公式3-0及特征值（带拓展，看时间）"><a href="#换位公式3-0及特征值（带拓展，看时间）" class="headerlink" title="换位公式3.0及特征值（带拓展，看时间）"></a>换位公式3.0及特征值（带拓展，看时间）</h3><p><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/3换位公式3.0.jpg" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/3换位公式3.0.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="换位公式3"></p>
-<h2 id="奇妙的伴随阵"><a href="#奇妙的伴随阵" class="headerlink" title="奇妙的伴随阵"></a>奇妙的伴随阵</h2><ul>
-<li>伴随阵的定义</li>
-<li>伴随公式的推导<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/2伴随阵定义及相伴公式.jpg" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/2伴随阵定义及相伴公式.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="伴随阵及相伴公式"></li>
+</li>
 </ul>
-<h3 id="相关行列式值的推导"><a href="#相关行列式值的推导" class="headerlink" title="相关行列式值的推导"></a>相关行列式值的推导</h3><ul>
-<li>相关行列式的值的计算<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/2各种行列式值之间的关系.jpg" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/2各种行列式值之间的关系.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="相关行列式的值"></li>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span>(...)</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\b&quot;</span>); <span class="comment">//退到最开始</span></span><br><span class="line"><span class="keyword">while</span>(...)</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot; &quot;</span>);  <span class="comment">//用空格清空显示</span></span><br><span class="line"><span class="keyword">while</span>(...)</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\b&quot;</span>); <span class="comment">//退到最开始</span></span><br><span class="line"><span class="comment">//打印所有字符</span></span><br><span class="line"><span class="keyword">for</span> i <span class="title function_">in</span> <span class="params">(<span class="number">0</span>, beforeLen<span class="number">-1</span>)</span></span><br><span class="line">    <span class="title function_">printf</span><span class="params">(光标前的字符)</span>;</span><br><span class="line"><span class="keyword">for</span> i <span class="title function_">in</span> <span class="params">(afterLen<span class="number">-1</span>, <span class="number">0</span>)</span></span><br><span class="line">    <span class="title function_">printf</span><span class="params">(光标后的字符)</span>;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>但是我这么实现出来之后发现，每次移动都能够清楚的<strong>看见光标跳来跳去</strong>，每次删除都能够看见白花花的一片，<strong>十分的丑陋</strong>！</li>
+<li>所以刷新回显的算法是个精细活，我的做法是，退格删除操作<strong>光标后面的绝对要刷新</strong>，但是<strong>前面的可以不动</strong>，必要的时候再动。<ul>
+<li>怎么判定该不该动？怎么动？</li>
+<li>我只需要<strong>判断先后状态</strong>就行了，即存下来<strong>之前的beforeLen和afterLen</strong>，就能够<strong>定位光标(cursor)</strong>的位置。<ul>
+<li>然后进行对应的更改时，就<strong>不一定要清空所有前面已经输出的字符</strong>，只需要<strong>处理cursor到beforeLen之间</strong>的字符就行。</li>
 </ul>
-<h3 id="相伴秩公式"><a href="#相伴秩公式" class="headerlink" title="相伴秩公式"></a>相伴秩公式</h3><ul>
-<li>古典秩定义<br><img src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/2相伴秩公式.jpg" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/2相伴秩公式.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="相伴秩公式"></li>
+</li>
+<li>然后有的时候前面的字符也是会变的，所以<strong>需要刷新所有</strong>。<ul>
+<li>这个时候也可以<strong>不要空格清空操作</strong>，你可以<strong>\b退格到最开始</strong>之后，开始输出字符。<ul>
+<li><strong>比原字符串长</strong>的话，就覆盖掉了，最好。</li>
+<li><strong>比原字符串短</strong>的话，就清空后面超出的一段就好。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>说了这么多，具体实现请看下面的伪代码：</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">update</span><span class="params">(<span class="type">int</span> flushAll)</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (flushAll) &#123;</span><br><span class="line">    printBack(cursor);</span><br><span class="line">    distance = inputLen - beforeLen - afterLen;</span><br><span class="line">    <span class="built_in">printf</span>(beforeCursor);</span><br><span class="line">    <span class="built_in">printf</span>(afterCursor);</span><br><span class="line">    printSpace(distance);</span><br><span class="line">    printBack(distance + afterLen);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    distance = inputLen - beforeLen - afterLen;</span><br><span class="line">    <span class="keyword">if</span> (distance == <span class="number">0</span>)</span><br><span class="line">      cursor = beforeLen;</span><br><span class="line">      <span class="keyword">return</span>; </span><br><span class="line">    <span class="keyword">if</span> (cursor &gt; beforeLen)</span><br><span class="line">      printBack(cursor - beforeLen);</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">      <span class="built_in">printf</span>(beforeCur+cursor);</span><br><span class="line">    <span class="built_in">printf</span>(afterCursor);</span><br><span class="line">    printSpace(distance);</span><br><span class="line">    printBack(distance + afterLen);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 最后更新一下光标位置</span></span><br><span class="line">  inputLen = beforeLen + afterLen;</span><br><span class="line">  cursor = beforeLen;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>当然还有在这一部分实现的一个重要功能，即<strong>输入tab实现自动补全</strong>功能，因为这个与文件系统高度关联，所以得等到<strong>实现完相对路径</strong>之后，前面的功能以及高度封装，后面不需要再回来修改了。</li>
+<li>tab自动补全，请看<a href="#tab自动补全">下文</a></li>
+</ul>
+<h3 id="对-b的省略"><a href="#对-b的省略" class="headerlink" title="对.b的省略"></a>对.b的省略</h3><ul>
+<li>教程中已经说的很清楚了，就是要在尝试用该名称<strong>打开文件失败</strong>后<strong>再添加.b后缀</strong>尝试一遍打开。</li>
+<li>这个工作<strong>在spawn函数中完成</strong>，在最开始open失败的时候添加后缀操作。</li>
+</ul>
+<h3 id="实现更多的指令"><a href="#实现更多的指令" class="headerlink" title="实现更多的指令"></a>实现更多的指令</h3><ul>
+<li>首先创建c文件，然后在<strong>用户include.mk文件</strong>中加入<strong>可执行文件的名称</strong>。</li>
+<li>然后再依葫芦画瓢实现就好啦。</li>
+</ul>
+<h4 id="touch-amp-mkdir"><a href="#touch-amp-mkdir" class="headerlink" title="touch &amp; mkdir"></a>touch &amp; mkdir</h4><ul>
+<li>这两个指令的实现需要加入到<strong>文件系统的IPC通信</strong>中。<ul>
+<li>将文件的open方式<strong>设置为O_CREAT或者O_MKDIR</strong>。</li>
+<li>然后file.c的open调用了fsipc.c中的open通信，我们把这个omode传入req-&gt;req_omode。</li>
+<li>然后在serv.c文件中<strong>打开文件失败后检测指令创建文件</strong>。</li>
+</ul>
+</li>
+<li>但是问题来了，如果我想创建文件重复的时候<strong>有报错信息</strong>怎么办？<ul>
+<li>一个方式是取得<strong>ipc传回的不同消息</strong>来判断是否创建成功。</li>
+<li>另一个很简单，就是你<strong>在O_CREAT之前O_RDONLY</strong>一下，能打开就是已存在的。</li>
+</ul>
+</li>
+<li>对于>的修改就很简单了，open的时候传入O_CREAT|O_WRONLY参数。<ul>
+<li>在另一边判断的时候也用(perm &amp; omode)这种<strong>权限位的判断方式</strong>就行。</li>
+</ul>
+</li>
+</ul>
+<h4 id="tree"><a href="#tree" class="headerlink" title="tree"></a>tree</h4><ul>
+<li><p>tree我本来以为不是必做的来着（因为我原本想着它不属于unix的内部指令</p>
+<ul>
+<li>但是我<strong>最后一天突然看到</strong>，然后就赶忙实现了</li>
+</ul>
+</li>
+<li><p>其实最难搞的还是<strong>格式问题</strong>（虽然我觉得这是c语言程序设计的题</p>
+</li>
+<li>树状图可以<strong>采取递归的实现</strong>，这个文件<strong>递归的深度</strong>决定了要<strong>输出多少前缀空格</strong>。<ul>
+<li>其实也就是<strong>dfs</strong>了一下文件系统的树状结构。</li>
+</ul>
+</li>
+</ul>
+<h3 id="history历史指令"><a href="#history历史指令" class="headerlink" title="history历史指令"></a>history历史指令</h3><ul>
+<li>history的历史指令也是<strong>工作量最高</strong>的之一</li>
+<li>但实现其实已经说的比较的清楚了，创建<strong>.history文件</strong>，然后历史指令都得写入到.history里面。</li>
+<li>遍历的时候遍历文件即可，这里参考了<strong>zhgg的实现</strong>。<ul>
+<li>他把一条指令以&lt; len &gt;&lt; string &gt;&lt; len &gt;作为<strong>一个Entry的方式</strong>写入文件中，这样可以做到<strong>双向的遍历</strong>，十分的巧妙。</li>
+<li>当然需要一个专门的lib\history.c文件来实现和<strong>包括初始化的一系列的操作</strong>，以及存下来<strong>当前的读写指针</strong>。</li>
+</ul>
+</li>
+<li>然后在<strong>键入上下键</strong>的时候可以<strong>获取到上一条下一条历史指令</strong>，如下：<ul>
+<li>关键是update是要<strong>清空前面</strong>的update</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 读取历史指令</span></span><br><span class="line"><span class="keyword">if</span> (direction == UP)</span><br><span class="line">    len = history_next(beforeCur, UP);</span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span> (direction == DOWN) </span><br><span class="line">    len = history_next(beforeCur, DOWN);</span><br><span class="line"><span class="comment">// 更新显示</span></span><br><span class="line"><span class="keyword">if</span> (len &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">    beforeLen = len;</span><br><span class="line">    afterLen = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 传入参数1;</span></span><br><span class="line">update(<span class="number">1</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="一些面子工程-美化操作"><a href="#一些面子工程-美化操作" class="headerlink" title="一些面子工程-美化操作"></a>一些面子工程-美化操作</h3><ul>
+<li>添加<strong>规范的注释help</strong>和<strong>指令选项</strong><ul>
+<li>ls与tree<strong>默认隐藏</strong>‘.’前缀文件</li>
+<li>修改指令，增加<strong>各种参数选项</strong></li>
+</ul>
+</li>
+<li>花花绿绿的shell<ul>
+<li><strong>目录文件夹</strong>是<strong>蓝色</strong>的</li>
+<li>表示<strong>大小</strong>是<strong>绿色</strong></li>
+<li>c语言怎么输出颜色可以上网搜，在<strong>printf中添加特殊格式符</strong></li>
+</ul>
+</li>
+</ul>
+<h2 id="挑战部分"><a href="#挑战部分" class="headerlink" title="挑战部分"></a>挑战部分</h2><ul>
+<li>接下来是挑战部分，实现了三个功能，分别是课程组<strong>环境变量</strong>与<strong>规定的相对路径</strong>；以及我认为极为<strong>影响体验的tab自动补全</strong>。</li>
+</ul>
+<h3 id="环境变量"><a href="#环境变量" class="headerlink" title="环境变量"></a>环境变量</h3><ul>
+<li>环境变量的实现确实<strong>不算很难</strong>，我们选择将所有的变量<strong>储存内核态</strong>以完成共享的目的。</li>
+<li>创建了<strong>五个系统调用</strong>，与<strong>一个Var结构体</strong>，存下来<strong>键值对</strong>，<strong>shellId</strong>与<strong>读写权限</strong>。<ul>
+<li>syscall_alloc_shell_id();</li>
+<li>syscall_declare_var();</li>
+<li>syscall_unset_var();</li>
+<li>syscall_get_var();</li>
+<li>syscall_get_all_var();</li>
+</ul>
+</li>
+<li>这五个系统调用看字面都能看出来意思，这里主要说一下<strong>第一个系统调用</strong>的考虑。<ul>
+<li>加入一个<strong>shellId属性</strong>（不为0，为了判断全局变量考虑）在进程的<strong>env</strong>中，</li>
+<li><strong>fork</strong>的时候把env_shellId<strong>继承</strong>下来，<strong>子进程创建</strong>开始会<strong>系统调用alloc_shellId</strong>重新分配shellId。</li>
+<li>get_var的时候通过<strong>进程的shellId</strong>与<strong>Var结构体的shellId</strong>进行<strong>配对</strong>来判断是否可见。<ul>
+<li>如果是<strong>全局变量</strong>就把<strong>shellId设置为0</strong>。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="支持cd-amp-相对路径"><a href="#支持cd-amp-相对路径" class="headerlink" title="支持cd &amp; 相对路径"></a>支持cd &amp; 相对路径</h3><h4 id="cd的实现"><a href="#cd的实现" class="headerlink" title="cd的实现"></a>cd的实现</h4><ul>
+<li>cd的实现随之而来的是<strong>进程的工作目录</strong>的改变。</li>
+<li>先将工作目录添加进PCB即env结构体。<ul>
+<li>我这里首先确定下来的是我对于工作目录的处理是<strong>以字符串的方式</strong>来处理的，这个方式<strong>比较的简单</strong>，而且修改open函数的时候并不需要修改太多。</li>
+</ul>
+</li>
+<li>然后实现<strong>两个系统调用</strong>，分别是<strong>syscall_get_env_path</strong>和<strong>syscall_change_dir</strong>，用来获取和改变当前的路径，但在<strong>内核中</strong>执行的其实都是些<strong>strcpy的工作</strong>，所以<strong>大部分的工作</strong>需要在<strong>用户态完成</strong><ul>
+<li>这是否也是一种微内核的设计。</li>
+</ul>
+</li>
+<li>而且改变路径的系统调用要能够<strong>改变父进程的工作路径</strong>，因为cd命令是<strong>通过shell的子进程</strong>来完成的，改了cd进程的目录没改shell的目录。</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">sys_change_dir</span><span class="params">(<span class="type">char</span>* env_path, <span class="type">int</span> changeParent)</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (changeParent == <span class="number">1</span>) &#123;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">Env</span> *<span class="title">parent</span> =</span> curenv;</span><br><span class="line">    <span class="keyword">while</span> (parent-&gt;env_parent_id &gt; <span class="number">0</span>) &#123;</span><br><span class="line">      <span class="type">int</span> r;</span><br><span class="line">      r = envid2env((u_int)parent-&gt;env_parent_id, &amp;parent, <span class="number">0</span>);</span><br><span class="line">      <span class="keyword">if</span> (r &lt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> r;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="built_in">strcpy</span>(parent-&gt;env_path, env_path);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">strcpy</span>(curenv-&gt;env_path, env_path);</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>而对于<strong>change的路径的检查</strong>，需要在用户态进行，具体其实也就是<strong>open文件看一看是TYPE_DIR</strong>就行。<ul>
+<li>所以接下来是open的工作，我该怎么<strong>支持相对路径</strong>呢？</li>
+</ul>
+</li>
+</ul>
+<h4 id="相对路径的实现"><a href="#相对路径的实现" class="headerlink" title="相对路径的实现"></a>相对路径的实现</h4><ul>
+<li>unix判断是相对路径还是绝对路径的方式十分的简单粗暴，<strong>最开始是’/‘</strong>就是绝对路径，所以原本的<strong>open</strong>我们改名为<strong>openAP(absolute path)</strong>，然后在open函数里碰到’/‘就调openAP</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (path[<span class="number">0</span>] == <span class="string">&#x27;/&#x27;</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> openAP(path, mode);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    syscall_get_env_path(<span class="number">0</span>, nowPath);</span><br><span class="line">    <span class="keyword">return</span> openatThis(nowPath, path, mode);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>那么<strong>openatThis</strong>是什么呢，就是在<strong>nowPath目录</strong>下<strong>以相对路径打开</strong>。</li>
+<li>这个函数其实也可以采取递归的实现，因为其实相对路径是<strong>一层一层的目录解析</strong>的。<ul>
+<li><strong>例如</strong>当前在<code>/volca/vo</code>目录下，你需要找相对路径<code>../ca/arrive</code>.</li>
+<li>过程是:<ul>
+<li>解析<code>..</code>，进入<code>/volca</code>，然后就是要找<code>ca/arrive</code>，注意了，这一步起是<strong>无记忆性的</strong>！也就是说<strong>前一步是什么我可以不管了</strong>。</li>
+<li>所以你可以<strong>递归的调用openatThis()</strong>，结束条件是要找的最后一层。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>所以openatThis的实现如下：（伪代码）</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">openatThis</span><span class="params">(<span class="type">char</span> *nowPath, <span class="type">const</span> <span class="type">char</span> *path, <span class="type">int</span> mode)</span> &#123;</span><br><span class="line">  <span class="type">char</span> dir[MAXNAMELEN];</span><br><span class="line">  <span class="type">char</span> nextPath[MAXPATHLEN];</span><br><span class="line">  splitPath(dir, nextPath, path);</span><br><span class="line">  <span class="keyword">if</span> (<span class="built_in">strcmp</span>(dir, <span class="string">&quot;.&quot;</span>) ==  <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="comment">// nothing</span></span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="built_in">strcmp</span>(dir, <span class="string">&quot;..&quot;</span>) == <span class="number">0</span>) &#123;</span><br><span class="line">    toParentPath(nowPath);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    catPath(nowPath, dir);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (nextPath[<span class="number">0</span>] == <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> openAP(nowPath, mode);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> openatThis(nowPath, nextPath, mode);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="tab自动补全"><a href="#tab自动补全" class="headerlink" title="tab自动补全"></a>tab自动补全</h3><ul>
+<li>tab自动补全的<strong>工作量不小</strong>，依托于相对路径的实现，可以实现对已经输入的路径的遍历，查找匹配的文件。<ul>
+<li>我们的工作是<strong>实现将路径对于光标前的字符串与光标后的字符串的分离</strong>，让它tab的时候<strong>不影响到其他单词</strong>，我们通过<strong>空格来进行区分</strong>，所以其实这也说明<strong>不支持文件名中有空格的路径的分离</strong>。</li>
+<li>分离出待补全的单词后，再<strong>分离出已经输入的路径和待补全的文件名</strong>。</li>
+<li>然后<strong>打开这个路径</strong>（绝对路径与相对路径都可，如果没有那就默认在当前目录下了），在路径中查找文件，找出之后<strong>填补到光标前的字符串中</strong>，</li>
+<li>最后，<strong>删除光标后面的部分</strong>，到<strong>第一个空格</strong>。（这主要是<strong>为了后面循环匹配</strong>准备的</li>
+<li>最后的最后<strong>update(0)</strong>;（前面的字符不需要更新了</li>
+</ul>
+</li>
+<li>流程有点复杂，大致伪码如下：</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span> comPath[MAXPATHLEN] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line"><span class="type">char</span> tobeCom[MAXPATHLEN] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line"><span class="comment">// 解析分离已输入路径与待补全文件名</span></span><br><span class="line">getTbCom(comPath, tobeCom);</span><br><span class="line"><span class="keyword">if</span> (tobeCom[<span class="number">0</span>] == <span class="number">0</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 打开路径</span></span><br><span class="line"><span class="keyword">if</span> (comPath[<span class="number">0</span>] == <span class="number">0</span>) &#123;</span><br><span class="line">  syscall_get_env_path(<span class="number">0</span>, nowPath);</span><br><span class="line">  fd = open(nowPath, O_RDONLY);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  fd = open(comPath, O_RDONLY);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> (fd &lt; <span class="number">0</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//遍历打开的目录下的文件，找到符合要求的保存下来</span></span><br><span class="line"><span class="keyword">while</span> (read目录) &#123;</span><br><span class="line">  <span class="keyword">if</span> (f.f_name[<span class="number">0</span>]) &#123;</span><br><span class="line">    <span class="keyword">if</span> (strContain(...)) &#123;</span><br><span class="line">      <span class="comment">//保存操作</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">close(fd);</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>补全层面就是一些<strong>字符串操作</strong>了，这里就不放出来了。</p>
+</li>
+<li><p>tab<strong>循环匹配机制</strong>：但是我们要实现<strong>连续多次tab的循环匹配</strong>，或者像unix那样的显示补全选项。</p>
+<ul>
+<li>我们就需要用<strong>标志标识多次连续的tab</strong>。</li>
+<li>然后对于<strong>路径的分离与匹配</strong>不应该重复进行。</li>
+<li>所以我们抽象出<strong>tabFlushDir</strong>与<strong>tabComplete</strong>两个操作，前一个<strong>不需要频繁执行</strong>。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">dealTab</span><span class="params">()</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (!tabAlreadyFlush) &#123;</span><br><span class="line">    tabFlushDir();</span><br><span class="line">    tabAlreadyFlush = <span class="number">1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  tabComplete();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>经过测试，tab自动补全应用场景广泛，演示的时候各种情况都可以来一下hhhh<ul>
+<li>最开始tab</li>
+<li>最后tab</li>
+<li>中间tab</li>
+<li>已有目录嵌套的tab</li>
+</ul>
+</li>
+</ul>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul>
+<li>实现自己的一个shell还是很裤的一件事情，最开始嫌弃mos shell各种功能不完备，最后实现完这么一大堆东西之后，打开电脑时会情不自禁打开这个shell，敲着一些没有意义的代码，欣赏着自己完成的作品，担心着随时可能出现的bug。<ul>
+<li>每一次tree之后看到美丽的树状图，都会很兴奋。</li>
+<li>每一次touch和mkdir之后都要ls一下看看文件是不是创建成功。</li>
+<li>每一次都得装模做样的—help一下看看指令的注释。</li>
+<li>每一次cd都在提心吊胆会不会跳错地方。</li>
+<li>每一次tab都在坐过山车，经历一个tab之前担心，tab之后开心的过程。</li>
+</ul>
+</li>
+<li>时间很紧又很松，在ddl交付和军理等等考试高度重合的这段时间里中，我打开电脑后还是会兴致冲冲地打开vscode，和这个作品相遇，期待每一次。</li>
+<li>这么紧的时间里确实也没有时间支持我去继续完善这个作品了，所以还是留下了很多遗憾，比如ls和tree对文件名的字典序排列，ln文件链接的实现，还有许许多多诸如rm、mv、cp这种unix下的必须指令。</li>
+<li>这个世界上确实不会有完美无瑕的作品，多方面因素导致的最后只能是个折中的结果。但是我自己实现的东西，总归还是最裤的。</li>
 </ul>
 
       </div>
@@ -800,16 +1007,20 @@
               北航
             </a>
           
-            <a href="/tags/%E5%A4%A7%E4%B8%80/" class="">
-              大一
+            <a href="/tags/%E5%A4%A7%E4%BA%8C/" class="">
+              大二
             </a>
           
-            <a href="/tags/%E9%AB%98%E4%BB%A3/" class="">
-              高代
+            <a href="/tags/OS/" class="">
+              OS
             </a>
           
-            <a href="/tags/%E8%B5%84%E6%BA%90/" class="">
-              资源
+            <a href="/tags/shell/" class="">
+              shell
+            </a>
+          
+            <a href="/tags/%E7%AE%A1%E9%81%93/" class="">
+              管道
             </a>
           
         </div>
@@ -823,7 +1034,7 @@
     </li>
     <li class="post-copyright-link">
     <strong>文章链接:  </strong>
-    <a href="/2022/11/24/矩阵相关问题讲课资料/" target="_blank" title="【BUAA-高代】矩阵相关问题讲课资料">http://volcaxiao.github.io/2022/11/24/矩阵相关问题讲课资料/</a>
+    <a href="/2023/06/18/OS-做一个简单的shell/" target="_blank" title="OS-做一个简单的shell">http://volcaxiao.github.io/2023/06/18/OS-做一个简单的shell/</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明:   </strong>
@@ -841,44 +1052,22 @@
 
 
 
-  
-  <div class="post-nav-prev post-nav-item">
-    <div class="post-nav-img" style="background-size: cover; 
-      background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-CO/p3/CPU.png" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-CO/p3/CPU.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-    </div>
-    <a href="/2022/11/24/BUAA-CO-p3-%E5%8D%95%E5%91%A8%E6%9C%9FCPU-logisim%E5%AE%9E%E7%8E%B0/" class="post-nav-link">
-      <div class="title">
-        <i class="fas fa-angle-left"></i> 上一篇:
-        <div class="title-text">【BUAA-CO】p3-单周期CPU(logisim实现)</div>
-      </div>
-      
-      <!-- <div class="content">
-        BUAA-CO课程project3，用logisim实现单周期的CPU
-
-p3_log整体结构
-两个mealy机 -&g
-      </div> -->
-    </a>
-  </div>
-
 
 
   
   <div class="post-nav-next post-nav-item">
     <div class="post-nav-img" style="background-size: cover; 
       background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="/images/gallery/2023Summer/21.jpg" class="lazyload placeholder" data-srcset="/images/gallery/2023Summer/21.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" src="" alt="">
+      <img class="lazyload lazyload placeholder" src="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OO/SocialContact/%E6%9E%B6%E6%9E%84.png" class="lazyload placeholder" data-srcset="https://volca-pict.oss-cn-beijing.aliyuncs.com/images/BUAA-OO/SocialContact/%E6%9E%B6%E6%9E%84.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" src="" alt="">
     </div>
-    <a href="/2022/11/24/%E5%90%91%E9%87%8F%E7%A9%BA%E9%97%B4%E4%B8%8E%E5%86%85%E7%A7%AF%E7%A9%BA%E9%97%B4%E8%AE%B2%E8%AF%BE%E8%B5%84%E6%96%99/" class="post-nav-link">
+    <a href="/2023/06/10/BUAA-OO-JML-SocialContact/" class="post-nav-link">
       <div class="title">
         下一篇: <i class="fas fa-angle-right"></i>
-        <div class="title-text">【BUAA-高代】向量空间与内积空间讲课资料</div>
+        <div class="title-text">BUAA-OO-JML-SocialContact</div>
       </div>
       <!-- <div class="content">
-        朋辈辅导师第九周直播课-向量空间和内积空间的备课资料，大家有需要自取。
-
-资料在这-&gt;向量空间与内积空间有效期限：
+        unit3_logPre
+第三单元的主题是规格化设计，需要我们学会理解与使用JML语言对于java程序进行建模，从而实现
       </div> -->
     </a>
   </div>
@@ -1023,7 +1212,7 @@ p3_log整体结构
   <div class='content'>
     <div class="toc-main">
       <div class="toc-content">
-        <!-- <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%9F%A9%E9%98%B5%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98"><span class="toc-text">矩阵相关问题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9F%A9%E9%98%B5%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%9B%98"><span class="toc-text">矩阵的基本盘</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%AF%E9%80%86%E5%AE%9A%E4%B9%89%E5%AE%9A%E4%B9%89%E5%8F%8A%E7%9B%B8%E5%85%B3%E6%80%A7%E8%B4%A8%E5%8F%8A%E6%B1%82%E9%80%86%E9%98%B5%E7%9A%84%E6%96%B9%E6%B3%95"><span class="toc-text">可逆定义定义及相关性质及求逆阵的方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AD%A3%E4%BA%A4%E5%8F%8A%E7%9B%B8%E5%85%B3%E6%80%A7%E8%B4%A8"><span class="toc-text">正交及相关性质</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9F%A9%E9%98%B5%E7%9A%84%E7%A7%A9"><span class="toc-text">矩阵的秩</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A7%A9%E7%9A%84xdm"><span class="toc-text">秩的xdm</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%84%E7%A7%8D%E5%90%84%E6%A0%B7%E7%9A%84%E7%A7%A9%E5%85%AC%E5%BC%8F"><span class="toc-text">各种各样的秩公式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%86%E5%9D%97%E7%A7%A9%E5%85%AC%E5%BC%8F"><span class="toc-text">分块秩公式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A7%AF%E9%98%B5%E7%A7%A9%E5%85%AC%E5%BC%8F"><span class="toc-text">积阵秩公式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8A%A0%E5%87%8F%E7%A7%A9%E5%85%AC%E5%BC%8F"><span class="toc-text">加减秩公式</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A5%87%E5%A6%99%E7%9A%84%E7%A7%A9%E4%B8%80%E9%98%B5"><span class="toc-text">奇妙的秩一阵</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8F%90%E4%B8%80%E5%98%B4%E5%85%88%E4%B8%8D%E8%AE%B2"><span class="toc-text">提一嘴先不讲</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8B%E9%99%8D%E5%85%AC%E5%BC%8F"><span class="toc-text">下降公式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8D%A2%E4%BD%8D%E5%85%AC%E5%BC%8F1-0"><span class="toc-text">换位公式1.0</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8D%A2%E4%BD%8D%E5%85%AC%E5%BC%8F2-0"><span class="toc-text">换位公式2.0</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8D%A2%E4%BD%8D%E5%85%AC%E5%BC%8F3-0%E5%8F%8A%E7%89%B9%E5%BE%81%E5%80%BC%EF%BC%88%E5%B8%A6%E6%8B%93%E5%B1%95%EF%BC%8C%E7%9C%8B%E6%97%B6%E9%97%B4%EF%BC%89"><span class="toc-text">换位公式3.0及特征值（带拓展，看时间）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A5%87%E5%A6%99%E7%9A%84%E4%BC%B4%E9%9A%8F%E9%98%B5"><span class="toc-text">奇妙的伴随阵</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E8%A1%8C%E5%88%97%E5%BC%8F%E5%80%BC%E7%9A%84%E6%8E%A8%E5%AF%BC"><span class="toc-text">相关行列式值的推导</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%B8%E4%BC%B4%E7%A7%A9%E5%85%AC%E5%BC%8F"><span class="toc-text">相伴秩公式</span></a></li></ol></li></ol></li></ol> -->
+        <!-- <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#lab6-C-log"><span class="toc-text">lab6-C_log</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#pre"><span class="toc-text">pre</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%BB%E6%87%82lab6%E7%9A%84sh-c%E8%BF%90%E8%A1%8C"><span class="toc-text">读懂lab6的sh.c运行</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E5%8A%9F%E8%83%BD%E6%B8%85%E5%8D%95"><span class="toc-text">实现功能清单</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B7%E4%BD%93%E5%AE%9E%E7%8E%B0"><span class="toc-text">具体实现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E7%BD%AE%E5%87%86%E5%A4%87%E6%93%8D%E4%BD%9C"><span class="toc-text">前置准备操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E8%A1%8C%E5%A4%9A%E6%8C%87%E4%BB%A4-amp-%E5%90%8E%E5%8F%B0%E4%BB%BB%E5%8A%A1"><span class="toc-text">一行多指令 &amp; 后台任务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%94%AF%E6%8C%81%E5%BC%95%E5%8F%B7"><span class="toc-text">支持引号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%94%AE%E5%85%A5%E4%BD%8D%E7%BD%AE%E7%9A%84%E4%BF%AE%E6%94%B9"><span class="toc-text">键入位置的修改</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%89%E6%A0%87%E7%A7%BB%E5%8A%A8"><span class="toc-text">光标移动</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%80%80%E6%A0%BC%E4%B8%8E%E5%88%A0%E9%99%A4%E6%93%8D%E4%BD%9C"><span class="toc-text">退格与删除操作</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%B9-b%E7%9A%84%E7%9C%81%E7%95%A5"><span class="toc-text">对.b的省略</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E6%9B%B4%E5%A4%9A%E7%9A%84%E6%8C%87%E4%BB%A4"><span class="toc-text">实现更多的指令</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#touch-amp-mkdir"><span class="toc-text">touch &amp; mkdir</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#tree"><span class="toc-text">tree</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#history%E5%8E%86%E5%8F%B2%E6%8C%87%E4%BB%A4"><span class="toc-text">history历史指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E4%BA%9B%E9%9D%A2%E5%AD%90%E5%B7%A5%E7%A8%8B-%E7%BE%8E%E5%8C%96%E6%93%8D%E4%BD%9C"><span class="toc-text">一些面子工程-美化操作</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8C%91%E6%88%98%E9%83%A8%E5%88%86"><span class="toc-text">挑战部分</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="toc-text">环境变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%94%AF%E6%8C%81cd-amp-%E7%9B%B8%E5%AF%B9%E8%B7%AF%E5%BE%84"><span class="toc-text">支持cd &amp; 相对路径</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#cd%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="toc-text">cd的实现</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%9B%B8%E5%AF%B9%E8%B7%AF%E5%BE%84%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="toc-text">相对路径的实现</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#tab%E8%87%AA%E5%8A%A8%E8%A1%A5%E5%85%A8"><span class="toc-text">tab自动补全</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">总结</span></a></li></ol></li></ol></li></ol> -->
         <div class="toc"></div>
       </div>
     </div>
