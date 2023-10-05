@@ -818,7 +818,36 @@
 </tbody>
 </table>
 </div>
-<h4 id="EXT"><a href="#EXT" class="headerlink" title="EXT"></a>EXT</h4><p>信号名|IO|描述|备注|<br>|:-:|:-:|:-|:-|<br>|imm16[15:0]|I|16位立即数|<br>|EXTOp|I|EXT功能选择：&lt;/br&gt; 0: 0拓展 &lt;/br&gt; 1: 符号位拓展|lui指令的高位拓展在ALU里执行|<br>|S0imm32|O|拓展后的32位立即数|</p>
+<h4 id="EXT"><a href="#EXT" class="headerlink" title="EXT"></a>EXT</h4><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">信号名</th>
+<th style="text-align:center">IO</th>
+<th style="text-align:left">描述</th>
+<th style="text-align:left">备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">imm16[15:0]</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">16位立即数</td>
+</tr>
+<tr>
+<td style="text-align:center">EXTOp</td>
+<td style="text-align:center">I</td>
+<td style="text-align:left">EXT功能选择：&lt;/br&gt; 0: 0拓展 &lt;/br&gt; 1: 符号位拓展</td>
+<td style="text-align:left">lui指令的高位拓展在ALU里执行</td>
+</tr>
+<tr>
+<td style="text-align:center">S0imm32</td>
+<td style="text-align:center">O</td>
+<td style="text-align:left">拓展后的32位立即数</td>
+</tr>
+</tbody>
+</table>
+</div>
 <h4 id="ALU"><a href="#ALU" class="headerlink" title="ALU"></a>ALU</h4><div class="table-container">
 <table>
 <thead>
